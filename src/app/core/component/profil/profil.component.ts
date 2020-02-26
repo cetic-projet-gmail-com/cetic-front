@@ -1,4 +1,4 @@
-import { DataService } from './../../services/data.service';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,15 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilComponent implements OnInit {
 
-  constructor(private DataService: DataService) { }
-
-  login : string
-  firstname : string
-  lastname : string
-  mail : string
+  constructor(private http: HttpClient) { }
+  user = {};
+  baseUrl = "http://localhost:3000";
+  url = this.baseUrl + '/profil';
   ngOnInit() {
-    this.DataService.getUsers().subscribe((res) => {
-      console.log(res);
-    });
+    this.getInfos()
+  }
+  getInfos() {
+    this.http.get(this.url).subscribe(element => {
+      this.user = element["data"].profil
+
+      console.log(this.user)
+    })
   }
 }

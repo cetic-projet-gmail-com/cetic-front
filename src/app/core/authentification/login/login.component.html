@@ -1,29 +1,29 @@
-<div class="boule1"></div>
-<div class="boule2"></div>
-<div class="boule3"></div>
-<div class="boule4"></div>
-
-<div>
+<div class="content">
   <img src="assets/img/Logos/logo_login.png" alt="logo_login">
   <form method="POST" ngForm="" action="localhost:3000/login">
-    <div>
-      <label for=""> Nom Utilistateur :</label>
+    <div class="name">
+      <label for=""> Utilistateur :</label>
       <input type="text">
     </div>
     <div>
-      <div>
+      <div class="mdp">
         <label for=""> Mot de passe :</label>
-        <a href=""> Mot de passe oublié ?</a>
-      </div>
-      <input type="text">
-    </div>
-    <button type="submit">
-      Save
-    </button>
 
+        <input type="text">
+      </div>
+    </div>
+    <div class="login">
+      <a [routerLink]="'/forgot_password'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        Mot de passe oublié ?</a>
+      <button type="submit">
+        Valider
+      </button>
+    </div>
   </form>
 </div>
-<div>
-  <a href="">any suggestion ? </a>
-  <a href="">à propos</a>
+<div class="infos">
+  <a href="https://forge.cetic.be/login?back_url=https%3A%2F%2Fforge.cetic.be%2Fprojects%2Fmission-timetrack
+  Redmine@CETIC" target="_blank">> Suggestion ? </a>
+  <a [routerLink]="'/info'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+    > Informations</a>
 </div>

@@ -1,1 +1,31 @@
-<p>profil works!</p>
+<div class="ensemble">
+    <section>
+        <div class="profil">
+            <span class="spanOfAbreviation">{{this.initials}}</span>
+            <div class="cadre">
+                <span class="introduction">{{this.user.firstname}} {{this.user.lastname}}</span>
+
+                <div class="d-flex">
+                    <div class="sousCadre">
+
+                        <form action="/action_page.php" class="infoUser">
+                            <label for="fname">Adresse mail:</label>
+                            <input type="text" id="fname" name="fname" style="border-radius: 10%;"
+                                value={{this.user.firstname}}>
+                            <label for="lname">Mot de passe:</label>
+                            <input type="text" id="mdp" name="mdp" style="border-radius:10%;"
+                                value="{{this.user.password}}">
+
+                            <label for="fname">Rôle:</label>
+                            <input type="text" id="role" name="role" style="border-radius:10%;"
+                                value="{{this.user.role_id}}">
+                            <label for="lname">DEPARTEMENT:</label>
+                            <input type="text" id="departement" name="departement" size="2" style="border-radius:10%;"
+                                value="{{this.user.departement_id}}">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

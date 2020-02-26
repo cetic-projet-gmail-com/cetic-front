@@ -1,3 +1,4 @@
+import { ForgotPasswordComponent } from './core/component/forgot-password/forgot-password.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -27,7 +28,8 @@ import { ActivitiesComponent } from './core/component/activities/activities.comp
     InfoComponent,
     AdminUsersComponent,
     ProfilComponent,
-    ActivitiesComponent
+    ActivitiesComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     HttpClientModule,

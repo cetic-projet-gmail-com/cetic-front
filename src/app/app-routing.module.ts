@@ -1,3 +1,4 @@
+import { ForgotPasswordComponent } from './core/component/forgot-password/forgot-password.component';
 import { ActivitiesComponent } from './core/component/activities/activities.component';
 import { LoginComponent } from './core/authentification/login/login.component';
 import { ProfilComponent } from './core/component/profil/profil.component';
@@ -33,6 +34,10 @@ const routes: Routes = [
   {
     path: 'administration/activities',
     component: ActivitiesComponent
+  },
+  {
+    path: 'forgot_password',
+    component: ForgotPasswordComponent
   }
 ];
 
