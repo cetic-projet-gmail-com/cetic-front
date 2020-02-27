@@ -18,6 +18,7 @@ import { InfoComponent } from './core/component/info/info.component';
 import { AdminUsersComponent } from './core/component/admin-users/admin-users.component';
 import { ProfilComponent } from './core/component/profil/profil.component';
 import { ActivitiesComponent } from './core/component/activities/activities.component';
+import { CreateUserComponent } from './core/component/modal/create-user/create-user.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ActivitiesComponent } from './core/component/activities/activities.comp
     AdminUsersComponent,
     ProfilComponent,
     ActivitiesComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    CreateUserComponent
   ],
   imports: [
     HttpClientModule,
