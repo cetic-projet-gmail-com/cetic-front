@@ -1,3 +1,4 @@
-<app-nav></app-nav>
+<app-nav *ngIf="_router.url != '/login'"></app-nav>
+
 <router-outlet>
 </router-outlet>

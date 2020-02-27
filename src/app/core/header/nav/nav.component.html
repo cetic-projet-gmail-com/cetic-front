@@ -1,4 +1,4 @@
-<nav>
+<!-- <nav>
     <ul>
         <li>
             <a [routerLink]="'/home'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
@@ -32,4 +32,23 @@
         </li>
     </ul>
 </nav>
+ -->
 
+<div class="navBar">
+  <a [routerLink]="'/home'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+    <img src="assets/img/logo cetic nav barre/logo nav barre.png" alt="logo_home">
+  </a>
+
+  <div class="info">{{title}}</div>
+  <div class="menu">
+    <a [routerLink]="'/login'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      connexion
+    </a>
+    <a [routerLink]="'/login'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <fa-icon [icon]="faUser" class="faUser"></fa-icon>
+      admin
+    </a>
+    <fa-icon [icon]="faBars" class="faBars"></fa-icon>
+
+  </div>
+</div>
