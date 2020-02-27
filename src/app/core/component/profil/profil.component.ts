@@ -8,18 +8,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.role = "user";
+  }
   user = {};
+  role;
   baseUrl = "http://localhost:3000";
   url = this.baseUrl + '/profil';
   ngOnInit() {
-    this.getInfos()
+    this.getInfos();
   }
   getInfos() {
     this.http.get(this.url).subscribe(element => {
       this.user = element["data"].profil
-
-      console.log(this.user)
     })
   }
+  isAuthorize(){
+    let isAutorize;
+    if(this.role === "admin"){
+      isAutorize = true;
+    } else {
+      isAutorize = false;
+    }
+    
+    return !isAutorize;
+
+}
+ 
 }
