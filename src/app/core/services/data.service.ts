@@ -1,3 +1,4 @@
+import { Departements } from './../../models/departements';
 import { Activities } from './../../models/activities';
 import { Users } from '../../models/users';
 import { HttpClient } from '@angular/common/http';
@@ -11,8 +12,6 @@ export class DataService {
   constructor(private httpClient: HttpClient) {
   }
   
-  public createUser(users: Users){}
-
   public updateUser(users: Users){}
   
   public deleteUser(id: number){}
@@ -35,5 +34,12 @@ export class DataService {
     return this.httpClient.get<Activities>(`${this.apiURL}/administration/activities`);
   }
 
+  public getDepartements(url?: string){
+    return this.httpClient.get<Departements>(`${this.apiURL}/administration/departements`);
+  }
+
+  public createUser(user: Users){
+    return this.httpClient.post(`${this.apiURL}/administration/users`,user);
+}
 
 }
