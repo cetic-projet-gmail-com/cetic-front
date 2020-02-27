@@ -1,0 +1,14 @@
+{
+  "links": {
+    "current": "/administration/users?page=1&nbre=1",
+    "next": "/administration/users?page=2&nbre=1",
+    "last": "/administration/users?page=92&nbre=1"
+  },
+  "data": {
+    "users": [{
+      "id": 2,
+      "firstname": "Rani",
+      "lastname": "Sambles"
+    }]
+  }
+}

@@ -18,11 +18,17 @@ import { InfoComponent } from './core/component/info/info.component';
 import { AdminUsersComponent } from './core/component/admin-users/admin-users.component';
 import { ProfilComponent } from './core/component/profil/profil.component';
 import { ActivitiesComponent } from './core/component/activities/activities.component';
+<<<<<<< HEAD
 import { CreateUserComponent } from './core/component/modal/create-user/create-user.component';
+=======
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+>>>>>>> dev
 
 @NgModule({
   declarations: [
     AppComponent,
+
     NavComponent,
     LoginComponent,
     HomeComponent,
@@ -35,6 +41,7 @@ import { CreateUserComponent } from './core/component/modal/create-user/create-u
   ],
   imports: [
     HttpClientModule,
+    FontAwesomeModule,
     BrowserModule,
     AppRoutingModule,
     CommonModule,
