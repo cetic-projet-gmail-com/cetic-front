@@ -1,0 +1,68 @@
+$poiret : 'Poiret One';
+$saira : 'Saira Semi Condensed';
+$col_typo : #5a5a5a;
+
+.navBar {
+  height: 55px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, .25);
+  background-color: #CCCCCC;
+  z-index: 10000;
+
+
+
+  img {
+    height: 50px;
+    margin-left: 20px;
+  }
+
+  .info {
+    width: 400px;
+    height: 40px;
+    margin: auto;
+    font-family: $saira;
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    padding-top: 4px;
+    font-size: 1.4em;
+  }
+
+  .menu {
+    align-content: center;
+    margin: auto 20px auto 0;
+
+    .faBars {
+      margin-left: 20px;
+      font-size: 1.2em;
+      color: #53853D;
+
+    }
+
+    a {
+      text-transform: uppercase;
+      font-family: $saira;
+      color: #777;
+      text-decoration: none;
+      background-color: white;
+      border-radius: 3px;
+      border: none;
+      padding: 0 10px;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, .15);
+
+      &:hover {
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        background-color: rgba(83, 133, 61, .2);
+      }
+
+      .faUser {
+        margin-right: 10px;
+        color: #ccc;
+      }
+
+    }
+
+  }
+}
