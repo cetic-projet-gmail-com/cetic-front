@@ -80,25 +80,25 @@ $col_typo : #5a5a5a;
   }
 }
 
-.content:after {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  z-index: -1;
-  height: 100vh;
-  background: url('/assets/img/fond_login.png');
-  background-position: left;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
+// .content:after {
+//   content: "";
+//   display: block;
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100vw;
+//   z-index: -1;
+//   height: 100vh;
+//   background: url('/assets/img/fond_login.png');
+//   background-position: left;
+//   background-repeat: no-repeat;
+//   background-size: contain;
+// }
 
 .infos {
-  text-align: right;
-  margin-right: 20px;
-  margin-top: 140px;
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
 
   a {
 

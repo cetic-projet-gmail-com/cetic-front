@@ -1,0 +1,114 @@
+$poiret : 'Poiret One';
+$saira : 'Saira Semi Condensed';
+$col_typo : #5a5a5a;
+
+.container {
+
+  .content {
+
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, .15);
+  }
+
+  ul {
+    padding: 0;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      text-align: center;
+      font-family: $saira;
+
+      div {
+        border-right: 1px solid rgba(204, 204, 204, 0.2);
+        text-align: center;
+        width: 11%;
+        height: 40px;
+
+
+        &:nth-child(1) {
+          width: 50px;
+          border-left: 1px solid rgba(204, 204, 204, 0.2);
+
+        }
+      }
+    }
+  }
+
+
+  #tab {
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+    margin-top: 50px;
+
+    a {
+      cursor: pointer;
+    }
+
+    .tab {
+      display: flex;
+
+      font-family: $saira;
+
+      .underTab {
+        height: 40px;
+        text-align: center;
+        background-color: rgba(128, 128, 128, 0.2);
+        padding: 0 10px;
+        margin-right: 3px;
+        margin-top: 10px;
+        line-height: 40px;
+        border-radius: 5px 5px 0 0;
+      }
+
+      .active {
+        height: 50px;
+        font-size: 1.2em;
+        line-height: 50px;
+        background-color: #53853D;
+        padding: 0 20px;
+        border-radius: 5px 5px 0 0;
+        color: white;
+        margin-right: 3px;
+
+
+      }
+    }
+
+    fa-icon {
+      font-size: 2em;
+      color: rgba(83, 133, 61, 0.7);
+      cursor: pointer;
+      margin-top: 10px;
+
+      &:hover {
+        color: rgba(83, 133, 61, 1);
+
+      }
+    }
+  }
+
+  .titleListe {
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+    color: #5a5a5a;
+    padding-bottom: 40px;
+
+    div {
+
+      border-right: 1px solid rgba(204, 204, 204, 0.2);
+      text-align: center;
+      width: 11%;
+
+
+      &:nth-child(1) {
+        width: 50px;
+        border-left: 1px solid rgba(204, 204, 204, 0.2);
+
+      }
+    }
+
+  }
+}

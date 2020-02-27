@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TitleService } from './../../services/title.service';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'forgot-password',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ForgotPasswordComponent implements OnInit {
 
-  constructor() { }
+
+  constructor(private http: HttpClient, private TitleService: TitleService) { }
 
   ngOnInit() {
+    this.TitleService.setTitle("Mot de passe oublié")
   }
+
+
 
 }

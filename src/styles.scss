@@ -1,3 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/scss/bootstrap.scss';
 @import '~angular-calendar/css/angular-calendar.css';
+
+body {
+  min-height: 100vh;
+  background: url('/assets/img/fond_login.png');
+  background-position: 0 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+
+
+}
