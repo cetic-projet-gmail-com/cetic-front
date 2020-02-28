@@ -1,31 +1,71 @@
-<div class="ensemble">
-    <section>
-        <div class="profil">
-            <span class="spanOfAbreviation">{{this.initials}}</span>
-            <div class="cadre">
-                <span class="introduction">{{this.user.firstname}} {{this.user.lastname}}</span>
+<div class="profil">
 
-                <div class="d-flex">
-                    <div class="sousCadre">
+  <h2 style="text-align: center;">Profil user</h2>
+  <!-- Page profil user de base -->
+  <div class="d-flex align-items-center justify-content-center h-100">
+    <div class="p-3 formContainer">
+      <span class="introduction">{{this.user.firstname}} {{this.user.lastname}}</span>
+      <form action="#" class="infoUser">
+        <label for="fname" class="col-6">Adresse mail:</label>
+        <input type="text" [disabled]="isAuthorize()" class="col-6" id="fname" name="fname" style="border-radius: 10%;"
+          value={{this.user.firstname}}>
+        <label for="lname" class="col-6">Mot de passe:</label>
+        <input type="text" [disabled]="isAuthorize()" class="col-6" id="mdp" name="mdp" style="border-radius:10%;"
+          value="{{this.user.password}}">
 
-                        <form action="/action_page.php" class="infoUser">
-                            <label for="fname">Adresse mail:</label>
-                            <input type="text" id="fname" name="fname" style="border-radius: 10%;"
-                                value={{this.user.firstname}}>
-                            <label for="lname">Mot de passe:</label>
-                            <input type="text" id="mdp" name="mdp" style="border-radius:10%;"
-                                value="{{this.user.password}}">
+        <label class="col-6" for="fname">Rôle:</label>
+        <input class="col-6" [disabled]="isAuthorize()" type="text" id="role" name="role" style="border-radius:10%;"
+          value="{{this.user.role_id}}">
 
-                            <label for="fname">Rôle:</label>
-                            <input type="text" id="role" name="role" style="border-radius:10%;"
-                                value="{{this.user.role_id}}">
-                            <label for="lname">DEPARTEMENT:</label>
-                            <input type="text" id="departement" name="departement" size="2" style="border-radius:10%;"
-                                value="{{this.user.departement_id}}">
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        <label for="department" class="col-6">Département:</label>
+        <input type="text" [disabled]="isAuthorize()" class="col-6 col-xs-2" id="departement" name="departement"
+          style="border-radius:10%;" value="{{this.user.departement_id}}">
+
+      </form>
+
+      <div class="d-flex flex-row-reverse bg-highlight">
+        <button ng-click="editUser()" class="btn btn-success pull-right">Editer</button>
+      </div>
+
+    </div>
+  </div>
+
 </div>
+
+
+<!-- Pour l'utilisateur, donne le droit de modifier son adresse mail
+
+ -->
+<!-- <div class="profil">
+    <div class="d-flex align-items-center justify-content-center h-100">
+      <div class="p-3 formContainer">
+        <span class="introduction">{{this.user.firstname}} {{this.user.lastname}}</span>
+        <form action="#" class="infoUser">
+          <label for="fname" class="col-6">Adresse mail:</label>
+          <input type="text" class="col-6" id="fname" name="fname" style="border-radius: 10%;"
+            value={{this.user.firstname}}>
+          <label for="lname" class="col-6">Mot de passe:</label>
+          <input type="text" [disabled]="isAuthorize()"  class="col-6" id="mdp" name="mdp" style="border-radius:10%;" value="{{this.user.password}}">
+  
+          <label class="col-6" for="fname">Rôle:</label>
+          <input class="col-6" [disabled]="isAuthorize()"  type="text" id="role" name="role" style="border-radius:10%;"
+            value="{{this.user.role_id}}">
+  
+          <label for="department" class="col-6">DEPARTEMENT:</label>
+          <input type="text" [disabled]="isAuthorize()"  class="col-6 col-xs-2" id="departement" name="departement" style="border-radius:10%;"
+            value="{{this.user.departement_id}}">
+        </form>
+      </div>
+    </div>
+  </div> -->
+
+
+
+<!-- Pour l'édit du profil -->
+
+<!-- <label for="role" class="col-6">Rôle</label>
+<select id="role" name="rôle" class="form-control-sm col-6 p-3 mb-2 bg-light text-dark">
+  <option value="modo">Modérateur</option>
+  <option value="user">Utilisateur</option>
+  <option value="admin">Administrateur</option>
+</select> -->

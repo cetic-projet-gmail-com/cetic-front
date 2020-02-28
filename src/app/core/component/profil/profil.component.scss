@@ -1,64 +1,14 @@
-.ensemble{
-    width: 100%;
-    height: auto;
-    position: absolute;
+.profil {
+
+    // height: 100vh;
+    width: auto;
+  }
+
+.formContainer{
+    width: 50%;
 }
 
-.profil{
-    width: 100%;
-    height: auto;
-    margin: 0;
-    padding: 0;
-    background-color: red;
-}
+.introduction {
+    margin-bottom: 5px;
 
-.spanOfAbreviation {
-  position: absolute;
-  width: 110.4px;
-  height: 85.98px;
-  left: 396.22px;
-  top: 285.95px;
-
-  font-family: Poiret One;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 65px;
-  line-height: 76px;
-  text-align: center;
-
-  color: #000000;
-  z-index: 2;
-
-}
-
-.cadre{
-    position: absolute;
-width: 581.72px;
-height: 361.98px;
-left: 500.25px;
-top: 328.42px;
-
-border: 0.2px solid #000000;
-z-index: 1;
-justify-content: center;
-}
-
-.sousCadre{
-    position: absolute;
-    margin-left: 50px;
-    margin-top: 40px;
-
-border: 0.2px solid #000000;
-}
-
-.introduction{
-    position: absolute;
-    font-size: 25px;
-    color: black;
-    margin-left: 50px;
-    margin-right: auto;
-}
-
-.infoUser{
-    position: absolute;
 }

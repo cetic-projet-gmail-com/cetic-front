@@ -1,0 +1,68 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            <form #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm)">
+                <div class="form-group">
+                    <label for="lastname">Nom</label>
+                        <input type="text"
+                        ngModel
+                        required
+                        name="lastname"
+                        id="lastname"
+                        class="form-control"
+                        >
+                    <label for="firstname">prenom</label>
+                        <input type="text"
+                        ngModel
+                        required
+                        name="firstname"
+                        id="firstname"
+                        class="form-control"
+                        >
+                    <label for="login">login</label>
+                        <input type="text"
+                        ngModel
+                        required
+                        name="login"
+                        id="login"
+                        class="form-control"
+                        >
+                    <label for="email">mail</label>
+                        <input type="email"
+                        ngModel
+                        required
+                        name="email"
+                        id="email"
+                        class="form-control"
+                        >
+                    <label for="password">mot de passe</label>
+                        <input type="text"
+                        ngModel
+                        name="password"
+                        id="password"
+                        class="form-control"
+                        required
+                        >
+                        <label for="role_id">role</label>
+                    <select ngModel 
+                            required
+                            name="role_id"
+                            class="form-control"
+                            id="role_id">
+                        <option value="1">user</option>
+                        <option value="2">moderateur</option>
+                        <option value="3">administrateur</option>
+                    </select>
+                    <label for="departement_id">departement</label>
+                    <select ngModel 
+                            required
+                            name="departement_id"
+                            class="form-control">
+                        <option *ngFor="let dep of departements" [value]="dep.id" >{{ dep.name }}</option>
+                    </select>
+                    <button class="btn btn-primary">Valider</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

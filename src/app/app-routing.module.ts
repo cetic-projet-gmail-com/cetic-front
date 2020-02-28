@@ -8,11 +8,16 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EditActivityComponent } from './core/component/editactivity/editactivity.component';
 
+import { AuthGuardService} from './core/services/auth/auth-guard.service';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    redirectTo: 'login', pathMatch: 'full'
+  },
+  {
+    path: 'home',
+    component : HomeComponent
   },
   {
     path: 'login',
@@ -36,7 +41,8 @@ const routes: Routes = [
   },
   {
     path: 'profil',
-    component: ProfilComponent
+    component: ProfilComponent,
+    canActivate: [AuthGuardService] 
   },
   {
     path: 'administration/activities',
@@ -55,7 +61,8 @@ const routes: Routes = [
   {
     path: 'forgot_password',
     component: ForgotPasswordComponent
-  }
+  },
+
 
 
 
