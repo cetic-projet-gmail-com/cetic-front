@@ -1,15 +1,15 @@
 <div class="content">
   <img src="assets/img/Logos/logo_login.png" alt="logo_login">
-  <form method="POST" ngForm="" action="localhost:3000/login">
+  <form (submit)="login()">
     <div class="name">
-      <label for=""> Utilistateur :</label>
-      <input type="text">
+      <label for="user"> Utilistateur :</label>
+      <input type="text" [(ngModel)]="credentials.login" id="user" name="login">
     </div>
     <div>
       <div class="mdp">
-        <label for=""> Mot de passe :</label>
+        <label for="pass"> Mot de passe :</label>
 
-        <input type="text">
+        <input type="password" [(ngModel)]="credentials.password" id="pass" name="password">
       </div>
     </div>
     <div class="login">
