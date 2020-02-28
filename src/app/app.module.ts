@@ -20,6 +20,7 @@ import { ProfilComponent } from './core/component/profil/profil.component';
 import { ActivitiesComponent } from './core/component/activities/activities.component';
 import { CreateUserComponent } from './core/component/modal/create-user/create-user.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { UpdateUserComponent } from './core/component/modal/update-user/update-user.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ProfilComponent,
     ActivitiesComponent,
     ForgotPasswordComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    UpdateUserComponent
   ],
   imports: [
     HttpClientModule,
