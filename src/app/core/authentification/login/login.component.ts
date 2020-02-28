@@ -1,5 +1,7 @@
-import { DataService } from './../../services/data.service';
+// import { DataService } from './../../services/data.service';
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService, TokenPayload } from '../../services/auth/authentification.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -7,13 +9,18 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent /*implements OnInit */{
+  credentials: TokenPayload = {
+    login: '',
+    password: ''
+  };
+  constructor(private auth: AuthenticationService, private router: Router) {}
 
-  constructor(private DataService: DataService) { }
-
-
-
-  ngOnInit() {
+  login() {
+    this.auth.login(this.credentials).subscribe(() => {
+      this.router.navigateByUrl('/home');
+    }, (err) => {
+      console.error(err);
+    }); 
   }
-
 }

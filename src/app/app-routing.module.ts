@@ -5,15 +5,19 @@ import { ProfilComponent } from './core/component/profil/profil.component';
 import { AdminUsersComponent } from './core/component/admin-users/admin-users.component';
 import { InfoComponent } from './core/component/info/info.component';
 import { HomeComponent } from './core/component/home/home.component';
-
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { AuthGuardService} from './core/services/auth/auth-guard.service';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    redirectTo: 'login', pathMatch: 'full'
+  },
+  {
+    path: 'home',
+    component : HomeComponent
   },
   {
     path: 'login',
@@ -29,7 +33,8 @@ const routes: Routes = [
   },
   {
     path: 'profil',
-    component: ProfilComponent
+    component: ProfilComponent,
+    canActivate: [AuthGuardService] 
   },
   {
     path: 'administration/activities',
@@ -38,7 +43,8 @@ const routes: Routes = [
   {
     path: 'forgot_password',
     component: ForgotPasswordComponent
-  }
+  },
+
 
 
 

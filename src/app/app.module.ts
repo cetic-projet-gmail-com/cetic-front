@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { CommonModule } from '@angular/common';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
@@ -19,10 +20,10 @@ import { AdminUsersComponent } from './core/component/admin-users/admin-users.co
 import { ProfilComponent } from './core/component/profil/profil.component';
 import { ActivitiesComponent } from './core/component/activities/activities.component';
 import { CreateUserComponent } from './core/component/modal/create-user/create-user.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UpdateUserComponent } from './core/component/modal/update-user/update-user.component';
 
-
+import { AuthenticationService} from './core/services/auth/authentification.service';
+import { AuthGuardService} from './core/services/auth/auth-guard.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +53,7 @@ import { UpdateUserComponent } from './core/component/modal/update-user/update-u
     })
   ],
 
-  providers: [],
+  providers: [AuthenticationService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
