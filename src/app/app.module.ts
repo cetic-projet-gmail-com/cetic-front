@@ -17,8 +17,10 @@ import { HomeComponent } from './core/component/home/home.component';
 import { InfoComponent } from './core/component/info/info.component';
 import { AdminUsersComponent } from './core/component/admin-users/admin-users.component';
 import { ProfilComponent } from './core/component/profil/profil.component';
-import { ActivitiesComponent } from './core/component/activities/activities.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import { EditActivityComponent } from './core/component/editactivity/editactivity.component';
+
 
 
 @NgModule({
@@ -31,8 +33,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     InfoComponent,
     AdminUsersComponent,
     ProfilComponent,
-    ActivitiesComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    EditActivityComponent
+
   ],
   imports: [
     HttpClientModule,

@@ -1,0 +1,67 @@
+<div class="content">
+  <div class="info">
+    <h3>Activité 1</h3>
+    <p>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore rem ratione dolores? Nihil dignissimos veniam
+      exercitationem amet iste id deserunt libero dolore repellendus iusto architecto officiis quia consequuntur,
+      mollitia placeat.
+    </p>
+    <h4>Chef <span>Nom du chef</span></h4>
+    <h4>Client<span>Nom du client</span></h4>
+  </div>
+  <div class="board">
+    <div class="datepicker">
+      <div class="lien"></div>
+      <div class="date">
+        <div class="date_one">Du 15 septembre 2020</div>
+        <div class="date_two">Au 25 septembre 2020</div>
+      </div>
+      <a href="">
+        <fa-icon [icon]="faFileExport"></fa-icon>
+      </a>
+
+    </div>
+    <div class="board_details">
+      <div class="tab">
+        <a [routerLink]="'/administration/activities/edit/users'" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}" (click)="setRoute('utilisateur')">Utilasateurs
+        </a>
+        <a [routerLink]="'/administration/activities/edit/taches'" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}" (click)="'tab' == 'taches'">Tâches
+        </a>
+
+
+      </div>
+
+      <div class="board_content">
+        <div class="titleListe" *ngIf="router.url === '/administration/activities/edit/taches'">
+          <div class="number">#</div>
+          <div>Nom</div>
+          <div>Couleur</div>
+
+          <div>type</div>
+          <div>Status</div>
+
+          <div>Edit</div>
+          <div>Supp</div>
+        </div>
+        <div class="titleListe" *ngIf="router.url === '/administration/activities/edit/users'">
+          <div class="number">#</div>
+          <div>Nom</div>
+          <div>Couleur</div>
+
+          <div>type</div>
+          <div>Status</div>
+
+          <div>Edit</div>
+          <div>Supp</div>
+        </div>
+        <div class="board_details_list">
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

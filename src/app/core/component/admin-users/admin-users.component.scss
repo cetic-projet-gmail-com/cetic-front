@@ -5,60 +5,34 @@ $col_typo : #5a5a5a;
 .container {
 
   .content {
-
     border-radius: 0 0 10px 10px;
     box-shadow: 0 2px 2px rgba(0, 0, 0, .15);
   }
 
-  ul {
-    padding: 0;
-
-    li {
-      display: flex;
-      justify-content: space-between;
-      text-align: center;
-      font-family: $saira;
-
-      div {
-        border-right: 1px solid rgba(204, 204, 204, 0.2);
-        text-align: center;
-        width: 11%;
-        height: 40px;
-
-
-        &:nth-child(1) {
-          width: 50px;
-          border-left: 1px solid rgba(204, 204, 204, 0.2);
-
-        }
-      }
-    }
-  }
-
-
   #tab {
     display: flex;
     justify-content: space-between;
-    height: 60px;
-    margin-top: 50px;
-
-    a {
-      cursor: pointer;
-    }
+    // height: 60px;
+    margin-top: 30px;
+    padding-top: 10px;
 
     .tab {
       display: flex;
-
       font-family: $saira;
+      padding-top: 10px;
 
-      .underTab {
+      a {
+        text-decoration: none;
+        cursor: pointer;
         height: 40px;
+        font-size: 1em;
+        line-height: 40px;
         text-align: center;
-        background-color: rgba(128, 128, 128, 0.2);
+        color: $col_typo;
+        background-color: #dfdfdf;
         padding: 0 10px;
         margin-right: 3px;
         margin-top: 10px;
-        line-height: 40px;
         border-radius: 5px 5px 0 0;
       }
 
@@ -71,8 +45,7 @@ $col_typo : #5a5a5a;
         border-radius: 5px 5px 0 0;
         color: white;
         margin-right: 3px;
-
-
+        margin-top: 0;
       }
     }
 
@@ -92,23 +65,107 @@ $col_typo : #5a5a5a;
   .titleListe {
     display: flex;
     justify-content: space-between;
-    height: 30px;
+    text-align: center;
     color: #5a5a5a;
-    padding-bottom: 40px;
 
     div {
-
-      border-right: 1px solid rgba(204, 204, 204, 0.2);
-      text-align: center;
-      width: 11%;
-
+      height: 40px;
+      line-height: 40px;
+      width: 20%;
+      background-color: white;
+      border-right: 1px solid #cccccc;
 
       &:nth-child(1) {
         width: 50px;
-        border-left: 1px solid rgba(204, 204, 204, 0.2);
+      }
 
+    }
+
+
+  }
+
+  ul {
+    padding: 0;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+
+      div {
+        width: 20%;
+        text-align: center;
+        min-height: 40px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        border-right: 1px solid #cccccc;
+
+
+        &:nth-child(1) {
+          width: 50px;
+        }
+
+      }
+
+      .color {
+        padding-top: 10px;
+
+        .color_span {
+          display: block;
+          width: 70px;
+          height: 20px;
+          background-color: red;
+          border-radius: 5px;
+
+          margin: auto;
+
+        }
+
+      }
+
+    }
+
+    fa-icon {
+      color: #c7c7c7;
+      padding: 5px;
+
+      &:hover {
+        color: $col_typo;
       }
     }
 
+
+
+
+    .odd {
+      background-color: white;
+    }
+
+    .even {
+      background-color: #fafafa;
+    }
   }
+
+
+}
+
+.info {
+  text-align: right;
+  margin-right: 20px;
+  margin-top: 55px;
+
+  a {
+
+    font-family: $saira;
+    text-transform: uppercase;
+    color: #c4c4c4;
+
+    &:first-child {
+      margin-right: 20px;
+    }
+
+    font-size: .6em;
+
+  }
+
 }

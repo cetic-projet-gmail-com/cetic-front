@@ -12,3 +12,32 @@
     }]
   }
 }
+
+{
+  "links": {
+    "current": "/administration/activities?page=1&nbre=20"
+  },
+  "data": {
+    "activities": [{
+      "id": 1001,
+      "name": "Site Monsieur Francisss",
+      "description": "e-commerce"
+    }, {
+      "id": 1002,
+      "name": "Site de Monsieur Douglas",
+      "description": "Site vitrine"
+    }, {
+      "id": 1003,
+      "name": "Refonte Site Stib",
+      "description": "Refaire le UX"
+    }, {
+      "id": 1582546829475,
+      "name": "Site Monsieur Francisss",
+      "description": "e-commerce"
+    }, {
+      "id": 1582546838230,
+      "name": "Site Monsieur Francissseeeeeee",
+      "description": "e-commerce"
+    }]
+  }
+}

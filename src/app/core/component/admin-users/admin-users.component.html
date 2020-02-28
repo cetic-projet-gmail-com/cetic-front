@@ -1,25 +1,29 @@
 <div class="container">
   <div id="tab">
     <div class="tab">
-      <a [ngClass]="(tab=='user')?'active':'underTab'" (click)="tab = 'user'">Utilistateurs</a>
-      <a [ngClass]="(tab=='department')?'active':'underTab'" (click)="tab = 'department'">Departements</a>
-      <a [ngClass]="(tab=='activity')?'active':'underTab'" (click)="tab = 'activity'">Activités</a>
+      <a [routerLink]="'/administration/users'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+        (click)="'tab' == 'user'">Utilisateurs
+      </a>
+      <a [routerLink]="'/administration/departement'" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}" (click)="setRoute('department')">Departements
+      </a>
+      <a [routerLink]="'/administration/activities'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+        (click)="'tab' == 'activity'">Activités
+      </a>
     </div>
     <fa-icon [icon]="faAdd" class="faAdd"></fa-icon>
   </div>
-  <div class="content" [ngSwitch]="tab">
-    <div class="titleListe" *ngSwitchCase="'user'">
+  <div class="content">
+    <div class="titleListe" *ngIf="router.url === '/administration/users'">
       <div class=" number">#</div>
       <div>Nom</div>
       <div>Rôle</div>
       <div>Dép.</div>
-      <div>Activités</div>
-      <div>Type</div>
-      <div>Equipe</div>
+      <!-- <div>Activités</div> -->
       <div>Edit</div>
       <div>Supp</div>
     </div>
-    <div class="titleListe" *ngSwitchCase="'department'">
+    <div class="titleListe" *ngIf="router.url === '/administration/departement'">
       <div class="number">#</div>
       <div>Nom </div>
       <div>Dép.</div>
@@ -27,34 +31,87 @@
       <div>Edit</div>
       <div>Supp</div>
     </div>
-    <div class="titleListe" *ngSwitchCase="'activity'">
+    <div class="titleListe" *ngIf="router.url === '/administration/activities'">
       <div class="number">#</div>
       <div>Nom</div>
       <div>Couleur</div>
-      <div>Description</div>
-      <div>Parent</div>
+
+      <div>type</div>
       <div>Status</div>
 
       <div>Edit</div>
       <div>Supp</div>
     </div>
-    <ul *ngSwitchCase="'user'">
-      <li *ngFor="let u of user">
-        <div class="number">{{num +1}}</div>
+
+    <ul *ngIf="router.url === '/administration/users'">
+      <li *ngFor="let u of user; let index = index;let even = even; let odd = odd" [ngClass]="{ odd: odd, even: even }">
+        <div class="number">{{index + 1}}</div>
         <div style="text-transform: capitalize; ">{{u.firstname}}</div>
         <div>{{u.role}}</div>
         <div>{{u.department}}.</div>
-        <div>{{u.activity}}</div>
-        <div>{{u.type}}</div>
-        <div>{{u.team}}</div>
         <div>
-          <fa-icon [icon]="faEdit" class="faEdit"></fa-icon>
+          <a [routerLink]="'/administration/users/edit'" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}">
+            <fa-icon [icon]="faEdit" class="faEdit"></fa-icon>
+          </a>
         </div>
         <div>
-          <fa-icon [icon]="faTrash" class="faTrash"></fa-icon>
+          <a href="">
+            <fa-icon [icon]="faTrash" class="faTrash"></fa-icon>
+          </a>
+        </div>
+      </li>
+    </ul>
+    <ul *ngIf="router.url === '/administration/departement'">
+      <li *ngFor="let u of user; let index = index;let even = even; let odd = odd"
+        [ngClass]="{ odd: odd, even: even } ">
+        <div class="number">{{index + 1}}</div>
+        <div style="text-transform: capitalize; ">{{u.firstname}}</div>
+        <div>{{u.department}}.</div>
+        <div>{{u.responsable}}</div>
+        <div>
+          <a href="">
+            <fa-icon [icon]="faEdit" class="faEdit"></fa-icon>
+          </a>
+        </div>
+        <div>
+          <a href="">
+            <fa-icon [icon]="faTrash" class="faTrash"></fa-icon>
+          </a>
+        </div>
+      </li>
+    </ul>
+
+    <ul *ngIf="router.url === '/administration/activities'">
+      <li *ngFor="let a of act; let index = index;let even = even; let odd = odd" [ngClass]="{ odd: odd, even: even }">
+        <div class="number">{{index + 1}}</div>
+        <div style="text-transform: capitalize; ">{{a.name}}</div>
+        <div class="color">
+          <span class="color_span"></span>
+        </div>
+
+        <div>{{a.parent}}</div>
+        <div>{{a.status}}</div>
+        <div>
+          <a [routerLink]="'/administration/activities/edit/taches'" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}">
+            <fa-icon [icon]="faEdit" class="faEdit"></fa-icon>
+          </a>
+        </div>
+        <div>
+          <a href="">
+            <fa-icon [icon]="faTrash" class="faTrash"></fa-icon>
+          </a>
         </div>
       </li>
     </ul>
   </div>
+
+
+
+</div>
+<div class="info">
+  <a href="https://forge.cetic.be/login?back_url=https%3A%2F%2Fforge.cetic.be%2Fprojects%2Fmission-timetrack
+              Redmine@CETIC" target="_blank">> Suggestion ? </a>
 
 </div>
