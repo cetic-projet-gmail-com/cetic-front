@@ -1,3 +1,5 @@
+<h2>Create User</h2>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8">
@@ -49,9 +51,7 @@
                             name="role_id"
                             class="form-control"
                             id="role_id">
-                        <option value="1">user</option>
-                        <option value="2">moderateur</option>
-                        <option value="3">administrateur</option>
+                            <option *ngFor="let role of roles" [value]="role.id" >{{ role.name }}</option>
                     </select>
                     <label for="departement_id">departement</label>
                     <select ngModel 
