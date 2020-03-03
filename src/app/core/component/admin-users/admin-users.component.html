@@ -50,7 +50,7 @@
         <div>{{u.role}}</div>
         <div>{{u.department}}.</div>
         <div>
-          <a [routerLink]="'/administration/users/edit'" routerLinkActive="active"
+          <a [routerLink]="['/administration/users/', u.id]" routerLinkActive="active"
             [routerLinkActiveOptions]="{exact: true}">
             <fa-icon [icon]="faEdit" class="faEdit"></fa-icon>
           </a>
@@ -93,7 +93,7 @@
         <div>{{a.parent}}</div>
         <div>{{a.status}}</div>
         <div>
-          <a [routerLink]="'/administration/activities/edit/taches'" routerLinkActive="active"
+          <a [routerLink]="['/administration/activities/', a.id]" routerLinkActive="active"
             [routerLinkActiveOptions]="{exact: true}">
             <fa-icon [icon]="faEdit" class="faEdit"></fa-icon>
           </a>
@@ -115,4 +115,4 @@
               Redmine@CETIC" target="_blank">> Suggestion ? </a>
 
 </div>
-<create-user></create-user>
+<!-- <create-user></create-user> -->

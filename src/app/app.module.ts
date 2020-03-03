@@ -25,6 +25,7 @@ import { UpdateUserComponent } from './core/component/modal/update-user/update-u
 
 import { AuthenticationService} from './core/services/auth/authentification.service';
 import { AuthGuardService} from './core/services/auth/auth-guard.service';
+import { EditUserComponent } from './core/component/edit-user/edit-user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +40,8 @@ import { AuthGuardService} from './core/services/auth/auth-guard.service';
     EditActivityComponent,
     ForgotPasswordComponent,
     CreateUserComponent,
-    UpdateUserComponent
+    UpdateUserComponent,
+    EditUserComponent
   ],
   imports: [
     HttpClientModule,
