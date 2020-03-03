@@ -2,6 +2,8 @@ import { ActivatedRoute } from '@angular/router';
 import { DataService } from './../../../services/data.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { TitleService } from '../../../services/title.service';
+
 
 @Component({
   selector: 'update-user',
@@ -10,18 +12,18 @@ import { NgForm } from '@angular/forms';
 })
 export class UpdateUserComponent implements OnInit {
   id
-  constructor(private DataService: DataService, private route: ActivatedRoute) { }
+  constructor(private DataService: DataService, private route: ActivatedRoute, private TitleService: TitleService) { }
   departements
   roles
   user
-  firstname:string
+  firstname: string
   lastname: string
   login: string
-  mail : string
-  
+  mail: string
+
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
-    
+
     this.DataService.getDepartements().subscribe((res) => {
       this.departements = res.data.departement
 
@@ -36,8 +38,9 @@ export class UpdateUserComponent implements OnInit {
       this.lastname = res.data.user.lastname
       this.login = res.data.user.login
       this.mail = res.data.user.email
-      console.log(res)
+      this.TitleService.setTitle(`${this.firstname} ${this.lastname}`)
     });
+
 
 
   }

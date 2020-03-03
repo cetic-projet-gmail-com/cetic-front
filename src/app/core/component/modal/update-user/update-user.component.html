@@ -1,64 +1,36 @@
-<h2>Update User</h2>
+<div class="content">
+  <form #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm)">
+    <div class="form-group">
+      <div class="lastname">
+        <label for="lastname">Nom</label><br>
+        <input type="text" ngModel required name="lastname" id="lastname" class="" [value]="lastname">
+      </div>
+      <div class="firstname">
+        <label for="firstname">prenom</label><br>
+        <input type="text" ngModel required name="firstname" id="firstname" class="" [value]="firstname">
+      </div>
+      <div class="login">
+        <label for="login">login</label><br>
+        <input type="text" ngModel required name="login" id="login" class="" [value]="login">
+      </div>
+      <div class="email">
+        <label for="email">mail</label><br>
+        <input type="email" ngModel required name="email" id="email" class="" [value]="mail">
+      </div>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-8">
-            <form #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm)">
-                <div class="form-group">
-                    <label for="lastname">Nom</label>
-                        <input type="text"
-                        ngModel
-                        required
-                        name="lastname"
-                        id="lastname"
-                        class="form-control"
-                        [value]="lastname"
-                        >
-                    <label for="firstname">prenom</label>
-                        <input type="text"
-                        ngModel
-                        required
-                        name="firstname"
-                        id="firstname"
-                        class="form-control"
-                        [value]="firstname"
-                        >
-                    <label for="login">login</label>
-                        <input type="text"
-                        ngModel
-                        required
-                        name="login"
-                        id="login"
-                        class="form-control"
-                        [value]="login"
-                        >
-                    <label for="email">mail</label>
-                        <input type="email"
-                        ngModel
-                        required
-                        name="email"
-                        id="email"
-                        class="form-control"
-                        [value]="mail"
-                        >
-                        <label for="role_id">role</label>
-                    <select ngModel 
-                            required
-                            name="role_id"
-                            class="form-control"
-                            id="role_id">
-                            <option *ngFor="let role of roles" [value]="role.id" >{{ role.name }}</option>
-                    </select>
-                    <label for="departement_id">departement</label>
-                    <select ngModel 
-                            required
-                            name="departement_id"
-                            class="form-control">
-                        <option *ngFor="let dep of departements" [value]="dep.id" >{{ dep.name }}</option>
-                    </select>
-                    <button class="btn btn-primary">Valider</button>
-                </div>
-            </form>
-        </div>
+      <div class="role">
+        <label for="role_id">role</label><br>
+        <select ngModel required name="role_id" class="" id="role_id">
+          <option *ngFor="let role of roles" [value]="role.id">{{ role.name }}</option>
+        </select>
+      </div>
+      <div class="departement">
+        <label for="departement_id">departement</label><br>
+        <select ngModel required name="departement_id" class="">
+          <option *ngFor="let dep of departements" [value]="dep.id">{{ dep.name }}</option>
+        </select>
+      </div>
+
     </div>
+  </form>
 </div>

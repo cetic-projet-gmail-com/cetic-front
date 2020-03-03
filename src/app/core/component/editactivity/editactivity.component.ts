@@ -38,19 +38,25 @@ export class EditActivityComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id']
+    console.log(this.id);
     this.DataService.getActivityById(this.id).subscribe((res) => {
-      this.act = res.data['activity'];
-      this.title = this.act.name;
-      console.log(this.title);
+      // console.log("Hey");
+      // console.log(res);
+      // console.log(res.data.activity.name);
+      // this.act = res.data.activity;
+      // // this.title = this.act.name;
+      // this.TitleService.setTitle(res.data.activity.name)
+
 
     }
     );
     this.DataService.getAdminUsers("?nbre=1000").subscribe((res) => {
-      console.log(res);
+      // console.log(res);
       this.user = res.data.users
-      console.log(this.user)
+      // console.log(this.user)
 
     });
+
 
 
 

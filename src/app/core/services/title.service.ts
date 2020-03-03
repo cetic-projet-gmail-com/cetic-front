@@ -4,15 +4,17 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class TitleService {
-  title;
+  // title = "CETIC - Administration";
   constructor() {
     //Je set un titre par défaut
-    this.title = "CETIC - Administration";
+    // this.title = "CETIC - Administration";
   }
-
+  title
   public setTitle(title: string) {
     //Méthode set
+
     this.title = title;
+
   }
 
   public getTitle() {

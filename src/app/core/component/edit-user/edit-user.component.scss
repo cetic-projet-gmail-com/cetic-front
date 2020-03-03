@@ -1,0 +1,137 @@
+$poiret : 'Poiret One';
+$saira : 'Saira Semi Condensed';
+$col_typo : #5a5a5a;
+
+
+
+.content {
+  position: relative;
+
+
+  .back {
+    position: absolute;
+    top: 0;
+    left: 115px;
+    font-size: 2em;
+    color: rgba(83, 133, 61, 0.7);
+    cursor: pointer;
+    margin-top: 0;
+
+    &:hover {
+      color: rgba(83, 133, 61, 1);
+
+    }
+
+  }
+
+  .board {
+    width: 80%;
+    margin: auto;
+
+    .datepicker {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 50px;
+
+      .lien {
+        width: 40px;
+        height: 50px;
+        border: 1px solid #ccc;
+        border-right: none;
+        margin-right: 10px;
+        border-radius: 5px 0 0 5px;
+      }
+
+      .date {
+        align-items: flex-start;
+        margin-right: 40px;
+
+        .date_one,
+        .date_two {
+          height: 30px;
+          line-height: 30px;
+          padding: 0 20px;
+          border-radius: 5px;
+          background-color: #DCE7D8;
+          font-size: 1.4em;
+        }
+
+        .date_one {
+          margin-bottom: 25px;
+        }
+
+      }
+
+      a {
+        font-size: 2.2em;
+        color: rgba(83, 133, 61, .7);
+        transition: color .3s ease;
+
+        &:hover {
+          color: rgb(83, 133, 61);
+          transition: color .3s ease;
+
+        }
+      }
+    }
+
+    .board_content {
+      display: flex;
+      padding-top: 25px;
+
+      .board_content_details {
+        margin-left: 40px;
+      }
+    }
+  }
+}
+
+.save {
+  display: flex;
+  margin-right: 145px;
+  margin-top: 10px;
+  justify-content: flex-end;
+
+  button {
+    font-family: $saira;
+    text-transform: capitalize;
+    background-color: rgba(83, 133, 61, .7);
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 15px;
+    // transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #53853D;
+      transition: all 0.3s ease;
+
+    }
+  }
+
+  #save {
+    margin-right: 15px;
+  }
+}
+
+.info {
+  text-align: right;
+  margin-right: 20px;
+  margin-top: 15px;
+
+  a {
+
+    font-family: $saira;
+    text-transform: uppercase;
+    color: #c4c4c4;
+
+    &:first-child {
+      margin-right: 20px;
+    }
+
+    font-size: .6em;
+
+  }
+
+}

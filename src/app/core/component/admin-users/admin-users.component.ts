@@ -32,7 +32,6 @@ export class AdminUsersComponent implements OnInit {
   ngOnInit() {
     this.DataService.getActivities().subscribe((res) => {
       this.act = res.data.activities
-      console.log(this.act);
     });
     this.DataService.getAdminUsers().subscribe((res) => {
       console.log(res);
@@ -42,6 +41,8 @@ export class AdminUsersComponent implements OnInit {
     });
 
     this.TitleService.setTitle("Administration")
+    console.log(this.act);
+
   }
   setRoute(tab: String) {
     this.tab = tab;

@@ -22,6 +22,6 @@ export class NavComponent implements OnInit {
   }
   ngAfterContentInit() {
     // Actuellement on utilise un setTimeout car le service s'initialise avant le component. NEED TO FIX
-    setTimeout(() => { this.title = this.TitleService.getTitle(); }, 15)
+    setTimeout(() => { this.title = this.TitleService.getTitle(); }, 100)
   }
 }
