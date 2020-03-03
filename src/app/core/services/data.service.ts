@@ -19,11 +19,11 @@ export class DataService {
     return this.httpClient.get<Roles>(`${this.apiURL}/administration/roles`);
   }
 
-  public deleteUser(id: number) { 
+  public deleteUser(id: number) {
     return this.httpClient.delete(`${this.apiURL}/administration/users/${id}`);
   }
 
-  public getUserById(id: number) { 
+  public getUserById(id: number) {
     return this.httpClient.get<SimpleUser>(`${this.apiURL}/administration/users/${id}`);
   }
 

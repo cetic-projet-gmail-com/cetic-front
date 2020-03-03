@@ -1,5 +1,8 @@
 <div class="container">
   <div id="tab">
+
+    <!-- ------------------------- gestion des onglets ------------------------- -->
+
     <div class="tab">
       <a [routerLink]="'/administration/users'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
         (click)="'tab' == 'user'">Utilisateurs
@@ -11,9 +14,27 @@
         (click)="'tab' == 'activity'">Activités
       </a>
     </div>
-    <fa-icon [icon]="faAdd" class="faAdd"></fa-icon>
+    <!-- ----------------------------------------------------------------------- -->
+
+    <!-- ------------------------- gestion des create -------------------------- -->
+
+    <a [routerLink]="'/administration/users/createUser' " *ngIf="router.url === '/administration/users'">
+      <fa-icon [icon]="faAdd" class="faAdd"></fa-icon>
+    </a>
+    <a [routerLink]="'/administration/departement/createUser' " *ngIf="router.url === '/administration/departement'">
+      <fa-icon [icon]="faAdd" class="faAdd"></fa-icon>
+    </a>
+    <a [routerLink]="'/administration/activity/createUser' " *ngIf="router.url === '/administration/activities'">
+      <fa-icon [icon]="faAdd" class="faAdd"></fa-icon>
+    </a>
+    <!-- ----------------------------------------------------------------------- -->
+
+
   </div>
   <div class="content">
+
+    <!-- ------------------------- gestion des titres -------------------------- -->
+
     <div class="titleListe" *ngIf="router.url === '/administration/users'">
       <div class=" number">#</div>
       <div>Nom</div>
@@ -42,6 +63,10 @@
       <div>Edit</div>
       <div>Supp</div>
     </div>
+    <!-- ----------------------------------------------------------------------- -->
+
+
+    <!-- ------------------------- gestion des listes -------------------------- -->
 
     <ul *ngIf="router.url === '/administration/users'">
       <li *ngFor="let u of user; let index = index;let even = even; let odd = odd" [ngClass]="{ odd: odd, even: even }">
@@ -105,6 +130,9 @@
         </div>
       </li>
     </ul>
+
+    <!-- ----------------------------------------------------------------------- -->
+
   </div>
 
 
@@ -115,5 +143,3 @@
               Redmine@CETIC" target="_blank">> Suggestion ? </a>
 
 </div>
-<create-user></create-user>
-<update-user></update-user>
