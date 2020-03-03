@@ -1,3 +1,4 @@
+import { CreateActivityComponent } from './core/component/modal/create-activity/create-activity.component';
 import { UpdateUserComponent } from './core/component/modal/update-user/update-user.component';
 import { ForgotPasswordComponent } from './core/component/forgot-password/forgot-password.component';
 import { LoginComponent } from './core/authentification/login/login.component';
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent
+  },
+  {
+    path: 'administration/users/:id',
+    component: UpdateUserComponent
   },
   {
     path: 'login',
@@ -63,10 +68,7 @@ const routes: Routes = [
     path: 'forgot_password',
     component: ForgotPasswordComponent
   },
-  {
-    path: 'administration/users/:id',
-    component: UpdateUserComponent
-  }
+  
 
 
 

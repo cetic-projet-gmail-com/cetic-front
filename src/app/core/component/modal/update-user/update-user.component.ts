@@ -36,6 +36,7 @@ export class UpdateUserComponent implements OnInit {
       this.lastname = res.data.user.lastname
       this.login = res.data.user.login
       this.mail = res.data.user.email
+      console.log(res)
     });
 
 
@@ -44,7 +45,8 @@ export class UpdateUserComponent implements OnInit {
     userForm.value.role_id = parseInt(userForm.value.role_id)
     userForm.value.departement_id = parseInt(userForm.value.departement_id)
 
-    this.DataService.updateUser(userForm.value).subscribe((res)=>{
+    this.DataService.updateUser(userForm.value, this.id).subscribe((res)=>{
+      console.log(this.id)
     console.log("user updated");
     })
   }
