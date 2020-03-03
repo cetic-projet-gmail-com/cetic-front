@@ -5,7 +5,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
@@ -25,6 +26,8 @@ import { UpdateUserComponent } from './core/component/modal/update-user/update-u
 
 import { AuthenticationService} from './core/services/auth/authentification.service';
 import { AuthGuardService} from './core/services/auth/auth-guard.service';
+
+registerLocaleData(localeFr);
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,10 +54,10 @@ import { AuthGuardService} from './core/services/auth/auth-guard.service';
     NgbModalModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
-      useFactory: adapterFactory
+      useFactory: adapterFactory,
+      
     })
   ],
-
   providers: [AuthenticationService, AuthGuardService],
   bootstrap: [AppComponent]
 })

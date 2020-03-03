@@ -25,10 +25,11 @@ export class ProfilComponent implements OnInit {
 
     // this.getInfos()
     // On initialise le titre pour le service afin de le mettre dans la navbar. A verifier si dans le ngOnInit on peut récupérer les data récupérés via le back afin de construire un titre comme "Activités: Monactiviteeee" 
-    this.TitleService.setTitle("Mon joli titre")
-
+    
     this.auth.profile().subscribe(users => {
       this.user = users.data;
+      this.TitleService.setTitle(`${this.user['firstname']}`)
+
       // console.log(this.details)
     }, (err) => {
       console.error(err);

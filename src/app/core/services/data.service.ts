@@ -23,7 +23,8 @@ export class DataService {
   }
 
   public getHome(url?: string) {
-    return this.httpClient.get<Users>(`${this.apiURL}/home`);
+    url = url? url: "";
+    return this.httpClient.get<Users>(`${this.apiURL}/home${url}`);
   }
 
   public getAdminUsers(url?: string) {
