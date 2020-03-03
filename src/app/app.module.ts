@@ -7,7 +7,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+// import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
@@ -51,7 +51,7 @@ registerLocaleData(localeFr);
     AppRoutingModule,
     CommonModule,
     FormsModule,
-    NgbModalModule,
+    // NgbModalModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,

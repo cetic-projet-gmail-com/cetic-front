@@ -22,18 +22,9 @@ import {
   getWeek,
   getWeekYear
 } from 'date-fns';
-import {
-  Observable
-} from 'rxjs';
-import {
-  map
-} from 'rxjs/operators';
-import { element } from 'protractor';
-interface Film {
-  id: number;
-  title: string;
-  release_date: string;
-}
+import {  Observable, Subject } from 'rxjs';
+import {  map } from 'rxjs/operators';
+
 
 
 @Component({
@@ -54,10 +45,11 @@ export class HomeComponent implements OnInit {
   events$;
   ngOnInit() {
     this.getEvents();
-
+    this.getTasks();
   }
   locale: string = 'fr';
   weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
+  refresh = new Subject<void>();
 
   weekendDays: number[] = [DAYS_OF_WEEK.FRIDAY, DAYS_OF_WEEK.SATURDAY];
   view: CalendarView = CalendarView.Week;
@@ -66,16 +58,8 @@ export class HomeComponent implements OnInit {
 
   CalendarView = CalendarView;
 
-  externalEvents: CalendarEvent[] =  [{
-    title: 'Event 1',
-    start: new Date(),
-    draggable: true
-  },
-  {
-    title: 'Event 2',
-    start: new Date(),
-    draggable: true
-  }];
+  tasks: CalendarEvent[] =  [];
+  activities = [];
   activeDayIsOpen = false;
 
 
@@ -84,6 +68,8 @@ export class HomeComponent implements OnInit {
     this.view = CalendarView.Day;
   }
   getEvents(): void {
+    // this.events$ = [];
+
     let date = this.viewDate;
     date = new Date(date);
     let url = "";
@@ -101,27 +87,14 @@ export class HomeComponent implements OnInit {
         url = "";
         break;
     }
-    /*
-        this.DataService.getHome(url).subscribe( (res) => {
-          // console.log(res.data['events'])
-          res.data['events'].map(element => {
-            console.log(element);
-            
-            this.events$.push( {
-              "start": parseISO(element.start), "end": parseISO(element.end), "title": element.description/*, actions: [{label: '<p>edit e</p>', onClick: ({ e }: { e: CalendarEvent }): void => {this.openDialog(e);}}]
-            });
-          });
-          console.log('c bon')
-        });*/
 
-    this.events$ = this.DataService.getHome(url).pipe(map(result => {
-      // this.externalEvents = result.data['tasks'].map(element => { console.log(element.name); return { "title" : element['name'], "start": new Date(), draggable:true }});
-      console.log(this.externalEvents)
+    this.events$ = this.DataService.getHome(url).pipe(map(result => {     
       return result.data['events'].map(element => {
         return {
           "start": parseISO(element.start),
           "end": parseISO(element.end),
           "title": element.description,
+          draggable:true,
           actions: [{
             label: '<p>edit e</p>',
             onClick: ({
@@ -132,15 +105,29 @@ export class HomeComponent implements OnInit {
           }]
         }
       })
-
     }))
-
+  }
+  getTasks() {
+    this.DataService.getHome().subscribe(result =>{
+      result.data['activities'].forEach((activity) => {
+        activity['tasks'] =  []
+        result.data['tasks'].forEach(task => {
+          if (activity.id === task.activities_id)
+          activity['tasks'].push( {"id": task["id"], "title" : task['name'], "start": new Date(), draggable:true });
+        });
+        if (activity['tasks'].length !== 0){
+          this.activities.push( activity)
+        }
+      });
+    });
   }
 
   externalDrop(event: CalendarEvent) {
-    if (this.externalEvents.indexOf(event) === -1) {
+    console.log('hhhhh')
+    console.log(event)
+    if (this.tasks.indexOf(event) === -1) {
       this.events$ = this.events$.filter(iEvent => iEvent !== event);
-      this.externalEvents.push(event);
+      this.activities.push(event);
     }
   }
   eventDropped({
@@ -149,12 +136,14 @@ export class HomeComponent implements OnInit {
     newEnd,
     allDay
   }: CalendarEventTimesChangedEvent): void {
-    const externalIndex = this.externalEvents.indexOf(event);
+    console.log('hey')
+    const externalIndex = this.activities.indexOf(event);
+    console.log(event)
     if (typeof allDay !== 'undefined') {
       event.allDay = allDay;
     }
     if (externalIndex > -1) {
-      this.externalEvents.splice(externalIndex, 1);
+      this.activities.splice(externalIndex, 1);
       this.events$.push(event);
     }
     event.start = newStart;
