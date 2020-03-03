@@ -36,11 +36,20 @@ export class DataService {
   }
 
   public getAdminUsers(url?: string) {
-    return this.httpClient.get<Users>(`${this.apiURL}/administration/users?nbre=12`);
+
+    url = url ? url : '';
+    return this.httpClient.get<Users>(`${this.apiURL}/administration/users${url}`);
   }
 
   public getActivities(url?: string) {
     return this.httpClient.get<Activities>(`${this.apiURL}/administration/activities`);
+  }
+
+  public getActivityById(id: number) {
+    if (id) {
+      return this.httpClient.get<Activities>(`${this.apiURL}/administration/activities/${id}`);
+    }
+
   }
 
   public getDepartements(url?: string) {

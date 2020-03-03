@@ -9,7 +9,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EditActivityComponent } from './core/component/editactivity/editactivity.component';
 
-import { AuthGuardService} from './core/services/auth/auth-guard.service';
+import { AuthGuardService } from './core/services/auth/auth-guard.service';
+import { EditUserComponent } from './core/component/edit-user/edit-user.component';
 
 const routes: Routes = [
   {
@@ -18,7 +19,7 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component : HomeComponent
+    component: HomeComponent
   },
   {
     path: 'login',
@@ -37,25 +38,24 @@ const routes: Routes = [
     component: ProfilComponent
   },
   {
+    path: 'administration/users/:id',
+    component: EditUserComponent
+  },
+  {
     path: 'administration/departement',
     component: AdminUsersComponent
   },
   {
     path: 'profil',
     component: ProfilComponent,
-    canActivate: [AuthGuardService] 
+    canActivate: [AuthGuardService]
   },
   {
     path: 'administration/activities',
     component: AdminUsersComponent
   },
   {
-    path: 'administration/activities/edit/taches',
-    component: EditActivityComponent
-  },
-
-  {
-    path: 'administration/activities/edit/users',
+    path: 'administration/activities/:id',
     component: EditActivityComponent
   },
 

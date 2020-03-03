@@ -8,6 +8,38 @@ $col_typo : #5a5a5a;
   margin: auto;
   padding-top: 50px;
   font-family: $saira;
+  position: relative;
+
+  .back {
+    position: absolute;
+    top: 40px;
+    left: -50px;
+    font-size: 2em;
+    color: rgba(83, 133, 61, 0.7);
+    cursor: pointer;
+    margin-top: 0;
+
+    &:hover {
+      color: rgba(83, 133, 61, 1);
+
+    }
+
+  }
+
+  .faAdd {
+    position: absolute;
+    top: 120px;
+    right: -10px;
+    font-size: 2em;
+    color: rgba(83, 133, 61, 0.7);
+    cursor: pointer;
+    margin-top: 10px;
+
+    &:hover {
+      color: rgba(83, 133, 61, 1);
+
+    }
+  }
 
 
   .info {
@@ -89,93 +121,130 @@ $col_typo : #5a5a5a;
 
     .board_details {
       display: flex;
-      padding: 40px;
+      justify-content: space-between;
+      padding-top: 40px;
 
+      .board_details_list {
+        background-color: orange !important;
+        padding-top: 20px;
+        padding-left: 0;
+        height: 500px;
+        width: 213px;
+        overflow-y: scroll;
 
-      .tab {
-        display: flex;
-        transform: rotate(-90deg);
+        li {
 
-        align-items: flex-end;
-
-        a {
-          text-decoration: none;
-          cursor: pointer;
-          height: 40px;
-          font-size: 1em;
-          line-height: 40px;
-          text-align: center;
-          color: $col_typo;
-          background-color: #dfdfdf;
-          padding: 0 10px;
-          margin-right: 3px;
-          margin-top: 10px;
-          border-radius: 5px 5px 0 0;
+          list-style: none;
         }
+      }
 
-        .active {
+
+
+
+      .board_content {
+
+        position: absolute;
+
+
+
+        .tab {
+          position: absolute;
+          left: -78px;
+          top: 72px;
+          display: flex;
           height: 50px;
-          font-size: 1.2em;
-          line-height: 50px;
-          background-color: #53853D;
-          padding: 0 20px;
-          border-radius: 5px 5px 0 0;
-          color: white;
-          margin-right: 3px;
-          margin-top: 0;
+          transform: rotate(-90deg);
+          align-items: flex-end;
+
+          div {
+            text-decoration: none;
+            cursor: pointer;
+            height: 40px;
+            font-size: 1em;
+            line-height: 40px;
+            text-align: center;
+            color: $col_typo;
+            background-color: #dfdfdf;
+            padding: 0 10px;
+            margin-right: 3px;
+            margin-top: 10px;
+            border-radius: 5px 5px 0 0;
+          }
+
+          .active {
+            height: 50px;
+            font-size: 1.2em;
+            line-height: 50px;
+            background-color: #53853D;
+            padding: 0 20px;
+            border-radius: 5px 5px 0 0;
+            color: white;
+            margin-right: 3px;
+            margin-top: 0;
+          }
+
+
+
         }
 
-        .board_content {
-          .titleListe {
-            display: flex;
+
+        .titleListe {
+          display: flex;
+          justify-content: space-between;
+          text-align: center;
+          color: #5a5a5a;
+          margin-left: 50px;
+
+          div {
+            height: 40px;
+            line-height: 40px;
+            width: 142px;
+            background-color: white;
+            border-right: 1px solid #cccccc;
+
+
+
+            &:nth-child(1) {
+              width: 50px;
+            }
+
           }
+
+
+        }
+
+        .titleListe_users {
+          display: flex;
+          justify-content: space-between;
+          text-align: center;
+          color: #5a5a5a;
+          margin-left: 50px;
+
+
+
+          div {
+            height: 40px;
+            line-height: 40px;
+            width: 213px;
+            background-color: white;
+            border-right: 1px solid #cccccc;
+
+
+
+            &:nth-child(1) {
+              width: 50px;
+            }
+
+          }
+
+
         }
 
       }
 
 
-
-      //   padding-top: 40px;
-      //   display: flex;
-
-      //   .tab {
-      //     display: flex;
-      //     transform: rotate(-90deg);
-      //     margin-top: 73px;
-
-      //     a {
-      //       text-decoration: none;
-      //       cursor: pointer;
-      //       height: 40px;
-      //       font-size: 1em;
-      //       line-height: 40px;
-      //       text-align: center;
-      //       color: $col_typo;
-      //       background-color: #dfdfdf;
-      //       padding: 0 10px;
-      //       margin-right: 3px;
-      //       margin-top: 10px;
-      //       border-radius: 5px 5px 0 0;
-      //     }
-
-      //     .active {
-      //       height: 50px;
-      //       font-size: 1.2em;
-      //       line-height: 50px;
-      //       background-color: #53853D;
-      //       padding: 0 20px;
-      //       border-radius: 5px 5px 0 0;
-      //       color: white;
-      //       margin-right: 3px;
-      //       margin-top: 0;
-      //     }
-
-
-      //   }
-
-      //   .board_content {}
-
     }
+
   }
 
 }
