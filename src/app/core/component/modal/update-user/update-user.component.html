@@ -1,4 +1,4 @@
-<h2>Create User</h2>
+<h2>Update User</h2>
 
 <div class="container-fluid">
     <div class="row">
@@ -12,6 +12,7 @@
                         name="lastname"
                         id="lastname"
                         class="form-control"
+                        [value]="lastname"
                         >
                     <label for="firstname">prenom</label>
                         <input type="text"
@@ -20,6 +21,7 @@
                         name="firstname"
                         id="firstname"
                         class="form-control"
+                        [value]="firstname"
                         >
                     <label for="login">login</label>
                         <input type="text"
@@ -28,6 +30,7 @@
                         name="login"
                         id="login"
                         class="form-control"
+                        [value]="login"
                         >
                     <label for="email">mail</label>
                         <input type="email"
@@ -36,14 +39,28 @@
                         name="email"
                         id="email"
                         class="form-control"
+                        [value]="mail"
                         >
-                    <label for="password">mot de passe</label>
+                    <label for="password">ancien mot de passe</label>
                         <input type="text"
                         ngModel
                         name="password"
                         id="password"
                         class="form-control"
-                        required
+                        >
+                        <label for="password">nouveau mot de passe</label>
+                        <input type="text"
+                        ngModel
+                        name="password"
+                        id="password"
+                        class="form-control"
+                        >
+                        <label for="password">recopier le nouveau mot de passe</label>
+                        <input type="text"
+                        ngModel
+                        name="password"
+                        id="password"
+                        class="form-control"
                         >
                         <label for="role_id">role</label>
                     <select ngModel 

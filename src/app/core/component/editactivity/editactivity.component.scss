@@ -1,0 +1,250 @@
+$poiret : 'Poiret One';
+$saira : 'Saira Semi Condensed';
+$col_typo : #5a5a5a;
+
+.content {
+  display: flex;
+  width: 80%;
+  margin: auto;
+  padding-top: 50px;
+  font-family: $saira;
+  position: relative;
+
+  .back {
+    position: absolute;
+    top: 40px;
+    left: -50px;
+    font-size: 2em;
+    color: rgba(83, 133, 61, 0.7);
+    cursor: pointer;
+    margin-top: 0;
+
+    &:hover {
+      color: rgba(83, 133, 61, 1);
+
+    }
+
+  }
+
+  .faAdd {
+    position: absolute;
+    top: 120px;
+    right: -10px;
+    font-size: 2em;
+    color: rgba(83, 133, 61, 0.7);
+    cursor: pointer;
+    margin-top: 10px;
+
+    &:hover {
+      color: rgba(83, 133, 61, 1);
+
+    }
+  }
+
+
+  .info {
+    width: 20%;
+    text-align: justify;
+    margin-right: 50px;
+
+    h3 {
+      font-size: 1.5em;
+
+    }
+
+    p {
+      font-size: 0.9em;
+      counter-reset: #777777;
+    }
+
+    h4 {
+      font-size: 1.1em;
+      color: gray;
+
+      span {
+        color: black;
+        margin-left: 20px;
+      }
+    }
+
+  }
+
+  .board {
+    width: 80%;
+
+    .datepicker {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .lien {
+        width: 40px;
+        height: 50px;
+        border: 1px solid #ccc;
+        border-right: none;
+        margin-right: 10px;
+        border-radius: 5px 0 0 5px;
+      }
+
+      .date {
+        align-items: flex-start;
+        margin-right: 40px;
+
+        .date_one,
+        .date_two {
+          height: 30px;
+          line-height: 30px;
+          padding: 0 20px;
+          border-radius: 5px;
+          background-color: #DCE7D8;
+          font-size: 1.4em;
+        }
+
+        .date_one {
+          margin-bottom: 25px;
+        }
+
+      }
+
+      a {
+        font-size: 2.2em;
+        color: rgba(83, 133, 61, .7);
+        transition: color .3s ease;
+
+        &:hover {
+          color: rgb(83, 133, 61);
+          transition: color .3s ease;
+
+        }
+      }
+    }
+
+    .board_details {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 40px;
+
+      .board_details_list {
+        background-color: orange !important;
+        padding-top: 20px;
+        padding-left: 0;
+        height: 500px;
+        width: 213px;
+        overflow-y: scroll;
+
+        li {
+
+          list-style: none;
+        }
+      }
+
+
+
+
+      .board_content {
+
+        position: absolute;
+
+
+
+        .tab {
+          position: absolute;
+          left: -78px;
+          top: 72px;
+          display: flex;
+          height: 50px;
+          transform: rotate(-90deg);
+          align-items: flex-end;
+
+          div {
+            text-decoration: none;
+            cursor: pointer;
+            height: 40px;
+            font-size: 1em;
+            line-height: 40px;
+            text-align: center;
+            color: $col_typo;
+            background-color: #dfdfdf;
+            padding: 0 10px;
+            margin-right: 3px;
+            margin-top: 10px;
+            border-radius: 5px 5px 0 0;
+          }
+
+          .active {
+            height: 50px;
+            font-size: 1.2em;
+            line-height: 50px;
+            background-color: #53853D;
+            padding: 0 20px;
+            border-radius: 5px 5px 0 0;
+            color: white;
+            margin-right: 3px;
+            margin-top: 0;
+          }
+
+
+
+        }
+
+
+        .titleListe {
+          display: flex;
+          justify-content: space-between;
+          text-align: center;
+          color: #5a5a5a;
+          margin-left: 50px;
+
+          div {
+            height: 40px;
+            line-height: 40px;
+            width: 142px;
+            background-color: white;
+            border-right: 1px solid #cccccc;
+
+
+
+            &:nth-child(1) {
+              width: 50px;
+            }
+
+          }
+
+
+        }
+
+        .titleListe_users {
+          display: flex;
+          justify-content: space-between;
+          text-align: center;
+          color: #5a5a5a;
+          margin-left: 50px;
+
+
+
+          div {
+            height: 40px;
+            line-height: 40px;
+            width: 213px;
+            background-color: white;
+            border-right: 1px solid #cccccc;
+
+
+
+            &:nth-child(1) {
+              width: 50px;
+            }
+
+          }
+
+
+        }
+
+      }
+
+
+    }
+
+  }
+
+}
