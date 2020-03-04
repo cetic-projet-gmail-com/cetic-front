@@ -23,25 +23,31 @@ export class AdminUsersComponent implements OnInit {
 
   constructor(private DataService: DataService, private http: HttpClient, private TitleService: TitleService, public router: Router) {
     // this.tab = "user";
-    console.log(this.tab)
+    // console.log(this.tab)
     this.num = 0;
   }
 
   user
   act
+  dep
   ngOnInit() {
     this.DataService.getActivities().subscribe((res) => {
       this.act = res.data.activities
     });
     this.DataService.getAdminUsers().subscribe((res) => {
-      console.log(res);
+      // console.log(res);
       this.user = res.data.users
-      console.log(this.user)
+      // console.log(this.user)
 
     });
 
+    this.DataService.getDepartements().subscribe((res) => {
+      console.log(res);
+      this.dep = res.data.departement
+    })
     this.TitleService.setTitle("Administration")
-    console.log(this.act);
+
+    // console.log(this.act);
 
   }
   setRoute(tab: String) {

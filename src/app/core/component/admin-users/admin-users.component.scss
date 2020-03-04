@@ -3,11 +3,18 @@ $saira : 'Saira Semi Condensed';
 $col_typo : #5a5a5a;
 
 .container {
+  .wrap {
+    height: 580px;
+  }
 
   .content {
     border-radius: 0 0 10px 10px;
     box-shadow: 0 2px 2px rgba(0, 0, 0, .15);
+
+
   }
+
+
 
   #tab {
     display: flex;
@@ -86,6 +93,10 @@ $col_typo : #5a5a5a;
 
   ul {
     padding: 0;
+    height: 485px;
+    // overflow-y: scroll;
+    background-color: white;
+    border-radius: 0 0 10px 10px;
 
     li {
       display: flex;

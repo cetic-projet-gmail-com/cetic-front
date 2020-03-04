@@ -23,10 +23,12 @@ import { EditActivityComponent } from './core/component/editactivity/editactivit
 import { CreateUserComponent } from './core/component/modal/create-user/create-user.component';
 import { UpdateUserComponent } from './core/component/modal/update-user/update-user.component';
 
-import { AuthenticationService} from './core/services/auth/authentification.service';
-import { AuthGuardService} from './core/services/auth/auth-guard.service';
+import { AuthenticationService } from './core/services/auth/authentification.service';
+import { AuthGuardService } from './core/services/auth/auth-guard.service';
 import { EditUserComponent } from './core/component/edit-user/edit-user.component';
 import { CreateActivityComponent } from './core/component/modal/create-activity/create-activity.component';
+import { MenuComponent } from './core/header/menu/menu.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +45,8 @@ import { CreateActivityComponent } from './core/component/modal/create-activity/
     CreateUserComponent,
     UpdateUserComponent,
     EditUserComponent,
-    CreateActivityComponent
+    CreateActivityComponent,
+    MenuComponent,
   ],
   imports: [
     HttpClientModule,

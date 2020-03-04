@@ -1,28 +1,51 @@
 <div class="content">
+  <a [routerLink]="'/administration/users'">
+    <fa-icon [icon]="faCaretSquareLeft" class="back"></fa-icon>
+  </a>
   <h2>Ajouter un nouvel utilisateur</h2>
 
   <form #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm)">
-    <div class="form-group">
-      <label for="lastname">Nom</label>
+
+    <div>
+      <label for="lastname">Nom</label><br>
       <input type="text" ngModel required name="lastname" id="lastname" class="">
-      <label for="firstname">prenom</label>
+    </div>
+    <div>
+      <label for="firstname">prenom</label><br>
       <input type="text" ngModel required name="firstname" id="firstname" class="">
-      <label for="login">login</label>
+    </div>
+    <div>
+      <label for="login">login</label><br>
       <input type="text" ngModel required name="login" id="login" class="">
-      <label for="email">mail</label>
+    </div>
+    <div>
+      <label for="email">mail</label><br>
       <input type="email" ngModel required name="email" id="email" class="">
-      <label for="password">mot de passe</label>
+    </div>
+    <div>
+      <label for="password">mot de passe</label><br>
       <input type="text" ngModel name="password" id="password" class="" required>
-      <label for="role_id">role</label>
+    </div>
+    <div>
+      <label for="role_id">role</label><br>
       <select ngModel required name="role_id" class="" id="role_id">
         <option *ngFor="let role of roles" [value]="role.id">{{ role.name }}</option>
       </select>
-      <label for="departement_id">departement</label>
+    </div>
+    <div>
+      <label for="departement_id">departement</label><br>
       <select ngModel required name="departement_id" class="">
         <option *ngFor="let dep of departements" [value]="dep.id">{{ dep.name }}</option>
       </select>
-      <button class="btn btn-primary">Valider</button>
     </div>
+    <button class="save">Valider</button>
+
   </form>
+
+</div>
+
+<div class="info">
+  <a href="https://forge.cetic.be/login?back_url=https%3A%2F%2Fforge.cetic.be%2Fprojects%2Fmission-timetrack
+                Redmine@CETIC" target="_blank">> Suggestion ? </a>
 
 </div>

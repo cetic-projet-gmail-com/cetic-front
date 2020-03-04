@@ -14,6 +14,7 @@ import { AuthGuardService } from './core/services/auth/auth-guard.service';
 import { EditUserComponent } from './core/component/edit-user/edit-user.component';
 import { CreateUserComponent } from './core/component/modal/create-user/create-user.component';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -23,10 +24,7 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent
   },
-  {
-    path: 'administration/users/:id',
-    component: UpdateUserComponent
-  },
+
   {
     path: 'login',
     component: LoginComponent
@@ -61,13 +59,13 @@ const routes: Routes = [
     canActivate: [AuthGuardService]
   },
   {
+    path: 'administration/activities/createActivity',
+    component: CreateActivityComponent
+  },
+  {
     path: 'administration/activities/:id',
     component: EditActivityComponent
   },
-  // {
-  //   path: 'administration/activities/create',
-  //   component: EditActivityComponent
-  // },
   {
     path: 'administration/activities',
     component: AdminUsersComponent
@@ -76,7 +74,7 @@ const routes: Routes = [
     path: 'forgot_password',
     component: ForgotPasswordComponent
   },
-  
+
 
 
 

@@ -1,146 +1,153 @@
 <div class="container">
-  <div id="tab">
+  <div class="wrap">
+    <div id="tab">
 
-    <!-- ------------------------- gestion des onglets ------------------------- -->
+      <!-- ------------------------- gestion des onglets ------------------------- -->
 
-    <div class="tab">
-      <a [routerLink]="'/administration/users'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
-        (click)="'tab' == 'user'">Utilisateurs
+      <div class="tab">
+        <a [routerLink]="'/administration/users'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+          (click)="'tab' == 'user'">Utilisateurs
+        </a>
+        <a [routerLink]="'/administration/departement'" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}" (click)="setRoute('department')">Departements
+        </a>
+        <a [routerLink]="'/administration/activities'" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}" (click)="'tab' == 'activity'">Activités
+        </a>
+      </div>
+      <!-- ----------------------------------------------------------------------- -->
+
+      <!-- ------------------------- gestion des create -------------------------- -->
+
+      <a [routerLink]="'/administration/users/createUser' " *ngIf="router.url === '/administration/users'">
+        <fa-icon [icon]="faAdd" class="faAdd"></fa-icon>
       </a>
-      <a [routerLink]="'/administration/departement'" routerLinkActive="active"
-        [routerLinkActiveOptions]="{exact: true}" (click)="setRoute('department')">Departements
+      <a [routerLink]="'/administration/departement/createUser' " *ngIf="router.url === '/administration/departement'">
+        <fa-icon [icon]="faAdd" class="faAdd"></fa-icon>
       </a>
-      <a [routerLink]="'/administration/activities'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
-        (click)="'tab' == 'activity'">Activités
+      <a [routerLink]="'/administration/activities/createActivity' "
+        *ngIf="router.url === '/administration/activities'">
+        <fa-icon [icon]="faAdd" class="faAdd"></fa-icon>
       </a>
+      <!-- ----------------------------------------------------------------------- -->
+
+
     </div>
-    <!-- ----------------------------------------------------------------------- -->
 
-    <!-- ------------------------- gestion des create -------------------------- -->
+    <div class="content">
 
-    <a [routerLink]="'/administration/users/createUser' " *ngIf="router.url === '/administration/users'">
-      <fa-icon [icon]="faAdd" class="faAdd"></fa-icon>
-    </a>
-    <a [routerLink]="'/administration/departement/createUser' " *ngIf="router.url === '/administration/departement'">
-      <fa-icon [icon]="faAdd" class="faAdd"></fa-icon>
-    </a>
-    <a [routerLink]="'/administration/activity/createUser' " *ngIf="router.url === '/administration/activities'">
-      <fa-icon [icon]="faAdd" class="faAdd"></fa-icon>
-    </a>
-    <!-- ----------------------------------------------------------------------- -->
+      <!-- ------------------------- gestion des titres -------------------------- -->
+
+      <div class="titleListe" *ngIf="router.url === '/administration/users'">
+        <div class=" number">#</div>
+        <div>Nom</div>
+        <div>Rôle</div>
+        <div>Dép.</div>
+        <!-- <div>Activités</div> -->
+        <div>Edit</div>
+        <div>Supp</div>
+      </div>
+      <div class="titleListe" *ngIf="router.url === '/administration/departement'">
+        <div class="number">#</div>
+        <div>Nom </div>
+        <div>Dép.</div>
+        <div>Responsable</div>
+        <div>Edit</div>
+        <div>Supp</div>
+      </div>
+      <div class="titleListe" *ngIf="router.url === '/administration/activities'">
+        <div class="number">#</div>
+        <div>Nom</div>
+        <div>Couleur</div>
+
+        <div>type</div>
+        <div>Status</div>
+
+        <div>Edit</div>
+        <div>Supp</div>
+      </div>
+      <!-- ----------------------------------------------------------------------- -->
+
+
+      <!-- ------------------------- gestion des listes -------------------------- -->
+
+
+      <ul *ngIf="router.url === '/administration/users'" data-simplebar>
+        <li *ngFor="let u of user; let index = index;let even = even; let odd = odd"
+          [ngClass]="{ odd: odd, even: even }">
+          <div class="number">{{index + 1}}</div>
+          <div style="text-transform: capitalize; ">{{u.firstname}}</div>
+          <div>{{u.role}}</div>
+          <div>{{u.department}}.</div>
+          <div>
+            <a [routerLink]="['/administration/users/', u.id]" routerLinkActive="active"
+              [routerLinkActiveOptions]="{exact: true}">
+              <fa-icon [icon]="faEdit" class="faEdit"></fa-icon>
+            </a>
+          </div>
+          <div>
+            <a href="">
+              <fa-icon [icon]="faTrash" class="faTrash"></fa-icon>
+            </a>
+          </div>
+        </li>
+      </ul>
+      <ul *ngIf="router.url === '/administration/departement'" data-simplebar>
+        <li *ngFor="let d of dep; let index = index;let even = even; let odd = odd"
+          [ngClass]="{ odd: odd, even: even } ">
+          <div class="number">{{index + 1}}</div>
+          <div style="text-transform: capitalize; ">{{d.name}}</div>
+          <div>{{d.department}}.</div>
+          <div>{{d.responsable_id}}</div>
+          <div>
+            <a href="">
+              <fa-icon [icon]="faEdit" class="faEdit"></fa-icon>
+            </a>
+          </div>
+          <div>
+            <a href="">
+              <fa-icon [icon]="faTrash" class="faTrash"></fa-icon>
+            </a>
+          </div>
+        </li>
+      </ul>
+
+      <ul *ngIf="router.url === '/administration/activities'" data-simplebar>
+        <li *ngFor="let a of act; let index = index;let even = even; let odd = odd"
+          [ngClass]="{ odd: odd, even: even }">
+          <div class="number">{{index + 1}}</div>
+          <div style="text-transform: capitalize; ">{{a.name}}</div>
+          <div class="color">
+            <span class="color_span"></span>
+          </div>
+
+          <div>{{a.parent}}</div>
+          <div>{{a.status}}</div>
+          <div>
+            <a [routerLink]="['/administration/activities/', a.id]" routerLinkActive="active"
+              [routerLinkActiveOptions]="{exact: true}">
+              <fa-icon [icon]="faEdit" class="faEdit"></fa-icon>
+            </a>
+          </div>
+          <div>
+            <a href="">
+              <fa-icon [icon]="faTrash" class="faTrash"></fa-icon>
+            </a>
+          </div>
+        </li>
+      </ul>
+
+
+      <!-- ----------------------------------------------------------------------- -->
+
+    </div>
+
 
 
   </div>
-  <div class="content">
-
-    <!-- ------------------------- gestion des titres -------------------------- -->
-
-    <div class="titleListe" *ngIf="router.url === '/administration/users'">
-      <div class=" number">#</div>
-      <div>Nom</div>
-      <div>Rôle</div>
-      <div>Dép.</div>
-      <!-- <div>Activités</div> -->
-      <div>Edit</div>
-      <div>Supp</div>
-    </div>
-    <div class="titleListe" *ngIf="router.url === '/administration/departement'">
-      <div class="number">#</div>
-      <div>Nom </div>
-      <div>Dép.</div>
-      <div>Responsable</div>
-      <div>Edit</div>
-      <div>Supp</div>
-    </div>
-    <div class="titleListe" *ngIf="router.url === '/administration/activities'">
-      <div class="number">#</div>
-      <div>Nom</div>
-      <div>Couleur</div>
-
-      <div>type</div>
-      <div>Status</div>
-
-      <div>Edit</div>
-      <div>Supp</div>
-    </div>
-    <!-- ----------------------------------------------------------------------- -->
-
-
-    <!-- ------------------------- gestion des listes -------------------------- -->
-
-    <ul *ngIf="router.url === '/administration/users'">
-      <li *ngFor="let u of user; let index = index;let even = even; let odd = odd" [ngClass]="{ odd: odd, even: even }">
-        <div class="number">{{index + 1}}</div>
-        <div style="text-transform: capitalize; ">{{u.firstname}}</div>
-        <div>{{u.role}}</div>
-        <div>{{u.department}}.</div>
-        <div>
-          <a [routerLink]="['/administration/users/', u.id]" routerLinkActive="active"
-            [routerLinkActiveOptions]="{exact: true}">
-            <fa-icon [icon]="faEdit" class="faEdit"></fa-icon>
-          </a>
-        </div>
-        <div>
-          <a href="">
-            <fa-icon [icon]="faTrash" class="faTrash"></fa-icon>
-          </a>
-        </div>
-      </li>
-    </ul>
-    <ul *ngIf="router.url === '/administration/departement'">
-      <li *ngFor="let u of user; let index = index;let even = even; let odd = odd"
-        [ngClass]="{ odd: odd, even: even } ">
-        <div class="number">{{index + 1}}</div>
-        <div style="text-transform: capitalize; ">{{u.firstname}}</div>
-        <div>{{u.department}}.</div>
-        <div>{{u.responsable}}</div>
-        <div>
-          <a href="">
-            <fa-icon [icon]="faEdit" class="faEdit"></fa-icon>
-          </a>
-        </div>
-        <div>
-          <a href="">
-            <fa-icon [icon]="faTrash" class="faTrash"></fa-icon>
-          </a>
-        </div>
-      </li>
-    </ul>
-
-    <ul *ngIf="router.url === '/administration/activities'">
-      <li *ngFor="let a of act; let index = index;let even = even; let odd = odd" [ngClass]="{ odd: odd, even: even }">
-        <div class="number">{{index + 1}}</div>
-        <div style="text-transform: capitalize; ">{{a.name}}</div>
-        <div class="color">
-          <span class="color_span"></span>
-        </div>
-
-        <div>{{a.parent}}</div>
-        <div>{{a.status}}</div>
-        <div>
-          <a [routerLink]="['/administration/activities/', a.id]" routerLinkActive="active"
-            [routerLinkActiveOptions]="{exact: true}">
-            <fa-icon [icon]="faEdit" class="faEdit"></fa-icon>
-          </a>
-        </div>
-        <div>
-          <a href="">
-            <fa-icon [icon]="faTrash" class="faTrash"></fa-icon>
-          </a>
-        </div>
-      </li>
-    </ul>
-
-    <!-- ----------------------------------------------------------------------- -->
-
-  </div>
-
-
-
 </div>
 <div class="info">
   <a href="https://forge.cetic.be/login?back_url=https%3A%2F%2Fforge.cetic.be%2Fprojects%2Fmission-timetrack
               Redmine@CETIC" target="_blank">> Suggestion ? </a>
 
 </div>
-<create-activity></create-activity>

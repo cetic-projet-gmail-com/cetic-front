@@ -1,28 +1,42 @@
-<h2>Create Activity</h2>
+<div class="content">
+  <h2>Ajouter une activité</h2>
+  <a [routerLink]="'/administration/activities'">
+    <fa-icon [icon]="faCaretSquareLeft" class="back"></fa-icon>
+  </a>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-8">
-            <form #activityForm="ngForm" (ngSubmit)="onFormSubmit(activityForm)">
-                <div class="form-group">
+  <form #activityForm="ngForm" (ngSubmit)="onFormSubmit(activityForm)">
 
-                    <label for="name">Nom</label>
-                    <input type="text" ngModel required name="name" id="name" class="form-control">
 
-                     <label for="a_type">type</label>
-                    <select ngModel required name="a_type" class="form-control" id="a_type">
-                        <option *ngFor="let type of types" [value]="type.id">{{ type.name }}</option>
-                    </select>
-
-                    <label for="color_code">couleur</label>
-                    <input type="text" ngModel required name="color_code" [value]="color_code" class="form-control">
-
-                    <label for="description">description</label>
-                    <textarea ngModel name="description" id="description" cols="50" rows="4"></textarea>
-
-                    <button class="btn btn-primary">Valider</button>
-                </div>
-            </form>
-        </div>
+    <div>
+      <label for="name">Nom</label> <br>
+      <input type="text" ngModel required name="name" id="name" class="">
     </div>
+
+    <div>
+      <label for="a_type">type</label><br>
+      <select ngModel required name="a_type" class="" id="a_type">
+        <option *ngFor="let type of types" [value]="type.id">{{ type.name }}</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="color_code">couleur</label><br>
+      <input type="text" ngModel required name="color_code" [value]="color_code" class="">
+    </div>
+
+    <div>
+      <label for="description">description</label><br>
+      <textarea ngModel name="description" id="description" cols="50" rows="4"></textarea>
+    </div>
+
+    <button class="btn btn-primary">Valider</button>
+
+  </form>
+
+</div>
+
+<div class="info">
+  <a href="https://forge.cetic.be/login?back_url=https%3A%2F%2Fforge.cetic.be%2Fprojects%2Fmission-timetrack
+                  Redmine@CETIC" target="_blank">> Suggestion ? </a>
+
 </div>

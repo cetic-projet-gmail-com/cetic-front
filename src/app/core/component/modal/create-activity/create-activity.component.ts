@@ -1,6 +1,8 @@
 import { NgForm } from '@angular/forms';
 import { DataService } from './../../../services/data.service';
 import { Component, OnInit } from '@angular/core';
+import { faCaretSquareLeft } from '@fortawesome/free-solid-svg-icons';
+import { TitleService } from '../../../services/title.service';
 
 @Component({
   selector: 'create-activity',
@@ -9,7 +11,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateActivityComponent implements OnInit {
 
-  constructor(private DataService: DataService) { }
+  faCaretSquareLeft = faCaretSquareLeft
+
+  constructor(private DataService: DataService, private TitleService: TitleService) { }
   colors
   types
   ngOnInit() {
@@ -18,6 +22,7 @@ export class CreateActivityComponent implements OnInit {
       console.log(this.types)
 
     });
+    this.TitleService.setTitle("Nouvelle activité")
 
     this.DataService.getColors().subscribe((res) => {
       this.colors = res.data
@@ -26,9 +31,9 @@ export class CreateActivityComponent implements OnInit {
     });
   }
   onFormSubmit(activityForm: NgForm) {
-    this.DataService.createActivity(activityForm.value).subscribe((res)=>{
+    this.DataService.createActivity(activityForm.value).subscribe((res) => {
       console.log(res)
-    console.log("activity created");
+      console.log("activity created");
     })
   }
 

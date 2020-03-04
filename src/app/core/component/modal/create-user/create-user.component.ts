@@ -2,6 +2,8 @@ import { DataService } from './../../../services/data.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { TitleService } from '../../../services/title.service';
+import { faCaretSquareLeft } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'create-user',
@@ -9,6 +11,7 @@ import { TitleService } from '../../../services/title.service';
   styleUrls: ['./create-user.component.scss']
 })
 export class CreateUserComponent implements OnInit {
+  faCaretSquareLeft = faCaretSquareLeft
 
   constructor(private DataService: DataService, private TitleService: TitleService) { }
 
