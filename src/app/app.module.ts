@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {MatDialogModule} from '@angular/material/dialog';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { CommonModule, registerLocaleData } from '@angular/common';
@@ -26,6 +27,8 @@ import { UpdateUserComponent } from './core/component/modal/update-user/update-u
 
 import { AuthenticationService} from './core/services/auth/authentification.service';
 import { AuthGuardService} from './core/services/auth/auth-guard.service';
+import { CreateEventComponent } from './core/component/modal/create-event/create-event.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 registerLocaleData(localeFr);
 @NgModule({
@@ -42,7 +45,8 @@ registerLocaleData(localeFr);
     EditActivityComponent,
     ForgotPasswordComponent,
     CreateUserComponent,
-    UpdateUserComponent
+    UpdateUserComponent,
+    CreateEventComponent
   ],
   imports: [
     HttpClientModule,
@@ -52,13 +56,16 @@ registerLocaleData(localeFr);
     CommonModule,
     FormsModule,
     // NgbModalModule,
+    MatDialogModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,
       
-    })
+    }),
+    BrowserAnimationsModule
   ],
   providers: [AuthenticationService, AuthGuardService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [CreateEventComponent]
 })
 export class AppModule { }

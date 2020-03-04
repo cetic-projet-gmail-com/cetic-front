@@ -1,32 +1,39 @@
-import {
-  DataService
-} from './../../services/data.service';
-import {
-  CustomDateFormatter
-} from './../../services/date-formatter.service';
+//? Service
+import { DataService } from './../../services/data.service';
+import { CustomDateFormatter } from './../../services/date-formatter.service';
+//? Angular Modules
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, Injectable, ViewEncapsulation } from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig} from '@angular/material/dialog';
+//? Calendar modules
+import { CalendarEvent, CalendarView, CalendarDateFormatter, DAYS_OF_WEEK, CalendarEventTimesChangedEvent, CalendarEventTitleFormatter } from 'angular-calendar';
+import { parseISO, getWeek, getWeekYear,endOfWeek,addDays, addMinutes} from 'date-fns';
+import {  Observable, Subject, fromEvent } from 'rxjs';
+import {  map, finalize, takeUntil  } from 'rxjs/operators';
+import { WeekViewHourSegment } from 'calendar-utils';
+import { CreateEventComponent } from '../modal/create-event/create-event.component';
+//? function of "Drag to create events"
+function floorToNearest(amount: number, precision: number) {
+  return Math.floor(amount / precision) * precision;
+}
+//? function of "Drag to create events"
+function ceilToNearest(amount: number, precision: number) {
+  return Math.ceil(amount / precision) * precision;
+}
+//? Injextable of "Drag to create events"
+@Injectable()
+export class CustomEventTitleFormatter extends CalendarEventTitleFormatter {
+  weekTooltip(event: CalendarEvent, title: string) {
+    if (!event.meta.tmpEvent) {
+      return super.weekTooltip(event, title);
+    }
+  }
 
-import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy
-} from '@angular/core';
-import {
-  CalendarEvent,
-  CalendarView,
-  CalendarDateFormatter,
-  DAYS_OF_WEEK,
-  CalendarEventTimesChangedEvent
-} from 'angular-calendar';
-import {
-  parseISO,
-  getWeek,
-  getWeekYear
-} from 'date-fns';
-import {  Observable, Subject } from 'rxjs';
-import {  map } from 'rxjs/operators';
-
-
-
+  dayTooltip(event: CalendarEvent, title: string) {
+    if (!event.meta.tmpEvent) {
+      return super.dayTooltip(event, title);
+    }
+  }
+}
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
@@ -35,21 +42,23 @@ import {  map } from 'rxjs/operators';
   providers: [{
     provide: CalendarDateFormatter,
     useClass: CustomDateFormatter
-  }]
+  }],
+  encapsulation: ViewEncapsulation.None
+
 })
 
 export class HomeComponent implements OnInit {
 
-  constructor(private DataService: DataService) { }
+  constructor(private DataService: DataService, private cdr: ChangeDetectorRef, private dialog: MatDialog) { }
   // events$: Observable<Array<CalendarEvent<{ film: Film }>>>;
-  events$;
+  events$ : CalendarEvent[]= [];
   ngOnInit() {
     this.getEvents();
     this.getTasks();
   }
   locale: string = 'fr';
   weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
-  refresh = new Subject<void>();
+  // refresh = new Subject<void>();
 
   weekendDays: number[] = [DAYS_OF_WEEK.FRIDAY, DAYS_OF_WEEK.SATURDAY];
   view: CalendarView = CalendarView.Week;
@@ -68,8 +77,7 @@ export class HomeComponent implements OnInit {
     this.view = CalendarView.Day;
   }
   getEvents(): void {
-    // this.events$ = [];
-
+    // this.events$ = []
     let date = this.viewDate;
     date = new Date(date);
     let url = "";
@@ -88,24 +96,36 @@ export class HomeComponent implements OnInit {
         break;
     }
 
-    this.events$ = this.DataService.getHome(url).pipe(map(result => {     
-      return result.data['events'].map(element => {
+    /*this.events$ = */this.DataService.getHome(url)./*pipe(map*/subscribe(result => {
+      let json = result.data;
+      let colors;
+       /*return */ this.events$ = json['events'].map(element => {
+        try {
+          colors =  json['activities'].find(activity => activity.id === json['tasks'].find(task => element.tasks_id === task.id).activities_id).color_code;
+  
+        } catch (error) {
+          colors = '#8d8d8d';
+        }
         return {
           "start": parseISO(element.start),
           "end": parseISO(element.end),
           "title": element.description,
           draggable:true,
-          actions: [{
+          color : {primary: '#263238', secondary: colors},
+          /*actions: [{
             label: '<p>edit e</p>',
             onClick: ({
               e
             }: {
               e: CalendarEvent
             }): void => { }
-          }]
+          }]*/
         }
       })
-    }))
+      this.refresh();
+
+    })/*)*/
+    
   }
   getTasks() {
     this.DataService.getHome().subscribe(result =>{
@@ -125,35 +145,94 @@ export class HomeComponent implements OnInit {
   externalDrop(event: CalendarEvent) {
     console.log('hhhhh')
     console.log(event)
-    if (this.tasks.indexOf(event) === -1) {
+    /*if (this.tasks.indexOf(event) === -1) {
       this.events$ = this.events$.filter(iEvent => iEvent !== event);
       this.activities.push(event);
-    }
+    }*/
   }
-  eventDropped({
-    event,
-    newStart,
-    newEnd,
-    allDay
-  }: CalendarEventTimesChangedEvent): void {
-    console.log('hey')
-    const externalIndex = this.activities.indexOf(event);
-    console.log(event)
-    if (typeof allDay !== 'undefined') {
-      event.allDay = allDay;
-    }
-    if (externalIndex > -1) {
-      this.activities.splice(externalIndex, 1);
-      this.events$.push(event);
-    }
-    event.start = newStart;
-    if (newEnd) {
-      event.end = newEnd;
-    }
-    if (this.view === 'month') {
-      this.viewDate = newStart;
-      this.activeDayIsOpen = true;
-    }
+  
+  
+  dragToCreateActive = false;
+  refresh() {
     this.events$ = [...this.events$];
+    this.cdr.detectChanges();
   }
+  startDragToCreate(
+    
+    segment: WeekViewHourSegment,
+    mouseDownEvent: MouseEvent,
+    segmentElement: HTMLElement
+  ) {
+    const dragToSelectEvent: CalendarEvent = {
+      id: this.events$.length,
+      title: 'New event',
+      start: segment.date,
+      meta: {
+        tmpEvent: true
+      }
+    };
+    this.events$ = [...this.events$, dragToSelectEvent];
+    const segmentPosition = segmentElement.getBoundingClientRect();
+    this.dragToCreateActive = true;
+    const endOfView = endOfWeek(this.viewDate, {
+      weekStartsOn: 1
+    });
+
+    fromEvent(document, 'mousemove')
+      .pipe(
+        finalize(() => {
+          delete dragToSelectEvent.meta.tmpEvent;
+          this.dragToCreateActive = false;
+          this.refresh();
+          console.log(dragToSelectEvent)
+          this.openEditDialog(dragToSelectEvent)
+        }),
+        takeUntil(fromEvent(document, 'mouseup'))
+      )
+      .subscribe((mouseMoveEvent: MouseEvent) => {
+        const minutesDiff = ceilToNearest(
+          mouseMoveEvent.clientY - segmentPosition.top,
+          30
+        );
+
+        const daysDiff =
+          floorToNearest(
+            mouseMoveEvent.clientX - segmentPosition.left,
+            segmentPosition.width
+          ) / segmentPosition.width;
+
+        const newEnd = addDays(addMinutes(segment.date, minutesDiff), daysDiff);
+        if (newEnd > segment.date && newEnd < endOfView) {
+          dragToSelectEvent.end = newEnd;
+        }
+        this.refresh();
+      });
+  }
+
+  openEditDialog(data): void {
+    /*
+        const dialogRef = this.dialog.open(CreateEventComponent, {
+          width: '250px',
+          data: {}
+        });
+    
+        dialogRef.afterClosed().subscribe(result => {
+          console.log('The dialog was closed');
+          // this.animal = result;
+        });
+   */
+  const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.position = {
+      'top': '0',
+      left: '0'
+  };
+
+  this.dialog.open(CreateEventComponent, dialogConfig);
+
+  }
+
+ 
 }

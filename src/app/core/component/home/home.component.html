@@ -1,127 +1,94 @@
-
-<div class=".container">
+<section class=".container">
   <div class="row">
     <div class="col-9">
-      <div class="d-flex justify-content-between">
+      <header class="d-flex justify-content-between">
         <div class="btn-group">
-          <button
-            class="btn btn-primary"
-            mwlCalendarPreviousView
-            [view]="view"
-            [(viewDate)]="viewDate"
-            (click)="getEvents()"
-          >
+          <button class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
+            (click)="getEvents()">
             Précédent
           </button>
-          <button
-            class="btn btn-outline-secondary"
-            mwlCalendarToday
-            [(viewDate)]="viewDate"
-            (click)="getEvents()"  
-          >
+          <button class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate" (click)="getEvents()">
             Aujourd'hui
           </button>
-          <button
-            class="btn btn-primary"
-            mwlCalendarNextView
-            [view]="view"
-            [(viewDate)]="viewDate"
-            (click)="getEvents()"
-          >
+          <button class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+            (click)="getEvents()">
             Suivant
           </button>
         </div>
-        <div class="">
-          <h3>  {{ viewDate | calendarDate:(view + 'ViewTitle'):locale:weekStartsOn }} </h3>
+        <div class="text-monospace">
+          <h3> {{ viewDate | calendarDate:(view + 'ViewTitle'):locale:weekStartsOn }} </h3>
         </div>
         <div class="btn-group">
-          <button class="btn btn-primary" (click)="this.view = CalendarView.Month" [class.active]="view === CalendarView.Month" (click)="getEvents()">
+          <button class="btn btn-primary" (click)="this.view = CalendarView.Month"
+            [class.active]="view === CalendarView.Month" (click)="getEvents()">
             Mois
           </button>
-      
-          <button class="btn btn-primary" (click)="this.view = CalendarView.Week" [class.active]="view === CalendarView.Week" (click)="getEvents()">
+
+          <button class="btn btn-primary" (click)="this.view = CalendarView.Week"
+            [class.active]="view === CalendarView.Week" (click)="getEvents()">
             Semaine
           </button>
-          <button class="btn btn-primary" (click)="this.view = CalendarView.Day" [class.active]="view === CalendarView.Day" (click)="getEvents()">
+          <button class="btn btn-primary" (click)="this.view = CalendarView.Day"
+            [class.active]="view === CalendarView.Day" (click)="getEvents()">
             Jour
           </button>
         </div>
-      </div>
-      <div [ngSwitch]="view" *ngIf="events$ | async; else loading; let events">
-        <mwl-calendar-month-view *ngSwitchCase="'month'" 
-          [viewDate]="viewDate" 
-          [events]="events" 
-          [locale]="locale"
-          [refresh]="refresh"
-
-          [weekStartsOn]="weekStartsOn"
-          (dayClicked)="changeDay($event.day.date)"
-          (eventTimesChanged)="eventDropped($event)"
-
-        >
+      </header>
+      <!-- <div [ngSwitch]="view" *ngIf="events$ | async; else loading; let events"> -->
+        <div [ngSwitch]="view" >
+        <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events$" [locale]="locale"
+          [weekStartsOn]="weekStartsOn" (dayClicked)="changeDay($event.day.date)"
+          (eventTimesChanged)="eventDropped($event)">
         </mwl-calendar-month-view>
-        <mwl-calendar-week-view *ngSwitchCase="'week'" 
-          [viewDate]="viewDate" [events]="events"
-          (dayHeaderClicked)="changeDay($event.day.date)" 
-          [dayStartHour]="8"  
-          [dayEndHour]="20" 
-          [locale]="locale"
-          [weekStartsOn]="weekStartsOn"
-          [refresh]="refresh"
-          (eventTimesChanged)="eventDropped($event)"
-
+        <ng-template
+          #weekViewHourSegmentTemplate
+          let-segment="segment"
+          let-locale="locale"
+          let-segmentHeight="segmentHeight"
+          let-isTimeLabel="isTimeLabel"
         >
+          <div
+            #segmentElement
+            class="cal-hour-segment"
+            [style.height.px]="segmentHeight"
+            [class.cal-hour-start]="segment.isStart"
+            [class.cal-after-hour-start]="!segment.isStart"
+            [ngClass]="segment.cssClass"
+            (mousedown)="startDragToCreate(segment, $event, segmentElement)"
+          >
+            <div class="cal-time" *ngIf="isTimeLabel">
+              {{ segment.date | calendarDate:'weekViewHour':locale }}
+            </div>
+          </div>
+        </ng-template>
+        <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events$"
+          (dayHeaderClicked)="changeDay($event.day.date)" [dayStartHour]="8" [dayEndHour]="20" [locale]="locale"
+          [weekStartsOn]="weekStartsOn"  (eventTimesChanged)="eventDropped($event)"    [hourSegmentTemplate]="weekViewHourSegmentTemplate"
+
+          >
         </mwl-calendar-week-view>
-        <mwl-calendar-day-view *ngSwitchCase="'day'" 
-          [viewDate]="viewDate" 
-          [events]="events" 
-          [dayStartHour]="8"
-          [dayEndHour]="20"
-          [locale]="locale"
-          [refresh]="refresh"
-
-          (eventTimesChanged)="eventDropped($event)"
-
-        >
+        <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [events]="events$" [dayStartHour]="8"
+          [dayEndHour]="20" [locale]="locale" (eventTimesChanged)="eventDropped($event)">
         </mwl-calendar-day-view>
       </div>
     </div>
-    <div class="col-3">
-      <div
-      class="card"
-      mwlDroppable
-      (drop)="externalDrop($event.dropData.event)"
-      dragOverClass="drag-over"
-    >
-      <div class="card-body">
-        <h4>Liste des tâches</h4>
-        <p *ngIf="activities.length === 0"><em>No events added</em></p>
-        <div *ngFor="let activity of activities">
-          <h5>{{activity.name}}</h5>
-          <ul>
-            <li
-              *ngFor="let task of activity['tasks']"
-              mwlDraggable
-              [dropData]="{event: event}"
-              dragActiveClass="drag-active"
-            >
-              <a href="javascript:;" >
+    <aside class="col-3">
+      <div class="card">
+        <h4 class="card-header">Liste des tâches</h4>
+        <div class="card-body" mwlDroppable (drop)="externalDrop($event.dropData.event)" dragOverClass="drag-over">
+          <p *ngIf="activities.length === 0"><em>Aucune tâche</em></p>
+          <div *ngFor="let activity of activities">
+            <h5>{{activity.name}}</h5>
+            <ul class="list-group">
+              <li class="list-group list-group-flush list-of-tasks" *ngFor="let task of activity['tasks']" mwlDraggable
+                [dropData]="{event: event}" dragActiveClass="drag-active">
                 {{ task.title }}
-              </a>
-            </li>
-          </ul>
+              </li>
+            </ul>
+            <hr>
+          </div>
         </div>
       </div>
-    </div>
+    </aside>
   </div>
-</div>
-
-  
-      
-      
- 
-
-
-
-
-    
+</section>
