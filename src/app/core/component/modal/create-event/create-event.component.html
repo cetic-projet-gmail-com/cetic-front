@@ -1,25 +1,39 @@
- <div class="styleOfPopUp" mat-dialog-content>
+ <div class="styleOfPopUp">
+    <p>Créer nouveau billet - {{this.viewDate}}</p>
+    <p></p>
+    <form #f="ngForm" (ngSubmit)="next(f)" method="post" *ngIf="view==1" class="form-group">
+        <h4 class="">Liste des tâches</h4>
+        <p *ngIf="data.activities.length === 0"><em>Aucune tâche</em></p>
+        <div *ngFor="let activity of data.activities">
+            <h5>{{activity.name}}</h5>
+                <div class="list-group list-group-flush list-of-tasks" *ngFor="let task of activity['tasks']" class="form-check">
+                    
+                    <input id="{{task.id}}" required #name="ngModel" ngModel type="radio" value="{{task.id}}" name="tasks" class="form-check-input"/>
+                    <label for="{{task.id}}">{{ task.title }}</label>
 
-    <form action="edit" class="styleOfForm">
-
-    <div class="styleOfEvent">
-
-        <h2 class="styleOfTitle">Activité 1</h2>
-        <h3 class="styleOfTitle">Tâche 1.1</h3>
-
-        <label for="startTime" class="styleOfLabel">Début</label>
-        <input type="time" id="startTime" class="styleOfInput"name="startTime" value="2020-03-04T11:13" min="2020-03-04T11:14" max="2020-03-04T16:00">
-
-        <label for="endTime" class="styleOfLabel">Fin</label>
-        <input type="datetime" class="styleOfInput" id="endTime" name="endTime" value="2020-03-04T00:13" min="2020-03-04T12:14" max="2020-03-04T16:00">
+                </div>
+            <hr>
+        </div>
+        <div class="btn-group  d-flex justify-content-between">
+            <button type="button" class="btn btn-secondary" (click)="onNoClick()">Annuler</button> 
+            <button class="btn btn-primary" [disabled]="f.invalid">Suivant</button>
+        </div>
+    </form>
+    
+    <form #f="ngForm" (ngSubmit)="submit(f)" *ngIf="view==2" class="form-group" >
+        <p>id tache : {{res['tasks_id']}}</p>
+        <button type="button" (click)="view = 1" class="btn btn-secondary" class="form-control">Précédent</button>
+        <label for="startTime">Début</label>
+        <input #name="ngModel" ngModel type="time" id="startTime" name="start" [value]="data.start" min="07:00" max="21:00" required class="form-control">
+        <label for="endTime" >Fin</label>
+        <input #name="ngModel" ngModel type="time" id="endTime" name="end" [value]="data.end" min="07:00" max="21:00" required class="form-control">
         
         <label for="description" class="styleOfLabel">Description</label>
-        <textarea name="description" class="styleOfArea" id="description" cols="30" rows="10"></textarea>
+        <textarea #name="ngModel" ngModel name="description" id="description" required class="form-control"></textarea>
         <br>
-        <button class="styleOfBtn1">Editer</button>
-    </div>
-
-
-    </form>
-
+        <div class="btn-group  d-flex justify-content-between">
+            <button class="btn btn-secondary" type="button" (click)="onNoClick()">Annuler</button> 
+            <button class="btn btn-primary" [disabled]="f.invalid">Éditer</button>
+        </div>
+    </form> 
 </div>

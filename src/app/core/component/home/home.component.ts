@@ -6,7 +6,7 @@ import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, Injectab
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig} from '@angular/material/dialog';
 //? Calendar modules
 import { CalendarEvent, CalendarView, CalendarDateFormatter, DAYS_OF_WEEK, CalendarEventTimesChangedEvent, CalendarEventTitleFormatter } from 'angular-calendar';
-import { parseISO, getWeek, getWeekYear,endOfWeek,addDays, addMinutes} from 'date-fns';
+import { parseISO, getWeek, getWeekYear,endOfWeek,addDays, addMinutes, format} from 'date-fns';
 import {  Observable, Subject, fromEvent } from 'rxjs';
 import {  map, finalize, takeUntil  } from 'rxjs/operators';
 import { WeekViewHourSegment } from 'calendar-utils';
@@ -184,7 +184,6 @@ export class HomeComponent implements OnInit {
           delete dragToSelectEvent.meta.tmpEvent;
           this.dragToCreateActive = false;
           this.refresh();
-          console.log(dragToSelectEvent)
           this.openEditDialog(dragToSelectEvent)
         }),
         takeUntil(fromEvent(document, 'mouseup'))
@@ -221,17 +220,24 @@ export class HomeComponent implements OnInit {
           // this.animal = result;
         });
    */
-  const dialogConfig = new MatDialogConfig();
-
+        // console.log(data)
+    data.end = data.end? data.end : addMinutes(data.start, 60);
+    // console.log(data.start)
+    const dialogConfig = new MatDialogConfig();
+    const formatHour = 'HH:mm';
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.position = {
-      'top': '0',
-      left: '0'
-  };
-
-  this.dialog.open(CreateEventComponent, dialogConfig);
-
+    dialogConfig.data = {activities:this.activities, date: data.start, start: format(data.start, formatHour), end: format(data.end, formatHour), title: ""}
+    let dialogRef = this.dialog.open(CreateEventComponent, dialogConfig);
+    console.log(dialogConfig)
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result)
+      if (result === undefined) {
+        this.events$.pop();
+        this.refresh();
+      }
+      
+    });
   }
 
  
