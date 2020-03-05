@@ -41,6 +41,10 @@ export class DataService {
 
   public createUser(user: Users){
     return this.httpClient.post(`${this.apiURL}/administration/users`,user);
-}
+  }
+
+  public createEvent(event){
+    return this.httpClient.post(`${this.apiURL}/home`,event);
+  }
 
 }

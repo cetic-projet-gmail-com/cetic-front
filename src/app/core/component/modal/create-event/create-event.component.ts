@@ -16,7 +16,8 @@ export class CreateEventComponent implements OnInit {
   
   onNoClick(): void {
     this.dialogRef.close();
-    console.log(this.data)
+
+    // console.log(this.data)
     
   }
   viewDate;
@@ -26,22 +27,23 @@ export class CreateEventComponent implements OnInit {
   };
   ngOnInit() {
     this.view= 1;
-    console.log(this.data)
+    // console.log(this.data)
     
     this.viewDate = format(this.data.date,'dd/MM/yy')
   }
 
   next(f) {
     this.view=2;
-    this.res['tasks_id'] = f.value.tasks;
+    this.res['tasks_id'] = parseInt(f.value.tasks);
   }
   submit(f) {
     let start, end, description;
     ({start, end, description} = f.value)
     this.res['description'] = description;
-    this.res['start'] = start;
-    this.res['end'] = end;
-    this.res['date'] = this.data.date;
+    console.log(start)
+    this.res['start'] = new Date((this.data.date).getFullYear(), (this.data.date).getMonth(), (this.data.date).getDate(), start.split(':')[0], start.split(':')[1]);
+    
+    this.res['end'] = new Date((this.data.date).getFullYear(), (this.data.date).getMonth(), (this.data.date).getDate(), end.split(':')[0], end.split(':')[1]);;
 
     console.log(this.res)
 

@@ -11,6 +11,8 @@ import {  Observable, Subject, fromEvent } from 'rxjs';
 import {  map, finalize, takeUntil  } from 'rxjs/operators';
 import { WeekViewHourSegment } from 'calendar-utils';
 import { CreateEventComponent } from '../modal/create-event/create-event.component';
+
+
 //? function of "Drag to create events"
 function floorToNearest(amount: number, precision: number) {
   return Math.floor(amount / precision) * precision;
@@ -74,8 +76,16 @@ export class HomeComponent implements OnInit {
 
   changeDay(date: Date) {
     this.viewDate = date;
-    this.view = CalendarView.Day;
+    this.view = CalendarView.Week;
   }
+  // changeViewWithMini = new Date();
+
+  ChangeDateWithMini(date : Date){
+    // this.changeViewWithMini = date;
+    this.viewDate = date;
+    this.view = CalendarView.Week;
+  }
+
   getEvents(): void {
     // this.events$ = []
     let date = this.viewDate;
@@ -209,34 +219,22 @@ export class HomeComponent implements OnInit {
   }
 
   openEditDialog(data): void {
-    /*
-        const dialogRef = this.dialog.open(CreateEventComponent, {
-          width: '250px',
-          data: {}
-        });
-    
-        dialogRef.afterClosed().subscribe(result => {
-          console.log('The dialog was closed');
-          // this.animal = result;
-        });
-   */
-        // console.log(data)
+
     data.end = data.end? data.end : addMinutes(data.start, 60);
-    // console.log(data.start)
     const dialogConfig = new MatDialogConfig();
     const formatHour = 'HH:mm';
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = {activities:this.activities, date: data.start, start: format(data.start, formatHour), end: format(data.end, formatHour), title: ""}
     let dialogRef = this.dialog.open(CreateEventComponent, dialogConfig);
-    console.log(dialogConfig)
     dialogRef.afterClosed().subscribe(result => {
       console.log(result)
       if (result === undefined) {
         this.events$.pop();
         this.refresh();
       }
-      
+      this.DataService.createEvent(result).subscribe()
+      this.refresh()
     });
   }
 

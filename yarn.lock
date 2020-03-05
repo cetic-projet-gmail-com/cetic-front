@@ -4476,6 +4476,11 @@ jest-worker@24.9.0:
     merge-stream "^2.0.0"
     supports-color "^6.1.0"
 
+jqwidgets-ng@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/jqwidgets-ng/-/jqwidgets-ng-9.0.0.tgz#c860731c3f21975079e9db1553be763126ae2915"
+  integrity sha512-efzMTJBKDwn2DIPLxZDmCnllLIzGds6ug+6P/rRBvtyrfZdFlNI/bAPw8b4EwAIvKfQn5D06iaDl7Ol9WCwc3g==
+
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"

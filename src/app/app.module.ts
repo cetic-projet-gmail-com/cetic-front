@@ -29,6 +29,9 @@ import { AuthenticationService} from './core/services/auth/authentification.serv
 import { AuthGuardService} from './core/services/auth/auth-guard.service';
 import { CreateEventComponent } from './core/component/modal/create-event/create-event.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MiniCalendarComponent } from './core/component/home/mini-calendar/mini-calendar.component';
+
+import { jqxCalendarModule }   from 'jqwidgets-ng/jqxcalendar';
 
 registerLocaleData(localeFr);
 @NgModule({
@@ -46,7 +49,9 @@ registerLocaleData(localeFr);
     ForgotPasswordComponent,
     CreateUserComponent,
     UpdateUserComponent,
-    CreateEventComponent
+    CreateEventComponent,
+    MiniCalendarComponent,
+    
   ],
   imports: [
     HttpClientModule,
@@ -57,6 +62,7 @@ registerLocaleData(localeFr);
     FormsModule,
     // NgbModalModule,
     MatDialogModule,
+    jqxCalendarModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,
