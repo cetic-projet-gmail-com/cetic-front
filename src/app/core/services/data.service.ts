@@ -35,6 +35,7 @@ export class DataService {
     return this.httpClient.get<Users>(`${this.apiURL}/home`);
   }
 
+  
   public getAdminUsers(url?: string) {
 
     url = url ? url : '';
@@ -43,6 +44,7 @@ export class DataService {
 
 
   /* -------------------------------- ACTIVITY -------------------------------- */
+
 
   public getActivities(url?: string) {
     return this.httpClient.get<Activities>(`${this.apiURL}/administration/activities`);
@@ -59,10 +61,18 @@ export class DataService {
   }
 
 
+  public updateActivity(activity: Activities, id) {
+    return this.httpClient.patch(`${this.apiURL}/administration/activities/${id}`, activity)
+  }
+
   /* ------------------------------ DEPARTEMENTS ------------------------------ */
 
   public getDepartements(url?: string) {
     return this.httpClient.get<Departements>(`${this.apiURL}/administration/departements`);
+  }
+
+  public createDepartement(departement: Departements) {
+    return this.httpClient.post(`${this.apiURL}/administration/departements`, departement);
   }
 
 
