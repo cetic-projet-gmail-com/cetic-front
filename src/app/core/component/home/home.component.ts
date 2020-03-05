@@ -78,11 +78,12 @@ export class HomeComponent implements OnInit {
     this.viewDate = date;
     this.view = CalendarView.Week;
   }
-  // changeViewWithMini = new Date();
 
   ChangeDateWithMini(date : Date){
+    console.log(date)
     // this.changeViewWithMini = date;
     this.viewDate = date;
+    // console.log(res)
     this.view = CalendarView.Week;
   }
 
@@ -107,6 +108,7 @@ export class HomeComponent implements OnInit {
     }
 
     /*this.events$ = */this.DataService.getHome(url)./*pipe(map*/subscribe(result => {
+      console.log(result.data)
       let json = result.data;
       let colors;
        /*return */ this.events$ = json['events'].map(element => {
@@ -122,18 +124,10 @@ export class HomeComponent implements OnInit {
           "title": element.description,
           draggable:true,
           color : {primary: '#263238', secondary: colors},
-          /*actions: [{
-            label: '<p>edit e</p>',
-            onClick: ({
-              e
-            }: {
-              e: CalendarEvent
-            }): void => { }
-          }]*/
         }
       })
-      this.refresh();
-
+      this.refresh()
+      console.log('ooookk fresh')
     })/*)*/
     
   }
@@ -153,12 +147,7 @@ export class HomeComponent implements OnInit {
   }
 
   externalDrop(event: CalendarEvent) {
-    console.log('hhhhh')
-    console.log(event)
-    /*if (this.tasks.indexOf(event) === -1) {
-      this.events$ = this.events$.filter(iEvent => iEvent !== event);
-      this.activities.push(event);
-    }*/
+
   }
   
   
@@ -166,6 +155,7 @@ export class HomeComponent implements OnInit {
   refresh() {
     this.events$ = [...this.events$];
     this.cdr.detectChanges();
+    
   }
   startDragToCreate(
     
@@ -228,13 +218,17 @@ export class HomeComponent implements OnInit {
     dialogConfig.data = {activities:this.activities, date: data.start, start: format(data.start, formatHour), end: format(data.end, formatHour), title: ""}
     let dialogRef = this.dialog.open(CreateEventComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
+      console.log('-----------')
       console.log(result)
+      console.log('-----------')
+
       if (result === undefined) {
         this.events$.pop();
         this.refresh();
+      } else {
+        this.DataService.createEvent(result).subscribe((res) => {console.log(res); this.getEvents()} )
+        
       }
-      this.DataService.createEvent(result).subscribe()
-      this.refresh()
     });
   }
 
