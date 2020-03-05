@@ -34,9 +34,8 @@
           </button>
         </div>
       </header>
-      <!-- <div [ngSwitch]="view" *ngIf="events$ | async; else loading; let events"> -->
-        <div [ngSwitch]="view" >
-        <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events$" [locale]="locale"
+      <div [ngSwitch]="view" mwlDroppable (drop)="externalDrop($event.dropData.event)" dragOverClass="drag-over">
+        <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events" [locale]="locale"
           [weekStartsOn]="weekStartsOn" (dayClicked)="changeDay($event.day.date)"
           (eventTimesChanged)="eventDropped($event)">
         </mwl-calendar-month-view>
@@ -61,27 +60,26 @@
             </div>
           </div>
         </ng-template>
-        <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events$"
+        <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events"
           (dayHeaderClicked)="changeDay($event.day.date)" [dayStartHour]="8" [dayEndHour]="20" [locale]="locale"
           [weekStartsOn]="weekStartsOn"  (eventTimesChanged)="eventDropped($event)"    [hourSegmentTemplate]="weekViewHourSegmentTemplate"
-
-          >
+        >
         </mwl-calendar-week-view>
-        <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [events]="events$" [dayStartHour]="8"
-          [dayEndHour]="20" [locale]="locale" (eventTimesChanged)="eventDropped($event)">
+        <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [events]="events" [dayStartHour]="8"
+          [dayEndHour]="20" [locale]="locale" (eventTimesChanged)="eventDropped($event)" [hourSegmentTemplate]="weekViewHourSegmentTemplate">
         </mwl-calendar-day-view>
       </div>
     </div>
     <aside class="col-3">
       <div class="card">
         <h4 class="card-header">Liste des tâches</h4>
-        <div class="card-body" mwlDroppable (drop)="externalDrop($event.dropData.event)" dragOverClass="drag-over">
+        <div class="card-body" >
           <p *ngIf="activities.length === 0"><em>Aucune tâche</em></p>
           <div *ngFor="let activity of activities">
             <h5>{{activity.name}}</h5>
             <ul class="list-group">
               <li class="list-group list-group-flush list-of-tasks" *ngFor="let task of activity['tasks']" mwlDraggable
-                [dropData]="{event: event}" dragActiveClass="drag-active">
+                [dropData]="{event: task}" dragActiveClass="drag-active">
                 {{ task.title }}
               </li>
             </ul>

@@ -21,7 +21,7 @@ function floorToNearest(amount: number, precision: number) {
 function ceilToNearest(amount: number, precision: number) {
   return Math.ceil(amount / precision) * precision;
 }
-//? Injextable of "Drag to create events"
+//? Injectable of "Drag to create events"
 @Injectable()
 export class CustomEventTitleFormatter extends CalendarEventTitleFormatter {
   weekTooltip(event: CalendarEvent, title: string) {
@@ -46,49 +46,43 @@ export class CustomEventTitleFormatter extends CalendarEventTitleFormatter {
     useClass: CustomDateFormatter
   }],
   encapsulation: ViewEncapsulation.None
-
 })
 
 export class HomeComponent implements OnInit {
-
   constructor(private DataService: DataService, private cdr: ChangeDetectorRef, private dialog: MatDialog) { }
-  // events$: Observable<Array<CalendarEvent<{ film: Film }>>>;
-  events$ : CalendarEvent[]= [];
+  //? Refresh events list
+  refresh() {
+    this.events = [...this.events];
+    this.cdr.detectChanges();
+  }
+  events : CalendarEvent[]= [];
   ngOnInit() {
     this.getEvents();
     this.getTasks();
   }
+  //? Params of Angular-Calendar
   locale: string = 'fr';
   weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
-  // refresh = new Subject<void>();
-
   weekendDays: number[] = [DAYS_OF_WEEK.FRIDAY, DAYS_OF_WEEK.SATURDAY];
   view: CalendarView = CalendarView.Week;
-
   viewDate = new Date();
-
   CalendarView = CalendarView;
-
   tasks: CalendarEvent[] =  [];
-  activities = [];
   activeDayIsOpen = false;
-
+  //? List of activities & taks for drag & drop
+  activities = [];
 
   changeDay(date: Date) {
     this.viewDate = date;
     this.view = CalendarView.Week;
   }
-
+  //? Select day from mini-calendar
   ChangeDateWithMini(date : Date){
-    console.log(date)
-    // this.changeViewWithMini = date;
     this.viewDate = date;
-    // console.log(res)
     this.view = CalendarView.Week;
   }
-
-  getEvents(): void {
-    // this.events$ = []
+  //? Get events for put in calendar
+  async getEvents() {
     let date = this.viewDate;
     date = new Date(date);
     let url = "";
@@ -106,12 +100,10 @@ export class HomeComponent implements OnInit {
         url = "";
         break;
     }
-
-    /*this.events$ = */this.DataService.getHome(url)./*pipe(map*/subscribe(result => {
-      console.log(result.data)
+    this.DataService.getHome(url).subscribe(async result => {
       let json = result.data;
       let colors;
-       /*return */ this.events$ = json['events'].map(element => {
+      this.events = await json['events'].map(element => {
         try {
           colors =  json['activities'].find(activity => activity.id === json['tasks'].find(task => element.tasks_id === task.id).activities_id).color_code;
   
@@ -125,19 +117,17 @@ export class HomeComponent implements OnInit {
           draggable:true,
           color : {primary: '#263238', secondary: colors},
         }
-      })
+      });
       this.refresh()
-      console.log('ooookk fresh')
-    })/*)*/
-    
+    });
   }
   getTasks() {
-    this.DataService.getHome().subscribe(result =>{
-      result.data['activities'].forEach((activity) => {
+    this.DataService.getHome().subscribe(async result =>{
+      await result.data['activities'].forEach((activity) => {
         activity['tasks'] =  []
         result.data['tasks'].forEach(task => {
           if (activity.id === task.activities_id)
-          activity['tasks'].push( {"id": task["id"], "title" : task['name'], "start": new Date(), draggable:true });
+          activity['tasks'].push( {"taskId": task["id"], "title" : task['name'], /*"start": new Date(),*/ draggable:true });
         });
         if (activity['tasks'].length !== 0){
           this.activities.push( activity)
@@ -146,38 +136,29 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  externalDrop(event: CalendarEvent) {
-
+  externalDrop(event/*: CalendarEvent*/) {
+    // event.getPrototypeOf(start)
+    this.openEditDialog(event);
   }
   
-  
+  //? Drag in calendar for create an event
+//? ----------------------------------- -- ----------------------------------- */
   dragToCreateActive = false;
-  refresh() {
-    this.events$ = [...this.events$];
-    this.cdr.detectChanges();
-    
-  }
   startDragToCreate(
-    
-    segment: WeekViewHourSegment,
-    mouseDownEvent: MouseEvent,
-    segmentElement: HTMLElement
+    segment: WeekViewHourSegment, mouseDownEvent: MouseEvent, segmentElement: HTMLElement
   ) {
     const dragToSelectEvent: CalendarEvent = {
-      id: this.events$.length,
-      title: 'New event',
+      id: this.events.length,
+      title: 'Nouveau Billet',
       start: segment.date,
-      meta: {
-        tmpEvent: true
-      }
+      meta: {tmpEvent: true}
     };
-    this.events$ = [...this.events$, dragToSelectEvent];
+    this.events = [...this.events, dragToSelectEvent];
     const segmentPosition = segmentElement.getBoundingClientRect();
     this.dragToCreateActive = true;
     const endOfView = endOfWeek(this.viewDate, {
       weekStartsOn: 1
     });
-
     fromEvent(document, 'mousemove')
       .pipe(
         finalize(() => {
@@ -192,45 +173,75 @@ export class HomeComponent implements OnInit {
         const minutesDiff = ceilToNearest(
           mouseMoveEvent.clientY - segmentPosition.top,
           30
-        );
-
-        const daysDiff =
-          floorToNearest(
-            mouseMoveEvent.clientX - segmentPosition.left,
-            segmentPosition.width
-          ) / segmentPosition.width;
-
-        const newEnd = addDays(addMinutes(segment.date, minutesDiff), daysDiff);
+        );     
+        const newEnd = addMinutes(segment.date, minutesDiff);
         if (newEnd > segment.date && newEnd < endOfView) {
           dragToSelectEvent.end = newEnd;
         }
         this.refresh();
       });
   }
-
+  //? Open widow for create event
+//? ----------------------------------- -- ----------------------------------- */
   openEditDialog(data): void {
-
+    console.log(data.getPrototypeOf("start"))
+    let taskId = data.taskId ? data.taskId : null;
     data.end = data.end? data.end : addMinutes(data.start, 60);
     const dialogConfig = new MatDialogConfig();
     const formatHour = 'HH:mm';
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.data = {activities:this.activities, date: data.start, start: format(data.start, formatHour), end: format(data.end, formatHour), title: ""}
+    dialogConfig.data = { taskId: taskId,
+      activities:this.activities, date: data.start, start: format(data.start, formatHour), end: format(data.end, formatHour), title: ""
+    }
     let dialogRef = this.dialog.open(CreateEventComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
-      console.log('-----------')
-      console.log(result)
-      console.log('-----------')
-
       if (result === undefined) {
-        this.events$.pop();
+        this.events.pop();
         this.refresh();
       } else {
-        this.DataService.createEvent(result).subscribe((res) => {console.log(res); this.getEvents()} )
-        
+        this.DataService.createEvent(result).subscribe(async (res) => {
+          await (res.status); 
+          if (res.status === 200) {
+            this.getEvents()
+          }
+      } )      
       }
     });
   }
 
- 
+
+  async eventDropped({
+    event,
+    newStart,
+    //newEnd,
+    // allDay
+  }/*: CalendarEventTimesChangedEvent*/): void {
+    
+    // console.log(typeof newStart)
+    event['start'] = new Date(newStart);
+    // console.log( typeof event['start'])
+    // event['end'] = addMinutes((newStart), 60)
+    // console.log(event)
+    // console.log(allDay)
+    // const externalIndex = this.activities.indexOf(event);
+    // console.log(externalIndex)
+    // if (typeof allDay !== 'undefined') {
+    //   event.allDay = allDay;
+    // }
+    // if (externalIndex > -1) {
+    //   this.activities.splice(externalIndex, 1);
+    //   this.events.push(event);
+    // }
+    
+    // console.log(event.start)
+    // if (newEnd) {
+    //   event.end = newEnd;
+    // }
+    if (this.view === 'month') {
+      this.viewDate = newStart;
+      this.activeDayIsOpen = true;
+    }
+    // this.events = [...this.events];
+  }
 }

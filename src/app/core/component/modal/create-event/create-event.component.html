@@ -8,8 +8,8 @@
             <h5>{{activity.name}}</h5>
                 <div class="list-group list-group-flush list-of-tasks" *ngFor="let task of activity['tasks']" class="form-check">
                     
-                    <input id="{{task.id}}" required #tasks="ngModel" ngModel type="radio" value="{{task.id}}" name="tasks" class="form-check-input"/>
-                    <label for="{{task.id}}">{{ task.title }}</label>
+                    <input id="{{task.taskId}}" required #tasks="ngModel" ngModel type="radio" value="{{task.taskId}}" name="tasks" class="form-check-input"/>
+                    <label for="{{task.taskId}}">{{ task.title }}</label>
 
                 </div>
             <hr>

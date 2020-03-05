@@ -26,8 +26,14 @@ export class CreateEventComponent implements OnInit {
     tasks_id : "",
   };
   ngOnInit() {
-    this.view= 1;
-    // console.log(this.data)
+
+    if (this.data.taskId !== null) {
+      this.view= 2;
+      this.res['tasks_id'] = parseInt(this.data.taskId);
+    } else {
+      this.view= 1;
+    }
+    
     
     this.viewDate = format(this.data.date,'dd/MM/yy')
   }
@@ -40,13 +46,9 @@ export class CreateEventComponent implements OnInit {
     let start, end, description;
     ({start, end, description} = f.value)
     this.res['description'] = description;
-    console.log(start)
     this.res['start'] = new Date((this.data.date).getFullYear(), (this.data.date).getMonth(), (this.data.date).getDate(), start.split(':')[0], start.split(':')[1]);
     
     this.res['end'] = new Date((this.data.date).getFullYear(), (this.data.date).getMonth(), (this.data.date).getDate(), end.split(':')[0], end.split(':')[1]);;
-
-    console.log(this.res)
-
 
     this.dialogRef.close(this.res)
   }
