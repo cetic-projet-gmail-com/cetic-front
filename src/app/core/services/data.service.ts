@@ -34,7 +34,8 @@ export class DataService {
   }
 
   public getHome(url?: string) {
-    return this.httpClient.get<Users>(`${this.apiURL}/home`);
+    url = url? url: "";
+    return this.httpClient.get<Users>(`${this.apiURL}/home${url}`);
   }
 
   
@@ -67,6 +68,10 @@ export class DataService {
     return this.httpClient.patch(`${this.apiURL}/administration/activities/${id}`, activity)
   }
 
+  public deleteActivity(id: number) {
+    return this.httpClient.delete(`${this.apiURL}/administration/activities/${id}`);
+  }
+
   /* ------------------------------ DEPARTEMENTS ------------------------------ */
 
   public getDepartementById(id: number) {
@@ -79,12 +84,20 @@ export class DataService {
     return this.httpClient.get<Departements>(`${this.apiURL}/administration/departements`);
   }
 
+  public createEvent(event){
+    return this.httpClient.post(`${this.apiURL}/home`,event, {observe: 'response'});
+  }
+
   public createDepartement(departement) {
     return this.httpClient.post(`${this.apiURL}/administration/departements`, departement);
   }
 
   public updateDepartement(departement, id) {
     return this.httpClient.patch(`${this.apiURL}/administration/departements/${id}`, departement)
+  }
+
+  public deleteDepartement(id: number) {
+    return this.httpClient.delete(`${this.apiURL}/administration/departements/${id}`);
   }
 
 
@@ -99,7 +112,6 @@ export class DataService {
   }
 
   public createUser(user: Users) {
-    console.log(user)
     return this.httpClient.post(`${this.apiURL}/administration/users`, user);
   }
 

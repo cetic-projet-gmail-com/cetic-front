@@ -1,4 +1,3 @@
-
 import { DataService } from './../../services/data.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -40,6 +39,12 @@ export class AdminUsersComponent implements OnInit {
   sensDep = true;
 
 
+  transform(value: any[], order = '', column: string = ''): any[] {
+    if (!value || order === '' || !order) { return value; } // no array
+    if (value.length <= 1) { return value; } // array with only one item
+    // return orderBy(value, [column], [order]);
+  }
+
 
 
   constructor(private DataService: DataService, private http: HttpClient, private TitleService: TitleService, public router: Router) {
@@ -52,6 +57,7 @@ export class AdminUsersComponent implements OnInit {
   user
   act
   dep
+
   ngOnInit() {
     this.DataService.getActivities().subscribe((res) => {
       this.act = res.data.activities
@@ -84,6 +90,13 @@ export class AdminUsersComponent implements OnInit {
     this.isHidden = !this.isHidden
   }
 
+  deleteUsers(id) {
+
+    this.DataService.deleteUser(id).subscribe((res) => {
+      console.log("user deleted (refresh la page)")
+    })
+
+  }
 
 
   sort(el) {
@@ -110,12 +123,23 @@ export class AdminUsersComponent implements OnInit {
 
         break;
     }
-
-
   }
 
+    deleteDep(id){
 
+      this.DataService.deleteDepartement(id).subscribe((res) => {
+        console.log(res)
+        console.log("Departement deleted (refresh la page)")
+      })
 
+    }
+    deleteAct(id){
 
+      this.DataService.deleteActivity(id).subscribe((res) => {
+        console.log(res)
+        console.log("Activity deleted (refresh la page)")
+      })
 
-}
+    }
+
+  }

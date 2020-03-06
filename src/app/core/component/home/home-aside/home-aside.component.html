@@ -1,0 +1,17 @@
+    <div class="card">
+      <h4 class="card-header">Liste des tâches</h4>
+      <div class="card-body" >
+        <p *ngIf="activities.length === 0"><em>Aucune tâche</em></p>
+        <div *ngFor="let activity of activities">
+          <h5>{{activity.name}}</h5>
+          <ul class="list-group">
+            <li class="list-group list-group-flush list-of-tasks" *ngFor="let task of activity['tasks']" mwlDraggable
+              [dropData]="{event: task}" dragActiveClass="drag-active">
+              {{ task.title }}
+            </li>
+          </ul>
+          <hr>
+        </div>
+      </div>
+      <!-- <jqxCalendar #myCalendar [width]="220" [height]="220" (onChange)="getDate($event)" [theme]="'material-green'" [enableTooltips]="false"></jqxCalendar> -->
+    </div>

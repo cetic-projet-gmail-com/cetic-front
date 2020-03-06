@@ -62,9 +62,7 @@ export class CreateDepartementComponent implements OnInit {
   onFormSubmit(departementForm: NgForm) {
     let infos = {
           name: departementForm.value.name,
-          responsable_id:this.responsible_Id
-        
-      
+          responsable_id:this.responsible_Id      
     }
     this.DataService.createDepartement(infos).subscribe((res) => {
       

@@ -1,0 +1,19 @@
+//Angular Calendar
+.drag-active {
+    position: relative;
+    z-index: 1;
+    pointer-events: none;
+}
+.drag-over {
+  background-color: #eee;
+}
+.disable-hover {
+  pointer-events: none;
+}
+//design
+.list-of-tasks {
+    cursor: pointer;
+    
+}
+
+

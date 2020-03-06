@@ -34,6 +34,8 @@ export class ProfilComponent implements OnInit {
 
     this.auth.profile().subscribe(users => {
       this.user = users.data;
+      this.TitleService.setTitle(`${this.user['firstname']}`)
+
       // console.log(this.details)
     }, (err) => {
       console.error(err);

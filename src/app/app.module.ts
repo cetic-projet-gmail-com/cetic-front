@@ -3,11 +3,13 @@ import { ForgotPasswordComponent } from './core/component/forgot-password/forgot
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
+import {MatDialogModule} from '@angular/material/dialog';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { CommonModule } from '@angular/common';
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { CommonModule, registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+// import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
@@ -24,6 +26,15 @@ import { EditActivityComponent } from './core/component/editactivity/editactivit
 import { CreateUserComponent } from './core/component/modal/create-user/create-user.component';
 import { UpdateUserComponent } from './core/component/modal/update-user/update-user.component';
 
+import { CreateEventComponent } from './core/component/modal/create-event/create-event.component';
+import { ViewEventComponent } from './core/component/modal/view-event/view-event.component';
+import { MiniCalendarComponent } from './core/component/home/mini-calendar/mini-calendar.component';
+
+import { jqxCalendarModule }   from 'jqwidgets-ng/jqxcalendar';
+import { HomeAsideComponent } from './core/component/home/home-aside/home-aside.component';
+import { CalendarComponent } from './core/component/home/calendar/calendar.component';
+
+registerLocaleData(localeFr);
 import { AuthenticationService } from './core/services/auth/authentification.service';
 import { AuthGuardService } from './core/services/auth/auth-guard.service';
 import { EditUserComponent } from './core/component/edit-user/edit-user.component';
@@ -52,6 +63,12 @@ import { OrderModule } from 'ngx-order-pipe';
     ForgotPasswordComponent,
     CreateUserComponent,
     UpdateUserComponent,
+    CreateEventComponent,
+    ViewEventComponent,
+    MiniCalendarComponent,
+    HomeAsideComponent,
+    CalendarComponent,
+    
     EditUserComponent,
     CreateActivityComponent,
     MenuComponent,
@@ -69,16 +86,18 @@ import { OrderModule } from 'ngx-order-pipe';
     AppRoutingModule,
     CommonModule,
     FormsModule,
-    NgbModalModule,
+    // NgbModalModule,
+    MatDialogModule,
+    jqxCalendarModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
     }),
     BrowserAnimationsModule
   ],
-
   providers: [AuthenticationService, AuthGuardService],
   bootstrap: [AppComponent],
+  entryComponents: [CreateEventComponent, ViewEventComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

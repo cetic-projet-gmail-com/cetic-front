@@ -84,8 +84,8 @@
       <ul *ngIf="router.url === '/administration/users'" data-simplebar class="ul_user">
         <li *ngFor="let u of user | orderBy: order : sens : true; let index = index;let even = even; let odd = odd "
           [ngClass]="{ odd: odd, even: even }">
-          <!-- <div class="number">{{index + 1}}</div> -->
-          <div style="text-transform: capitalize; ">{{u.firstname}} {{u.lastname}}</div>
+          <div class="number">{{index + 1}}</div>
+          <div style="text-transform: capitalize; " [id]="u.id">{{u.firstname}}</div>
           <div>{{u.role}}</div>
           <div>{{u.department}}.</div>
           <div>
@@ -93,7 +93,9 @@
               [routerLinkActiveOptions]="{exact: true}">
               <fa-icon [icon]="faEdit" class="faEdit"></fa-icon>
             </a>
-            <a href="">
+          </div>
+          <div>
+            <a (click)="deleteUsers(u.id)">
               <fa-icon [icon]="faTrash" class="faTrash"></fa-icon>
             </a>
           </div>
@@ -112,7 +114,9 @@
               <fa-icon [icon]="faEdit" class="faEdit">
               </fa-icon>
             </a>
-            <a href="">
+          </div>
+          <div>
+            <a (click)="deleteDep(d.id)">
               <fa-icon [icon]="faTrash" class="faTrash"></fa-icon>
             </a>
           </div>
@@ -137,7 +141,9 @@
               [routerLinkActiveOptions]="{exact: true}">
               <fa-icon [icon]="faEdit" class="faEdit"></fa-icon>
             </a>
-            <a href="">
+          </div>
+          <div>
+            <a (click)="deleteAct(a.id)">
               <fa-icon [icon]="faTrash" class="faTrash"></fa-icon>
             </a>
           </div>
