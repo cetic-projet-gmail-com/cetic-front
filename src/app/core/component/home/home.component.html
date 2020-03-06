@@ -1,93 +1,12 @@
 <section class=".container">
   <div class="row">
     <div class="col-9">
-      <header class="d-flex justify-content-between">
-        <div class="btn-group">
-          <button class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
-            (click)="getEvents()">
-            Précédent
-          </button>
-          <button class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate" (click)="getEvents()">
-            Aujourd'hui
-          </button>
-          <button class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
-            (click)="getEvents()">
-            Suivant
-          </button>
-        </div>
-        <div class="text-monospace">
-          <h3> {{ viewDate | calendarDate:(view + 'ViewTitle'):locale:weekStartsOn }} </h3>
-        </div>
-        <div class="btn-group">
-          <button class="btn btn-primary" (click)="this.view = CalendarView.Month"
-            [class.active]="view === CalendarView.Month" (click)="getEvents()">
-            Mois
-          </button>
-
-          <button class="btn btn-primary" (click)="this.view = CalendarView.Week"
-            [class.active]="view === CalendarView.Week" (click)="getEvents()">
-            Semaine
-          </button>
-          <button class="btn btn-primary" (click)="this.view = CalendarView.Day"
-            [class.active]="view === CalendarView.Day" (click)="getEvents()">
-            Jour
-          </button>
-        </div>
-      </header>
-      <div [ngSwitch]="view" mwlDroppable (drop)="externalDrop($event.dropData.event)" dragOverClass="drag-over">
-        <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events" [locale]="locale"
-          [weekStartsOn]="weekStartsOn" (dayClicked)="changeDay($event.day.date)"
-          (eventTimesChanged)="eventDropped($event)">
-        </mwl-calendar-month-view>
-        <ng-template
-          #weekViewHourSegmentTemplate
-          let-segment="segment"
-          let-locale="locale"
-          let-segmentHeight="segmentHeight"
-          let-isTimeLabel="isTimeLabel"
-        >
-          <div
-            #segmentElement
-            class="cal-hour-segment"
-            [style.height.px]="segmentHeight"
-            [class.cal-hour-start]="segment.isStart"
-            [class.cal-after-hour-start]="!segment.isStart"
-            [ngClass]="segment.cssClass"
-            (mousedown)="startDragToCreate(segment, $event, segmentElement)"
-          >
-            <div class="cal-time" *ngIf="isTimeLabel">
-              {{ segment.date | calendarDate:'weekViewHour':locale }}
-            </div>
-          </div>
-        </ng-template>
-        <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events"
-          (dayHeaderClicked)="changeDay($event.day.date)" [dayStartHour]="8" [dayEndHour]="20" [locale]="locale"
-          [weekStartsOn]="weekStartsOn"  (eventTimesChanged)="eventDropped($event)"    [hourSegmentTemplate]="weekViewHourSegmentTemplate"
-        >
-        </mwl-calendar-week-view>
-        <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [events]="events" [dayStartHour]="8"
-          [dayEndHour]="20" [locale]="locale" (eventTimesChanged)="eventDropped($event)" [hourSegmentTemplate]="weekViewHourSegmentTemplate">
-        </mwl-calendar-day-view>
-      </div>
+      <app-calendar></app-calendar>
     </div>
-    <aside class="col-3">
-      <div class="card">
-        <h4 class="card-header">Liste des tâches</h4>
-        <div class="card-body" >
-          <p *ngIf="activities.length === 0"><em>Aucune tâche</em></p>
-          <div *ngFor="let activity of activities">
-            <h5>{{activity.name}}</h5>
-            <ul class="list-group">
-              <li class="list-group list-group-flush list-of-tasks" *ngFor="let task of activity['tasks']" mwlDraggable
-                [dropData]="{event: task}" dragActiveClass="drag-active">
-                {{ task.title }}
-              </li>
-            </ul>
-            <hr>
-          </div>
-        </div>
-        <app-mini-calendar (outputMini)="ChangeDateWithMini($event)"></app-mini-calendar>
-      </div>
-    </aside>
+    <div class="col-3">
+      <app-home-aside></app-home-aside>
+      <!-- <app-mini-calendar (outputMini)="ChangeDateWithMini($event)"></app-mini-calendar> -->
+
+    </div>
   </div>
 </section>

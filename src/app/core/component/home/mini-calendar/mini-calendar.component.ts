@@ -30,11 +30,11 @@ export class MiniCalendarComponent implements OnInit {
 
   miniDate = new Date();
 
-  getDate(event:any):void {
+  // getDate(event:any):void {
     
     
-    this.outputMini.emit( event.args.date)
-  }
+  //   this.outputMini.emit( event.args.date)
+  // }
     
   
 }

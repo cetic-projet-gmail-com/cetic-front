@@ -28,10 +28,13 @@ import { UpdateUserComponent } from './core/component/modal/update-user/update-u
 import { AuthenticationService} from './core/services/auth/authentification.service';
 import { AuthGuardService} from './core/services/auth/auth-guard.service';
 import { CreateEventComponent } from './core/component/modal/create-event/create-event.component';
+import { ViewEventComponent } from './core/component/modal/view-event/view-event.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MiniCalendarComponent } from './core/component/home/mini-calendar/mini-calendar.component';
 
 import { jqxCalendarModule }   from 'jqwidgets-ng/jqxcalendar';
+import { HomeAsideComponent } from './core/component/home/home-aside/home-aside.component';
+import { CalendarComponent } from './core/component/home/calendar/calendar.component';
 
 registerLocaleData(localeFr);
 @NgModule({
@@ -50,7 +53,10 @@ registerLocaleData(localeFr);
     CreateUserComponent,
     UpdateUserComponent,
     CreateEventComponent,
+    ViewEventComponent,
     MiniCalendarComponent,
+    HomeAsideComponent,
+    CalendarComponent,
     
   ],
   imports: [
@@ -72,6 +78,6 @@ registerLocaleData(localeFr);
   ],
   providers: [AuthenticationService, AuthGuardService],
   bootstrap: [AppComponent],
-  entryComponents: [CreateEventComponent]
+  entryComponents: [CreateEventComponent, ViewEventComponent]
 })
 export class AppModule { }
