@@ -49,7 +49,7 @@ export class UpdateUserComponent implements OnInit {
     userForm.value.departement_id = parseInt(userForm.value.departement_id)
 
     this.DataService.updateUser(userForm.value, this.id).subscribe((res)=>{
-      console.log(this.id)
+      console.log(res)
     console.log("user updated");
     })
   }

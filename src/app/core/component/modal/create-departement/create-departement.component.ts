@@ -1,3 +1,4 @@
+
 import { map, startWith } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { NgForm, FormControl } from '@angular/forms';
@@ -16,29 +17,36 @@ export class CreateDepartementComponent implements OnInit {
   users
   userArray
   myControl = new FormControl();
-  options: string[] = [];
+  options= [];
   filteredOptions: Observable<string[]>;
 
   @Input() isHidden;
   @Output() reset = new EventEmitter()
 
+  index : number;
+  responsible_Id: number
   ngOnInit() {
-    this.DataService.getAdminUsers("?nbre=100000").subscribe((res) => {
+    this.DataService.getAdminUsers("?paginate=false").subscribe((res) => {
       this.users = res.data.users
-      this.options = this.users.map(element => element.firstname)
-      console.log(this.options);
-
-
+      this.options = this.users.map(element => element.lastname)
+      
     });
+    
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value))
+      map(value => {
+      return this._filter(value)})
+
     );
   }
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
+    this.index = this.options.indexOf(value)
+    if (this.index != -1){
+      this.responsible_Id = this.users[this.index].id
+    }
     return this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
   }
 
@@ -48,5 +56,20 @@ export class CreateDepartementComponent implements OnInit {
 
   }
 
+
+  
+
+  onFormSubmit(departementForm: NgForm) {
+    let infos = {
+          name: departementForm.value.name,
+          responsable_id:this.responsible_Id
+        
+      
+    }
+    this.DataService.createDepartement(infos).subscribe((res) => {
+      
+      console.log("departement created");
+    })
+  }
 
 }

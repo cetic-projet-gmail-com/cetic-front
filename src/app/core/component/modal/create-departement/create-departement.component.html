@@ -1,33 +1,25 @@
 <div class="wrapper">
   <div class="content">
     <h2>Ajouter un département</h2>
-
     <form #departementForm="ngForm" (ngSubmit)="onFormSubmit(departementForm)">
+      <div class="form-group">
 
-
-      <div>
         <label for="name">Nom</label>
-        <input type="text" ngModel required name="name" id="name">
-      </div>
+        <input type="text" ngModel required name="name" id="name" class="form-control">
 
-
-      <mat-form-field data-simplebar>
-        <label for="name">Nom du Responssable</label>
-        <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
-        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-            {{option}}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-
-
-      <div class="action">
-        <button class="cancel" (click)="hide()">Annuler</button>
-        <button class="save" type="submit">Valider</button>
-      </div>
-
-
+        <mat-form-field>
+          <input type="text" placeholder="Choose responsible" matInput [formControl]="myControl"
+            [matAutocomplete]="auto">
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" ngModel name="responsible_Id">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{ option }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <div class="action">
+          <button class="cancel" (click)="hide()">Annuler</button>
+          <button class="save" type="submit">Valider</button>
+        </div>
     </form>
   </div>
 

@@ -18,8 +18,8 @@ export class CreateUserComponent implements OnInit {
   @Input() isHidden;
   @Output() reset = new EventEmitter()
 
-  constructor(private DataService: DataService, private TitleService: TitleService, private Router: Router) { }
-
+  constructor(private DataService: DataService, private TitleService: TitleService) { }
+  roles
   departements
   ngOnInit() {
     this.DataService.getDepartements().subscribe((res) => {
@@ -27,6 +27,9 @@ export class CreateUserComponent implements OnInit {
       console.log(this.departements)
 
     });
+    this.DataService.getRoles().subscribe((res) => {
+      this.roles = res.data
+    })
     this.TitleService.setTitle("Nouvel utilisateur")
   }
 
@@ -34,6 +37,7 @@ export class CreateUserComponent implements OnInit {
     userForm.value.role_id = parseInt(userForm.value.role_id)
     userForm.value.departement_id = parseInt(userForm.value.departement_id)
     this.DataService.createUser(userForm.value).subscribe((res) => {
+      console.log(res)
       console.log("user created");
       this.hide()
     })

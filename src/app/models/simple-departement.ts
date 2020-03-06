@@ -1,10 +1,9 @@
-export class Departements {
+export class SimpleDepartement {
     data: {
-        departement: [{
+        departement: {
             id: number,
             name: string,
             responsible_id: number
-        }]
+        }
     }
 }
-

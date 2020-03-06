@@ -9,15 +9,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./update-activity.component.scss']
 })
 export class UpdateActivityComponent implements OnInit {
+  actName
+  actResp
+  actType
+  actColor
 
   id
   constructor(private DataService: DataService, private route: ActivatedRoute) { }
   colors
   types
-  
+  actDesc
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
 
+    this.DataService.getActivityById(this.id).subscribe((res)=>{
+      this.actName = res.data.activity.name
+      this.actDesc = res.data.activity.description
+      this.actResp = res.data.activity.projectManager
+      this.actType = res.data.activity.a_type_id
+      this.actColor = res.data.activity.color_code
+      
+    })
     this.DataService.getTypes().subscribe((res) => {
       this.types = res.data
 
@@ -29,7 +41,6 @@ export class UpdateActivityComponent implements OnInit {
     });
   }
   onFormSubmit(activityForm: NgForm) {
-    console.log(activityForm.value)
     this.DataService.updateActivity(activityForm.value, this.id).subscribe((res)=>{
       
       console.log(res)

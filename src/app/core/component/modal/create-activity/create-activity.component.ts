@@ -34,6 +34,7 @@ export class CreateActivityComponent implements OnInit {
     });
   }
   onFormSubmit(activityForm: NgForm) {
+    console.log(activityForm.value)
     this.DataService.createActivity(activityForm.value).subscribe((res) => {
       console.log(res)
       console.log("activity created");
