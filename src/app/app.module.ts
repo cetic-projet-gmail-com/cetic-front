@@ -35,6 +35,8 @@ import { UpdateDepartementComponent } from './core/component/modal/update-depart
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
+import { OrderModule } from 'ngx-order-pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,6 +65,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     FontAwesomeModule,
     BrowserModule,
+    OrderModule,
     AppRoutingModule,
     CommonModule,
     FormsModule,

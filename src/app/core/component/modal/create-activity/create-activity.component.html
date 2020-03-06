@@ -5,24 +5,24 @@
 
     <form #activityForm="ngForm" (ngSubmit)="onFormSubmit(activityForm)">
 
-    <div>
-      <label for="name">Nom</label> <br>
-      <input type="text" ngModel required name="name" id="name" class="">
-    </div>
-    <label for="projectManager">responsable</label>
-    <input type="text" [value]="actResp" ngModel required name="projectManager" id="projectManager" class="form-control">
-    <div>
-      <label for="a_type">type</label><br>
-      <select ngModel required name="a_type_id"  id="a_type">
-        <option *ngFor="let type of types" [value]="type.id">{{ type.name }}</option>
-      </select>
-    </div>
+      <div>
+        <label for="name">Nom</label> <br>
+        <input type="text" ngModel required name="name" id="name" class="">
+      </div>
+      <label for="projectManager">responsable</label>
+      <input type="text" [value]="actResp" ngModel required name="projectManager" id="projectManager"
+        class="form-control">
+      <div>
+        <label for="a_type">type</label><br>
+        <select ngModel required name="a_type_id" id="a_type">
+          <option *ngFor="let type of types" [value]="type.id">{{ type.name }}</option>
+        </select>
+      </div>
 
-    <label for="color_code">couleur</label>
-                    <select ngModel [value]="actColor" required name="color_code" class="form-control" id="color_code">
-                        <option *ngFor="let color of colors" 
-                        [value]="color.color_code">{{ color.name }}</option>
-                    </select>
+      <label for="color_code">couleur</label>
+      <select ngModel [value]="actColor" required name="color_code" class="form-control" id="color_code">
+        <option *ngFor="let color of colors" [value]="color.color_code">{{ color.name }}</option>
+      </select>
 
       <div>
         <label for="color_code">couleur</label><br>

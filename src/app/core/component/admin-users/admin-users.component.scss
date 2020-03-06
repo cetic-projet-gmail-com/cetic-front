@@ -79,17 +79,61 @@ $col_typo : #5a5a5a;
     div {
       height: 40px;
       line-height: 40px;
-      width: 20%;
+
       background-color: white;
       border-right: 1px solid #cccccc;
 
-      &:nth-child(1) {
-        width: 50px;
+      fa-icon {
+        float: right;
+        padding-right: 10px;
+
+      }
+
+      // &:nth-child(1) {
+      //   width: 50px;
+      // }
+
+      &:last-child {
+        width: 15%;
       }
 
     }
 
 
+  }
+
+  .titleListe_user {
+    div {
+      width: 28%;
+
+      &:last-child {
+        width: 15%;
+      }
+    }
+  }
+
+  .titleListe_dep {
+    div {
+      width: 43%;
+
+      &:last-child {
+        width: 15%;
+      }
+    }
+  }
+
+  .titleListe_activity {
+    div {
+      width: 20%;
+
+      &:nth-child(2) {
+        width: 10%;
+      }
+
+      &:last-child {
+        width: 10%;
+      }
+    }
   }
 
   ul {
@@ -104,7 +148,7 @@ $col_typo : #5a5a5a;
       justify-content: space-between;
 
       div {
-        width: 20%;
+        // width: 28%;
         text-align: center;
         min-height: 40px;
         display: flex;
@@ -113,9 +157,13 @@ $col_typo : #5a5a5a;
         border-right: 1px solid #cccccc;
 
 
-        &:nth-child(1) {
-          width: 50px;
-        }
+        // &:nth-child(1) {
+        //   width: 50px;
+        // }
+
+        // &:last-child {
+        //   width: 15%;
+        // }
 
       }
 
@@ -158,10 +206,6 @@ $col_typo : #5a5a5a;
 
     }
 
-
-
-
-
     .odd {
       background-color: white;
     }
@@ -170,6 +214,52 @@ $col_typo : #5a5a5a;
       background-color: #fafafa;
     }
   }
+
+  .ul_user {
+    li {
+      div {
+        width: 28%;
+
+        &:last-child {
+          width: 15%;
+        }
+      }
+
+    }
+  }
+
+  .ul_dep {
+    li {
+      div {
+        width: 43%;
+
+        &:last-child {
+          width: 15%;
+        }
+      }
+
+    }
+  }
+
+  .ul_activity {
+    li {
+      div {
+        width: 20%;
+
+        &:nth-child(2) {
+          width: 10%;
+        }
+
+
+        &:last-child {
+          width: 10%;
+        }
+      }
+
+    }
+  }
+
+
 }
 
 .info {

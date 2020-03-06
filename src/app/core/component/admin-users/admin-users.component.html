@@ -37,33 +37,43 @@
 
       <!-- ------------------------- gestion des titres -------------------------- -->
 
-      <div class="titleListe" *ngIf="router.url === '/administration/users'">
-        <div class=" number" (click)="sort($event)">#</div>
-        <div (click)="sort($event)">Nom</div>
-        <div (click)="sort($event)">Rôle</div>
-        <div (click)="sort($event)">Dép.</div>
+      <div class="titleListe titleListe_user" *ngIf="router.url === '/administration/users'">
+        <!-- <div class=" number" (click)="sort('id')">#
+        </div> -->
+        <div (click)="sort('firstname')">Nom <fa-icon *ngIf="order =='firstname'" [icon]="sensName? up : down"
+            class="down">
+          </fa-icon>
+        </div>
+        <div (click)="sort('role')">Rôle <fa-icon *ngIf="order =='role'" [icon]="sensRole? up : down" class="down">
+          </fa-icon>
+        </div>
+        <div (click)="sort('departement')">Dép. <fa-icon *ngIf="order =='departement'" [icon]="sensDep? up : down"
+            class="down">
+          </fa-icon>
+        </div>
         <!-- <div>Activités</div> -->
-        <div>Edit</div>
-        <div>Supp</div>
+        <div>Edite</div>
+        <!-- <div>Supp</div> -->
       </div>
-      <div class="titleListe" *ngIf="router.url === '/administration/departement'">
-        <div class="number">#</div>
+      <div class="titleListe  titleListe_dep" *ngIf="router.url === '/administration/departement'">
+
         <div>Nom </div>
-        <div>Dép.</div>
+
         <div>Responsable</div>
-        <div>Edit</div>
-        <div>Supp</div>
+        <div>Edite</div>
+        <!-- <div>Supp</div> -->
       </div>
-      <div class="titleListe" *ngIf="router.url === '/administration/activities'">
-        <div class="number">#</div>
+      <div class="titleListe  titleListe_activity" *ngIf="router.url === '/administration/activities'">
+        <!-- <div class="number">#</div> -->
         <div>Nom</div>
         <div>Couleur</div>
 
+        <div>Chef de projet</div>
         <div>type</div>
         <div>Status</div>
 
         <div>Edit</div>
-        <div>Supp</div>
+        <!-- <div>Supp</div> -->
       </div>
       <!-- ----------------------------------------------------------------------- -->
 
@@ -71,11 +81,11 @@
       <!-- ------------------------- gestion des listes -------------------------- -->
 
 
-      <ul *ngIf="router.url === '/administration/users'" data-simplebar>
-        <li *ngFor="let u of user; let index = index;let even = even; let odd = odd"
+      <ul *ngIf="router.url === '/administration/users'" data-simplebar class="ul_user">
+        <li *ngFor="let u of user | orderBy: order : sens : true; let index = index;let even = even; let odd = odd "
           [ngClass]="{ odd: odd, even: even }">
-          <div class="number">{{index + 1}}</div>
-          <div style="text-transform: capitalize; ">{{u.firstname}}</div>
+          <!-- <div class="number">{{index + 1}}</div> -->
+          <div style="text-transform: capitalize; ">{{u.firstname}} {{u.lastname}}</div>
           <div>{{u.role}}</div>
           <div>{{u.department}}.</div>
           <div>
@@ -83,43 +93,43 @@
               [routerLinkActiveOptions]="{exact: true}">
               <fa-icon [icon]="faEdit" class="faEdit"></fa-icon>
             </a>
-          </div>
-          <div>
             <a href="">
               <fa-icon [icon]="faTrash" class="faTrash"></fa-icon>
             </a>
           </div>
+
         </li>
       </ul>
-      <ul *ngIf="router.url === '/administration/departement'" data-simplebar>
+      <ul *ngIf="router.url === '/administration/departement'" data-simplebar class="ul_dep">
         <li *ngFor="let d of dep; let index = index;let even = even; let odd = odd"
           [ngClass]="{ odd: odd, even: even } ">
-          <div class="number">{{index + 1}}</div>
+          <!-- <div class="number">{{index + 1}}</div> -->
           <div style="text-transform: capitalize; ">{{d.name}}</div>
-          <div>{{d.department}}.</div>
+          <!-- <div>{{d.department}}.</div> -->
           <div>{{d.responsable_id}}</div>
           <div>
-            <a href="">
-              <fa-icon [icon]="faEdit" class="faEdit"></fa-icon>
+            <a [routerLink]="['/administration/departement', d.id]">
+              <fa-icon [icon]="faEdit" class="faEdit">
+              </fa-icon>
             </a>
-          </div>
-          <div>
             <a href="">
               <fa-icon [icon]="faTrash" class="faTrash"></fa-icon>
             </a>
           </div>
+
         </li>
       </ul>
 
-      <ul *ngIf="router.url === '/administration/activities'" data-simplebar>
+      <ul *ngIf="router.url === '/administration/activities'" data-simplebar class="ul_activity">
         <li *ngFor="let a of act; let index = index;let even = even; let odd = odd"
           [ngClass]="{ odd: odd, even: even }">
-          <div class="number">{{index + 1}}</div>
+          <!-- <div class="number">{{index + 1}}</div> -->
           <div style="text-transform: capitalize; ">{{a.name}}</div>
           <div class="color">
             <span class="color_span"></span>
           </div>
 
+          <div>{{a.chef}}</div>
           <div>{{a.parent}}</div>
           <div>{{a.status}}</div>
           <div>
@@ -127,12 +137,11 @@
               [routerLinkActiveOptions]="{exact: true}">
               <fa-icon [icon]="faEdit" class="faEdit"></fa-icon>
             </a>
-          </div>
-          <div>
             <a href="">
               <fa-icon [icon]="faTrash" class="faTrash"></fa-icon>
             </a>
           </div>
+
         </li>
       </ul>
 
