@@ -1,3 +1,4 @@
+import { UpdateUserComponent } from './core/component/modal/update-user/update-user.component';
 import { ForgotPasswordComponent } from './core/component/forgot-password/forgot-password.component';
 import { LoginComponent } from './core/authentification/login/login.component';
 import { ProfilComponent } from './core/component/profil/profil.component';
@@ -8,7 +9,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EditActivityComponent } from './core/component/editactivity/editactivity.component';
 
-import { AuthGuardService} from './core/services/auth/auth-guard.service';
+import { AuthGuardService } from './core/services/auth/auth-guard.service';
+import { EditUserComponent } from './core/component/edit-user/edit-user.component';
+import { CreateUserComponent } from './core/component/modal/create-user/create-user.component';
+import { CreateActivityComponent } from './core/component/modal/create-activity/create-activity.component';
+
 
 const routes: Routes = [
   {
@@ -17,8 +22,9 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component : HomeComponent
+    component: HomeComponent
   },
+
   {
     path: 'login',
     component: LoginComponent
@@ -28,12 +34,24 @@ const routes: Routes = [
     component: InfoComponent
   },
   {
-    path: 'administration/users',
-    component: AdminUsersComponent
+    path: 'administration/users/createUser',
+    component: CreateUserComponent
   },
   {
     path: 'administration/users/edit',
     component: ProfilComponent
+  },
+  {
+    path: 'administration/users/:id',
+    component: EditUserComponent
+  },
+  {
+    path: 'administration/users',
+    component: AdminUsersComponent
+  },
+  {
+    path: 'administration/departement/:id',
+    component: AdminUsersComponent
   },
   {
     path: 'administration/departement',
@@ -42,26 +60,21 @@ const routes: Routes = [
   {
     path: 'profil',
     component: ProfilComponent,
-    canActivate: [AuthGuardService] 
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'administration/activities/:id',
+    component: EditActivityComponent
   },
   {
     path: 'administration/activities',
     component: AdminUsersComponent
   },
   {
-    path: 'administration/activities/edit/taches',
-    component: EditActivityComponent
-  },
-
-  {
-    path: 'administration/activities/edit/users',
-    component: EditActivityComponent
-  },
-
-  {
     path: 'forgot_password',
     component: ForgotPasswordComponent
   },
+
 
 
 

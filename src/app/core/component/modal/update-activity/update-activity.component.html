@@ -1,0 +1,34 @@
+<h2>Update activity</h2>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            <form #activityForm="ngForm" (ngSubmit)="onFormSubmit(activityForm)">
+                <div class="form-group">
+
+                    <label for="name">Nom</label>
+                    <input type="text" [value]="actName" ngModel required name="name" id="name" class="form-control">
+
+                    <label for="description">description</label>
+                    <textarea ngModel [value]="actDesc" name="description" id="description" cols="50" rows="4"></textarea>
+
+                    <label for="projectManager">responsable</label>
+                    <input type="text" [value]="actResp" ngModel required name="projectManager" id="projectManager" class="form-control">
+
+                     <label for="a_type">type</label>
+                    <select ngModel required name="a_type_id" class="form-control" id="a_type">
+                        <option *ngFor="let type of types" 
+                        [value]="type.id">{{ type.name }}</option>
+                    </select>
+
+                    <label for="color_code">couleur</label>
+                    <select ngModel [value]="actColor" required name="color_code" class="form-control" id="color_code">
+                        <option *ngFor="let color of colors" 
+                        [value]="color.color_code">{{ color.name }}</option>
+                    </select>
+
+                    <button class="btn btn-primary">Valider</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

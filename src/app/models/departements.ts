@@ -3,7 +3,7 @@ export class Departements {
         departement: [{
             id: number,
             name: string,
-            responsable_id: number
+            responsible_id: number
         }]
     }
 }

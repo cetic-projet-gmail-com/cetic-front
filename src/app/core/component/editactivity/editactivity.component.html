@@ -1,13 +1,14 @@
 <div class="content">
+  <a [routerLink]="'/administration/activities'">
+    <fa-icon [icon]="faCaretSquareLeft" class="back"></fa-icon>
+  </a>
+  <fa-icon [icon]="faAdd" class="faAdd"></fa-icon>
   <div class="info">
-    <h3>Activité 1</h3>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore rem ratione dolores? Nihil dignissimos veniam
-      exercitationem amet iste id deserunt libero dolore repellendus iusto architecto officiis quia consequuntur,
-      mollitia placeat.
-    </p>
+    <!-- <h3>{{act.name}}</h3> -->
+    <!-- <p>
+      {{act.description}}
+    </p> -->
     <h4>Chef <span>Nom du chef</span></h4>
-    <h4>Client<span>Nom du client</span></h4>
   </div>
   <div class="board">
     <div class="datepicker">
@@ -22,46 +23,79 @@
 
     </div>
     <div class="board_details">
-      <div class="tab">
-        <a [routerLink]="'/administration/activities/edit/users'" routerLinkActive="active"
-          [routerLinkActiveOptions]="{exact: true}" (click)="setRoute('utilisateur')">Utilasateurs
-        </a>
-        <a [routerLink]="'/administration/activities/edit/taches'" routerLinkActive="active"
-          [routerLinkActiveOptions]="{exact: true}" (click)="'tab' == 'taches'">Tâches
-        </a>
-
-
-      </div>
 
       <div class="board_content">
-        <div class="titleListe" *ngIf="router.url === '/administration/activities/edit/taches'">
+        <div class="tab">
+
+          <!-- <a [routerLink]="['./taches', {id:this.id}]" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}" (click)="setRoute('utilisateur')">Utilasateurs
+          </a>
+          <a routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="'tab' == 'taches'"
+            class="active">Tâches
+          </a> -->
+
+          <div [ngClass]="{active : display == 'users'}" (click)="setRoute('users')">Utilistateurs</div>
+          <div [ngClass]="{active : display == 'tasks'}" (click)="setRoute('tasks')">Tâches</div>
+
+
+        </div>
+
+        <div class="titleListe" *ngIf="this.display === 'tasks'">
           <div class="number">#</div>
           <div>Nom</div>
-          <div>Couleur</div>
+          <div>Couleur </div>
 
+          <div>Description</div>
           <div>type</div>
-          <div>Status</div>
 
           <div>Edit</div>
           <div>Supp</div>
         </div>
-        <div class="titleListe" *ngIf="router.url === '/administration/activities/edit/users'">
+        <div class="titleListe_users" *ngIf="this.display === 'users'">
           <div class="number">#</div>
           <div>Nom</div>
-          <div>Couleur</div>
-
-          <div>type</div>
-          <div>Status</div>
-
-          <div>Edit</div>
+          <div>Departement</div>
           <div>Supp</div>
-        </div>
-        <div class="board_details_list">
+          <div>Liste</div>
 
         </div>
+      </div>
+
+
+      <div *ngIf="this.display === 'users'">
+
+        <ul class="board_details_list">
+          <li *ngFor="let u of users; let index = index;let even = even; let odd = odd"
+            [ngClass]="{ odd: odd, even: even }">
+            <div class="number">{{index + 1}}</div>
+            <div style="text-transform: capitalize; ">{{u.firstname}}</div>
+            <div>{{u.departement}}</div>
+
+            <div>
+              <a href="">
+                <fa-icon [icon]="faTrash" class="faTrash"></fa-icon>
+              </a>
+            </div>
+          </li>
+          <ul class="list_users">
+            <li *ngFor="let u of user" style="text-transform: capitalize;">{{u.firstname}} {{u.lastname}}</li>
+          </ul>
+
+        </ul>
+
       </div>
 
     </div>
-
   </div>
 </div>
+<div class="save">
+  <button id="save">sauvegarde</button>
+  <button id='"ok"'>OK</button>
+</div>
+
+<div class="info">
+  <a href="https://forge.cetic.be/login?back_url=https%3A%2F%2Fforge.cetic.be%2Fprojects%2Fmission-timetrack
+              Redmine@CETIC" target="_blank">> Suggestion ? </a>
+
+</div>
+<update-activity></update-activity>

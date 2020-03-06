@@ -30,8 +30,8 @@ import { ViewEventComponent } from '../modal/view-event/view-event.component';
 export class HomeComponent implements OnInit {
   ngOnInit() {}
 
-  ChangeDateWithMini(date : Date){
-    this.viewDate = date;
-    this.view = CalendarView.Week;
-  }
+  // ChangeDateWithMini(date : Date){
+  //   this.viewDate = date;
+  //   this.view = CalendarView.Week;
+  // }
 }

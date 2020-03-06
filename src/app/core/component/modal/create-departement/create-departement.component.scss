@@ -1,0 +1,129 @@
+$poiret : 'Poiret One';
+$saira : 'Saira Semi Condensed';
+$col_typo : #5a5a5a;
+
+.wrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+}
+
+.content {
+  width: 600px;
+  margin: auto;
+  text-align: center;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #fff;
+  font-family: $saira;
+
+
+
+  h2 {
+    margin: 10px 0 30px 0;
+  }
+
+  form {
+    text-align: left;
+
+    mat-form-field {
+      width: 100%;
+      font-family: $saira;
+
+      label {
+        text-transform: capitalize;
+        font-size: 1.2em;
+        margin-top: 0;
+      }
+
+      input {
+        margin-top: 10px;
+      }
+    }
+
+    label {
+      text-transform: capitalize;
+      font-size: 1.2em;
+      margin: 0;
+    }
+
+    input,
+    select {
+      width: 100%;
+      color: $col_typo;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 5px;
+      border: none;
+      box-shadow: inset -2px 2px 3px rgba(216, 216, 216, 0.7);
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .action {
+      display: flex;
+      widows: 100%;
+      justify-content: flex-end;
+
+      .save {
+        margin-left: 10px;
+      }
+
+      button {
+        font-family: $saira;
+        text-transform: capitalize;
+        background-color: rgba(83, 133, 61, .7);
+        color: white;
+        border: none;
+        border-radius: 3px;
+        padding: 5px 15px;
+        margin-top: 20px;
+        // transition: all 0.3s ease;
+
+        &:hover {
+          background-color: #53853D;
+          transition: all 0.3s ease;
+
+        }
+      }
+
+    }
+
+
+
+  }
+
+
+}
+
+.info {
+  text-align: right;
+  margin-right: 20px;
+  margin-top: 15px;
+
+  a {
+
+    font-family: $saira;
+    text-transform: uppercase;
+    color: #c4c4c4;
+
+    &:first-child {
+      margin-right: 20px;
+    }
+
+    font-size: .6em;
+
+  }
+
+}

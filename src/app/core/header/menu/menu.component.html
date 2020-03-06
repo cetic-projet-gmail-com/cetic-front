@@ -1,0 +1,25 @@
+<div class="content">
+
+  <fa-icon [icon]="faBars" class="faBars" (click)="hidden()"></fa-icon>
+
+  <div class="menu" [hidden]="isHidden">
+    <div class="name">
+      <div class="faTimes">
+        <fa-icon [icon]="faTimes" (click)="hidden()"></fa-icon>
+      </div>
+      <div class="icon">T G</div>
+      <h4>Titiana Gallina</h4>
+    </div>
+
+    <div class="list">
+      <div class="list_liens">
+        <a [routerLink]="'/home'" (click)="hidden()">Agenda</a>
+        <a [routerLink]="'/profil'" (click)="hidden()">Profil</a>
+      </div>
+      <hr>
+      <div class="logout">
+        <button>Déconnexion</button>
+      </div>
+    </div>
+  </div>
+</div>

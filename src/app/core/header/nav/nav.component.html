@@ -44,11 +44,13 @@
     <a [routerLink]="'/login'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
       connexion
     </a>
-    <a [routerLink]="'/login'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+    <a [routerLink]="'/administration/users'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
       <fa-icon [icon]="faUser" class="faUser"></fa-icon>
       admin
     </a>
-    <fa-icon [icon]="faBars" class="faBars"></fa-icon>
+
+    <app-menu></app-menu>
+    <!-- <fa-icon [icon]="faBars" class="faBars"></fa-icon> -->
 
   </div>
 </div>

@@ -1,9 +1,10 @@
+import { AngularMaterialModule } from './angular-material.module';
 import { ForgotPasswordComponent } from './core/component/forgot-password/forgot-password.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 import {MatDialogModule} from '@angular/material/dialog';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { CommonModule, registerLocaleData } from '@angular/common';
@@ -25,11 +26,8 @@ import { EditActivityComponent } from './core/component/editactivity/editactivit
 import { CreateUserComponent } from './core/component/modal/create-user/create-user.component';
 import { UpdateUserComponent } from './core/component/modal/update-user/update-user.component';
 
-import { AuthenticationService} from './core/services/auth/authentification.service';
-import { AuthGuardService} from './core/services/auth/auth-guard.service';
 import { CreateEventComponent } from './core/component/modal/create-event/create-event.component';
 import { ViewEventComponent } from './core/component/modal/view-event/view-event.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MiniCalendarComponent } from './core/component/home/mini-calendar/mini-calendar.component';
 
 import { jqxCalendarModule }   from 'jqwidgets-ng/jqxcalendar';
@@ -37,6 +35,17 @@ import { HomeAsideComponent } from './core/component/home/home-aside/home-aside.
 import { CalendarComponent } from './core/component/home/calendar/calendar.component';
 
 registerLocaleData(localeFr);
+import { AuthenticationService } from './core/services/auth/authentification.service';
+import { AuthGuardService } from './core/services/auth/auth-guard.service';
+import { EditUserComponent } from './core/component/edit-user/edit-user.component';
+import { CreateActivityComponent } from './core/component/modal/create-activity/create-activity.component';
+import { MenuComponent } from './core/header/menu/menu.component';
+import { UpdateActivityComponent } from './core/component/modal/update-activity/update-activity.component';
+import { CreateDepartementComponent } from './core/component/modal/create-departement/create-departement.component';
+import { UpdateDepartementComponent } from './core/component/modal/update-departement/update-departement.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,8 +67,16 @@ registerLocaleData(localeFr);
     HomeAsideComponent,
     CalendarComponent,
     
+    EditUserComponent,
+    CreateActivityComponent,
+    MenuComponent,
+    UpdateActivityComponent,
+    CreateDepartementComponent,
+    UpdateDepartementComponent
   ],
   imports: [
+    ReactiveFormsModule,
+    AngularMaterialModule,
     HttpClientModule,
     FontAwesomeModule,
     BrowserModule,
@@ -71,13 +88,13 @@ registerLocaleData(localeFr);
     jqxCalendarModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
-      useFactory: adapterFactory,
-      
+      useFactory: adapterFactory
     }),
     BrowserAnimationsModule
   ],
   providers: [AuthenticationService, AuthGuardService],
   bootstrap: [AppComponent],
-  entryComponents: [CreateEventComponent, ViewEventComponent]
+  entryComponents: [CreateEventComponent, ViewEventComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
