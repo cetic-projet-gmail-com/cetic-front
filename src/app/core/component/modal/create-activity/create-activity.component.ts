@@ -1,4 +1,6 @@
-import { NgForm } from '@angular/forms';
+import { map, startWith } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { NgForm, FormControl } from '@angular/forms';
 import { DataService } from './../../../services/data.service';
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { faCaretSquareLeft } from '@fortawesome/free-solid-svg-icons';
@@ -18,25 +20,53 @@ export class CreateActivityComponent implements OnInit {
 
   constructor(private DataService: DataService, private TitleService: TitleService) { }
   colors
+  users
+  userArray
+  myControl = new FormControl();
+  options= [];
+  filteredOptions: Observable<string[]>;
+  index : number;
+  responsible_Id: number
   types
   ngOnInit() {
+    this.DataService.getAdminUsers("?paginate=false").subscribe((res) => {
+      this.users = res.data.users
+      this.options = this.users.map(element => element.lastname)
+      
+    });
+    
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => {
+      return this._filter(value)})
+
+    );
+
     this.DataService.getTypes().subscribe((res) => {
       this.types = res.data
-      console.log(this.types)
 
     });
     this.TitleService.setTitle("Nouvelle activité")
 
     this.DataService.getColors().subscribe((res) => {
       this.colors = res.data
-      console.log(this.colors)
 
     });
   }
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    this.index = this.options.indexOf(value)
+    if (this.index != -1){
+      this.responsible_Id = this.users[this.index].id
+    }
+    return this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+
   onFormSubmit(activityForm: NgForm) {
-    console.log(activityForm.value)
+    activityForm.value.projectManager = this.responsible_Id
     this.DataService.createActivity(activityForm.value).subscribe((res) => {
-      console.log(res)
       console.log("activity created");
       this.hide()
     })

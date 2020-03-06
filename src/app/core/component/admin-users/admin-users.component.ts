@@ -1,3 +1,4 @@
+import { Users } from './../../../models/users';
 
 import { DataService } from './../../services/data.service';
 import { Component, OnInit } from '@angular/core';
@@ -29,7 +30,6 @@ export class AdminUsersComponent implements OnInit {
 
   transform(value: any[], order = '', column: string = ''): any[] {
     if (!value || order === '' || !order) { return value; } // no array
-    if (!column || column === '') { return sortBy(value); } // sort 1d array
     if (value.length <= 1) { return value; } // array with only one item
     return orderBy(value, [column], [order]);
   }
@@ -46,6 +46,7 @@ export class AdminUsersComponent implements OnInit {
   user
   act
   dep
+
   ngOnInit() {
     this.DataService.getActivities().subscribe((res) => {
       this.act = res.data.activities
@@ -71,8 +72,30 @@ export class AdminUsersComponent implements OnInit {
     this.isHidden = !this.isHidden
   }
 
+  deleteUsers(id){
+    
+    this.DataService.deleteUser(id).subscribe((res)=>{
+      console.log("user deleted (refresh la page)")
+    })
+    
+  }
 
-
+  deleteDep(id){
+    
+    this.DataService.deleteDepartement(id).subscribe((res)=>{
+      console.log(res)
+      console.log("Departement deleted (refresh la page)")
+    })
+    
+  }
+  deleteAct(id){
+    
+    this.DataService.deleteActivity(id).subscribe((res)=>{
+      console.log(res)
+      console.log("Activity deleted (refresh la page)")
+    })
+    
+  }
   sort(e) {
     console.log(e.target)
     console.log(this.user);

@@ -67,6 +67,10 @@ export class DataService {
     return this.httpClient.patch(`${this.apiURL}/administration/activities/${id}`, activity)
   }
 
+  public deleteActivity(id: number) {
+    return this.httpClient.delete(`${this.apiURL}/administration/activities/${id}`);
+  }
+
   /* ------------------------------ DEPARTEMENTS ------------------------------ */
 
   public getDepartementById(id: number) {
@@ -87,6 +91,10 @@ export class DataService {
     return this.httpClient.patch(`${this.apiURL}/administration/departements/${id}`, departement)
   }
 
+  public deleteDepartement(id: number) {
+    return this.httpClient.delete(`${this.apiURL}/administration/departements/${id}`);
+  }
+
 
   /* ---------------------------------- USERS --------------------------------- */
 
@@ -99,7 +107,6 @@ export class DataService {
   }
 
   public createUser(user: Users) {
-    console.log(user)
     return this.httpClient.post(`${this.apiURL}/administration/users`, user);
   }
 
