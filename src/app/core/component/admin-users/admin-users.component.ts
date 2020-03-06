@@ -8,8 +8,7 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 
-import { Pipe, PipeTransform } from '@angular/core';
-import { orderBy } from 'lodash';
+
 
 
 @Component({
@@ -18,7 +17,7 @@ import { orderBy } from 'lodash';
   styleUrls: ['./admin-users.component.scss']
 })
 
-@Pipe({ name: 'sortBy' })
+
 export class AdminUsersComponent implements OnInit {
   faAdd = faPlusSquare;
   faEdit = faEdit;
@@ -27,12 +26,6 @@ export class AdminUsersComponent implements OnInit {
   tab;
 
 
-  transform(value: any[], order = '', column: string = ''): any[] {
-    if (!value || order === '' || !order) { return value; } // no array
-    if (!column || column === '') { return sortBy(value); } // sort 1d array
-    if (value.length <= 1) { return value; } // array with only one item
-    return orderBy(value, [column], [order]);
-  }
 
 
 
