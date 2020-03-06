@@ -8,11 +8,17 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 
+import { Pipe, PipeTransform } from '@angular/core';
+import { orderBy } from 'lodash';
+
+
 @Component({
   selector: 'admin-users',
   templateUrl: './admin-users.component.html',
   styleUrls: ['./admin-users.component.scss']
 })
+
+@Pipe({ name: 'sortBy' })
 export class AdminUsersComponent implements OnInit {
   faAdd = faPlusSquare;
   faEdit = faEdit;
@@ -21,10 +27,20 @@ export class AdminUsersComponent implements OnInit {
   tab;
 
 
+  transform(value: any[], order = '', column: string = ''): any[] {
+    if (!value || order === '' || !order) { return value; } // no array
+    if (!column || column === '') { return sortBy(value); } // sort 1d array
+    if (value.length <= 1) { return value; } // array with only one item
+    return orderBy(value, [column], [order]);
+  }
+
+
+
   constructor(private DataService: DataService, private http: HttpClient, private TitleService: TitleService, public router: Router) {
     // this.tab = "user";
     // console.log(this.tab)
     this.num = 0;
+
   }
 
   user
@@ -52,6 +68,21 @@ export class AdminUsersComponent implements OnInit {
   }
   setRoute(tab: String) {
     this.tab = tab;
+  }
+
+  isHidden = true;
+
+  hidden() {
+    this.isHidden = !this.isHidden
+  }
+
+
+
+  sort(e) {
+    console.log(e.target)
+    console.log(this.user);
+    e.target.classList.add('red')
+
   }
 
 

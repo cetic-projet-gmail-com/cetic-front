@@ -19,16 +19,15 @@
 
       <!-- ------------------------- gestion des create -------------------------- -->
 
-      <a [routerLink]="'/administration/users/createUser' " *ngIf="router.url === '/administration/users'">
-        <fa-icon [icon]="faAdd" class="faAdd"></fa-icon>
-      </a>
-      <a [routerLink]="'/administration/departement/createUser' " *ngIf="router.url === '/administration/departement'">
-        <fa-icon [icon]="faAdd" class="faAdd"></fa-icon>
-      </a>
-      <a [routerLink]="'/administration/activities/createActivity' "
-        *ngIf="router.url === '/administration/activities'">
-        <fa-icon [icon]="faAdd" class="faAdd"></fa-icon>
-      </a>
+
+      <fa-icon [icon]="faAdd" class="faAdd" *ngIf="router.url === '/administration/users'" (click)="hidden()"></fa-icon>
+
+      <fa-icon [icon]="faAdd" class="faAdd" *ngIf="router.url === '/administration/departement'" (click)="hidden()">
+      </fa-icon>
+
+      <fa-icon [icon]="faAdd" class="faAdd" *ngIf="router.url === '/administration/activities'" (click)="hidden()">
+      </fa-icon>
+
       <!-- ----------------------------------------------------------------------- -->
 
 
@@ -39,10 +38,10 @@
       <!-- ------------------------- gestion des titres -------------------------- -->
 
       <div class="titleListe" *ngIf="router.url === '/administration/users'">
-        <div class=" number">#</div>
-        <div>Nom</div>
-        <div>Rôle</div>
-        <div>Dép.</div>
+        <div class=" number" (click)="sort($event)">#</div>
+        <div (click)="sort($event)">Nom</div>
+        <div (click)="sort($event)">Rôle</div>
+        <div (click)="sort($event)">Dép.</div>
         <!-- <div>Activités</div> -->
         <div>Edit</div>
         <div>Supp</div>
@@ -146,6 +145,22 @@
 
   </div>
 </div>
+
+<!-- ------------------------- gestion des pop-up -------------------------- -->
+
+<create-user *ngIf="router.url === '/administration/users' && !isHidden" [isHidden]="isHidden"
+  (reset)="isHidden = !isHidden"></create-user>
+
+<create-departement *ngIf="router.url === '/administration/departement' && !isHidden" [isHidden]="isHidden"
+  (reset)="isHidden = !isHidden"></create-departement>
+
+<create-activity *ngIf="router.url === '/administration/activities' && !isHidden" [isHidden]="isHidden"
+  (reset)="isHidden = !isHidden">
+</create-activity>
+
+<!-- ----------------------------------------------------------------------- -->
+
+
 <div class="info">
   <a href="https://forge.cetic.be/login?back_url=https%3A%2F%2Fforge.cetic.be%2Fprojects%2Fmission-timetrack
               Redmine@CETIC" target="_blank">> Suggestion ? </a>

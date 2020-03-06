@@ -2,19 +2,31 @@ $poiret : 'Poiret One';
 $saira : 'Saira Semi Condensed';
 $col_typo : #5a5a5a;
 
+.wrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+}
+
 .content {
   position: relative;
   width: 600px;
   margin: auto;
-  margin-top: 50px;
   text-align: center;
-  box-shadow: 0px 5px 10px rgba(216, 216, 216, 0.7);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+
   border-radius: 10px;
   padding: 20px;
   background-color: #fff;
   font-family: $saira;
-
-
 
 
   .back {
@@ -61,24 +73,36 @@ $col_typo : #5a5a5a;
       }
     }
 
-    button {
-      font-family: $saira;
-      text-transform: capitalize;
-      background-color: rgba(83, 133, 61, .7);
-      color: white;
-      border: none;
-      border-radius: 3px;
-      padding: 5px 15px;
-      margin-left: 485px;
-      margin-top: 20px;
-      // transition: all 0.3s ease;
+    .action {
 
-      &:hover {
-        background-color: #53853D;
-        transition: all 0.3s ease;
+      display: flex;
+      widows: 100%;
+      justify-content: flex-end;
 
+      .save {
+        margin-left: 10px;
+      }
+
+      button {
+        font-family: $saira;
+        text-transform: capitalize;
+        background-color: rgba(83, 133, 61, .7);
+        color: white;
+        border: none;
+        border-radius: 3px;
+        padding: 5px 15px;
+        margin-left: 485px;
+        margin-top: 20px;
+        // transition: all 0.3s ease;
+
+        &:hover {
+          background-color: #53853D;
+          transition: all 0.3s ease;
+
+        }
       }
     }
+
 
 
   }

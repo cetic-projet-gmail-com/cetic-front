@@ -12,6 +12,7 @@ import { EditActivityComponent } from './core/component/editactivity/editactivit
 import { AuthGuardService } from './core/services/auth/auth-guard.service';
 import { EditUserComponent } from './core/component/edit-user/edit-user.component';
 import { CreateUserComponent } from './core/component/modal/create-user/create-user.component';
+import { CreateActivityComponent } from './core/component/modal/create-activity/create-activity.component';
 
 
 const routes: Routes = [

@@ -1,51 +1,50 @@
-<div class="content">
-  <a [routerLink]="'/administration/users'">
-    <fa-icon [icon]="faCaretSquareLeft" class="back"></fa-icon>
-  </a>
-  <h2>Ajouter un nouvel utilisateur</h2>
+<div class="wrapper">
+  <div class="content">
 
-  <form #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm)">
+    <h2>Ajouter un nouvel utilisateur</h2>
 
-    <div>
-      <label for="lastname">Nom</label><br>
-      <input type="text" ngModel required name="lastname" id="lastname" class="">
-    </div>
-    <div>
-      <label for="firstname">prenom</label><br>
-      <input type="text" ngModel required name="firstname" id="firstname" class="">
-    </div>
-    <div>
-      <label for="login">login</label><br>
-      <input type="text" ngModel required name="login" id="login" class="">
-    </div>
-    <div>
-      <label for="email">mail</label><br>
-      <input type="email" ngModel required name="email" id="email" class="">
-    </div>
-    <div>
-      <label for="password">mot de passe</label><br>
-      <input type="text" ngModel name="password" id="password" class="" required>
-    </div>
-    <div>
-      <label for="role_id">role</label><br>
-      <select ngModel required name="role_id" class="" id="role_id">
-        <option *ngFor="let role of roles" [value]="role.id">{{ role.name }}</option>
-      </select>
-    </div>
-    <div>
-      <label for="departement_id">departement</label><br>
-      <select ngModel required name="departement_id" class="">
-        <option *ngFor="let dep of departements" [value]="dep.id">{{ dep.name }}</option>
-      </select>
-    </div>
-    <button class="save">Valider</button>
+    <form #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm)">
 
-  </form>
+      <div>
+        <label for="lastname">Nom</label><br>
+        <input type="text" ngModel required name="lastname" id="lastname" class="">
+      </div>
+      <div>
+        <label for="firstname">prenom</label><br>
+        <input type="text" ngModel required name="firstname" id="firstname" class="">
+      </div>
+      <div>
+        <label for="login">login</label><br>
+        <input type="text" ngModel required name="login" id="login" class="">
+      </div>
+      <div>
+        <label for="email">mail</label><br>
+        <input type="email" ngModel required name="email" id="email" class="">
+      </div>
+      <div>
+        <label for="password">mot de passe</label><br>
+        <input type="text" ngModel name="password" id="password" class="" required>
+      </div>
+      <div>
+        <label for="role_id">role</label><br>
+        <select ngModel required name="role_id" class="" id="role_id">
+          <!-- <option *ngFor="let role of roles" [value]="role.id">{{ role.name }}</option> -->
+          <option value="1">user</option>
+        </select>
+      </div>
+      <div>
+        <label for="departement_id">departement</label><br>
+        <select ngModel required name="departement_id" class="">
+          <option *ngFor="let dep of departements" [value]="dep.id">{{ dep.name }}</option>
+        </select>
+      </div>
 
-</div>
+      <div class="action">
+        <button class="cancel" (click)="hide()">Annuler</button>
+        <button class="save" type="submit">Valider</button>
+      </div>
 
-<div class="info">
-  <a href="https://forge.cetic.be/login?back_url=https%3A%2F%2Fforge.cetic.be%2Fprojects%2Fmission-timetrack
-                Redmine@CETIC" target="_blank">> Suggestion ? </a>
+    </form>
 
+  </div>
 </div>

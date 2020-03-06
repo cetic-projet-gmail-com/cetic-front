@@ -3,6 +3,9 @@ $saira : 'Saira Semi Condensed';
 $col_typo : #5a5a5a;
 
 .container {
+
+  position: relative;
+
   .wrap {
     height: 580px;
   }
@@ -13,8 +16,6 @@ $col_typo : #5a5a5a;
 
 
   }
-
-
 
   #tab {
     display: flex;
@@ -118,6 +119,20 @@ $col_typo : #5a5a5a;
 
       }
 
+      &:hover {
+        background-color: rgba(83, 133, 61, 0.7);
+        color: white;
+        transition: all 0.3s ease;
+
+        fa-icon {
+          color: white;
+
+          &:hover {
+            color: black;
+          }
+        }
+      }
+
       .color {
         padding-top: 10px;
 
@@ -137,13 +152,12 @@ $col_typo : #5a5a5a;
     }
 
     fa-icon {
+
       color: #c7c7c7;
       padding: 5px;
 
-      &:hover {
-        color: $col_typo;
-      }
     }
+
 
 
 
@@ -156,8 +170,6 @@ $col_typo : #5a5a5a;
       background-color: #fafafa;
     }
   }
-
-
 }
 
 .info {
