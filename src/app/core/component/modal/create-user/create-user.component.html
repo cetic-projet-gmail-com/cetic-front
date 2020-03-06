@@ -8,11 +8,11 @@
 
     <div>
       <label for="lastname">Nom</label><br>
-      <input type="text" ngModel required name="lastname" id="lastname" class="">
+      <input type="text" ngModel required name="lastname" pattern="[A-z][-éèëêâäàîïùûüôö]?" id="lastname" class="">
     </div>
     <div>
       <label for="firstname">prenom</label><br>
-      <input type="text" ngModel required name="firstname" id="firstname" class="">
+      <input type="text" ngModel required name="firstname" pattern="[A-z][-éèëêâäàîïùûüôö]?" id="firstname" class="">
     </div>
     <div>
       <label for="login">login</label><br>
@@ -20,15 +20,15 @@
     </div>
     <div>
       <label for="email">mail</label><br>
-      <input type="email" ngModel required name="email" id="email" class="">
+      <input type="email" pattern="[A-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" ngModel required name="email" id="email" class="">
     </div>
     <div>
       <label for="password">mot de passe</label><br>
-      <input type="text" ngModel name="password" id="password" class="" required>
+      <input type="password" pattern="" ngModel name="password" id="password" class="" required>
     </div>
     <div>
       <label for="role_id">role</label><br>
-      <select ngModel required name="role_id" class="" id="role_id">
+      <select ngModel name="role_id" class="" id="role_id">
         <option *ngFor="let role of roles" [value]="role.id">{{ role.name }}</option>
       </select>
     </div>

@@ -9,14 +9,18 @@
                     <input type="text" ngModel required name="name" id="name" class="form-control">
 
                     <mat-form-field>
-                        <input type="text" placeholder="Enter City" matInput [formControl]="myControl" [matAutocomplete]="auto">
-                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                            {{option}}
+                        <input type="text"
+                        placeholder="Choose responsible" 
+                        matInput [formControl]="myControl" 
+                        [matAutocomplete]="auto">
+                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" ngModel 
+                        name="responsible_Id">
+                          <mat-option *ngFor="let option of filteredOptions | async" 
+                          [value]="option">
+                            {{ option }}
                           </mat-option>
                         </mat-autocomplete>
                       </mat-form-field>
-
                     <button class="btn btn-primary">Valider</button>
                 </div>
             </form>

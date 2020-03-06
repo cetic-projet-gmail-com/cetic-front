@@ -35,19 +35,14 @@ export class AdminUsersComponent implements OnInit {
       this.act = res.data.activities
     });
     this.DataService.getAdminUsers().subscribe((res) => {
-      // console.log(res);
       this.user = res.data.users
-      // console.log(this.user)
 
     });
 
     this.DataService.getDepartements().subscribe((res) => {
-      console.log(res);
       this.dep = res.data.departement
     })
     this.TitleService.setTitle("Administration")
-
-    // console.log(this.act);
 
   }
   setRoute(tab: String) {

@@ -3,11 +3,11 @@
     <div class="form-group">
       <div class="lastname">
         <label for="lastname">Nom</label><br>
-        <input type="text" ngModel required name="lastname" id="lastname" class="" [value]="lastname">
+        <input type="text" ngModel required name="lastname" pattern="[A-z][-éèëêâäàîïùûüôö]?" id="lastname" class="" [value]="lastname">
       </div>
       <div class="firstname">
         <label for="firstname">prenom</label><br>
-        <input type="text" ngModel required name="firstname" id="firstname" class="" [value]="firstname">
+        <input type="text" ngModel required name="firstname" pattern="[A-z][-éèëêâäàîïùûüôö]?" id="firstname" class="" [value]="firstname">
       </div>
       <div class="login">
         <label for="login">login</label><br>
@@ -15,7 +15,7 @@
       </div>
       <div class="email">
         <label for="email">mail</label><br>
-        <input type="email" ngModel required name="email" id="email" class="" [value]="mail">
+        <input type="email" pattern="[A-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" ngModel required name="email" id="email" class="" [value]="mail">
       </div>
 
       <div class="role">
