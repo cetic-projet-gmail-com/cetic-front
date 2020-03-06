@@ -50,6 +50,10 @@ const routes: Routes = [
     component: AdminUsersComponent
   },
   {
+    path: 'administration/departement/:id',
+    component: AdminUsersComponent
+  },
+  {
     path: 'administration/departement',
     component: AdminUsersComponent
   },
@@ -57,10 +61,6 @@ const routes: Routes = [
     path: 'profil',
     component: ProfilComponent,
     canActivate: [AuthGuardService]
-  },
-  {
-    path: 'administration/activities/createActivity',
-    component: CreateActivityComponent
   },
   {
     path: 'administration/activities/:id',

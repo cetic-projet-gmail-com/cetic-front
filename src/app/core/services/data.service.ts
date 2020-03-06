@@ -1,3 +1,5 @@
+import { SimpleActivity } from './../../models/simple-activity';
+import { SimpleDepartement } from './../../models/simple-departement';
 import { Color } from './../../models/color';
 import { Type } from './../../models/type';
 import { SimpleUser } from './../../models/simple-user';
@@ -52,7 +54,7 @@ export class DataService {
 
   public getActivityById(id: number) {
     if (id) {
-      return this.httpClient.get<Activities>(`${this.apiURL}/administration/activities/${id}`);
+      return this.httpClient.get<SimpleActivity>(`${this.apiURL}/administration/activities/${id}`);
     }
   }
 
@@ -67,12 +69,22 @@ export class DataService {
 
   /* ------------------------------ DEPARTEMENTS ------------------------------ */
 
+  public getDepartementById(id: number) {
+    if (id) {
+      return this.httpClient.get<SimpleDepartement>(`${this.apiURL}/administration/departements/${id}`);
+    }
+  }
+
   public getDepartements(url?: string) {
     return this.httpClient.get<Departements>(`${this.apiURL}/administration/departements`);
   }
 
-  public createDepartement(departement: Departements) {
+  public createDepartement(departement) {
     return this.httpClient.post(`${this.apiURL}/administration/departements`, departement);
+  }
+
+  public updateDepartement(departement, id) {
+    return this.httpClient.patch(`${this.apiURL}/administration/departements/${id}`, departement)
   }
 
 
@@ -87,6 +99,7 @@ export class DataService {
   }
 
   public createUser(user: Users) {
+    console.log(user)
     return this.httpClient.post(`${this.apiURL}/administration/users`, user);
   }
 
