@@ -1,11 +1,13 @@
 <section class=".container">
   <div class="row">
     <div class="col-9">
-      <app-calendar></app-calendar>
+      <app-home-nav [(viewDate)]="viewDate" [(view)]="view" (viewDateChange)="getEvents()"></app-home-nav>
+      <app-calendar [(viewDate)]="viewDate" [view]="view" (viewDateChange)="getEvents()"></app-calendar>
     </div>
     <div class="col-3">
-      <app-home-aside></app-home-aside>
-      <!-- <app-mini-calendar (outputMini)="ChangeDateWithMini($event)"></app-mini-calendar> -->
+      <app-home-aside ></app-home-aside>
+      <app-mini-calendar [(viewDate)]="viewDate"
+      ></app-mini-calendar>
 
     </div>
   </div>

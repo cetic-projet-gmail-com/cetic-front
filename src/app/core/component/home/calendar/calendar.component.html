@@ -1,4 +1,4 @@
-<header class="d-flex justify-content-between">
+<!-- <header class="d-flex justify-content-between">
     <div class="btn-group">
       <button class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
         (click)="getEvents()">
@@ -30,7 +30,7 @@
         Jour
       </button>
     </div>
-  </header>
+  </header> -->
   <div [ngSwitch]="view" mwlDroppable dragOverClass="drag-over">
     <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events" [locale]="locale"
       [weekStartsOn]="weekStartsOn" (dayClicked)="changeDay($event.day.date)"

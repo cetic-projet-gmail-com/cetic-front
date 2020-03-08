@@ -2,7 +2,7 @@
 import { DataService } from '../../../services/data.service';
 import { CustomDateFormatter } from '../../../services/date-formatter.service';
 //? Angular Modules
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, Injectable, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, Injectable, ViewEncapsulation, Input, Output } from '@angular/core';
 import {MatDialog,  MatDialogConfig} from '@angular/material/dialog';
 //? Calendar modules
 import { CalendarEvent, CalendarView, CalendarDateFormatter, DAYS_OF_WEEK, CalendarEventTimesChangedEvent, CalendarEventTitleFormatter } from 'angular-calendar';
@@ -12,6 +12,9 @@ import {   finalize, takeUntil  } from 'rxjs/operators';
 import { WeekViewHourSegment } from 'calendar-utils';
 import { CreateEventComponent } from '../../modal/create-event/create-event.component';
 import { ViewEventComponent } from '../../modal/view-event/view-event.component';
+import { HomeService } from 'src/app/core/services/home.service';
+import { EventEmitter } from 'protractor';
+
 
 //? function of "Drag to create events"
 function ceilToNearest(amount: number, precision: number) {
@@ -51,18 +54,24 @@ export class CalendarComponent implements OnInit {
     this.events = [...this.events];
     this.cdr.detectChanges();
   }
-  events : CalendarEvent[]= [];
+  events= [];
+  // @Input() events : Promise<any[]>;
+  // @Output() eventsChange;
+
   ngOnInit() {
     this.getEvents();
     this.getTasks();
+    this.refresh()
+    console.log(this.events)
   }
   //? Params of Angular-Calendar
   locale: string = 'fr';
   weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
   weekendDays: number[] = [DAYS_OF_WEEK.FRIDAY, DAYS_OF_WEEK.SATURDAY];
-  view: CalendarView = CalendarView.Week;
-  viewDate = new Date();
-  CalendarView = CalendarView;
+  // view: CalendarView = CalendarView.Week;
+  @Input() view : CalendarView;
+  @Input() viewDate : Date;
+  // CalendarView = CalendarView;
   tasks: CalendarEvent[] =  [];
   // activeDayIsOpen = false;
   //? List of activities & taks for drag & drop
@@ -73,55 +82,12 @@ export class CalendarComponent implements OnInit {
     this.view = CalendarView.Week;
   }
   //? Select day from mini-calendar
-  ChangeDateWithMini(date : Date){
-    this.viewDate = date;
-    this.view = CalendarView.Week;
-  }
+  // ChangeDateWithMini(date : Date){
+  //   this.viewDate = date;
+  //   this.view = CalendarView.Week;
+  // }
   //? Get events for put in calendar
-  async getEvents() {
-    let date = this.viewDate;
-    date = new Date(date);
-    let url = "";
-    switch (this.view) {
-      case CalendarView.Month:
-        url = `?display=month&month=${date.getMonth() + 1}&year=${date.getFullYear()}`;
-        break;
-      case CalendarView.Week:
-        url = `?display=week&week=${getWeek(this.viewDate)}&year=${getWeekYear(this.viewDate)}`;
-        break;
-      case CalendarView.Day:
-        url = `?display=day&date=${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
-        break;
-      default:
-        url = "";
-        break;
-    }
-    this.DataService.getHome(url).subscribe(async result => {
-      let json = result.data;
-      let colors;
-      this.events = await json['events'].map(element => {
-        try {
-          colors =  json['activities'].find(activity => activity.id === json['tasks'].find(task => element.tasks_id === task.id).activities_id).color_code;
-  
-        } catch (error) {
-          colors = '#8d8d8d';
-        }
-        return {
-          "start": parseISO(element.start),
-          "end": parseISO(element.end),
-          "title": element.description,
-          draggable:true,
-          color : {primary: '#263238', secondary: colors},
-          meta : {
-            test: "test",
-            id: element.id,
-            taskId: element.tasks_id
-          }
-        }
-      });
-      this.refresh()
-    });
-  }
+
   getTasks() {
     this.DataService.getHome().subscribe(async result =>{
       await result.data['activities'].forEach((activity) => {
@@ -186,7 +152,7 @@ export class CalendarComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     const formatHour = 'HH:mm';
     // dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
+    // dialogConfig.autoFocus = true;
     dialogConfig.data = { taskId: taskId,
       activities:this.activities, date: data.start, start: format(data.start, formatHour), end: format(data.end, formatHour), title: ""
     }
@@ -199,7 +165,7 @@ export class CalendarComponent implements OnInit {
         this.DataService.createEvent(result).subscribe(async (res) => {
           await (res.status); 
           if (res.status === 200) {
-            this.getEvents()
+            // this.getEvents()
           }
       } )      
       }
@@ -208,8 +174,8 @@ export class CalendarComponent implements OnInit {
   openViewDialog(event):void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = event;
-    dialogConfig.disableClose = false;
-    dialogConfig.autoFocus = true;
+    // dialogConfig.disableClose = false;
+    // dialogConfig.autoFocus = true;
     this.dialog.open(ViewEventComponent, dialogConfig);
   }
 
@@ -238,4 +204,51 @@ export class CalendarComponent implements OnInit {
     this.openViewDialog(event)
   }
 
+  
+  async getEvents() {
+    console.log("work")
+    let date = this.viewDate;
+    date = new Date(date);
+    let url = "";
+    switch (this.view) {
+      case CalendarView.Month:
+        url = `?display=month&month=${date.getMonth() + 1}&year=${date.getFullYear()}`;
+        break;
+      case CalendarView.Week:
+        url = `?display=week&week=${getWeek(this.viewDate)}&year=${getWeekYear(this.viewDate)}`;
+        break;
+      case CalendarView.Day:
+        url = `?display=day&date=${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
+        break;
+      default:
+        url = "";
+        break;
+    }
+    this.DataService.getHome(url).subscribe(async result => {
+      let json = result.data;
+      let colors;
+      this.events = await json['events'].map(element => {
+        try {
+          colors =  json['activities'].find(activity => activity.id === json['tasks'].find(task => element.tasks_id === task.id).activities_id).color_code;
+  
+        } catch (error) {
+          colors = '#8d8d8d';
+        }
+        return {
+          "start": parseISO(element.start),
+          "end": parseISO(element.end),
+          "title": element.description,
+          draggable:true,
+          color : {primary: '#263238', secondary: colors},
+          meta : {
+            test: "test",
+            id: element.id,
+            taskId: element.tasks_id
+          }
+        }
+      });
+      this.refresh();
+    });
+    
+  }
 }

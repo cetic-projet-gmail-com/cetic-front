@@ -32,6 +32,7 @@ export class HomeAsideComponent implements OnInit {
     });
   }
 
+
   miniCalendarDate = new Date();
 
 }
