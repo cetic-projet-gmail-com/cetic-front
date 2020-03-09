@@ -31,12 +31,13 @@
       </button>
     </div>
   </header> -->
-  <div [ngSwitch]="view" mwlDroppable dragOverClass="drag-over">
-    <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events" [locale]="locale"
+  <div [ngSwitch]="view" mwlDroppable dragOverClass="drag-over"  >
+    <!-- <div *ngIf="events$ | async; else loading; let events"> -->
+    <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [(events)]="events" [locale]="locale"
       [weekStartsOn]="weekStartsOn" (dayClicked)="changeDay($event.day.date)"
-      (eventTimesChanged)="eventDropped($event)" > 
+      (eventTimesChanged)="eventDropped($event)" [refresh]="refresh" > 
     </mwl-calendar-month-view>
-    <ng-template
+    <!-- <ng-template
       #weekViewHourSegmentTemplate
       let-segment="segment"
       let-locale="locale"
@@ -56,15 +57,16 @@
           {{ segment.date | calendarDate:'weekViewHour':locale }}
         </div>
       </div>
-    </ng-template>
-    <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events"
+    </ng-template> -->
+    <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [(events)]="events"
       (dayHeaderClicked)="changeDay($event.day.date)" [dayStartHour]="8" [dayEndHour]="20" [locale]="locale"
-      [weekStartsOn]="weekStartsOn"  (eventTimesChanged)="eventDropped($event)"    [hourSegmentTemplate]="weekViewHourSegmentTemplate"     (eventClicked)="eventClicked($event)"
+      [weekStartsOn]="weekStartsOn"  (eventTimesChanged)="eventDropped($event)"    [hourSegmentTemplate]="weekViewHourSegmentTemplate"     (eventClicked)="eventClicked($event)" [refresh]="refresh"
 
     >
     </mwl-calendar-week-view>
-    <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [events]="events" [dayStartHour]="8"
-      [dayEndHour]="20" [locale]="locale" (eventTimesChanged)="eventDropped($event)" [hourSegmentTemplate]="weekViewHourSegmentTemplate"     (eventClicked)="eventClicked($event)"
+    <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [(events)]="events" [dayStartHour]="8"
+      [dayEndHour]="20" [locale]="locale" (eventTimesChanged)="eventDropped($event)" [hourSegmentTemplate]="weekViewHourSegmentTemplate"     (eventClicked)="eventClicked($event)" [refresh]="refresh"
       >
     </mwl-calendar-day-view>
+    <!-- </div> -->
   </div>

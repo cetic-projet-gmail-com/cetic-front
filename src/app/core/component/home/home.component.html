@@ -1,12 +1,12 @@
 <section class=".container">
   <div class="row">
     <div class="col-9">
-      <app-home-nav [(viewDate)]="viewDate" [(view)]="view" (viewDateChange)="getEvents()"></app-home-nav>
-      <app-calendar [(viewDate)]="viewDate" [view]="view" (viewDateChange)="getEvents()"></app-calendar>
+      <app-home-nav [(viewDate)]="viewDate" [(view)]="view" (viewDateChange)="funcEvents()" (viewChange)="funcEvents()"></app-home-nav>
+      <app-calendar [(viewDate)]="viewDate" [(view)]="view" [events]="events"></app-calendar>
     </div>
     <div class="col-3">
       <app-home-aside ></app-home-aside>
-      <app-mini-calendar [(viewDate)]="viewDate"
+      <app-mini-calendar [(viewDate)]="viewDate" [(view)]="view"
       ></app-mini-calendar>
 
     </div>

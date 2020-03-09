@@ -35,7 +35,7 @@ export class DataService {
 
   public getHome(url?: string) {
     url = url? url: "";
-    return this.httpClient.get<Users>(`${this.apiURL}/home${url}`);
+    return this.httpClient.get(`${this.apiURL}/home${url}`);
   }
 
   
