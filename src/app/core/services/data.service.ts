@@ -37,6 +37,10 @@ export class DataService {
     url = url? url: "";
     return this.httpClient.get(`${this.apiURL}/home${url}`);
   }
+  public deleteEvent(id) {
+    console.log(id)
+      return this.httpClient.delete(`${this.apiURL}/home/${id}`)
+  }
 
   
   public getAdminUsers(url?: string) {

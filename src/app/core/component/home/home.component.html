@@ -5,9 +5,11 @@
       <app-calendar [(viewDate)]="viewDate" [(view)]="view" [events]="events"></app-calendar>
     </div>
     <div class="col-3">
-      <app-home-aside ></app-home-aside>
-      <app-mini-calendar [(viewDate)]="viewDate" [(view)]="view"
-      ></app-mini-calendar>
+      <div class="card h-100 d-flex align-items-start justify-content-center">
+        <app-home-aside class="mb-auto p-2 w-100"></app-home-aside>
+        <app-mini-calendar [(viewDate)]="viewDate" [(view)]="view" class="p-2" ></app-mini-calendar>
+      </div>
+    
 
     </div>
   </div>

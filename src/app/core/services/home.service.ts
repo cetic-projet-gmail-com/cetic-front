@@ -22,7 +22,7 @@ export class HomeService {
         url = `?display=month&month=${date.getMonth() + 1}&year=${date.getFullYear()}`;
         break;
       case CalendarView.Week:
-        url = `?display=week&week=${getWeek(viewDate)}&year=${getWeekYear(viewDate)}`;
+        url = `?display=week&week=${getWeek(viewDate,  {weekStartsOn: 1})}&year=${getWeekYear(viewDate)}`;
         break;
       case CalendarView.Day:
         url = `?display=day&date=${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;

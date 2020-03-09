@@ -4,16 +4,17 @@
     <form #f="ngForm" (ngSubmit)="next(f)" method="post" *ngIf="view==1" class="form-group">
         <h4 class="">Liste des tâches</h4>
         <p *ngIf="data.activities.length === 0"><em>Aucune tâche</em></p>
-        <div *ngFor="let activity of data.activities">
-            <h5>{{activity.name}}</h5>
-                <div class="list-group list-group-flush list-of-tasks" *ngFor="let task of activity['tasks']" class="form-check">
-                    
+        <mat-accordion>
+        <mat-expansion-panel *ngFor="let activity of data.activities" class="panel-group"  >
+             <mat-expansion-panel-header>{{activity.name}}</mat-expansion-panel-header>
+             <div>
+                <div class="list-group list-group-flush list-of-tasks" *ngFor="let task of activity['tasks']" >
                     <input id="{{task.taskId}}" required #tasks="ngModel" ngModel type="radio" value="{{task.taskId}}" name="tasks" class="form-check-input"/>
                     <label for="{{task.taskId}}">{{ task.title }}</label>
-
                 </div>
-            <hr>
-        </div>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
         <div class="btn-group  d-flex justify-content-between">
             <button type="button" class="btn btn-secondary" (click)="onNoClick()">Annuler</button> 
             <button class="btn btn-primary" [disabled]="f.invalid">Suivant</button>

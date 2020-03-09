@@ -50,87 +50,46 @@ export class CalendarComponent implements OnInit {
   constructor(private DataService: DataService, private cdr: ChangeDetectorRef, private dialog: MatDialog, private HomeService: HomeService) { }
   //? Refresh events list
   async refreshing() {
-    this.events = this.events;
-    // this.events = [...this.events];
-    // console.log("fresh")
-    console.log(this.events)
+    this.events = [...this.events];
+
     this.cdr.detectChanges();
   }
   events: CalendarEvent[];
-  // @Input() events //: Observable<Object[]>;
-  // @Output() eventsChange;
+
   async ngOnChanges() {
-    this.view = this.view;
-    console.log("#1")
-    this.events = await this.HomeService.getEvents(this.view, this.viewDate)//.then(el => {
-    //   console.log(el);
-    //   el = el.flat();
-    //   // this.events = [...el]
-    //   console.log(typeof el[0]);
-    //   for (const key in arr) {
-    //     console.log(key)
-    //   }
-    //   arr.forEach(element => {
-    //     console.log("#2")
-    //     this.events.push(element)
-    //   })
-    // });
-    // () => events$.map(element => {
-    //   console.log(element)
-    // })
-    console.log("#3")
-    console.log(this.events)
-    this.cdr.detectChanges();
-
-    this.refreshing()
-    this.refresh.next()
-    // this.cdr.detectChanges();
-    // this.results.subscribe(value => ...);
-    // console.log(changes['events']);
-    this.refresh.next()
-    // this.HEY()
-
+    this.getEvents()
+    
+  }
+  async getEvents() {
+    this.events = await this.HomeService.getEvents(this.view, this.viewDate);
+    this.refreshView()
   }
   async ngOnInit() {
-    this.view = this.view
-    // this.events  =await   this.HomeService.getEvents(this.view, this.viewDate);
-    // console.log(this.events)
+    this.getEvents()
 
-    // this.refresh.next()
-
-    // this.getEvents();
-    // this.getTasks();
-    // console.log(this.events$)
-    // this.refresh()
-    // this.refresh.next()
+    // this.view = this.view 
+    this.getTasks();
   }
   refresh: Subject<any> = new Subject();
-
+  refreshView() {
+    this.refresh.next()
+  }
   //? Params of Angular-Calendar
   locale: string = 'fr';
   weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
   weekendDays: number[] = [DAYS_OF_WEEK.FRIDAY, DAYS_OF_WEEK.SATURDAY];
-  // view: CalendarView = CalendarView.Week;
   @Input() view: CalendarView;
   @Input() viewDate: Date;
   @Output() viewChange = new EventEmitter<string>();
   // CalendarView = CalendarView;
   tasks: CalendarEvent[] = [];
-  // activeDayIsOpen = false;
   //? List of activities & taks for drag & drop
   activities = [];
 
   changeDay(date: Date) {
     this.viewDate = date;
-    // this.view = CalendarView.Week;
     this.viewChange.emit(CalendarView.Week)
   }
-  //? Select day from mini-calendar
-  // ChangeDateWithMini(date : Date){
-  //   this.viewDate = date;
-  //   this.view = CalendarView.Week;
-  // }
-  //? Get events for put in calendar
 
   getTasks() {
     this.DataService.getHome().subscribe(async result => {
@@ -171,7 +130,7 @@ export class CalendarComponent implements OnInit {
         finalize(() => {
           delete dragToSelectEvent.meta.tmpEvent;
           this.dragToCreateActive = false;
-          // this.refresh();
+          this.refreshing();
           this.openEditDialog(dragToSelectEvent)
         }),
         takeUntil(fromEvent(document, 'mouseup'))
@@ -185,7 +144,7 @@ export class CalendarComponent implements OnInit {
         if (newEnd > segment.date && newEnd < endOfView) {
           dragToSelectEvent.end = newEnd;
         }
-        // this.refresh();
+        this.refreshing();
       });
   }
   //   //? Open widow for create event && for view dialog
@@ -205,7 +164,7 @@ export class CalendarComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result === undefined) {
         this.events.pop();
-        // this.refresh();
+        this.refreshing();
       } else {
         this.DataService.createEvent(result).subscribe(async (res) => {
           await (res.status);
@@ -219,8 +178,6 @@ export class CalendarComponent implements OnInit {
   openViewDialog(event): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = event;
-    // dialogConfig.disableClose = false;
-    // dialogConfig.autoFocus = true;
     this.dialog.open(ViewEventComponent, dialogConfig);
   }
 
@@ -229,20 +186,15 @@ export class CalendarComponent implements OnInit {
     event,
     newStart,
   }: CalendarEventTimesChangedEvent): void {
-
     if (this.view === 'month') {
       event['start'] = new Date(newStart);
-
     } else {
       event['start'] = new Date(newStart);
     }
-
     event['end'] = addMinutes((event['start']), 60);
 
     this.events.push(event)
     this.openEditDialog(event);
-
-
   }
 
   eventClicked(event) {
