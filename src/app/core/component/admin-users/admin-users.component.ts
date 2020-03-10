@@ -49,6 +49,20 @@ export class AdminUsersComponent implements OnInit {
   }
   user
   act
+  nbre = "?page=1&nbre=10"
+  nbreArray = [{
+    numb: 10,
+    pageUrl: "?page=1&nbre=10"
+  }, {
+    numb: 15,
+    pageUrl: "?page=1&nbre=15"
+  }, {
+    numb: 20,
+    pageUrl: "?page=1&nbre=20"
+  }, {
+    numb: 50,
+    pageUrl: "?page=1&nbre=50"
+  }]
   currentPage: string
   nextPage: string
   previousPage: string
@@ -56,6 +70,7 @@ export class AdminUsersComponent implements OnInit {
   lastPage: string
   dep
   url = this.DataService.apiURL
+
   ngOnInit() {
     this.showData()
   }
@@ -65,7 +80,7 @@ export class AdminUsersComponent implements OnInit {
     this.DataService.getActivities().subscribe((res) => {
       this.act = res.data.activities
     });
-    this.DataService.getAdminUsers("?paginate=true").subscribe((res) => {
+    this.DataService.getAdminUsers(this.nbre).subscribe((res) => {
       this.currentPage = res.links.current
       this.nextPage = res.links.next
       this.previousPage = res.links.previous

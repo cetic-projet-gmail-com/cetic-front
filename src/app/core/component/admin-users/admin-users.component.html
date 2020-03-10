@@ -138,15 +138,7 @@
           </div>
 
         </li>
-
-        <!-- ----------------------------- pagination user ------------------------------ -->
-
-        <!-- <div>
-          <button (click)="firstpage()" *ngIf="firstPage != undefined">firstPage</button>
-          <button (click)="previouspage()" *ngIf="firstPage != undefined">previous</button>
-          <button (click)="nextpage()" *ngIf="lastPage != undefined">next</button>
-          <button (click)="lastpage()" *ngIf="lastPage != undefined">lastPage</button>
-        </div> -->
+        
       </ul>
       <!-- ----------------------------------------------------------------------- -->
 
@@ -237,6 +229,9 @@
 <!-- --------------------------- gestion nexprev --------------------------- -->
 
 <div class="next_prev" *ngIf="router.url === '/administration/users'">
+  <select ngModel required name="nbre" id="nbre" (click)="changeNbre()">
+    <option *ngFor="let nb of nbreArray" [value]="nb.pageUrl">{{ nb.numb }}</option>
+  </select>
   <button (click)="firstpage()" *ngIf="firstPage != undefined">Première page </button>
   <button (click)="previouspage()" *ngIf="firstPage != undefined">précédent</button>
   <button (click)="nextpage()" *ngIf="lastPage != undefined">suivant</button>
