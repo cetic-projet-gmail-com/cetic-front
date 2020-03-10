@@ -13,7 +13,7 @@ export class HomeNavComponent implements OnInit {
   @Input() view;
   @Input() viewDate ;
   @Output() viewDateChange =new EventEmitter<Date>();
-  @Output() viewChange = new EventEmitter<string>();
+  // @Output() viewChange = new EventEmitter<string>();
   locale: string = 'fr';
   weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
   constructor() { }
@@ -23,10 +23,10 @@ export class HomeNavComponent implements OnInit {
 
   
 
-  changeView(v) {
-    this.view = v;
-    this.viewChange.emit(v)
-  }
+  // changeView(v) {
+  //   this.view = v;
+  //   this.viewChange.emit(v)
+  // }
 
   getViewDate() {
     this.viewDateChange.emit(new Date( this.viewDate));

@@ -39,7 +39,8 @@
   <a [routerLink]="'/home'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
     <img src="assets/img/logo cetic nav barre/logo nav barre.png" alt="logo_home">
   </a>
-
+  <ng-content></ng-content>
+  
   <div class="info">{{title}}</div>
   <div class="menu">
     <a [routerLink]="'/login'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">

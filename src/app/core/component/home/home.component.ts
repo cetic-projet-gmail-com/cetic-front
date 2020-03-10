@@ -30,6 +30,8 @@ import { HomeService } from '../../services/home.service';
 })
 
 export class HomeComponent implements OnInit {
+  CalendarView = CalendarView;
+
   viewDate = new Date();
   view: CalendarView = CalendarView.Week;
   events : Array<Object> = [];
@@ -42,7 +44,7 @@ export class HomeComponent implements OnInit {
     this.events  =await  this.HomeService.getEvents(this.view, this.viewDate);
     // console.log(this.events)
   }
-
+  
   //  funcEvents = async () => {
     // await this.HomeService.getEvents(this.view, this.viewDate).then((res) => {
     //   console.log('----------------')
@@ -55,4 +57,8 @@ export class HomeComponent implements OnInit {
 
     // console.log(typeof this.events)
   // }
+  changeView(v) {
+    this.view = v;
+    // this.viewChange.emit(v)
+  }
 }

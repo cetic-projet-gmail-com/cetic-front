@@ -31,11 +31,12 @@
       </button>
     </div>
   </header> -->
-  <div class="text-center">
-    <button class="btn btn-primary" (click)="refreshView()">
+  <!-- <div class="text-center"> -->
+    <!-- <button class="btn btn-primary" (click)="refreshView()">
       Refresh + re-render the current view
-    </button>
-  </div>
+    </button> -->
+     
+  <!-- </div> -->
   <div [ngSwitch]="view" mwlDroppable dragOverClass="drag-over"  >
     <!-- <div *ngIf="events$ | async; else loading; let events"> -->
     <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [(events)]="events" [locale]="locale"

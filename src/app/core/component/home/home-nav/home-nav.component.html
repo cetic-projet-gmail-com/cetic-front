@@ -16,22 +16,5 @@
     <div class="text-monospace">
       <h3> {{ viewDate | calendarDate:(view + 'ViewTitle'):locale:weekStartsOn }} </h3>
     </div>
-    <div class="btn-group">
-      <button class="btn btn-primary" (click)="changeView(CalendarView.Month)"
-        [class.active]="view === CalendarView.Month">
-      <!-- </button> (click)="getEvents()"> -->
-        Mois
-      </button>
-
-      <button class="btn btn-primary" (click)="changeView(CalendarView.Week)"
-        [class.active]="view === CalendarView.Week">
-      <!-- </button> (click)="getEvents()"> -->
-        Semaine
-      </button>
-      <button class="btn btn-primary" (click)="changeView(CalendarView.Day)"
-        [class.active]="view === CalendarView.Day">
-      <!-- </button> (click)="getEvents()"> -->
-        Jour
-      </button>
-    </div>
+  
   </header>

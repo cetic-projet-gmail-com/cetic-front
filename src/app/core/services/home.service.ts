@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { CalendarView} from 'angular-calendar';
 import { getWeek, getWeekYear, parseISO} from 'date-fns';
 import { DataService } from './data.service';
-import { el } from 'date-fns/locale';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CalendarEvent} from 'angular-calendar';

@@ -49,26 +49,27 @@ export class CalendarComponent implements OnInit {
 
   constructor(private DataService: DataService, private cdr: ChangeDetectorRef, private dialog: MatDialog, private HomeService: HomeService) { }
   //? Refresh events list
-  async refreshing() {
+  refreshing() {
     this.events = [...this.events];
 
     this.cdr.detectChanges();
   }
-  events: CalendarEvent[];
+  events: CalendarEvent[] = [];
 
   async ngOnChanges() {
-    this.getEvents()
-    
+     this.getEvents();
+    console.log(this.events)
   }
-  async getEvents() {
-    this.events = await this.HomeService.getEvents(this.view, this.viewDate);
-    this.refreshView()
-  }
-  async ngOnInit() {
-    this.getEvents()
+  // async getEvents() {
+  //   this.events = await this.HomeService.getEvents(this.view, this.viewDate);
+  // }
+  ngOnInit() {
+    // this.getEvents()
 
     // this.view = this.view 
     this.getTasks();
+    // this.refreshView()
+
   }
   refresh: Subject<any> = new Subject();
   refreshView() {
@@ -201,6 +202,55 @@ export class CalendarComponent implements OnInit {
     this.openViewDialog(event)
   }
 
+  getEvents() {
+    this.events = [];
+    // let events: CalendarEvent[] = [];
+    // let date = viewDate;
+    let date = this.viewDate;
+    let url = "";
+    switch (this.view) {
+      case CalendarView.Month:
+        url = `?display=month&month=${date.getMonth() + 1}&year=${date.getFullYear()}`;
+        break;
+      case CalendarView.Week:
+        url = `?display=week&week=${getWeek(this.viewDate,  {weekStartsOn: 1})}&year=${getWeekYear(this.viewDate)}`;
+        break;
+      case CalendarView.Day:
+        url = `?display=day&date=${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
+        break;
+      default:
+        url = "";
+        break;
+    }
+    this.DataService.getHome(url).subscribe( (result) => {
+      let json = result['data'];
+      let colors;
+       json['events'].forEach(element => {
+        try {
+          colors =  json['activities'].find(activity => activity.id === json['tasks'].find(task => element.tasks_id === task.id).activities_id).color_code;
+  
+        } catch (error) {
+          colors = '#8d8d8d';
+        }
+        this.events.push(  {
+          "start": parseISO(element.start),
+          "end": parseISO(element.end),
+          "title": element.description,
+          draggable:true,
+          color : {primary: '#263238', secondary: colors},
+          meta : {
+            test: "test",
+            id: element.id,
+            taskId: element.tasks_id
+          }
+        });
+        
+      });
+      this.refreshing();
 
+    });
+
+  }
+  
 
 }
