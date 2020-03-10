@@ -24,7 +24,7 @@ $col_typo : #5a5a5a;
     display: flex;
     justify-content: space-between;
     // height: 60px;
-    margin-top: 30px;
+    margin-top: 20px;
     padding-top: 10px;
 
     .tab {
@@ -141,7 +141,7 @@ $col_typo : #5a5a5a;
 
   ul {
     padding: 0;
-    height: 485px;
+    height: 495px;
     // overflow-y: scroll;
     background-color: white;
     border-radius: 0 0 10px 10px;
@@ -272,23 +272,48 @@ $col_typo : #5a5a5a;
 
 }
 
-.info {
-  text-align: right;
-  margin-right: 20px;
-  margin-top: 55px;
+.next_prev {
+  margin-top: 40px;
+  text-align: center;
 
-  a {
-
+  button {
     font-family: $saira;
-    text-transform: uppercase;
-    color: #c4c4c4;
+    font-size: .8em;
+    text-transform: capitalize;
+    background-color: rgba(83, 133, 61, .7);
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 15px;
+    margin-left: 10px;
 
-    &:first-child {
-      margin-right: 20px;
+    // transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #53853D;
+      transition: all 0.3s ease;
+
     }
-
-    font-size: .6em;
-
   }
 
+  .info {
+    text-align: right;
+    margin-right: 20px;
+
+
+    a {
+
+      font-family: $saira;
+      text-transform: uppercase;
+      color: #c4c4c4;
+
+      &:first-child {
+        margin-right: 20px;
+      }
+
+      font-size: .6em;
+
+    }
+
+  }
 }

@@ -49,13 +49,13 @@ export class AdminUsersComponent implements OnInit {
   }
   user
   act
-  currentPage : string
+  currentPage: string
   nextPage: string
   previousPage: string
   firstPage: string
   lastPage: string
   dep
-  url =this.DataService.apiURL
+  url = this.DataService.apiURL
   ngOnInit() {
     this.showData()
   }
@@ -73,7 +73,7 @@ export class AdminUsersComponent implements OnInit {
       this.user = res.data.users
     });
 
-   
+
 
     this.DataService.getDepartements().subscribe((res) => {
       this.dep = res.data.departement
@@ -177,10 +177,10 @@ export class AdminUsersComponent implements OnInit {
     this.isDelete = !this.isDelete;
     setTimeout(() => {
       this.showData();
-    }, 500);
-  
+    }, 150);
+
   }
-  nextpage(){
+  nextpage() {
     this.DataService.getPage(this.nextPage).subscribe((res) => {
       this.currentPage = res.links.current
       this.nextPage = res.links.next
@@ -188,10 +188,10 @@ export class AdminUsersComponent implements OnInit {
       this.lastPage = res.links.last
       this.user = res.data.users
       this.firstPage = res.links.first
-      
+
     });
   }
-  previouspage(){
+  previouspage() {
     this.DataService.getPage(this.previousPage).subscribe((res) => {
       this.currentPage = res.links.current
       this.nextPage = res.links.next
@@ -201,7 +201,7 @@ export class AdminUsersComponent implements OnInit {
       this.user = res.data.users
     });
   }
-  lastpage(){
+  lastpage() {
     this.DataService.getPage(this.lastPage).subscribe((res) => {
       this.currentPage = res.links.current
       this.nextPage = res.links.next
@@ -209,10 +209,10 @@ export class AdminUsersComponent implements OnInit {
       this.lastPage = res.links.last
       this.firstPage = res.links.first
       this.user = res.data.users
-      
+
     });
   }
-  firstpage(){
+  firstpage() {
     this.DataService.getPage(this.firstPage).subscribe((res) => {
       this.firstPage = res.links.first
       this.currentPage = res.links.current
@@ -220,7 +220,7 @@ export class AdminUsersComponent implements OnInit {
       this.previousPage = res.links.previous
       this.lastPage = res.links.last
       this.user = res.data.users
-      
+
     });
   }
 

@@ -31,86 +31,45 @@ $col_typo : #5a5a5a;
 
 
 
-  h2 {
+  h4 {
     margin: 10px 0 30px 0;
+
   }
 
-  form {
-    text-align: left;
+  p {
+    margin-bottom: 30px;
+  }
+
+  .choice {
+
+    display: flex;
+    widows: 100%;
+    justify-content: flex-end;
 
 
-    mat-form-field {
-      width: 100%;
+
+    button {
       font-family: $saira;
-
-
-
-
-
-      label {
-        text-transform: capitalize;
-        font-size: 1.2em;
-        margin-top: 0;
-        background: fuchsia !important;
-      }
-
-      input {
-        margin-top: 10px;
-      }
-    }
-
-    label {
       text-transform: capitalize;
-      font-size: 1.2em;
-      margin: 0;
-    }
-
-    input,
-    select,
-    textarea {
-      width: 100%;
-      color: $col_typo;
-      font-weight: 600;
-      padding: 5px 10px;
-      border-radius: 5px;
+      background-color: rgba(83, 133, 61, .7);
+      color: white;
       border: none;
-      box-shadow: inset -2px 2px 3px rgba(216, 216, 216, 0.7);
+      border-radius: 3px;
+      padding: 5px 15px;
+      margin-left: 10px;
+
+      // transition: all 0.3s ease;
+
+      &:hover {
+        background-color: #53853D;
+        transition: all 0.3s ease;
+
+      }
 
       &:focus {
         outline: none;
       }
     }
-
-    .action {
-
-      display: flex;
-      widows: 100%;
-      justify-content: flex-end;
-
-      .save {
-        margin-left: 10px;
-      }
-
-      button {
-        font-family: $saira;
-        text-transform: capitalize;
-        background-color: rgba(83, 133, 61, .7);
-        color: white;
-        border: none;
-        border-radius: 3px;
-        padding: 5px 15px;
-        margin-left: 485px;
-        margin-top: 20px;
-        // transition: all 0.3s ease;
-
-        &:hover {
-          background-color: #53853D;
-          transition: all 0.3s ease;
-
-        }
-      }
-    }
-
 
 
   }

@@ -123,6 +123,10 @@ $col_typo : #5a5a5a;
           transition: all 0.3s ease;
 
         }
+
+        &:focus {
+          outline: none;
+        }
       }
     }
 
