@@ -19,14 +19,23 @@
 
       <!-- ------------------------- gestion des create -------------------------- -->
 
+      <!-- -------------------------------- user --------------------------------- -->
 
       <fa-icon [icon]="faAdd" class="faAdd" *ngIf="router.url === '/administration/users'" (click)="hidden()"></fa-icon>
+      <!-- ----------------------------------------------------------------------- -->
+
+      <!-- ----------------------------- departement ----------------------------- -->
 
       <fa-icon [icon]="faAdd" class="faAdd" *ngIf="router.url === '/administration/departement'" (click)="hidden()">
       </fa-icon>
+      <!-- ----------------------------------------------------------------------- -->
+
+      <!-- ------------------------------ activity ------------------------------- -->
 
       <fa-icon [icon]="faAdd" class="faAdd" *ngIf="router.url === '/administration/activities'" (click)="hidden()">
       </fa-icon>
+      <!-- ----------------------------------------------------------------------- -->
+
 
       <!-- ----------------------------------------------------------------------- -->
 
@@ -37,10 +46,12 @@
 
       <!-- ------------------------- gestion des titres -------------------------- -->
 
+      <!-- -------------------------------- user --------------------------------- -->
+
       <div class="titleListe titleListe_user" *ngIf="router.url === '/administration/users'">
         <!-- <div class=" number" (click)="sort('id')">#
         </div> -->
-        <div (click)="sort('firstname')">Nom <fa-icon *ngIf="order =='firstname'" [icon]="sensName? up : down"
+        <div (click)="sort('firstname')">Nom <fa-icon *ngIf="order =='firstname'" [icon]="sensFname? up : down"
             class="down">
           </fa-icon>
         </div>
@@ -52,40 +63,67 @@
           </fa-icon>
         </div>
         <!-- <div>Activités</div> -->
-        <div>Edite</div>
+        <div>Editer</div>
         <!-- <div>Supp</div> -->
       </div>
+      <!-- ----------------------------------------------------------------------- -->
+
+      <!-- ----------------------------- departement ----------------------------- -->
+
       <div class="titleListe  titleListe_dep" *ngIf="router.url === '/administration/departement'">
 
-        <div>Nom </div>
+        <div (click)="sort('name')">Nom <fa-icon *ngIf="order =='name'" [icon]="sensName? up : down" class="down">
+          </fa-icon>
+        </div>
 
-        <div>Responsable</div>
-        <div>Edite</div>
+
+        <div (click)="sort('responsable_id')">Responsable <fa-icon *ngIf="order =='responsable_id'"
+            [icon]="sensRes? up : down" class="down">
+          </fa-icon>
+
+        </div>
+        <div>Editer</div>
         <!-- <div>Supp</div> -->
       </div>
+      <!-- ----------------------------------------------------------------------- -->
+
+      <!-- ------------------------------ Activity ------------------------------- -->
+
       <div class="titleListe  titleListe_activity" *ngIf="router.url === '/administration/activities'">
         <!-- <div class="number">#</div> -->
-        <div>Nom</div>
+        <div (click)="sort('name')">Nom <fa-icon *ngIf="order =='name'" [icon]="sensName? up : down" class="down">
+          </fa-icon>
+        </div>
         <div>Couleur</div>
 
-        <div>Chef de projet</div>
-        <div>type</div>
-        <div>Status</div>
+        <div (click)="sort('chef')">Chef de projet <fa-icon *ngIf="order =='chef'" [icon]="sensChef? up : down"
+            class="down">
+          </fa-icon>
+        </div>
+        <div (click)="sort('type')">type <fa-icon *ngIf="order =='type'" [icon]="sensType? up : down" class="down">
+          </fa-icon>
+        </div>
+        <div (click)="sort('status')">Status
+          <fa-icon *ngIf="order =='status'" [icon]="sensStatus? up : down" class="down">
+          </fa-icon>
+        </div>
 
-        <div>Edit</div>
+        <div>Editer</div>
         <!-- <div>Supp</div> -->
       </div>
+      <!-- ----------------------------------------------------------------------- -->
+
       <!-- ----------------------------------------------------------------------- -->
 
 
       <!-- ------------------------- gestion des listes -------------------------- -->
 
+      <!-- -------------------------------- User --------------------------------- -->
 
       <ul *ngIf="router.url === '/administration/users'" data-simplebar class="ul_user">
         <li *ngFor="let u of user | orderBy: order : sens : true; let index = index;let even = even; let odd = odd "
           [ngClass]="{ odd: odd, even: even }">
-          <div class="number">{{index + 1}}</div>
-          <div style="text-transform: capitalize; " [id]="u.id">{{u.firstname}}</div>
+          <div style="text-transform: capitalize; " [id]="u.id"><span>{{u.lastname}}</span>{{u.firstname}} </div>
           <div>{{u.role}}</div>
           <div>{{u.department}}.</div>
           <div>
@@ -93,17 +131,20 @@
               [routerLinkActiveOptions]="{exact: true}">
               <fa-icon [icon]="faEdit" class="faEdit"></fa-icon>
             </a>
-          </div>
-          <div>
-            <a (click)="deleteUsers(u.id)">
+            <a (click)="popUpDeleted($event, u)">
+              <!-- <a (click)="deleteUsers(u.id)"> -->
               <fa-icon [icon]="faTrash" class="faTrash"></fa-icon>
             </a>
           </div>
 
         </li>
       </ul>
+      <!-- ----------------------------------------------------------------------- -->
+
+      <!-- ----------------------------- Departement ----------------------------- -->
+
       <ul *ngIf="router.url === '/administration/departement'" data-simplebar class="ul_dep">
-        <li *ngFor="let d of dep; let index = index;let even = even; let odd = odd"
+        <li *ngFor="let d of dep | orderBy: order : sens : true; let index = index;let even = even; let odd = odd"
           [ngClass]="{ odd: odd, even: even } ">
           <!-- <div class="number">{{index + 1}}</div> -->
           <div style="text-transform: capitalize; ">{{d.name}}</div>
@@ -114,18 +155,19 @@
               <fa-icon [icon]="faEdit" class="faEdit">
               </fa-icon>
             </a>
-          </div>
-          <div>
-            <a (click)="deleteDep(d.id)">
+            <a (click)="popUpDeleted($event, d)">
+              <!-- <a (click)="deleteDep(d.id)"> -->
               <fa-icon [icon]="faTrash" class="faTrash"></fa-icon>
             </a>
           </div>
-
         </li>
       </ul>
+      <!-- ----------------------------------------------------------------------- -->
+
+      <!-- ------------------------------ Activity ------------------------------- -->
 
       <ul *ngIf="router.url === '/administration/activities'" data-simplebar class="ul_activity">
-        <li *ngFor="let a of act; let index = index;let even = even; let odd = odd"
+        <li *ngFor="let a of act | orderBy: order : sens : true; let index = index;let even = even; let odd = odd"
           [ngClass]="{ odd: odd, even: even }">
           <!-- <div class="number">{{index + 1}}</div> -->
           <div style="text-transform: capitalize; ">{{a.name}}</div>
@@ -141,15 +183,16 @@
               [routerLinkActiveOptions]="{exact: true}">
               <fa-icon [icon]="faEdit" class="faEdit"></fa-icon>
             </a>
-          </div>
-          <div>
-            <a (click)="deleteAct(a.id)">
+            <a (click)="popUpDeleted($event, a)">
+              <!-- <a (click)="deleteAct(a.id)"> -->
               <fa-icon [icon]="faTrash" class="faTrash"></fa-icon>
             </a>
           </div>
 
         </li>
       </ul>
+      <!-- ----------------------------------------------------------------------- -->
+
 
 
       <!-- ----------------------------------------------------------------------- -->
@@ -175,9 +218,16 @@
 
 <!-- ----------------------------------------------------------------------- -->
 
+<!-- -------------------------- gestion supprimer -------------------------- -->
+
+<confirm-delete [hidden]="isDelete" [isDelete]="isDelete" (reset)="refresh()" [itemToDelete]="itemToDelete">
+</confirm-delete>
+
+<!-- ----------------------------------------------------------------------- -->
+
 
 <div class="info">
   <a href="https://forge.cetic.be/login?back_url=https%3A%2F%2Fforge.cetic.be%2Fprojects%2Fmission-timetrack
-              Redmine@CETIC" target="_blank">> Suggestion ? </a>
+  Redmine@CETIC" target="_blank">> Suggestion ? </a>
 
 </div>

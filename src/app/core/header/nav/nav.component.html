@@ -41,15 +41,17 @@
 
   <div class="info">{{title}}</div>
   <div class="menu">
-    <a [routerLink]="'/login'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+    <a [routerLink]="'/login'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+      *ngIf="_router.url == '/forgot_password' || _router.url == '/info'">
       connexion
     </a>
-    <a [routerLink]="'/administration/users'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+    <a [routerLink]="'/administration/users'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+      *ngIf="_router.url != '/forgot_password' && _router.url != '/info' ">
       <fa-icon [icon]="faUser" class="faUser"></fa-icon>
       admin
     </a>
 
-    <app-menu></app-menu>
+    <app-menu *ngIf="_router.url != '/forgot_password' && _router.url != '/info' "></app-menu>
     <!-- <fa-icon [icon]="faBars" class="faBars"></fa-icon> -->
 
   </div>

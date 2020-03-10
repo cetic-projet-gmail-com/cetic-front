@@ -3,7 +3,7 @@ import { ForgotPasswordComponent } from './core/component/forgot-password/forgot
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -25,12 +25,13 @@ import { ProfilComponent } from './core/component/profil/profil.component';
 import { EditActivityComponent } from './core/component/editactivity/editactivity.component';
 import { CreateUserComponent } from './core/component/modal/create-user/create-user.component';
 import { UpdateUserComponent } from './core/component/modal/update-user/update-user.component';
+import { ConfirmDeleteComponent } from './core/component/modal/confirm-delete/confirm-delete.component';
 
 import { CreateEventComponent } from './core/component/modal/create-event/create-event.component';
 import { ViewEventComponent } from './core/component/modal/view-event/view-event.component';
 import { MiniCalendarComponent } from './core/component/home/mini-calendar/mini-calendar.component';
 
-import { jqxCalendarModule }   from 'jqwidgets-ng/jqxcalendar';
+import { jqxCalendarModule } from 'jqwidgets-ng/jqxcalendar';
 import { HomeAsideComponent } from './core/component/home/home-aside/home-aside.component';
 import { CalendarComponent } from './core/component/home/calendar/calendar.component';
 
@@ -68,7 +69,7 @@ import { OrderModule } from 'ngx-order-pipe';
     MiniCalendarComponent,
     HomeAsideComponent,
     CalendarComponent,
-    
+    ConfirmDeleteComponent,
     EditUserComponent,
     CreateActivityComponent,
     MenuComponent,

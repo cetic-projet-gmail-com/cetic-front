@@ -3,8 +3,11 @@ $saira : 'Saira Semi Condensed';
 $col_typo : #5a5a5a;
 
 .container {
-
   position: relative;
+
+  confirm-delete {
+    z-index: 999;
+  }
 
   .wrap {
     height: 580px;
@@ -152,9 +155,11 @@ $col_typo : #5a5a5a;
         text-align: center;
         min-height: 40px;
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         align-items: center;
         border-right: 1px solid #cccccc;
+
+
 
 
         // &:nth-child(1) {
@@ -219,6 +224,11 @@ $col_typo : #5a5a5a;
     li {
       div {
         width: 28%;
+
+        span {
+          text-transform: uppercase;
+          margin-right: 5px;
+        }
 
         &:last-child {
           width: 15%;

@@ -8,16 +8,17 @@
       <div>
         <label for="name">Nom</label> <br>
         <input type="text" ngModel required name="name" id="name" class="">
-      </div><br>
+      </div>
 
-      <mat-form-field>
-        <input type="text" placeholder="Choose responsible" matInput [formControl]="myControl" [matAutocomplete]="auto">
-        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" ngModel name="responsible_Id">
-          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-            {{ option }}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
+      <!-- <mat-form-field> -->
+      <label for="responsable">Responsable</label>
+      <input type="text" placeholder="Choose responsible" [formControl]="myControl" [matAutocomplete]="auto">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" ngModel name="responsible_Id">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{ option }}
+        </mat-option>
+      </mat-autocomplete>
+      <!-- </mat-form-field> -->
       <br>
       <label for="a_type">type</label><br>
       <select ngModel required name="a_type_id" id="a_type">

@@ -32,11 +32,7 @@ export class AdminUsersComponent implements OnInit {
 
   num;
   tab;
-  order = "id"
-  sens = true;
-  sensName = true;
-  sensRole = true;
-  sensDep = true;
+
 
 
   transform(value: any[], order = '', column: string = ''): any[] {
@@ -59,27 +55,24 @@ export class AdminUsersComponent implements OnInit {
   dep
 
   ngOnInit() {
+    this.showData()
+  }
+
+  showData() {
+    console.log('TEST');
     this.DataService.getActivities().subscribe((res) => {
       this.act = res.data.activities
     });
     this.DataService.getAdminUsers().subscribe((res) => {
-      // console.log(res);
       this.user = res.data.users
-      // console.log(this.user)
-      console.log(this.user);
-
     });
 
     this.DataService.getDepartements().subscribe((res) => {
-      console.log(res);
       this.dep = res.data.departement
     })
     this.TitleService.setTitle("Administration")
-
-    // console.log(this.act);
-
-
   }
+
   setRoute(tab: String) {
     this.tab = tab;
   }
@@ -90,13 +83,29 @@ export class AdminUsersComponent implements OnInit {
     this.isHidden = !this.isHidden
   }
 
-  deleteUsers(id) {
+  isDelete = true
+  itemToDelete
 
-    this.DataService.deleteUser(id).subscribe((res) => {
-      console.log("user deleted (refresh la page)")
-    })
+
+  popUpDeleted(e, u) {
+
+    this.isDelete = !this.isDelete
+    this.itemToDelete = u;
 
   }
+
+
+
+  order = "id"
+  sens = true;
+  sensName = true;
+  sensFname = true;
+  sensRole = true;
+  sensDep = true;
+  sensRes = true;
+  sensChef = true;
+  sensType = true;
+  sensStatus = true;
 
 
   sort(el) {
@@ -107,6 +116,11 @@ export class AdminUsersComponent implements OnInit {
     switch (el) {
       case "firstname":
         this.sens = true;
+        this.sensFname = !this.sensFname
+        this.sens = this.sensFname
+        break;
+      case "name":
+        this.sens = true;
         this.sensName = !this.sensName
         this.sens = this.sensName
         break;
@@ -114,32 +128,46 @@ export class AdminUsersComponent implements OnInit {
         this.sens = true;
         this.sensRole = !this.sensRole
         this.sens = this.sensRole
-
         break;
       case "departement":
         this.sens = true;
         this.sensDep = !this.sensDep
         this.sens = this.sensDep
-
+        break;
+      case "name":
+        this.sens = true;
+        this.sensName = !this.sensName
+        this.sens = this.sensName
+        break;
+      case "responsable_id":
+        this.sens = true;
+        this.sensRes = !this.sensRes
+        this.sens = this.sensRes
+        break;
+      case "chef":
+        this.sens = true;
+        this.sensChef = !this.sensChef
+        this.sens = this.sensChef
+        break;
+      case "type":
+        this.sens = true;
+        this.sensType = !this.sensType
+        this.sens = this.sensType
+        break;
+      case "status":
+        this.sens = true;
+        this.sensStatus = !this.sensStatus
+        this.sens = this.sensStatus
         break;
     }
   }
 
-    deleteDep(id){
 
-      this.DataService.deleteDepartement(id).subscribe((res) => {
-        console.log(res)
-        console.log("Departement deleted (refresh la page)")
-      })
-
-    }
-    deleteAct(id){
-
-      this.DataService.deleteActivity(id).subscribe((res) => {
-        console.log(res)
-        console.log("Activity deleted (refresh la page)")
-      })
-
-    }
-
+  refresh() {
+    this.isDelete = !this.isDelete;
+    setTimeout(() => {
+      this.showData();
+    }, 500);
   }
+
+}

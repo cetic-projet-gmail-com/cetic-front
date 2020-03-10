@@ -7,13 +7,10 @@ import { InfoComponent } from './core/component/info/info.component';
 import { HomeComponent } from './core/component/home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { EditActivityComponent } from './core/component/editactivity/editactivity.component';
 
 import { AuthGuardService } from './core/services/auth/auth-guard.service';
 import { EditUserComponent } from './core/component/edit-user/edit-user.component';
-import { CreateUserComponent } from './core/component/modal/create-user/create-user.component';
-import { CreateActivityComponent } from './core/component/modal/create-activity/create-activity.component';
-import { UpdateDepartementComponent } from './core/component/modal/update-departement/update-departement.component';
+import { EditActivityComponent } from './core/component/editactivity/editactivity.component';
 
 
 const routes: Routes = [
@@ -34,10 +31,7 @@ const routes: Routes = [
     path: 'info',
     component: InfoComponent
   },
-  {
-    path: 'administration/users/createUser',
-    component: CreateUserComponent
-  },
+
   {
     path: 'administration/users/edit',
     component: ProfilComponent
@@ -60,10 +54,10 @@ const routes: Routes = [
     component: ProfilComponent,
     canActivate: [AuthGuardService]
   },
-  // {
-  //   path: 'administration/activities/:id',
-  //   component: EditActivityComponent
-  // },
+  {
+    path: 'administration/activities/:id',
+    component: EditActivityComponent
+  },
   {
     path: 'administration/activities',
     component: AdminUsersComponent

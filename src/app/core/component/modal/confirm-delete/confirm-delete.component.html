@@ -1,0 +1,13 @@
+<div class="wrapper">
+  <div class="content">
+    <h4>suppression de l'élément</h4>
+    <p>Etes-vous sur de vouloir supprimer cet élément ?</p>
+    <div class="choice">
+      <button (click)="cancel()">Annuler</button>
+
+      <button *ngIf="router.url === '/administration/users'" (click)=" deleteUsers()">Supprimer 1 </button>
+      <button *ngIf="router.url === '/administration/departement'" (click)=" deleteDep()">Supprimer 2 </button>
+      <button *ngIf="router.url === '/administration/activities'" (click)=" deleteAct()">Supprimer 3 </button>
+    </div>
+  </div>
+</div>
