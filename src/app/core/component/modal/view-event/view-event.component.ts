@@ -33,6 +33,6 @@ export class ViewEventComponent implements OnInit {
   async remove() {
     console.log(this.data)
     this.DataService.deleteEvent(this.data.event['meta'].id).subscribe()
-    this.dialogRef.close();
+    this.dialogRef.close(true);
   }
 }

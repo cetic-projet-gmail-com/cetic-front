@@ -14,7 +14,7 @@ import { CreateEventComponent } from '../../modal/create-event/create-event.comp
 import { ViewEventComponent } from '../../modal/view-event/view-event.component';
 import { HomeService } from 'src/app/core/services/home.service';
 
-
+import { VirtualElement, createPopper } from '@popperjs/core';
 //? function of "Drag to create events"
 function ceilToNearest(amount: number, precision: number) {
   return Math.ceil(amount / precision) * precision;
@@ -65,15 +65,61 @@ export class CalendarComponent implements OnInit {
   // }
   ngOnInit() {
     // this.getEvents()
-
-    // this.view = this.view 
+    
     this.getTasks();
-    // this.refreshView()
-
   }
   refresh: Subject<any> = new Subject();
   refreshView() {
     this.refresh.next()
+  }
+
+
+  setPopper(start, end, bool) {
+   
+    function generateGetBoundingClientRect(x = 0, y = 0) {
+      return () => ({
+        width: 0,
+        height: 0,
+        top: y + 10,
+        right: x,
+        bottom: y,
+        left: x,
+      });
+    }
+    // let container = document.querySelector('#container');
+
+    let popper  = document.getElementById("pop") ;
+    // container.appendChild(popper);
+    popper.innerText = '';
+    const virtualElement = {
+      getBoundingClientRect: generateGetBoundingClientRect(),
+    };
+  
+    let instance = createPopper(virtualElement, popper);
+    
+      
+      document.addEventListener('mousemove', ({ clientX: x, clientY: y }) => {
+        
+        if (bool) {
+          popper.innerText = "";
+          popper.removeAttribute('data-popper-placement');
+          popper.removeAttribute('data-popper-reference-hidden');
+          popper.style.transform = null;
+          instance.destroy()
+          // instance = null;
+        } else {
+          virtualElement.getBoundingClientRect = generateGetBoundingClientRect(x, y);
+          popper.innerText = `${format(start, 'HH:mm')} - ${format(end, 'HH:mm')}`;
+          instance.update();
+        }
+          
+        
+      });
+    
+      
+
+  
+    
   }
   //? Params of Angular-Calendar
   locale: string = 'fr';
@@ -120,6 +166,8 @@ export class CalendarComponent implements OnInit {
       start: segment.date,
       meta: { tmpEvent: true }
     };
+    
+
     this.events = [...this.events, dragToSelectEvent];
     const segmentPosition = segmentElement.getBoundingClientRect();
     this.dragToCreateActive = true;
@@ -132,7 +180,8 @@ export class CalendarComponent implements OnInit {
           delete dragToSelectEvent.meta.tmpEvent;
           this.dragToCreateActive = false;
           this.refreshing();
-          this.openEditDialog(dragToSelectEvent)
+          this.openEditDialog(dragToSelectEvent);
+          this.setPopper(dragToSelectEvent.start, dragToSelectEvent.start, true)
         }),
         takeUntil(fromEvent(document, 'mouseup'))
       )
@@ -142,6 +191,12 @@ export class CalendarComponent implements OnInit {
           30
         );
         const newEnd = addMinutes(segment.date, minutesDiff);
+        // let container = document.querySelector('#container');
+        // let popper = document.getElementById('pop') ; 
+        // popper.innerText = "";
+        // popper. = '';
+        this.setPopper(dragToSelectEvent.start, newEnd, false);
+
         if (newEnd > segment.date && newEnd < endOfView) {
           dragToSelectEvent.end = newEnd;
         }
@@ -155,8 +210,7 @@ export class CalendarComponent implements OnInit {
     data.end = data.end ? data.end : addMinutes(data.start, 60);
     const dialogConfig = new MatDialogConfig();
     const formatHour = 'HH:mm';
-    // dialogConfig.disableClose = true;
-    // dialogConfig.autoFocus = true;
+    dialogConfig.panelClass = 'edit-event';
     dialogConfig.data = {
       taskId: taskId,
       activities: this.activities, date: data.start, start: format(data.start, formatHour), end: format(data.end, formatHour), title: ""
@@ -178,8 +232,15 @@ export class CalendarComponent implements OnInit {
   }
   openViewDialog(event): void {
     const dialogConfig = new MatDialogConfig();
+    dialogConfig.panelClass = 'edit-event';
     dialogConfig.data = event;
-    this.dialog.open(ViewEventComponent, dialogConfig);
+    let dialogRef = this.dialog.open(ViewEventComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.getEvents();
+        this.refreshing();
+      }
+    })
   }
 
 
@@ -204,8 +265,6 @@ export class CalendarComponent implements OnInit {
 
   getEvents() {
     this.events = [];
-    // let events: CalendarEvent[] = [];
-    // let date = viewDate;
     let date = this.viewDate;
     let url = "";
     switch (this.view) {
@@ -228,7 +287,6 @@ export class CalendarComponent implements OnInit {
        json['events'].forEach(element => {
         try {
           colors =  json['activities'].find(activity => activity.id === json['tasks'].find(task => element.tasks_id === task.id).activities_id).color_code;
-  
         } catch (error) {
           colors = '#8d8d8d';
         }
@@ -244,13 +302,8 @@ export class CalendarComponent implements OnInit {
             taskId: element.tasks_id
           }
         });
-        
       });
       this.refreshing();
-
     });
-
   }
-  
-
 }

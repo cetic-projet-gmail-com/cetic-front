@@ -1,20 +1,17 @@
 <header class="d-flex justify-content-between">
     <div class="btn-group">
       <button class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (click)=getViewDate()>
-        <!-- (click)="getEvents()"> -->
         Précédent
       </button>
       <button class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate" (click)=getViewDate()>
-          <!-- (click)="getEvents()"> -->
         Aujourd'hui
       </button>
       <button class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (click)=getViewDate()>
-        <!-- (click)="getEvents()"> -->
         Suivant
       </button>
     </div>
     <div class="text-monospace">
-      <h3> {{ viewDate | calendarDate:(view + 'ViewTitle'):locale:weekStartsOn }} </h3>
+      <h3>{{showDate}}</h3>
     </div>
   
   </header>

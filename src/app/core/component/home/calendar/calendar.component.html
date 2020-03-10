@@ -37,7 +37,7 @@
     </button> -->
      
   <!-- </div> -->
-  <div [ngSwitch]="view" mwlDroppable dragOverClass="drag-over"  >
+  <div [ngSwitch]="view" mwlDroppable dragOverClass="drag-over" id="container" >
     <!-- <div *ngIf="events$ | async; else loading; let events"> -->
     <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [(events)]="events" [locale]="locale"
       [weekStartsOn]="weekStartsOn" (dayClicked)="changeDay($event.day.date)"
@@ -74,5 +74,7 @@
       [dayEndHour]="20" [locale]="locale" (eventTimesChanged)="eventDropped($event)" [hourSegmentTemplate]="weekViewHourSegmentTemplate"     (eventClicked)="eventClicked($event)" [refresh]="refresh"
       >
     </mwl-calendar-day-view>
+    
     <!-- </div> -->
   </div>
+  <div id="pop"></div>
