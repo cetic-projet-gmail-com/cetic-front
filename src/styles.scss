@@ -93,5 +93,15 @@ body {
 .jqx-calendar-cell-decade.jqx-calendar-cell-decade-classic:hover{
   border: 2px solid rgba(83, 133, 61, 0.5);
 }
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.dragHour {
+  z-index: 1000;
+  width: 100px;
+  height: 35px;
+  background-color: black;
+  color: whitesmoke;
+  border-radius: 10%;
+  padding: 3px;
+}

@@ -58,13 +58,8 @@ export class CalendarComponent implements OnInit {
 
   async ngOnChanges() {
      this.getEvents();
-    console.log(this.events)
   }
-  // async getEvents() {
-  //   this.events = await this.HomeService.getEvents(this.view, this.viewDate);
-  // }
   ngOnInit() {
-    // this.getEvents()
     
     this.getTasks();
   }
@@ -74,53 +69,53 @@ export class CalendarComponent implements OnInit {
   }
 
 
-  setPopper(start, end, bool) {
+  // setPopper(start, end, bool) {
    
-    function generateGetBoundingClientRect(x = 0, y = 0) {
-      return () => ({
-        width: 0,
-        height: 0,
-        top: y + 10,
-        right: x,
-        bottom: y,
-        left: x,
-      });
-    }
-    // let container = document.querySelector('#container');
+  //   function generateGetBoundingClientRect(x = 0, y = 0) {
+  //     return () => ({
+  //       width: 0,
+  //       height: 0,
+  //       top: y + 10,
+  //       right: x,
+  //       bottom: y,
+  //       left: x,
+  //     });
+  //   }
+  //   // let container = document.querySelector('#container');
 
-    let popper  = document.getElementById("pop") ;
-    // container.appendChild(popper);
-    popper.innerText = '';
-    const virtualElement = {
-      getBoundingClientRect: generateGetBoundingClientRect(),
-    };
+  //   let popper  = document.getElementById("pop") ;
+  //   // container.appendChild(popper);
+  //   popper.innerText = '';
+  //   const virtualElement = {
+  //     getBoundingClientRect: generateGetBoundingClientRect(),
+  //   };
   
-    let instance = createPopper(virtualElement, popper);
+  //   let instance = createPopper(virtualElement, popper);
     
       
-      document.addEventListener('mousemove', ({ clientX: x, clientY: y }) => {
+  //     document.addEventListener('mousemove', ({ clientX: x, clientY: y }) => {
         
-        if (bool) {
-          popper.innerText = "";
-          popper.removeAttribute('data-popper-placement');
-          popper.removeAttribute('data-popper-reference-hidden');
-          popper.style.transform = null;
-          instance.destroy()
-          // instance = null;
-        } else {
-          virtualElement.getBoundingClientRect = generateGetBoundingClientRect(x, y);
-          popper.innerText = `${format(start, 'HH:mm')} - ${format(end, 'HH:mm')}`;
-          instance.update();
-        }
+  //       if (bool) {
+  //         popper.innerText = "";
+  //         popper.removeAttribute('data-popper-placement');
+  //         popper.removeAttribute('data-popper-reference-hidden');
+  //         popper.style.transform = null;
+  //         instance.destroy()
+  //         // instance = null;
+  //       } else {
+  //         virtualElement.getBoundingClientRect = generateGetBoundingClientRect(x, y);
+  //         popper.innerText = `${format(start, 'HH:mm')} - ${format(end, 'HH:mm')}`;
+  //         instance.update();
+  //       }
           
         
-      });
+  //     });
     
       
 
   
     
-  }
+  // }
   //? Params of Angular-Calendar
   locale: string = 'fr';
   weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
@@ -152,8 +147,16 @@ export class CalendarComponent implements OnInit {
       });
     });
   }
-
-
+  
+  tooltipCursor(e) : void{
+    
+    let {start, end, div, container} = e.currentTarget.infos;
+    var x = e.clientX,
+    y = e.clientY;
+    div.style.top = (y - container.offsetHeight) + 'px';
+    div.style.left = (x ) + 'px';
+    div.innerText = `${format(start, 'HH:mm')} - ${format(end, 'HH:mm')}`;
+  }
   //? Drag in calendar for create an event
   //? ----------------------------------- -- ----------------------------------- */
   dragToCreateActive = false;
@@ -166,22 +169,28 @@ export class CalendarComponent implements OnInit {
       start: segment.date,
       meta: { tmpEvent: true }
     };
-    
-
+    //? tooltip
+    let container = document.getElementById('containerTooltip')
+    let div = document.createElement('div');
+    div.style.position = 'relative';
+    div.style.display = "block";
+    div.classList.add("dragHour");
+    container.appendChild(div);
     this.events = [...this.events, dragToSelectEvent];
     const segmentPosition = segmentElement.getBoundingClientRect();
     this.dragToCreateActive = true;
-    const endOfView = endOfWeek(this.viewDate, {
-      weekStartsOn: 1
-    });
+    // const endOfView = endOfWeek(this.viewDate, {
+    //   weekStartsOn: 1
+    // });
     fromEvent(document, 'mousemove')
       .pipe(
         finalize(() => {
           delete dragToSelectEvent.meta.tmpEvent;
           this.dragToCreateActive = false;
-          this.refreshing();
+          // this.refreshing();
           this.openEditDialog(dragToSelectEvent);
-          this.setPopper(dragToSelectEvent.start, dragToSelectEvent.start, true)
+          container.removeEventListener('mousemove', this.tooltipCursor, false);
+          div.style.display = "none";
         }),
         takeUntil(fromEvent(document, 'mouseup'))
       )
@@ -191,13 +200,16 @@ export class CalendarComponent implements OnInit {
           30
         );
         const newEnd = addMinutes(segment.date, minutesDiff);
-        // let container = document.querySelector('#container');
-        // let popper = document.getElementById('pop') ; 
-        // popper.innerText = "";
-        // popper. = '';
-        this.setPopper(dragToSelectEvent.start, newEnd, false);
-
-        if (newEnd > segment.date && newEnd < endOfView) {
+        let tooltipInfos =  {
+          div,
+          start: dragToSelectEvent.start,
+          end: newEnd, 
+          container
+        }
+        container['infos'] = tooltipInfos;
+        container.addEventListener('mousemove', this.tooltipCursor, false);
+        
+        if (newEnd > segment.date /*&& newEnd < endOfView*/) {
           dragToSelectEvent.end = newEnd;
         }
         this.refreshing();

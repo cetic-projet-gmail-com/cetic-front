@@ -1,44 +1,4 @@
-<!-- <header class="d-flex justify-content-between">
-    <div class="btn-group">
-      <button class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
-        (click)="getEvents()">
-        Précédent
-      </button>
-      <button class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate" (click)="getEvents()">
-        Aujourd'hui
-      </button>
-      <button class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
-        (click)="getEvents()">
-        Suivant
-      </button>
-    </div>
-    <div class="text-monospace">
-      <h3> {{ viewDate | calendarDate:(view + 'ViewTitle'):locale:weekStartsOn }} </h3>
-    </div>
-    <div class="btn-group">
-      <button class="btn btn-primary" (click)="this.view = CalendarView.Month"
-        [class.active]="view === CalendarView.Month" (click)="getEvents()">
-        Mois
-      </button>
-
-      <button class="btn btn-primary" (click)="this.view = CalendarView.Week"
-        [class.active]="view === CalendarView.Week" (click)="getEvents()">
-        Semaine
-      </button>
-      <button class="btn btn-primary" (click)="this.view = CalendarView.Day"
-        [class.active]="view === CalendarView.Day" (click)="getEvents()">
-        Jour
-      </button>
-    </div>
-  </header> -->
-  <!-- <div class="text-center"> -->
-    <!-- <button class="btn btn-primary" (click)="refreshView()">
-      Refresh + re-render the current view
-    </button> -->
-     
-  <!-- </div> -->
-  <div [ngSwitch]="view" mwlDroppable dragOverClass="drag-over" id="container" >
-    <!-- <div *ngIf="events$ | async; else loading; let events"> -->
+  <div [ngSwitch]="view" mwlDroppable dragOverClass="drag-over" id="containerTooltip" >
     <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [(events)]="events" [locale]="locale"
       [weekStartsOn]="weekStartsOn" (dayClicked)="changeDay($event.day.date)"
       (eventTimesChanged)="eventDropped($event)" [refresh]="refresh" > 
@@ -75,6 +35,4 @@
       >
     </mwl-calendar-day-view>
     
-    <!-- </div> -->
   </div>
-  <div id="pop"></div>
