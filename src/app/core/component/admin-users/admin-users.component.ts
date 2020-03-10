@@ -49,13 +49,28 @@ export class AdminUsersComponent implements OnInit {
   }
   user
   act
-  currentPage : string
+  nbre = "?page=1&nbre=10"
+  nbreArray = [{
+    numb: 10,
+    pageUrl: "?page=1&nbre=10"
+  }, {
+    numb: 15,
+    pageUrl: "?page=1&nbre=15"
+  }, {
+    numb: 20,
+    pageUrl: "?page=1&nbre=20"
+  }, {
+    numb: 50,
+    pageUrl: "?page=1&nbre=50"
+  }]
+  currentPage: string
   nextPage: string
   previousPage: string
   firstPage: string
   lastPage: string
   dep
-  url =this.DataService.apiURL
+  url = this.DataService.apiURL
+
   ngOnInit() {
     this.showData()
   }
@@ -65,7 +80,7 @@ export class AdminUsersComponent implements OnInit {
     this.DataService.getActivities().subscribe((res) => {
       this.act = res.data.activities
     });
-    this.DataService.getAdminUsers("?paginate=true").subscribe((res) => {
+    this.DataService.getAdminUsers(this.nbre).subscribe((res) => {
       this.currentPage = res.links.current
       this.nextPage = res.links.next
       this.previousPage = res.links.previous
@@ -73,7 +88,7 @@ export class AdminUsersComponent implements OnInit {
       this.user = res.data.users
     });
 
-   
+
 
     this.DataService.getDepartements().subscribe((res) => {
       this.dep = res.data.departement
@@ -178,9 +193,26 @@ export class AdminUsersComponent implements OnInit {
     setTimeout(() => {
       this.showData();
     }, 500);
-  
+
   }
-  nextpage(){
+
+  page
+
+  changeNbre() {
+    this.page = document.getElementById("nbre")
+    this.nbre = this.page.value
+    this.DataService.getAdminUsers(this.nbre).subscribe((res) => {
+      this.currentPage = res.links.current
+      this.nextPage = res.links.next
+      this.previousPage = res.links.previous
+      this.lastPage = res.links.last
+      this.user = res.data.users
+    });
+    console.log(this.page.value)
+  }
+
+
+  nextpage() {
     this.DataService.getPage(this.nextPage).subscribe((res) => {
       this.currentPage = res.links.current
       this.nextPage = res.links.next
@@ -188,10 +220,10 @@ export class AdminUsersComponent implements OnInit {
       this.lastPage = res.links.last
       this.user = res.data.users
       this.firstPage = res.links.first
-      
+
     });
   }
-  previouspage(){
+  previouspage() {
     this.DataService.getPage(this.previousPage).subscribe((res) => {
       this.currentPage = res.links.current
       this.nextPage = res.links.next
@@ -201,7 +233,7 @@ export class AdminUsersComponent implements OnInit {
       this.user = res.data.users
     });
   }
-  lastpage(){
+  lastpage() {
     this.DataService.getPage(this.lastPage).subscribe((res) => {
       this.currentPage = res.links.current
       this.nextPage = res.links.next
@@ -209,10 +241,10 @@ export class AdminUsersComponent implements OnInit {
       this.lastPage = res.links.last
       this.firstPage = res.links.first
       this.user = res.data.users
-      
+
     });
   }
-  firstpage(){
+  firstpage() {
     this.DataService.getPage(this.firstPage).subscribe((res) => {
       this.firstPage = res.links.first
       this.currentPage = res.links.current
@@ -220,7 +252,7 @@ export class AdminUsersComponent implements OnInit {
       this.previousPage = res.links.previous
       this.lastPage = res.links.last
       this.user = res.data.users
-      
+
     });
   }
 
