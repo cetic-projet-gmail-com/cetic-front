@@ -1,4 +1,11 @@
 export class Users {
+    links:{
+        current:string,
+        next:string,
+        previous:string,
+        first:string,
+        last:string
+    }
     data: {
         users: [
             {

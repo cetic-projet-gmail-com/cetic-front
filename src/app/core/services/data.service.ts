@@ -1,4 +1,3 @@
-import { PageLink } from './../../models/page-link';
 import { SimpleActivity } from './../../models/simple-activity';
 import { SimpleDepartement } from './../../models/simple-departement';
 import { Color } from './../../models/color';
@@ -51,7 +50,7 @@ export class DataService {
 
   public getPage(url:string) {
 
-    return this.httpClient.get<PageLink>(`${this.apiURL+url}`);
+    return this.httpClient.get<Users>(`${this.apiURL+url}`);
   }
 
 
