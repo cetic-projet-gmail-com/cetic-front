@@ -1,7 +1,14 @@
 <div>
     <div class="btn-group">
-        <button class="btn btn-danger">Supprimer</button>
+        <button class="btn btn-danger" (click)="hidden = false">Supprimer</button>
         <button class="btn btn-secondary">Éditer</button>
+    </div>
+    <div *ngIf="hidden === false" >
+        <p>étes-vous vraiment sûr de supprimer cet événement? </p>
+        <div class="btn-group">
+            <button class="btn btn-secondary" (click)="hidden = true">non</button>
+            <button class="btn btn-danger" (click)="remove()">oui</button>
+        </div>
     </div>
     <div class="colorActivity" [ngStyle]="{'background-color':color}"></div>
     <h1>Activity</h1>

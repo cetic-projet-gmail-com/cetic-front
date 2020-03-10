@@ -19,9 +19,9 @@ export class HomeAsideComponent implements OnInit {
   activities = [];
   async getTasks() {
     this.DataService.getHome().subscribe(async result =>{
-      await result.data['activities'].forEach((activity) => {
+      await result['data'].activities.forEach((activity) => {
         activity['tasks'] =  []
-        result.data['tasks'].forEach(task => {
+        result['data'].tasks.forEach(task => {
           if (activity.id === task.activities_id)
           activity['tasks'].push( {"taskId": task["id"], "title" : task['name'], "start": new Date(), draggable:true });
         });
@@ -31,6 +31,7 @@ export class HomeAsideComponent implements OnInit {
       });
     });
   }
+
 
   miniCalendarDate = new Date();
 

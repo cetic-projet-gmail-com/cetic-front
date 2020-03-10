@@ -7,10 +7,7 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faSortUp } from '@fortawesome/free-solid-svg-icons';
 import { faSortDown } from '@fortawesome/free-solid-svg-icons';
-import { Router } from '@angular/router';
-
-
-
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 
@@ -23,6 +20,8 @@ import { Router } from '@angular/router';
 
 
 export class AdminUsersComponent implements OnInit {
+
+
   faAdd = faPlusSquare;
   faEdit = faEdit;
   faTrash = faTrash;
@@ -43,17 +42,20 @@ export class AdminUsersComponent implements OnInit {
 
 
 
-  constructor(private DataService: DataService, private http: HttpClient, private TitleService: TitleService, public router: Router) {
-    // this.tab = "user";
-    // console.log(this.tab)
+  constructor(private DataService: DataService, private http: HttpClient, private TitleService: TitleService,
+    public router: Router, private ActivatedRoute: ActivatedRoute) {
     this.num = 0;
 
   }
-
   user
   act
+  currentPage : string
+  nextPage: string
+  previousPage: string
+  firstPage: string
+  lastPage: string
   dep
-
+  url =this.DataService.apiURL
   ngOnInit() {
     this.showData()
   }
@@ -63,14 +65,22 @@ export class AdminUsersComponent implements OnInit {
     this.DataService.getActivities().subscribe((res) => {
       this.act = res.data.activities
     });
-    this.DataService.getAdminUsers().subscribe((res) => {
+    this.DataService.getAdminUsers("?paginate=true").subscribe((res) => {
+      this.currentPage = res.links.current
+      this.nextPage = res.links.next
+      this.previousPage = res.links.previous
+      this.lastPage = res.links.last
       this.user = res.data.users
     });
+
+   
 
     this.DataService.getDepartements().subscribe((res) => {
       this.dep = res.data.departement
     })
     this.TitleService.setTitle("Administration")
+
+
   }
 
   setRoute(tab: String) {
@@ -168,6 +178,50 @@ export class AdminUsersComponent implements OnInit {
     setTimeout(() => {
       this.showData();
     }, 500);
+  
+  }
+  nextpage(){
+    this.DataService.getPage(this.nextPage).subscribe((res) => {
+      this.currentPage = res.links.current
+      this.nextPage = res.links.next
+      this.previousPage = res.links.previous
+      this.lastPage = res.links.last
+      this.user = res.data.users
+      this.firstPage = res.links.first
+      
+    });
+  }
+  previouspage(){
+    this.DataService.getPage(this.previousPage).subscribe((res) => {
+      this.currentPage = res.links.current
+      this.nextPage = res.links.next
+      this.previousPage = res.links.previous
+      this.lastPage = res.links.last
+      this.firstPage = res.links.first
+      this.user = res.data.users
+    });
+  }
+  lastpage(){
+    this.DataService.getPage(this.lastPage).subscribe((res) => {
+      this.currentPage = res.links.current
+      this.nextPage = res.links.next
+      this.previousPage = res.links.previous
+      this.lastPage = res.links.last
+      this.firstPage = res.links.first
+      this.user = res.data.users
+      
+    });
+  }
+  firstpage(){
+    this.DataService.getPage(this.firstPage).subscribe((res) => {
+      this.firstPage = res.links.first
+      this.currentPage = res.links.current
+      this.nextPage = res.links.next
+      this.previousPage = res.links.previous
+      this.lastPage = res.links.last
+      this.user = res.data.users
+      
+    });
   }
 
 }

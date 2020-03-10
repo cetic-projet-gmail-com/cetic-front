@@ -1,5 +1,7 @@
-import { Component, OnInit,ViewChild, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit,ViewChild, Output, EventEmitter, Input} from '@angular/core';
 import { jqxCalendarComponent } from 'jqwidgets-ng/jqxcalendar';
+import { HomeService } from 'src/app/core/services/home.service';
+import { CalendarView } from 'angular-calendar';
 
 @Component({
   selector: 'app-mini-calendar',
@@ -9,7 +11,6 @@ import { jqxCalendarComponent } from 'jqwidgets-ng/jqxcalendar';
 export class MiniCalendarComponent implements OnInit {
   constructor() { }
 
-  // activitie
 
   ngOnInit() {
     // this.DataService.getActivities().subscribe((res) => {
@@ -21,8 +22,10 @@ export class MiniCalendarComponent implements OnInit {
   }
   
   miniCalendarDate = new Date();
-
-  @Output() outputMini = new EventEmitter<any>();
+  @Input() viewDate;
+  @Input() view;
+  @Output() viewChange = new EventEmitter<any>();
+  @Output() viewDateChange = new EventEmitter<any>();
   ngAfterViewInit(){
     this.myCalendar.culture('fr-FR')
   }
@@ -30,11 +33,18 @@ export class MiniCalendarComponent implements OnInit {
 
   miniDate = new Date();
 
-  // getDate(event:any):void {
-    
-    
-  //   this.outputMini.emit( event.args.date)
-  // }
+  getDate(event:any):void {
+    console.log(event)
+    if (event['owner'].view == "month") {
+      // console.log('true')
+      // this.viewChange.emit(CalendarView.Week)
+
+      this.viewDateChange.emit( event.args.date);
+    } else {
+      this.viewDateChange.emit( event.args.date);
+      this.viewChange.emit(CalendarView.Month)
+    }
+  }
     
   
 }

@@ -35,15 +35,24 @@ export class DataService {
 
   public getHome(url?: string) {
     url = url? url: "";
-    return this.httpClient.get<Users>(`${this.apiURL}/home${url}`);
+    return this.httpClient.get(`${this.apiURL}/home${url}`);
+  }
+  public deleteEvent(id) {
+    console.log(id)
+      return this.httpClient.delete(`${this.apiURL}/home/${id}`)
   }
 
   
-  public getAdminUsers(url?: string) {
-
-    url = url ? url : '';
+  public getAdminUsers( url:string ) {
+    url = url? url: "";
     return this.httpClient.get<Users>(`${this.apiURL}/administration/users${url}`);
   }
+
+  public getPage(url:string) {
+
+    return this.httpClient.get<Users>(`${this.apiURL+url}`);
+  }
+
 
 
   /* -------------------------------- ACTIVITY -------------------------------- */

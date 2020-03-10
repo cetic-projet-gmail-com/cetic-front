@@ -138,10 +138,22 @@
           </div>
 
         </li>
+
+<!-- ----------------------------- pagination user ------------------------------ -->
+
+        <div>
+          <button (click)="firstpage()" *ngIf="firstPage != undefined">firstPage</button>
+          <button (click)="previouspage()" *ngIf="firstPage != undefined">previous</button>
+          <button (click)="nextpage()" *ngIf="lastPage != undefined">next</button>
+          <button (click)="lastpage()" *ngIf="lastPage != undefined">lastPage</button>
+        </div>
       </ul>
+<<<<<<< HEAD
       <!-- ----------------------------------------------------------------------- -->
 
       <!-- ----------------------------- Departement ----------------------------- -->
+=======
+>>>>>>> dev
 
       <ul *ngIf="router.url === '/administration/departement'" data-simplebar class="ul_dep">
         <li *ngFor="let d of dep | orderBy: order : sens : true; let index = index;let even = even; let odd = odd"

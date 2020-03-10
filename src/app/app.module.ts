@@ -48,6 +48,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { OrderModule } from 'ngx-order-pipe';
+import { HomeNavComponent } from './core/component/home/home-nav/home-nav.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { OrderModule } from 'ngx-order-pipe';
     MenuComponent,
     UpdateActivityComponent,
     CreateDepartementComponent,
-    UpdateDepartementComponent
+    UpdateDepartementComponent,
+    HomeNavComponent
   ],
   imports: [
     ReactiveFormsModule,

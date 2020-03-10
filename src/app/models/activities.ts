@@ -1,5 +1,12 @@
 import { SimpleUser } from './simple-user';
 export class Activities {
+    links:{
+        current:string,
+        next:string,
+        previous:string,
+        first:string,
+        last:string
+    }
     data:{
         activities:[{
             name: string,

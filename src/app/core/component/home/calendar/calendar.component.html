@@ -1,4 +1,4 @@
-<header class="d-flex justify-content-between">
+<!-- <header class="d-flex justify-content-between">
     <div class="btn-group">
       <button class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
         (click)="getEvents()">
@@ -30,11 +30,18 @@
         Jour
       </button>
     </div>
-  </header>
-  <div [ngSwitch]="view" mwlDroppable dragOverClass="drag-over">
-    <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events" [locale]="locale"
+  </header> -->
+  <!-- <div class="text-center"> -->
+    <!-- <button class="btn btn-primary" (click)="refreshView()">
+      Refresh + re-render the current view
+    </button> -->
+     
+  <!-- </div> -->
+  <div [ngSwitch]="view" mwlDroppable dragOverClass="drag-over"  >
+    <!-- <div *ngIf="events$ | async; else loading; let events"> -->
+    <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [(events)]="events" [locale]="locale"
       [weekStartsOn]="weekStartsOn" (dayClicked)="changeDay($event.day.date)"
-      (eventTimesChanged)="eventDropped($event)" > 
+      (eventTimesChanged)="eventDropped($event)" [refresh]="refresh" > 
     </mwl-calendar-month-view>
     <ng-template
       #weekViewHourSegmentTemplate
@@ -57,14 +64,15 @@
         </div>
       </div>
     </ng-template>
-    <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events"
+    <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [(events)]="events"
       (dayHeaderClicked)="changeDay($event.day.date)" [dayStartHour]="8" [dayEndHour]="20" [locale]="locale"
-      [weekStartsOn]="weekStartsOn"  (eventTimesChanged)="eventDropped($event)"    [hourSegmentTemplate]="weekViewHourSegmentTemplate"     (eventClicked)="eventClicked($event)"
+      [weekStartsOn]="weekStartsOn"  (eventTimesChanged)="eventDropped($event)"    [hourSegmentTemplate]="weekViewHourSegmentTemplate"     (eventClicked)="eventClicked($event)" [refresh]="refresh"
 
     >
     </mwl-calendar-week-view>
-    <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [events]="events" [dayStartHour]="8"
-      [dayEndHour]="20" [locale]="locale" (eventTimesChanged)="eventDropped($event)" [hourSegmentTemplate]="weekViewHourSegmentTemplate"     (eventClicked)="eventClicked($event)"
+    <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [(events)]="events" [dayStartHour]="8"
+      [dayEndHour]="20" [locale]="locale" (eventTimesChanged)="eventDropped($event)" [hourSegmentTemplate]="weekViewHourSegmentTemplate"     (eventClicked)="eventClicked($event)" [refresh]="refresh"
       >
     </mwl-calendar-day-view>
+    <!-- </div> -->
   </div>
