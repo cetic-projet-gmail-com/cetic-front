@@ -141,7 +141,8 @@ $col_typo : #5a5a5a;
 
   ul {
     padding: 0;
-    height: 495px;
+    height: auto;
+    max-height: 495px;
     // overflow-y: scroll;
     background-color: white;
     border-radius: 0 0 10px 10px;
@@ -208,6 +209,12 @@ $col_typo : #5a5a5a;
 
       color: #c7c7c7;
       padding: 5px;
+      cursor: pointer;
+
+    }
+
+    .faTrash {
+      margin-left: 15px;
 
     }
 
@@ -273,7 +280,7 @@ $col_typo : #5a5a5a;
 }
 
 .next_prev {
-  margin-top: 40px;
+  margin-top: 38px;
   text-align: center;
 
   button {
@@ -296,7 +303,7 @@ $col_typo : #5a5a5a;
     }
   }
 
-  .info {
+  .next_prev_info {
     text-align: right;
     margin-right: 20px;
 
@@ -316,4 +323,26 @@ $col_typo : #5a5a5a;
     }
 
   }
+}
+
+.info {
+  text-align: right;
+  margin-right: 20px;
+  margin-top: 67px;
+
+
+  a {
+
+    font-family: $saira;
+    text-transform: uppercase;
+    color: #c4c4c4;
+
+    &:first-child {
+      margin-right: 20px;
+    }
+
+    font-size: .6em;
+
+  }
+
 }

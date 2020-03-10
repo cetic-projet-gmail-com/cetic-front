@@ -138,7 +138,7 @@
           </div>
 
         </li>
-        
+
       </ul>
       <!-- ----------------------------------------------------------------------- -->
 
@@ -236,7 +236,7 @@
   <button (click)="previouspage()" *ngIf="firstPage != undefined">précédent</button>
   <button (click)="nextpage()" *ngIf="lastPage != undefined">suivant</button>
   <button (click)="lastpage()" *ngIf="lastPage != undefined">Dernière page</button>
-  <div class="info">
+  <div class="next_prev_info">
     <a href="https://forge.cetic.be/login?back_url=https%3A%2F%2Fforge.cetic.be%2Fprojects%2Fmission-timetrack
     Redmine@CETIC" target="_blank">> Suggestion ? </a>
 
@@ -245,3 +245,9 @@
 </div>
 
 <!-- ----------------------------------------------------------------------- -->
+
+<div class="info" *ngIf="router.url != '/administration/users'">
+  <a href="https://forge.cetic.be/login?back_url=https%3A%2F%2Fforge.cetic.be%2Fprojects%2Fmission-timetrack
+  Redmine@CETIC" target="_blank">> Suggestion ? </a>
+
+</div>

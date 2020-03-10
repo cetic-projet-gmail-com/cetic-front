@@ -1,20 +1,14 @@
-<header class="d-flex justify-content-between">
-    <div class="btn-group">
-      <button class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (click)=getViewDate()>
-        <!-- (click)="getEvents()"> -->
-        Précédent
-      </button>
-      <button class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate" (click)=getViewDate()>
-          <!-- (click)="getEvents()"> -->
-        Aujourd'hui
-      </button>
-      <button class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (click)=getViewDate()>
-        <!-- (click)="getEvents()"> -->
-        Suivant
-      </button>
+  <div class="nav_calendar">
+    <div class="fa left" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (click)=getViewDate()>
+      <!-- (click)="getEvents()"> -->
+      <fa-icon [icon]="left" class="faCaretLeft"></fa-icon>
     </div>
-    <div class="text-monospace">
-      <h3> {{ viewDate | calendarDate:(view + 'ViewTitle'):locale:weekStartsOn }} </h3>
+    <div class="date" mwlCalendarToday [(viewDate)]="viewDate" (click)=getViewDate()>
+      <!-- (click)="getEvents()"> -->
+      <h3> {{ showDate }} </h3>
     </div>
-  
-  </header>
+    <div class="fa right" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (click)=getViewDate()>
+      <!-- (click)="getEvents()"> -->
+      <fa-icon [icon]="right" class="faCaretRight"></fa-icon>
+    </div>
+  </div>
