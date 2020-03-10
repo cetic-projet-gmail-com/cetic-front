@@ -7,10 +7,7 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faSortUp } from '@fortawesome/free-solid-svg-icons';
 import { faSortDown } from '@fortawesome/free-solid-svg-icons';
-import { Router } from '@angular/router';
-
-
-
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 
@@ -23,6 +20,8 @@ import { Router } from '@angular/router';
 
 
 export class AdminUsersComponent implements OnInit {
+
+
   faAdd = faPlusSquare;
   faEdit = faEdit;
   faTrash = faTrash;
@@ -47,28 +46,37 @@ export class AdminUsersComponent implements OnInit {
 
 
 
-  constructor(private DataService: DataService, private http: HttpClient, private TitleService: TitleService, public router: Router) {
+  constructor(private DataService: DataService, private http: HttpClient, private TitleService: TitleService,
+    public router: Router, private ActivatedRoute: ActivatedRoute) {
     // this.tab = "user";
     // console.log(this.tab)
     this.num = 0;
 
   }
-
+  page:number = 1
   user
   act
+  currentPage
+  nextPage
+  previousPage
+  firstPage
+  lastPage
   dep
-
+  url =this.DataService.apiURL
   ngOnInit() {
     this.DataService.getActivities().subscribe((res) => {
       this.act = res.data.activities
     });
-    this.DataService.getAdminUsers().subscribe((res) => {
-      // console.log(res);
+    this.DataService.getAdminUsers("?paginate=true").subscribe((res) => {
+      this.currentPage = res.links.current
+      this.nextPage = res.links.next
+      this.previousPage = res.links.previous
+      this.lastPage = res.links.last
       this.user = res.data.users
-      // console.log(this.user)
-      console.log(this.user);
-
+      console.log(this.user)
     });
+
+   
 
     this.DataService.getDepartements().subscribe((res) => {
       console.log(res);
@@ -125,21 +133,69 @@ export class AdminUsersComponent implements OnInit {
     }
   }
 
-    deleteDep(id){
+  deleteDep(id) {
 
-      this.DataService.deleteDepartement(id).subscribe((res) => {
-        console.log(res)
-        console.log("Departement deleted (refresh la page)")
-      })
-
-    }
-    deleteAct(id){
-
-      this.DataService.deleteActivity(id).subscribe((res) => {
-        console.log(res)
-        console.log("Activity deleted (refresh la page)")
-      })
-
-    }
+    this.DataService.deleteDepartement(id).subscribe((res) => {
+      console.log(res)
+      console.log("Departement deleted (refresh la page)")
+    })
 
   }
+  deleteAct(id) {
+
+    this.DataService.deleteActivity(id).subscribe((res) => {
+      console.log(res)
+      console.log("Activity deleted (refresh la page)")
+    })
+
+  }
+
+  nextpage(){
+    this.DataService.getPage(this.nextPage).subscribe((res) => {
+      this.currentPage = res.links.current
+      this.nextPage = res.links.next
+      this.previousPage = res.links.previous
+      this.lastPage = res.links.last
+      this.user = res.data.users
+      this.firstPage = res.links.first
+      console.log(this.user)
+      
+    });
+  }
+  previouspage(){
+    this.DataService.getPage(this.previousPage).subscribe((res) => {
+      this.currentPage = res.links.current
+      this.nextPage = res.links.next
+      this.previousPage = res.links.previous
+      this.lastPage = res.links.last
+      this.firstPage = res.links.first
+      this.user = res.data.users
+      console.log(this.user)
+    });
+  }
+  lastpage(){
+    this.DataService.getPage(this.lastPage).subscribe((res) => {
+      this.currentPage = res.links.current
+      this.nextPage = res.links.next
+      this.previousPage = res.links.previous
+      this.lastPage = res.links.last
+      this.firstPage = res.links.first
+      this.user = res.data.users
+      console.log(this.user)
+      
+    });
+  }
+  firstpage(){
+    this.DataService.getPage(this.firstPage).subscribe((res) => {
+      this.firstPage = res.links.first
+      this.currentPage = res.links.current
+      this.nextPage = res.links.next
+      this.previousPage = res.links.previous
+      this.lastPage = res.links.last
+      this.user = res.data.users
+      console.log(this.user)
+      
+    });
+  }
+
+}

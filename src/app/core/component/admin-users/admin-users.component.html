@@ -101,7 +101,14 @@
           </div>
 
         </li>
+        
       </ul>
+      <div >
+        <button (click)="firstpage()">firstPage</button>
+        <button (click)="previouspage()">previous</button>
+        <button (click)="nextpage()">next</button>
+        <button (click)="lastpage()">lastPage</button>
+      </div>
       <ul *ngIf="router.url === '/administration/departement'" data-simplebar class="ul_dep">
         <li *ngFor="let d of dep; let index = index;let even = even; let odd = odd"
           [ngClass]="{ odd: odd, even: even } ">
