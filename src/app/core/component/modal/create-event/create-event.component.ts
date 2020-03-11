@@ -33,29 +33,24 @@ export class CreateEventComponent implements OnInit {
     } else {
       this.view= 1;
     }
-    console.log(this.data)
     
     this.viewDate = format(this.data.date,'dd/MM/yy')
   }
 
   next(f) {
     this.view=2;
-    this.res['tasks_id'] = parseInt(f.value.tasks);
-    try {
-      console.log(f.value.tasks)
-      this.res['color'] = this.data.activities.find(e => f.value.tasks === e['tasks'].map(e=>e).id);
-      console.log(this.res['color']);
-    } catch (error) {
-      this.dialogRef.close();
-    }
+    let taskId = parseInt(f.value.tasks) ;
+    this.res['tasks_id'] = taskId;
   }
   submit(f) {
+    this.res['color'] = this.data.activities.find(e => e['tasks'].some(e => e.taskId === this.res['tasks_id'])).color_code;
     let start, end, description;
     ({start, end, description} = f.value)
     this.res['description'] = description;
-    this.res['start'] = new Date((this.data.date).getFullYear(), (this.data.date).getMonth(), (this.data.date).getDate(), start.split(':')[0], start.split(':')[1]);
+    let date = this.data.date
+    this.res['start'] = new Date((date).getFullYear(), (date).getMonth(), (date).getDate(), start.split(':')[0], start.split(':')[1]);
     
-    this.res['end'] = new Date((this.data.date).getFullYear(), (this.data.date).getMonth(), (this.data.date).getDate(), end.split(':')[0], end.split(':')[1]);;
+    this.res['end'] = new Date((date).getFullYear(), (date).getMonth(), (date).getDate(), end.split(':')[0], end.split(':')[1]);;
 
     this.dialogRef.close(this.res)
   }

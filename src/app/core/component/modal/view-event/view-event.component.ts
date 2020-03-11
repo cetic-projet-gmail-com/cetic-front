@@ -12,27 +12,33 @@ export class ViewEventComponent implements OnInit {
   endHour;
   color;
   hidden;
+  activityName;
+  takName;
+  event;
+  date;
   constructor(
     public dialogRef: MatDialogRef<ViewEventComponent>,
     @Inject(MAT_DIALOG_DATA) public data, private DataService : DataService) {}
 
   ngOnInit() {
-    // console.log(this.data)
-    this.startHour = format( this.data.event.start, 'HH:mm'); 
-    this.endHour =  format(this.data.event.end, 'HH:mm');
-
+    let event = this.data.event;
+    this.startHour = format( event.start, 'HH:mm'); 
+    this.endHour =  format(event.end, 'HH:mm');
+    this.date = format(event.start, 'dd/MM/yyyy')
+    this.takName = event.meta.taskName;
+    this.activityName = event.meta.activityName;
+    
     this.color = this.data.event.color.secondary;
-
     this.hidden = true;
   }
   onNoClick(): void {
     this.dialogRef.close();
 
   }
-
-  async remove() {
-    // console.log(this.data)
-    this.DataService.deleteEvent(this.data.event['meta'].id).subscribe()
+  edit() {
+    this.dialogRef.close("edit");
+  }
+  remove() {
     this.dialogRef.close("removed");
   }
 }

@@ -1,7 +1,7 @@
 <div>
     <div class="btn-group">
         <button class="btn btn-danger" (click)="hidden = false">Supprimer</button>
-        <button class="btn btn-secondary">Éditer</button>
+        <button class="btn btn-secondary" (click)="edit()">Éditer</button>
     </div>
     <div *ngIf="hidden === false" >
         <p>étes-vous vraiment sûr de supprimer cet événement? </p>
@@ -10,9 +10,10 @@
             <button class="btn btn-danger" (click)="remove()">oui</button>
         </div>
     </div>
+    <div>{{date}}</div>
     <div class="colorActivity" [ngStyle]="{'background-color':color}"></div>
-    <h1>Activity</h1>
-    <h2>task</h2>
+    <h1>Activity: {{activityName}}</h1>
+    <h2>task: {{takName}}</h2>
     <h5>Description: </h5><p>{{data.event.title}}</p>
     <hr>
     <h5>heure début :</h5> <p>{{startHour}}</p>

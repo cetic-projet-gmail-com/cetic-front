@@ -49,6 +49,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { OrderModule } from 'ngx-order-pipe';
 import { HomeNavComponent } from './core/component/home/home-nav/home-nav.component';
+import { EditEventComponent } from './core/component/modal/edit-event/edit-event.component';
+import { RemoveEventComponent } from './core/component/modal/remove-event/remove-event.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +80,9 @@ import { HomeNavComponent } from './core/component/home/home-nav/home-nav.compon
     UpdateActivityComponent,
     CreateDepartementComponent,
     UpdateDepartementComponent,
-    HomeNavComponent
+    HomeNavComponent,
+    EditEventComponent,
+    RemoveEventComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -101,7 +105,7 @@ import { HomeNavComponent } from './core/component/home/home-nav/home-nav.compon
   ],
   providers: [AuthenticationService, AuthGuardService],
   bootstrap: [AppComponent],
-  entryComponents: [CreateEventComponent, ViewEventComponent, MoveEventComponent],
+  entryComponents: [CreateEventComponent, ViewEventComponent, MoveEventComponent, EditEventComponent, RemoveEventComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
