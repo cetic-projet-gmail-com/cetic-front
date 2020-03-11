@@ -186,8 +186,8 @@ export class AdminUsersComponent implements OnInit {
         break;
     }
   }
-
-
+  
+  
   refresh() {
     this.isDelete = !this.isDelete;
     setTimeout(() => {
@@ -195,6 +195,20 @@ export class AdminUsersComponent implements OnInit {
     }, 150);
 
   }
+
+  page
+  changeNbre(){
+    this.page = document.getElementById('nbre')
+    this.nbre = this.page.value
+    this.DataService.getAdminUsers(this.nbre).subscribe((res) => {
+      this.currentPage = res.links.current
+      this.nextPage = res.links.next
+      this.previousPage = res.links.previous
+      this.lastPage = res.links.last
+      this.user = res.data.users
+    });
+  }
+  
   nextpage() {
     this.DataService.getPage(this.nextPage).subscribe((res) => {
       this.currentPage = res.links.current
