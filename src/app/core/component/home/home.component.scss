@@ -1,19 +1,104 @@
+$poiret : 'Poiret One';
+$saira : 'Saira Semi Condensed';
+$col_typo : #5a5a5a;
+
+
+
 //Angular Calendar
 .drag-active {
-    position: relative;
-    z-index: 1;
-    pointer-events: none;
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
 }
+
 .drag-over {
   background-color: #eee;
 }
+
 .disable-hover {
   pointer-events: none;
 }
+
 //design
 .list-of-tasks {
-    cursor: pointer;
-    
+  cursor: pointer;
+
 }
 
+.content {
 
+  display: flex;
+  justify-content: space-between;
+  font-family: $saira;
+
+  .calendar {
+    margin-top: 10px;
+    width: 75%;
+    height: 689px;
+    padding-right: 10px;
+    padding-left: 10px;
+
+    .calendar_tab {
+      display: flex;
+      justify-content: flex-end;
+      padding-right: 10px;
+      // position: sticky;
+      // top: 0;
+      // z-index: 999;
+
+      div {
+        text-transform: uppercase;
+        cursor: pointer;
+        height: 40px;
+        font-size: 1em;
+        line-height: 40px;
+        text-align: center;
+        color: $col_typo;
+        background-color: #dfdfdf;
+        padding: 0 20px;
+        margin-right: 3px;
+        margin-top: 10px;
+        border-radius: 5px 5px 0 0;
+      }
+
+      .active {
+        height: 50px;
+        font-size: 1.2em;
+        line-height: 50px;
+        background-color: #53853D;
+        padding: 0 20px;
+        border-radius: 5px 5px 0 0;
+        color: white;
+        margin-right: 3px;
+        margin-top: 0;
+      }
+    }
+
+    .calendar_view {
+      max-height: 641px;
+
+      date-simplebar {
+        color: #53853D
+      }
+
+
+      app-calendar {
+        height: 500px;
+
+      }
+    }
+  }
+
+
+  .widget {
+    width: 25%;
+    height: 689px;
+    border-radius: 5px;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 5px;
+    background-color: red;
+    margin-top: 10px;
+  }
+}

@@ -78,9 +78,11 @@ export class AdminUsersComponent implements OnInit {
   showData() {
     console.log('TEST');
     this.DataService.getActivities().subscribe((res) => {
+      console.log(res);
       this.act = res.data.activities
     });
     this.DataService.getAdminUsers(this.nbre).subscribe((res) => {
+      console.log(res);
       this.currentPage = res.links.current
       this.nextPage = res.links.next
       this.previousPage = res.links.previous
@@ -91,6 +93,7 @@ export class AdminUsersComponent implements OnInit {
 
 
     this.DataService.getDepartements().subscribe((res) => {
+      console.log(res);
       this.dep = res.data.departement
     })
     this.TitleService.setTitle("Administration")

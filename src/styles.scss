@@ -10,14 +10,15 @@ body {
   background-repeat: no-repeat;
   // z-index: -1000;
 }
-.jqx-calendar-cell-month.jqx-calendar-cell-month-classic{
+
+.jqx-calendar-cell-month.jqx-calendar-cell-month-classic {
   border: 2px solid rgba(83, 133, 61, 0.3);
   width: 20px;
   height: 20px;
   padding-top: 6px;
   padding-bottom: 6px;
   border-radius: 3px;
-  color : #53853D;
+  color: #53853D;
 
   text-shadow: none;
 }
@@ -26,47 +27,98 @@ body {
   background-color: white;
 }
 
-.jqx-calendar-cell-today.jqx-calendar-cell-today-classic{
+.jqx-calendar-cell-today.jqx-calendar-cell-today-classic {
   border: 2.5px solid rgba(83, 133, 61, 0.3);
   background-color: rgba(83, 133, 61, 0.3);
   color: white;
 }
 
-.jqx-calendar-cell-othermonth.jqx-calendar-cell-othermonth-classic{
-  color : rgba(83, 133, 61, 0.5) !important;
+.jqx-calendar-cell-othermonth.jqx-calendar-cell-othermonth-classic {
+  color: rgba(83, 133, 61, 0.5) !important;
 }
 
-.jqx-widget-content.jqx-widget-content-classic{
+.jqx-widget-content.jqx-widget-content-classic {
   border: 0px;
 }
 
-.jqx-calendar-title-navigation.jqx-calendar-title-navigation-classic{
+.jqx-calendar-title-navigation.jqx-calendar-title-navigation-classic {
   float: left !important;
 }
 
-.jqx-calendar-title-navigation.jqx-calendar-title-navigation-classic.jqx-icon-arrow-left.jqx-icon-arrow-left-classic{
+.jqx-calendar-title-navigation.jqx-calendar-title-navigation-classic.jqx-icon-arrow-left.jqx-icon-arrow-left-classic {
   float: right !important;
 }
 
-.jqx-reset.jqx-reset-classic{
+.jqx-reset.jqx-reset-classic {
   text-transform: capitalize;
   color: rgba(0, 0, 0, 0.7);
   // font-family: ;
 }
 
-.jqx-calendar-title-content.jqx-calendar-title-content-classic{
+.jqx-calendar-title-content.jqx-calendar-title-content-classic {
   color: rgba(0, 0, 0, 0.5);
 }
 
-.jqx-fill-state-pressed.jqx-fill-state-pressed-classic{
+.jqx-fill-state-pressed.jqx-fill-state-pressed-classic {
   background-color: rgba(83, 133, 61, 0.5);
   color: white;
   border: 2px solid rgba(83, 133, 61, 0.2);
 }
 
-.jqx-widget-header.jqx-widget-header-classic.jqx-calendar-title-header.jqx-calendar-title-header-classic{
+.jqx-widget-header.jqx-widget-header-classic.jqx-calendar-title-header.jqx-calendar-title-header-classic {
   background-color: white;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+// STYLE DU MODULE CALENDAR VU MOIS ---------------------------------------------------------
+
+.cal-week-view .cal-ends-within-day .cal-event {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.cal-week-view .cal-ends-within-day .cal-event {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+// .cal-month-view .cal-days .cal-cell-row {
+//   border: none;
+// }
+
+
+// .cal-month-view {
+//   width: 1134px;
+//   height: 764px;
+// }
+
+// .cal-month-view .cal-cell-top {
+//   min-height: 152.8px;
+//   border: 1px solid rgba(83, 133, 61, 0.3);
+// }
+
+// .cal-month-view .cal-day-cell:not(:last-child) {
+//   border: none;
+// }
+
+// .cal-month-view .cal-day-cell.cal-weekend .cal-day-number {
+//   color: #646464;
+// }
+
+// .cal-month-view .cal-day-number {
+//   color: #646464;
+// }
+
+// .cal-cell-row.cal-header {
+//   color: rgb(83, 133, 61) o
+// }
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

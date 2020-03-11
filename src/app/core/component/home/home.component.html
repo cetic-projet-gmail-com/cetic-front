@@ -1,36 +1,31 @@
-<app-nav><app-home-nav [(viewDate)]="viewDate" [view]="view" (viewDateChange)="funcEvents()" (viewChange)="funcEvents()"></app-home-nav></app-nav>
+<app-nav>
+  <app-home-nav [(viewDate)]="viewDate" [view]="view" (viewDateChange)="funcEvents()" (viewChange)="funcEvents()">
+  </app-home-nav>
+</app-nav>
 
-<section class=".container">
-  <div class="row">
-    <div class="col-9">
-      <div class="btn-group">
-        <button class="btn btn-primary" (click)="changeView(CalendarView.Month)"
-          [class.active]="view === CalendarView.Month">
-        <!-- </button> (click)="getEvents()"> -->
-          Mois
-        </button>
-  
-        <button class="btn btn-primary" (click)="changeView(CalendarView.Week)"
-          [class.active]="view === CalendarView.Week">
-        <!-- </button> (click)="getEvents()"> -->
-          Semaine
-        </button>
-        <button class="btn btn-primary" (click)="changeView(CalendarView.Day)"
-          [class.active]="view === CalendarView.Day">
-        <!-- </button> (click)="getEvents()"> -->
-          Jour
-        </button>
-        
+<section class="content">
+  <div class="calendar">
+    <div class="calendar_tab">
+      <div class="month" (click)="changeView(CalendarView.Month)" [class.active]="view === CalendarView.Month">
+        Mois
       </div>
+
+      <div class="week active" (click)="changeView(CalendarView.Week)" [class.active]="view === CalendarView.Week">
+        Semaine
+      </div>
+      <div class="day" (click)="changeView(CalendarView.Day)" [class.active]="view === CalendarView.Day">
+        Jour
+      </div>
+
+    </div>
+
+    <div class="calendar_view" data-simplebar>
       <app-calendar [(viewDate)]="viewDate" [(view)]="view" [events]="events"></app-calendar>
     </div>
-    <div class="col-3">
-      <div class="card h-100 d-flex align-items-start justify-content-center">
-        <app-home-aside class="mb-auto p-2 w-100"></app-home-aside>
-        <app-mini-calendar [(viewDate)]="viewDate" [(view)]="view" class="p-2" ></app-mini-calendar>
-      </div>
-    
-
-    </div>
   </div>
+  <div class="widget">
+    <app-home-aside class="mb-auto p-2 w-100"></app-home-aside>
+    <app-mini-calendar [(viewDate)]="viewDate" [(view)]="view" class="p-2"></app-mini-calendar>
+  </div>
+
 </section>

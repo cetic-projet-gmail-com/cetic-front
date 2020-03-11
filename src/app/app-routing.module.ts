@@ -41,7 +41,7 @@ const routes: Routes = [
     component: EditUserComponent
   },
   {
-    path: 'administration/users',
+    path: 'administration/users', pathMatch: 'full',
     component: AdminUsersComponent
   },
 

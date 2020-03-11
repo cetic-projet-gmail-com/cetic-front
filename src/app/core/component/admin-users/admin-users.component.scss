@@ -283,6 +283,10 @@ $col_typo : #5a5a5a;
   margin-top: 38px;
   text-align: center;
 
+  select {
+    height: 29px;
+  }
+
   button {
     font-family: $saira;
     font-size: .8em;

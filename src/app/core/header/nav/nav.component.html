@@ -41,7 +41,7 @@
   </a>
   <ng-content></ng-content>
 
-  <div class="info" *ngIf="_router.url != '/home' ">{{title}}</div>
+  <div class="info" *ngIf="_router.url !== '/home' ">{{title}}</div>
   <div class="menu">
     <a [routerLink]="'/login'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
       *ngIf="_router.url == '/forgot_password' || _router.url == '/info'">
