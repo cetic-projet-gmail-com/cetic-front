@@ -33,7 +33,7 @@ export class CreateEventComponent implements OnInit {
     } else {
       this.view= 1;
     }
-    
+    console.log(this.data)
     
     this.viewDate = format(this.data.date,'dd/MM/yy')
   }
@@ -41,6 +41,13 @@ export class CreateEventComponent implements OnInit {
   next(f) {
     this.view=2;
     this.res['tasks_id'] = parseInt(f.value.tasks);
+    try {
+      console.log(f.value.tasks)
+      this.res['color'] = this.data.activities.find(e => f.value.tasks === e['tasks'].map(e=>e).id);
+      console.log(this.res['color']);
+    } catch (error) {
+      this.dialogRef.close();
+    }
   }
   submit(f) {
     let start, end, description;

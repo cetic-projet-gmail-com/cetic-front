@@ -1,7 +1,8 @@
   <div [ngSwitch]="view" mwlDroppable dragOverClass="drag-over" id="containerTooltip" >
     <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [(events)]="events" [locale]="locale"
       [weekStartsOn]="weekStartsOn" (dayClicked)="changeDay($event.day.date)"
-      (eventTimesChanged)="eventDropped($event)" [refresh]="refresh" > 
+      (eventTimesChanged)="eventTimesChanged($event)" [refresh]="refresh"     
+    > 
     </mwl-calendar-month-view>
     <ng-template
       #weekViewHourSegmentTemplate
@@ -17,7 +18,7 @@
         [class.cal-hour-start]="segment.isStart"
         [class.cal-after-hour-start]="!segment.isStart"
         [ngClass]="segment.cssClass"
-        (mousedown)="startDragToCreate(segment, $event, segmentElement)"
+        (mousedown)="startDragToCreate(segment, $event, segmentElement); "
       >
         <div class="cal-time" *ngIf="isTimeLabel">
           {{ segment.date | calendarDate:'weekViewHour':locale }}
@@ -26,12 +27,14 @@
     </ng-template>
     <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [(events)]="events"
       (dayHeaderClicked)="changeDay($event.day.date)" [dayStartHour]="8" [dayEndHour]="20" [locale]="locale"
-      [weekStartsOn]="weekStartsOn"  (eventTimesChanged)="eventDropped($event)"    [hourSegmentTemplate]="weekViewHourSegmentTemplate"     (eventClicked)="eventClicked($event)" [refresh]="refresh"
+      [weekStartsOn]="weekStartsOn"     [hourSegmentTemplate]="weekViewHourSegmentTemplate"     (eventClicked)="eventClicked($event)" [refresh]="refresh"     (eventTimesChanged)=" eventTimesChanged($event); " 
+
 
     >
     </mwl-calendar-week-view>
     <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [(events)]="events" [dayStartHour]="8"
-      [dayEndHour]="20" [locale]="locale" (eventTimesChanged)="eventDropped($event)" [hourSegmentTemplate]="weekViewHourSegmentTemplate"     (eventClicked)="eventClicked($event)" [refresh]="refresh"
+      [dayEndHour]="20" [locale]="locale" [hourSegmentTemplate]="weekViewHourSegmentTemplate"     (eventClicked)="eventClicked($event)" [refresh]="refresh"     (eventTimesChanged)="eventTimesChanged($event)"
+
       >
     </mwl-calendar-day-view>
     

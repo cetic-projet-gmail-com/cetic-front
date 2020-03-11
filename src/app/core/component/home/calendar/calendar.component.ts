@@ -12,9 +12,11 @@ import { finalize, takeUntil } from 'rxjs/operators';
 import { WeekViewHourSegment } from 'calendar-utils';
 import { CreateEventComponent } from '../../modal/create-event/create-event.component';
 import { ViewEventComponent } from '../../modal/view-event/view-event.component';
+import { MoveEventComponent } from '../../modal/move-event/move-event.component';
+
+
 import { HomeService } from 'src/app/core/services/home.service';
 
-import { VirtualElement, createPopper } from '@popperjs/core';
 //? function of "Drag to create events"
 function ceilToNearest(amount: number, precision: number) {
   return Math.ceil(amount / precision) * precision;
@@ -48,6 +50,9 @@ export class CustomEventTitleFormatter extends CalendarEventTitleFormatter {
 export class CalendarComponent implements OnInit {
 
   constructor(private DataService: DataService, private cdr: ChangeDetectorRef, private dialog: MatDialog, private HomeService: HomeService) { }
+
+  container;
+  div;
   //? Refresh events list
   refreshing() {
     this.events = [...this.events];
@@ -57,10 +62,15 @@ export class CalendarComponent implements OnInit {
   events: CalendarEvent[] = [];
 
   async ngOnChanges() {
-     this.getEvents();
+    //  console.log(this.dragAndDrop)
+    this.getEvents();
   }
   ngOnInit() {
-    
+    this.container = document.getElementById('containerTooltip');
+    this.div = document.createElement('div');
+    this.container.appendChild(this.div);
+    this.div.classList.add("dragHour");
+
     this.getTasks();
   }
   refresh: Subject<any> = new Subject();
@@ -68,54 +78,6 @@ export class CalendarComponent implements OnInit {
     this.refresh.next()
   }
 
-
-  // setPopper(start, end, bool) {
-   
-  //   function generateGetBoundingClientRect(x = 0, y = 0) {
-  //     return () => ({
-  //       width: 0,
-  //       height: 0,
-  //       top: y + 10,
-  //       right: x,
-  //       bottom: y,
-  //       left: x,
-  //     });
-  //   }
-  //   // let container = document.querySelector('#container');
-
-  //   let popper  = document.getElementById("pop") ;
-  //   // container.appendChild(popper);
-  //   popper.innerText = '';
-  //   const virtualElement = {
-  //     getBoundingClientRect: generateGetBoundingClientRect(),
-  //   };
-  
-  //   let instance = createPopper(virtualElement, popper);
-    
-      
-  //     document.addEventListener('mousemove', ({ clientX: x, clientY: y }) => {
-        
-  //       if (bool) {
-  //         popper.innerText = "";
-  //         popper.removeAttribute('data-popper-placement');
-  //         popper.removeAttribute('data-popper-reference-hidden');
-  //         popper.style.transform = null;
-  //         instance.destroy()
-  //         // instance = null;
-  //       } else {
-  //         virtualElement.getBoundingClientRect = generateGetBoundingClientRect(x, y);
-  //         popper.innerText = `${format(start, 'HH:mm')} - ${format(end, 'HH:mm')}`;
-  //         instance.update();
-  //       }
-          
-        
-  //     });
-    
-      
-
-  
-    
-  // }
   //? Params of Angular-Calendar
   locale: string = 'fr';
   weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
@@ -123,11 +85,12 @@ export class CalendarComponent implements OnInit {
   @Input() view: CalendarView;
   @Input() viewDate: Date;
   @Output() viewChange = new EventEmitter<string>();
-  // CalendarView = CalendarView;
+
   tasks: CalendarEvent[] = [];
   //? List of activities & taks for drag & drop
   activities = [];
 
+  // move = true;
   changeDay(date: Date) {
     this.viewDate = date;
     this.viewChange.emit(CalendarView.Week)
@@ -147,50 +110,94 @@ export class CalendarComponent implements OnInit {
       });
     });
   }
-  
-  tooltipCursor(e) : void{
-    
-    let {start, end, div, container} = e.currentTarget.infos;
-    var x = e.clientX,
-    y = e.clientY;
-    div.style.top = (y - container.offsetHeight) + 'px';
-    div.style.left = (x ) + 'px';
-    div.innerText = `${format(start, 'HH:mm')} - ${format(end, 'HH:mm')}`;
-  }
+
+
   //? Drag in calendar for create an event
   //? ----------------------------------- -- ----------------------------------- */
-  dragToCreateActive = false;
+
+  //   //? Open widow for create event && for view dialog
+  // //? ----------------------------------- -- ----------------------------------- */
+
+
+
+
+
+
+  getEvents() {
+    this.events = [];
+    let date = this.viewDate;
+    let url = "";
+    switch (this.view) {
+      case CalendarView.Month:
+        url = `?display=month&month=${date.getMonth() + 1}&year=${date.getFullYear()}`;
+        break;
+      case CalendarView.Week:
+        url = `?display=week&week=${getWeek(this.viewDate, { weekStartsOn: 1 })}&year=${getWeekYear(this.viewDate)}`;
+        break;
+      case CalendarView.Day:
+        url = `?display=day&date=${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
+        break;
+      default:
+        url = "";
+        break;
+    }
+    this.DataService.getHome(url).subscribe((result) => {
+      let json = result['data'];
+      let colors;
+      json['events'].forEach(element => {
+        try {
+          colors = json['activities'].find(activity => activity.id === json['tasks'].find(task => element.tasks_id === task.id).activities_id).color_code;
+        } catch (error) {
+          colors = '#8d8d8d';
+        }
+        this.events.push({
+          "start": parseISO(element.start),
+          "end": parseISO(element.end),
+          "title": element.description,
+          draggable: true,
+          allDay: false,
+          // resizable: {
+          //   beforeStart: true, // this allows you to configure the sides the event is resizable from
+          //   afterEnd: true
+          // },
+          color: { primary: '#263238', secondary: colors },
+          meta: {
+            test: "test",
+            id: element.id,
+            taskId: element.tasks_id
+          }
+        });
+      });
+      this.refreshing();
+    });
+  }
+
+
+  /* ------------------------------ Create Event ------------------------------ */
+
   startDragToCreate(
     segment: WeekViewHourSegment, mouseDownEvent: MouseEvent, segmentElement: HTMLElement
   ) {
+
     const dragToSelectEvent: CalendarEvent = {
-      id: this.events.length,
+      // id: this.events.length,
       title: 'Nouveau Billet',
       start: segment.date,
-      meta: { tmpEvent: true }
     };
-    //? tooltip
-    let container = document.getElementById('containerTooltip')
-    let div = document.createElement('div');
-    div.style.position = 'relative';
-    div.style.display = "block";
-    div.classList.add("dragHour");
-    container.appendChild(div);
     this.events = [...this.events, dragToSelectEvent];
     const segmentPosition = segmentElement.getBoundingClientRect();
-    this.dragToCreateActive = true;
-    // const endOfView = endOfWeek(this.viewDate, {
-    //   weekStartsOn: 1
-    // });
+    //? tooltip (div Hour Start - Hour End)
+    //* tooltip
+    this.div.style.display = "block";
+    //*
     fromEvent(document, 'mousemove')
       .pipe(
         finalize(() => {
-          delete dragToSelectEvent.meta.tmpEvent;
-          this.dragToCreateActive = false;
-          // this.refreshing();
-          this.openEditDialog(dragToSelectEvent);
-          container.removeEventListener('mousemove', this.tooltipCursor, false);
-          div.style.display = "none";
+          this.createEvent(dragToSelectEvent);
+          //*Tooltip
+          this.container.removeEventListener('mousemove', this.toolTipCreate, false);
+          this.div.style.display = "none";
+          //*
         }),
         takeUntil(fromEvent(document, 'mouseup'))
       )
@@ -200,24 +207,24 @@ export class CalendarComponent implements OnInit {
           30
         );
         const newEnd = addMinutes(segment.date, minutesDiff);
-        let tooltipInfos =  {
-          div,
-          start: dragToSelectEvent.start,
-          end: newEnd, 
-          container
-        }
-        container['infos'] = tooltipInfos;
-        container.addEventListener('mousemove', this.tooltipCursor, false);
-        
-        if (newEnd > segment.date /*&& newEnd < endOfView*/) {
+        if (newEnd > segment.date) {
           dragToSelectEvent.end = newEnd;
         }
+        //* Tooltip
+        let tooltipInfos = {
+          div: this.div,
+          start: dragToSelectEvent.start,
+          end: newEnd,
+          container: this.container
+        }
+        this.container['infos'] = tooltipInfos;
+        this.container.addEventListener('mousemove', this.toolTipCreate, false);
+        //*
         this.refreshing();
       });
   }
-  //   //? Open widow for create event && for view dialog
-  // //? ----------------------------------- -- ----------------------------------- */
-  openEditDialog(data): void {
+  //* Dialog Create
+  createEvent(data): void {
     let taskId = data.taskId ? data.taskId : null;
     data.end = data.end ? data.end : addMinutes(data.start, 60);
     const dialogConfig = new MatDialogConfig();
@@ -233,89 +240,87 @@ export class CalendarComponent implements OnInit {
         this.events.pop();
         this.refreshing();
       } else {
-        this.DataService.createEvent(result).subscribe(async (res) => {
-          await (res.status);
-          if (res.status === 200) {
-            // this.getEvents()
+        this.DataService.createEvent(result).subscribe(async (resServer) => {
+          await (resServer.status);
+          if (resServer.status === 200) {
+          } else {
+            //TODO Dialog Error 500
           }
         })
       }
     });
   }
-  openViewDialog(event): void {
+  toolTipCreate(e): void {
+    let { start, end, div, container } = e.currentTarget.infos;
+    var x = e.clientX,       y = e.clientY;
+    div.style.top = (y - container.offsetHeight) + 'px';
+    div.style.left = (x) + 'px';
+    div.innerText = `${format(start, 'HH:mm')} - ${format(end, 'HH:mm')}`;
+  }
+
+  /* ------------------------------- view Event ------------------------------- */
+  eventClicked(event) {
+    let id = event['event'].meta.id;
+
     const dialogConfig = new MatDialogConfig();
     dialogConfig.panelClass = 'edit-event';
     dialogConfig.data = event;
     let dialogRef = this.dialog.open(ViewEventComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
-      if (result === true) {
-        this.getEvents();
-        this.refreshing();
+      if (result === "removed") {
+        this.DataService.deleteEvent(id).subscribe(async (resServer) => {
+          await (resServer.status);
+          if (resServer.status === 200) {
+            this.events.splice(this.events.findIndex(e => e['meta'].id === id),1);
+            this.refreshing();
+          } else {
+            
+          }
+        })
       }
-    })
+    });
   }
 
-
-  eventDropped({
+  /* --------------------------- Event Time Changed --------------------------- */
+  eventTimesChanged({
     event,
     newStart,
+    newEnd
   }: CalendarEventTimesChangedEvent): void {
-    if (this.view === 'month') {
-      event['start'] = new Date(newStart);
-    } else {
-      event['start'] = new Date(newStart);
-    }
-    event['end'] = addMinutes((event['start']), 60);
+    if (event.meta) {
+      if (this.view !== CalendarView.Month) {
+        const hourFormat = "HH:mm";
+        const dialogConfig = new MatDialogConfig();
+        dialogConfig.panelClass = 'edit-event';
 
-    this.events.push(event)
-    this.openEditDialog(event);
-  }
-
-  eventClicked(event) {
-    this.openViewDialog(event)
-  }
-
-  getEvents() {
-    this.events = [];
-    let date = this.viewDate;
-    let url = "";
-    switch (this.view) {
-      case CalendarView.Month:
-        url = `?display=month&month=${date.getMonth() + 1}&year=${date.getFullYear()}`;
-        break;
-      case CalendarView.Week:
-        url = `?display=week&week=${getWeek(this.viewDate,  {weekStartsOn: 1})}&year=${getWeekYear(this.viewDate)}`;
-        break;
-      case CalendarView.Day:
-        url = `?display=day&date=${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
-        break;
-      default:
-        url = "";
-        break;
-    }
-    this.DataService.getHome(url).subscribe( (result) => {
-      let json = result['data'];
-      let colors;
-       json['events'].forEach(element => {
-        try {
-          colors =  json['activities'].find(activity => activity.id === json['tasks'].find(task => element.tasks_id === task.id).activities_id).color_code;
-        } catch (error) {
-          colors = '#8d8d8d';
-        }
-        this.events.push(  {
-          "start": parseISO(element.start),
-          "end": parseISO(element.end),
-          "title": element.description,
-          draggable:true,
-          color : {primary: '#263238', secondary: colors},
-          meta : {
-            test: "test",
-            id: element.id,
-            taskId: element.tasks_id
+        let dialogRef = this.dialog.open(MoveEventComponent, dialogConfig);
+        dialogRef.afterClosed().subscribe(result => {
+          if (result === true) {
+            let patch = {
+              "start": newStart,
+              "end": newEnd
+            }
+            this.DataService.updateEvent(event['meta'].id, patch).subscribe(async (resServer) => {
+              await (resServer.status);
+              if (resServer.status === 200) {
+                let Ievent = this.events.findIndex(e => e['meta'].id === event['meta'].id);
+                let EventFound = this.events[Ievent];
+                EventFound.start = newStart;
+                EventFound.end = newEnd;
+                this.refreshing();
+              } else {
+                //TODO Dialog Error 500
+              }
+            });
           }
         });
-      });
+      }
+    } else {
+      event['start'] = newStart;
+      event['end'] = addMinutes((event['start']), 60);
+      this.events.push(event);
       this.refreshing();
-    });
+      this.createEvent(event);
+    }
   }
 }

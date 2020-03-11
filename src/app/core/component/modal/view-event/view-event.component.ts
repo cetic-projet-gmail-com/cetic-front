@@ -17,9 +17,9 @@ export class ViewEventComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data, private DataService : DataService) {}
 
   ngOnInit() {
-    console.log(this.data)
-    this.startHour = format( this.data.event.start, 'HH "h" mm'); //à formater
-    this.endHour =  format(this.data.event.end, 'HH "h" mm'); //aussi
+    // console.log(this.data)
+    this.startHour = format( this.data.event.start, 'HH:mm'); 
+    this.endHour =  format(this.data.event.end, 'HH:mm');
 
     this.color = this.data.event.color.secondary;
 
@@ -31,8 +31,8 @@ export class ViewEventComponent implements OnInit {
   }
 
   async remove() {
-    console.log(this.data)
+    // console.log(this.data)
     this.DataService.deleteEvent(this.data.event['meta'].id).subscribe()
-    this.dialogRef.close(true);
+    this.dialogRef.close("removed");
   }
 }
