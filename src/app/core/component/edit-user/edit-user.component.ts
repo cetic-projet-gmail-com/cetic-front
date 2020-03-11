@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { faCaretSquareLeft } from '@fortawesome/free-solid-svg-icons';
+import { faFileExport } from '@fortawesome/free-solid-svg-icons';
+
+
 
 @Component({
   selector: 'app-edit-user',
@@ -6,6 +10,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-user.component.scss']
 })
 export class EditUserComponent implements OnInit {
+
+  faCaretSquareLeft = faCaretSquareLeft
+  faFileExport = faFileExport
+
 
   constructor() { }
 

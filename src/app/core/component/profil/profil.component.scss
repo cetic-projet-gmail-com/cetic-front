@@ -1,0 +1,111 @@
+$poiret : 'Poiret One';
+$saira : 'Saira Semi Condensed';
+$col_typo : #5a5a5a;
+
+
+.content {
+  position: relative;
+  width: 600px;
+  margin: auto;
+  margin-top: 50px;
+  text-align: center;
+  box-shadow: 0px 5px 10px rgba(216, 216, 216, 0.7);
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #fff;
+  font-family: $saira;
+
+  .back {
+    position: absolute;
+    top: 30px;
+    left: 20px;
+    font-size: 2em;
+    color: rgba(83, 133, 61, 0.7);
+    cursor: pointer;
+    margin-top: 0;
+
+    &:hover {
+      color: rgba(83, 133, 61, 1);
+
+    }
+  }
+
+  h2 {
+    margin: 10px 0 30px 0;
+  }
+
+  form {
+    text-align: left;
+
+
+    label {
+      text-transform: capitalize;
+      font-size: 1.2em;
+      margin: 0;
+    }
+
+    input,
+    select,
+    p {
+      width: 100%;
+      color: $col_typo;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 5px;
+      border: none;
+      box-shadow: inset -2px 2px 3px rgba(216, 216, 216, 0.7);
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    button {
+      font-family: $saira;
+      text-transform: capitalize;
+      background-color: rgba(83, 133, 61, .7);
+      color: white;
+      border: none;
+      border-radius: 3px;
+      padding: 5px 15px;
+      margin-left: 485px;
+      margin-top: 20px;
+      // transition: all 0.3s ease;
+
+      &:hover {
+        background-color: #53853D;
+        transition: all 0.3s ease;
+
+      }
+    }
+
+    div {
+      margin-bottom: 10px;
+    }
+
+    .role {
+      margin-top: 20px;
+    }
+
+    .role,
+    .dep {
+
+      display: flex;
+
+      label {
+        margin-right: 40px;
+
+      }
+
+      label,
+      input {
+        width: 50%;
+      }
+    }
+
+
+  }
+
+
+
+}

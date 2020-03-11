@@ -1,0 +1,40 @@
+ <div class="styleOfPopUp">
+    <p>Créer nouveau billet - {{this.viewDate}}</p>
+    <p></p>
+    <form #f="ngForm" (ngSubmit)="next(f)" method="post" *ngIf="view==1" class="form-group">
+        <h4 class="">Liste des tâches</h4>
+        <p *ngIf="data.activities.length === 0"><em>Aucune tâche</em></p>
+        <mat-accordion>
+        <mat-expansion-panel *ngFor="let activity of data.activities" class="panel-group"  >
+             <mat-expansion-panel-header>{{activity.name}}</mat-expansion-panel-header>
+             <div>
+                <div class="list-group list-group-flush list-of-tasks" *ngFor="let task of activity['tasks']" >
+                    <input id="{{task.taskId}}" required #tasks="ngModel" ngModel type="radio" value="{{task.taskId}}" name="tasks" class="form-check-input"/>
+                    <label for="{{task.taskId}}">{{ task.title }}</label>
+                </div>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+        <div class="btn-group  d-flex justify-content-between">
+            <button type="button" class="btn btn-secondary" (click)="onNoClick()">Annuler</button> 
+            <button class="btn btn-primary" [disabled]="f.invalid">Suivant</button>
+        </div>
+    </form>
+    
+    <form #f="ngForm" (ngSubmit)="submit(f)" *ngIf="view==2" class="form-group" >
+        <p>id tache : {{res['tasks_id']}}</p>
+        <button type="button" (click)="view = 1" class="btn btn-secondary" class="form-control">Précédent</button>
+        <label for="startTime">Début</label>
+        <input #start="ngModel" [(ngModel)]="data.start" type="time" id="startTime" name="start" min="07:00" max="21:00" required class="form-control">
+        <label for="endTime" >Fin</label>
+        <input #end="ngModel" [(ngModel)]="data.end" type="time" id="endTime" name="end"  min="07:00" max="21:00" required class="form-control">
+        
+        <label for="description" class="styleOfLabel">Description</label>
+        <textarea #description="ngModel" ngModel name="description" id="description" required class="form-control" placeholder=""></textarea>
+        <br>
+        <div class="btn-group  d-flex justify-content-between">
+            <button class="btn btn-secondary" type="button" (click)="onNoClick()">Annuler</button> 
+            <button class="btn btn-primary" [disabled]="f.invalid">Éditer</button>
+        </div>
+    </form> 
+</div>

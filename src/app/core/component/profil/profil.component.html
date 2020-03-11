@@ -1,0 +1,49 @@
+<div class="content">
+
+  <h2>{{this.user.firstname}} {{this.user.lastname}}</h2>
+  <a [routerLink]="'/home'">
+    <fa-icon [icon]="faCaretSquareLeft" class="back"></fa-icon>
+  </a>
+
+  <form action="#" class="infoUser">
+    <div>
+      <label for="fname">E-mail </label><br>
+      <input type="text" id="fname" name="fname" value="{{this.user.mail}}">
+    </div>
+    <div>
+      <label for="oldPwd">Ancien mot de passe</label><br>
+      <input type="text" id="oldPwd" name="oldPwd" value="oldPwd">
+    </div>
+    <div>
+      <label for="newPwd">Nouveau mot de passe</label><br>
+      <input type="text" id="newPwd" name="newPwd" value="newPwd">
+    </div>
+    <div>
+      <label for="confirmPwd">Confirmation nouveau mot de passe:</label><br>
+      <input type="text" id="confirmPwd" name="confirmPwd" value="confirmPwd">
+    </div>
+
+    <div class="role">
+      <label for="fname">Rôle</label>
+      <p>{{this.user.role_id}}</p>
+      <!-- <input [disabled]="isAuthorize()" type="text" id="role" name="role" value="{{this.user.role_id}}"> -->
+    </div>
+
+    <div class="dep">
+      <label for="department">Département</label>
+      <p>{{this.user.departement_id}}</p>
+
+      <!-- <input type="text" [disabled]="isAuthorize()" id="departement" name="departement"
+        value="{{this.user.departement_id}}"> -->
+    </div>
+    <button ng-click="editUser()" class="save">Editer</button>
+
+  </form>
+
+
+
+
+
+
+
+</div>

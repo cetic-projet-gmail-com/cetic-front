@@ -3,17 +3,28 @@ $saira : 'Saira Semi Condensed';
 $col_typo : #5a5a5a;
 
 .container {
+  position: relative;
+
+  confirm-delete {
+    z-index: 999;
+  }
+
+  .wrap {
+    height: 580px;
+  }
 
   .content {
     border-radius: 0 0 10px 10px;
     box-shadow: 0 2px 2px rgba(0, 0, 0, .15);
+
+
   }
 
   #tab {
     display: flex;
     justify-content: space-between;
     // height: 60px;
-    margin-top: 30px;
+    margin-top: 20px;
     padding-top: 10px;
 
     .tab {
@@ -71,12 +82,22 @@ $col_typo : #5a5a5a;
     div {
       height: 40px;
       line-height: 40px;
-      width: 20%;
+
       background-color: white;
       border-right: 1px solid #cccccc;
 
-      &:nth-child(1) {
-        width: 50px;
+      fa-icon {
+        float: right;
+        padding-right: 10px;
+
+      }
+
+      // &:nth-child(1) {
+      //   width: 50px;
+      // }
+
+      &:last-child {
+        width: 15%;
       }
 
     }
@@ -84,27 +105,85 @@ $col_typo : #5a5a5a;
 
   }
 
+  .titleListe_user {
+    div {
+      width: 28%;
+
+      &:last-child {
+        width: 15%;
+      }
+    }
+  }
+
+  .titleListe_dep {
+    div {
+      width: 43%;
+
+      &:last-child {
+        width: 15%;
+      }
+    }
+  }
+
+  .titleListe_activity {
+    div {
+      width: 20%;
+
+      &:nth-child(2) {
+        width: 10%;
+      }
+
+      &:last-child {
+        width: 10%;
+      }
+    }
+  }
+
   ul {
     padding: 0;
+    height: 495px;
+    // overflow-y: scroll;
+    background-color: white;
+    border-radius: 0 0 10px 10px;
 
     li {
       display: flex;
       justify-content: space-between;
 
       div {
-        width: 20%;
+        // width: 28%;
         text-align: center;
         min-height: 40px;
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         align-items: center;
         border-right: 1px solid #cccccc;
 
 
-        &:nth-child(1) {
-          width: 50px;
-        }
 
+
+        // &:nth-child(1) {
+        //   width: 50px;
+        // }
+
+        // &:last-child {
+        //   width: 15%;
+        // }
+
+      }
+
+      &:hover {
+        background-color: rgba(83, 133, 61, 0.7);
+        color: white;
+        transition: all 0.3s ease;
+
+        fa-icon {
+          color: white;
+
+          &:hover {
+            color: black;
+          }
+        }
       }
 
       .color {
@@ -126,16 +205,11 @@ $col_typo : #5a5a5a;
     }
 
     fa-icon {
+
       color: #c7c7c7;
       padding: 5px;
 
-      &:hover {
-        color: $col_typo;
-      }
     }
-
-
-
 
     .odd {
       background-color: white;
@@ -146,26 +220,100 @@ $col_typo : #5a5a5a;
     }
   }
 
+  .ul_user {
+    li {
+      div {
+        width: 28%;
+
+        span {
+          text-transform: uppercase;
+          margin-right: 5px;
+        }
+
+        &:last-child {
+          width: 15%;
+        }
+      }
+
+    }
+  }
+
+  .ul_dep {
+    li {
+      div {
+        width: 43%;
+
+        &:last-child {
+          width: 15%;
+        }
+      }
+
+    }
+  }
+
+  .ul_activity {
+    li {
+      div {
+        width: 20%;
+
+        &:nth-child(2) {
+          width: 10%;
+        }
+
+
+        &:last-child {
+          width: 10%;
+        }
+      }
+
+    }
+  }
+
 
 }
 
-.info {
-  text-align: right;
-  margin-right: 20px;
-  margin-top: 55px;
+.next_prev {
+  margin-top: 40px;
+  text-align: center;
 
-  a {
-
+  button {
     font-family: $saira;
-    text-transform: uppercase;
-    color: #c4c4c4;
+    font-size: .8em;
+    text-transform: capitalize;
+    background-color: rgba(83, 133, 61, .7);
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 15px;
+    margin-left: 10px;
 
-    &:first-child {
-      margin-right: 20px;
+    // transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #53853D;
+      transition: all 0.3s ease;
+
     }
-
-    font-size: .6em;
-
   }
 
+  .info {
+    text-align: right;
+    margin-right: 20px;
+
+
+    a {
+
+      font-family: $saira;
+      text-transform: uppercase;
+      color: #c4c4c4;
+
+      &:first-child {
+        margin-right: 20px;
+      }
+
+      font-size: .6em;
+
+    }
+
+  }
 }

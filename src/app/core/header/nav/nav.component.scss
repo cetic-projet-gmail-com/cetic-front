@@ -33,11 +33,16 @@ $col_typo : #5a5a5a;
   .menu {
     align-content: center;
     margin: auto 20px auto 0;
+    display: flex;
 
-    .faBars {
+
+    app-menu {
       margin-left: 20px;
       font-size: 1.2em;
       color: #53853D;
+      z-index: 999;
+
+
 
     }
 
@@ -49,7 +54,7 @@ $col_typo : #5a5a5a;
       background-color: white;
       border-radius: 3px;
       border: none;
-      padding: 0 10px;
+      padding: 2px 15px;
       box-shadow: 0 1px 1px rgba(0, 0, 0, .15);
 
       &:hover {

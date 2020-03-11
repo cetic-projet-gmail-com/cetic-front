@@ -1,1 +1,44 @@
-<p>edit-user works!</p>
+<div class="content">
+  <a [routerLink]="'/administration/users'">
+    <fa-icon [icon]="faCaretSquareLeft" class="back"></fa-icon>
+  </a>
+
+  <div class="board">
+
+    <div class="datepicker">
+      <div class="lien"></div>
+      <div class="date">
+        <div class="date_one">Du 15 septembre 2020</div>
+        <div class="date_two">Au 25 septembre 2020</div>
+      </div>
+      <a href="">
+        <fa-icon [icon]="faFileExport"></fa-icon>
+      </a>
+
+    </div>
+
+    <div class="board_content">
+      <update-user></update-user>
+      <div class="board_content_details">
+        <h3>Activité 1</h3>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="save">
+
+  <button form="formUpdateUser" id="save">sauvegarder</button>
+  <button>Ok</button>
+
+</div>
+
+
+<div class="info">
+  <a href="https://forge.cetic.be/login?back_url=https%3A%2F%2Fforge.cetic.be%2Fprojects%2Fmission-timetrack
+              Redmine@CETIC" target="_blank">> Suggestion ? </a>
+
+</div>
