@@ -1,7 +1,7 @@
+import { DataService } from 'src/app/core/services/data.service';
 import { Component, OnInit } from '@angular/core';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-
 
 @Component({
   selector: 'app-menu',
@@ -19,10 +19,11 @@ export class MenuComponent implements OnInit {
     console.log(this.isHidden);
   }
 
-  constructor() { }
+  constructor(private DataService: DataService) { }
 
-
+  name
   ngOnInit() {
+    
   }
 
 }
