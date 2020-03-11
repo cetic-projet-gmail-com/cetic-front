@@ -1,4 +1,4 @@
-import { UpdateUserComponent } from './core/component/modal/update-user/update-user.component';
+import { ErrorComponent } from './core/component/error/error.component';
 import { ForgotPasswordComponent } from './core/component/forgot-password/forgot-password.component';
 import { LoginComponent } from './core/authentification/login/login.component';
 import { ProfilComponent } from './core/component/profil/profil.component';
@@ -66,10 +66,10 @@ const routes: Routes = [
     path: 'forgot_password',
     component: ForgotPasswordComponent
   },
-
-
-
-
+  {
+    path: '**',
+    component: ErrorComponent
+  }
 
 ];
 

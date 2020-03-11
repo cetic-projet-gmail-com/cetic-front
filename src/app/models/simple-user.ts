@@ -1,4 +1,4 @@
-export class SimpleUser {
+export interface SimpleUser {
     
         data: {
           user: {

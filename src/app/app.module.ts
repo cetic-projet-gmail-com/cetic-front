@@ -1,3 +1,4 @@
+import { ErrorComponent } from './core/component/error/error.component';
 import { AngularMaterialModule } from './angular-material.module';
 import { ForgotPasswordComponent } from './core/component/forgot-password/forgot-password.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -50,10 +51,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OrderModule } from 'ngx-order-pipe';
 import { HomeNavComponent } from './core/component/home/home-nav/home-nav.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
-
     NavComponent,
     LoginComponent,
     HomeComponent,
@@ -77,7 +78,8 @@ import { HomeNavComponent } from './core/component/home/home-nav/home-nav.compon
     UpdateActivityComponent,
     CreateDepartementComponent,
     UpdateDepartementComponent,
-    HomeNavComponent
+    HomeNavComponent,
+    ErrorComponent
   ],
   imports: [
     ReactiveFormsModule,
