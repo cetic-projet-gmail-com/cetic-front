@@ -82,36 +82,35 @@ body {
   border-top-right-radius: 0px;
 }
 
-// .cal-month-view .cal-days .cal-cell-row {
-//   border: none;
-// }
+/* --------------------------- style mini calendar -------------------------- */
+
+.jqx-widget-content,
+.jqx-widget-content {
+
+  background-color: #fafafa;
+}
+
+.jqx-widget-header.jqx-widget-header-classic.jqx-calendar-title-header.jqx-calendar-title-header-classic {
+  background-color: #fafafa;
+
+}
+
+.drag-active {
+  background-color: rgba(83, 133, 61, 0.5);
+  border-radius: 5px;
+  color: white;
+  font-weight: 700;
+
+}
+
+.card-body {
+  padding: 0;
+}
+
+/* -------------------------------------------------------------------------- */
 
 
-// .cal-month-view {
-//   width: 1134px;
-//   height: 764px;
-// }
 
-// .cal-month-view .cal-cell-top {
-//   min-height: 152.8px;
-//   border: 1px solid rgba(83, 133, 61, 0.3);
-// }
-
-// .cal-month-view .cal-day-cell:not(:last-child) {
-//   border: none;
-// }
-
-// .cal-month-view .cal-day-cell.cal-weekend .cal-day-number {
-//   color: #646464;
-// }
-
-// .cal-month-view .cal-day-number {
-//   color: #646464;
-// }
-
-// .cal-cell-row.cal-header {
-//   color: rgb(83, 133, 61) o
-// }
 
 html,
 body {

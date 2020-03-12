@@ -3,19 +3,19 @@
   </app-home-nav>
 </app-nav>
 
-<section class="content">
+<section class="content_home">
   <div class="calendar">
     <div class="calendar_tab">
+      <div class="day" (click)="changeView(CalendarView.Day)" [class.active]="view === CalendarView.Day">
+        Jour
+      </div>
+      <div class="week active" (click)="changeView(CalendarView.Week)" [class.active]="view === CalendarView.Week">
+        Semaine
+      </div>
       <div class="month" (click)="changeView(CalendarView.Month)" [class.active]="view === CalendarView.Month">
         Mois
       </div>
 
-      <div class="week active" (click)="changeView(CalendarView.Week)" [class.active]="view === CalendarView.Week">
-        Semaine
-      </div>
-      <div class="day" (click)="changeView(CalendarView.Day)" [class.active]="view === CalendarView.Day">
-        Jour
-      </div>
 
     </div>
 
@@ -24,8 +24,20 @@
     </div>
   </div>
   <div class="widget">
-    <app-home-aside class="mb-auto p-2 w-100"></app-home-aside>
-    <app-mini-calendar [(viewDate)]="viewDate" [(view)]="view" class="p-2"></app-mini-calendar>
+    <div class="hour">
+      <h4>Mois 2 - <span>134h10</span></h4>
+
+    </div>
+    <div class="list_activities">
+      <h5>Durée total</h5>
+      <div class="list_activities_drag" data-simplebar>
+        <app-home-aside class=""></app-home-aside>
+      </div>
+    </div>
+    <!-- <button>Exporter</button> -->
+    <div class="mini_calendar">
+      <app-mini-calendar [(viewDate)]="viewDate" [(view)]="view" class="p-2"></app-mini-calendar>
+    </div>
   </div>
 
 </section>

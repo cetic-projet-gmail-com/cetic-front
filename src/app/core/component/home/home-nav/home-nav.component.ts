@@ -45,7 +45,7 @@ export class HomeNavComponent implements OnInit, OnChanges {
     } else if (this.view === CalendarView.Month) {
       this.showDate = `${month} ${year}`;
     } else if (this.view === CalendarView.Day) {
-      this.showDate = `${day} ${date.getDay()} ${month} ${year}`;
+      this.showDate = `${day} ${date.getDate()} ${month} ${year}`;
     }
   }
 

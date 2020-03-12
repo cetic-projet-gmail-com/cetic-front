@@ -1,3 +1,10 @@
 li {
-    padding: 10px;
+
+  padding: 10px;
+
+  &:hover {
+    background-color: #fafafa;
+    border-radius: 3px;
+
+  }
 }
