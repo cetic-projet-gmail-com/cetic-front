@@ -1,46 +1,66 @@
  <div class="styleOfPopUp">
-    <p>Créer nouveau billet - {{this.viewDate}}</p>
-    <form #f="ngForm" (ngSubmit)="next(f)" method="post" *ngIf="view==1" class="">
-        <h4 class="">Liste des tâches</h4>
-        <p *ngIf="data.activities.length === 0"><em>Aucune tâche</em></p>
-        <mat-accordion>
-        <mat-expansion-panel *ngFor="let activity of data.activities" class=""  >
-             <mat-expansion-panel-header>{{activity.name}}</mat-expansion-panel-header>
-             <div>
-                <div  *ngFor="let task of activity['tasks']" class="list-of-tasks" >
-                    <input id="{{task.taskId}}" required #tasks="ngModel" ngModel type="radio" value="{{task.taskId}}" name="tasks" class=""/>
-                    <label for="{{task.taskId}}" class="label">{{ task.title }}</label>
-                </div>
-            </div>
-        </mat-expansion-panel>
-    </mat-accordion>
-        <br>
-        <div class="">
-            <button type="button" class="" (click)="onNoClick()">Annuler</button> 
-            <button [disabled]="f.invalid" class="btn_next">Suivant</button>
-        </div>
-    </form>
-    
-    <form #f="ngForm" (ngSubmit)="submit(f)" *ngIf="view==2" class="form-group" >
-        <!-- <div class="" [ngStyle]="{'background-color':activityFound.color_code}">couleur</div> -->
+   <h4>Ajouter un événement</h4>
+   <h5>{{this.viewDate}}</h5>
+   <form #f="ngForm" (ngSubmit)="next(f)" method="post" *ngIf="view==1" class="" id="selectTask">
+     <h4 class="">Choisissez vôtre tache</h4>
+     <p *ngIf="data.activities.length === 0"><em>Aucune tâche</em></p>
+     <div class="scroll" data-simplebar>
+       <mat-accordion>
+         <mat-expansion-panel *ngFor="let activity of data.activities" class="">
+           <mat-expansion-panel-header>
+             <div class="activity_choice_title">
+               <div class="colorActivity" [ngStyle]="{'background-color':activity.color_code}"
+                 class="activity_color_choice"></div>
+               {{activity.name}}
+             </div>
+           </mat-expansion-panel-header>
+           <div>
+             <div *ngFor="let task of activity['tasks']" class="list-of-tasks">
 
-        <h1>{{activityFound.name}}</h1>
-        <h2>{{taskFound.title}}</h2>
-    
-        <button type="button" (click)="view = 1" class="btn_back" >Précédent</button><br>
+               <div class="item_activity">
+                 <input id="{{task.taskId}}" required #tasks="ngModel" ngModel type="radio" value="{{task.taskId}}"
+                   name="tasks" class="" />
+                 <label for="{{task.taskId}}" class="label_radio">{{ task.title }}</label>
+               </div>
 
-        <p>id tache : {{res['tasks_id']}}</p>
-        <label for="startTime" class="label">Début</label>
-        <input #start="ngModel" [(ngModel)]="data.start" type="time" id="startTime" name="start" min="07:00" max="21:00" required class="">
-        <label for="endTime" class="label">Fin</label>
-        <input #end="ngModel" [(ngModel)]="data.end" type="time" id="endTime" name="end"  min="07:00" max="21:00" required class="">
-        
-        <label for="description" class="label">Description</label>
-        <textarea #description="ngModel" ngModel name="description" id="description" required class="" placeholder=""></textarea>
-        <br>
-        <div class=" styleOfSecondDiv">
-            <button  type="button" (click)="onNoClick()" class="btn_cancel">Annuler</button> 
-            <button  [disabled]="f.invalid" class="btn_edit">Éditer</button>
-        </div>
-    </form> 
-</div>
+             </div>
+           </div>
+         </mat-expansion-panel>
+       </mat-accordion>
+     </div>
+
+     <div class="form_button" id="selectTask">
+       <button type="button" class="" (click)="onNoClick()">Annuler</button>
+       <button [disabled]="f.invalid" class="btn_next">Suivant</button>
+     </div>
+   </form>
+
+   <form #f="ngForm" (ngSubmit)="submit(f)" *ngIf="view==2" class="form-group">
+
+     <div class="activity_title">
+       <div class="activity_color" [ngStyle]="{'background-color':activityFound.color_code}"></div>
+       <h1>{{activityFound.name}}</h1>
+     </div>
+     <h2>{{taskFound.title}}</h2>
+
+     <a type="button" (click)="view = 1" class="btn_back">
+       <fa-icon [icon]="faCaretSquareLeft" class="back"></fa-icon>
+     </a>
+
+     <label for="startTime" class="label">Début</label>
+     <input #start="ngModel" [(ngModel)]="data.start" type="time" id="startTime" name="start" min="07:00" max="21:00"
+       required class="">
+     <label for="endTime" class="label">Fin</label>
+     <input #end="ngModel" [(ngModel)]="data.end" type="time" id="endTime" name="end" min="07:00" max="21:00" required
+       class="">
+
+     <label for="description" class="label">Description</label>
+     <textarea #description="ngModel" ngModel name="description" id="description" required class=""
+       placeholder=""></textarea>
+     <br>
+     <div class="styleOfSecondDiv">
+       <button type="button" (click)="onNoClick()" class="btn_cancel">Annuler</button>
+       <button [disabled]="f.invalid" class="btn_edit">Éditer</button>
+     </div>
+   </form>
+ </div>

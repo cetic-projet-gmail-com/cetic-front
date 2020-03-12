@@ -5,6 +5,19 @@ li {
   &:hover {
     background-color: #fafafa;
     border-radius: 3px;
+    transition: all 0.3s ease;
 
   }
+}
+
+.drag-active {
+  background-color: rgba(83, 133, 61, 0.5);
+  border-radius: 5px;
+  color: white;
+  font-weight: 700;
+
+}
+
+.card-body {
+  padding: 0;
 }

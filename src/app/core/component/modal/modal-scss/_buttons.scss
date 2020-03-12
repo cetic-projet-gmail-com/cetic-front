@@ -1,30 +1,55 @@
-.btn_confirm {
+$poiret : 'Poiret One';
+$saira : 'Saira Semi Condensed';
+$col_typo : #5a5a5a;
 
+
+.btn_confirm {}
+
+.btn_cancel {
+  background: #808080;
+  border-radius: 2px;
 }
 
-.btn_cancel { 
-    background: #808080;
-    border-radius: 2px;
-}
 .btn_next {
-    background-color: #53853D;
+  background-color: #53853D;
+  margin-left: 10px;
 
 }
+
 .btn_back {
-    width: 25%;
-    height: 30px;
-    font-size: 10px;
-    margin-bottom: 5px;
-    // color: rgba(90, 90, 90, 0.6);
-    color: whitesmoke;
-    border-radius: 5px;
-    font-weight: 900;
-    background-color:  #53853D;
+  width: 25%;
+  height: 30px;
+  font-size: 10px;
+  margin-bottom: 5px;
+  // color: rgba(90, 90, 90, 0.6);
+  color: whitesmoke;
+  border-radius: 5px;
+  font-weight: 900;
+  background-color: #53853D;
 }
 
 .btn_edit {
-    color: whitesmoke;
-  
+  color: whitesmoke;
+
+  background-color: #53853D;
+  border-radius: 2px;
+}
+
+button {
+  font-family: $saira;
+  text-transform: capitalize;
+  background-color: rgba(83, 133, 61, .7);
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 5px 15px;
+  margin-top: 20px;
+  // transition: all 0.3s ease;
+
+  &:hover {
     background-color: #53853D;
-    border-radius: 2px;
+    transition: all 0.3s ease;
+
+
+  }
 }

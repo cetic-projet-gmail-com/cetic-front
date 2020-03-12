@@ -11,18 +11,8 @@ body {
   // z-index: -1000;
 }
 
+
 .jqx-calendar-cell-month.jqx-calendar-cell-month-classic {
-.edit-event .mat-dialog-container {
-  overflow: hidden;
-  border-radius: 5px;
-  padding: 5px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  background: rgb(230, 228, 228);
-  border: 1px solid #CCCCCC;
-  min-width: 25vw;
-  padding: 3%;
-}
-.jqx-calendar-cell-month.jqx-calendar-cell-month-classic{
   border: 2px solid rgba(83, 133, 61, 0.3);
   width: 20px;
   height: 20px;
@@ -34,7 +24,7 @@ body {
   text-shadow: none;
 }
 
-.jqx-fill-state-hover-classic {
+.jqx-fill-state-hover.jqx-fill-state-hover-classic {
   background-color: white;
 }
 
@@ -68,6 +58,7 @@ body {
 
 .jqx-calendar-title-content.jqx-calendar-title-content-classic {
   color: rgba(0, 0, 0, 0.5);
+  background-color: transparent;
 }
 
 .jqx-fill-state-pressed.jqx-fill-state-pressed-classic {
@@ -76,8 +67,21 @@ body {
   border: 2px solid rgba(83, 133, 61, 0.2);
 }
 
-.jqx-widget-header.jqx-widget-header-classic.jqx-calendar-title-header.jqx-calendar-title-header-classic {
-  background-color: white;
+.jqx-calendar-cell-year.jqx-calendar-cell-year-classic {
+  border: 2px solid rgba(83, 133, 61, 0.2);
+}
+
+.jqx-calendar-cell-year.jqx-calendar-cell-year-classic:hover {
+  border: 2px solid rgba(83, 133, 61, 0.5);
+}
+
+.jqx-calendar-cell-decade.jqx-calendar-cell-decade-classic {
+  border: 2px solid rgba(83, 133, 61, 0.2);
+
+}
+
+.jqx-calendar-cell-decade.jqx-calendar-cell-decade-classic:hover {
+  border: 2px solid rgba(83, 133, 61, 0.5);
 }
 
 
@@ -106,21 +110,17 @@ body {
 
 }
 
-.drag-active {
-  background-color: rgba(83, 133, 61, 0.5);
-  border-radius: 5px;
-  color: white;
-  font-weight: 700;
-
-}
-
-.card-body {
-  padding: 0;
-}
 
 /* -------------------------------------------------------------------------- */
 
-
+.edit-event .mat-dialog-container {
+  overflow: hidden;
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background: rgb(230, 228, 228);
+  border: 1px solid #CCCCCC;
+}
 
 
 html,
@@ -132,4 +132,10 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+/* --------------------------------- pop up --------------------------------- */
+.edit-event .mat-dialog-container {
+  padding: 0;
 }
+
+/* -------------------------------------------------------------------------- */
