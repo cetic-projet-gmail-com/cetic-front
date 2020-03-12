@@ -1,5 +1,5 @@
 import { SimpleUser } from './simple-user';
-export class Activities {
+export interface Activities {
     links:{
         current:string,
         next:string,

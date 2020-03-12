@@ -31,11 +31,7 @@ export class AdminUsersComponent implements OnInit {
 
   num;
   tab;
-  order = "id"
-  sens = true;
-  sensName = true;
-  sensRole = true;
-  sensDep = true;
+
 
 
   transform(value: any[], order = '', column: string = ''): any[] {
@@ -53,18 +49,38 @@ export class AdminUsersComponent implements OnInit {
   }
   user
   act
-  currentPage : string
+  nbre = "?page=1&nbre=10"
+  nbreArray = [{
+    numb: 10,
+    pageUrl: "?page=1&nbre=10"
+  }, {
+    numb: 15,
+    pageUrl: "?page=1&nbre=15"
+  }, {
+    numb: 20,
+    pageUrl: "?page=1&nbre=20"
+  }, {
+    numb: 50,
+    pageUrl: "?page=1&nbre=50"
+  }]
+  currentPage: string
   nextPage: string
   previousPage: string
   firstPage: string
   lastPage: string
   dep
-  url =this.DataService.apiURL
+  url = this.DataService.apiURL
+
   ngOnInit() {
+    this.showData()
+  }
+
+  showData() {
+    console.log('TEST');
     this.DataService.getActivities().subscribe((res) => {
       this.act = res.data.activities
     });
-    this.DataService.getAdminUsers("?paginate=true").subscribe((res) => {
+    this.DataService.getAdminUsers(this.nbre).subscribe((res) => {
       this.currentPage = res.links.current
       this.nextPage = res.links.next
       this.previousPage = res.links.previous
@@ -72,7 +88,7 @@ export class AdminUsersComponent implements OnInit {
       this.user = res.data.users
     });
 
-   
+
 
     this.DataService.getDepartements().subscribe((res) => {
       this.dep = res.data.departement
@@ -81,6 +97,7 @@ export class AdminUsersComponent implements OnInit {
 
 
   }
+
   setRoute(tab: String) {
     this.tab = tab;
   }
@@ -91,12 +108,29 @@ export class AdminUsersComponent implements OnInit {
     this.isHidden = !this.isHidden
   }
 
-  deleteUsers(id) {
+  isDelete = true
+  itemToDelete
 
-    this.DataService.deleteUser(id).subscribe((res) => {
-    })
+
+  popUpDeleted(e, u) {
+
+    this.isDelete = !this.isDelete
+    this.itemToDelete = u;
 
   }
+
+
+
+  order = "id"
+  sens = true;
+  sensName = true;
+  sensFname = true;
+  sensRole = true;
+  sensDep = true;
+  sensRes = true;
+  sensChef = true;
+  sensType = true;
+  sensStatus = true;
 
 
   sort(el) {
@@ -107,6 +141,11 @@ export class AdminUsersComponent implements OnInit {
     switch (el) {
       case "firstname":
         this.sens = true;
+        this.sensFname = !this.sensFname
+        this.sens = this.sensFname
+        break;
+      case "name":
+        this.sens = true;
         this.sensName = !this.sensName
         this.sens = this.sensName
         break;
@@ -114,31 +153,63 @@ export class AdminUsersComponent implements OnInit {
         this.sens = true;
         this.sensRole = !this.sensRole
         this.sens = this.sensRole
-
         break;
       case "departement":
         this.sens = true;
         this.sensDep = !this.sensDep
         this.sens = this.sensDep
-
+        break;
+      case "name":
+        this.sens = true;
+        this.sensName = !this.sensName
+        this.sens = this.sensName
+        break;
+      case "responsable_id":
+        this.sens = true;
+        this.sensRes = !this.sensRes
+        this.sens = this.sensRes
+        break;
+      case "chef":
+        this.sens = true;
+        this.sensChef = !this.sensChef
+        this.sens = this.sensChef
+        break;
+      case "type":
+        this.sens = true;
+        this.sensType = !this.sensType
+        this.sens = this.sensType
+        break;
+      case "status":
+        this.sens = true;
+        this.sensStatus = !this.sensStatus
+        this.sens = this.sensStatus
         break;
     }
   }
-
-  deleteDep(id) {
-
-    this.DataService.deleteDepartement(id).subscribe((res) => {
-    })
-
-  }
-  deleteAct(id) {
-
-    this.DataService.deleteActivity(id).subscribe((res) => {
-    })
+  
+  
+  refresh() {
+    this.isDelete = !this.isDelete;
+    setTimeout(() => {
+      this.showData();
+    }, 150);
 
   }
 
-  nextpage(){
+  page
+  changeNbre(){
+    this.page = document.getElementById('nbre')
+    this.nbre = this.page.value
+    this.DataService.getAdminUsers(this.nbre).subscribe((res) => {
+      this.currentPage = res.links.current
+      this.nextPage = res.links.next
+      this.previousPage = res.links.previous
+      this.lastPage = res.links.last
+      this.user = res.data.users
+    });
+  }
+  
+  nextpage() {
     this.DataService.getPage(this.nextPage).subscribe((res) => {
       this.currentPage = res.links.current
       this.nextPage = res.links.next
@@ -146,10 +217,10 @@ export class AdminUsersComponent implements OnInit {
       this.lastPage = res.links.last
       this.user = res.data.users
       this.firstPage = res.links.first
-      
+
     });
   }
-  previouspage(){
+  previouspage() {
     this.DataService.getPage(this.previousPage).subscribe((res) => {
       this.currentPage = res.links.current
       this.nextPage = res.links.next
@@ -159,7 +230,7 @@ export class AdminUsersComponent implements OnInit {
       this.user = res.data.users
     });
   }
-  lastpage(){
+  lastpage() {
     this.DataService.getPage(this.lastPage).subscribe((res) => {
       this.currentPage = res.links.current
       this.nextPage = res.links.next
@@ -167,10 +238,10 @@ export class AdminUsersComponent implements OnInit {
       this.lastPage = res.links.last
       this.firstPage = res.links.first
       this.user = res.data.users
-      
+
     });
   }
-  firstpage(){
+  firstpage() {
     this.DataService.getPage(this.firstPage).subscribe((res) => {
       this.firstPage = res.links.first
       this.currentPage = res.links.current
@@ -178,7 +249,7 @@ export class AdminUsersComponent implements OnInit {
       this.previousPage = res.links.previous
       this.lastPage = res.links.last
       this.user = res.data.users
-      
+
     });
   }
 

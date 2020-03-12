@@ -1,9 +1,10 @@
+import { ErrorComponent } from './core/component/error/error.component';
 import { AngularMaterialModule } from './angular-material.module';
 import { ForgotPasswordComponent } from './core/component/forgot-password/forgot-password.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -25,13 +26,14 @@ import { ProfilComponent } from './core/component/profil/profil.component';
 import { EditActivityComponent } from './core/component/editactivity/editactivity.component';
 import { CreateUserComponent } from './core/component/modal/create-user/create-user.component';
 import { UpdateUserComponent } from './core/component/modal/update-user/update-user.component';
+import { ConfirmDeleteComponent } from './core/component/modal/confirm-delete/confirm-delete.component';
 
 import { CreateEventComponent } from './core/component/modal/create-event/create-event.component';
 import { ViewEventComponent } from './core/component/modal/view-event/view-event.component';
 import { MoveEventComponent} from './core/component/modal/move-event/move-event.component';
 import { MiniCalendarComponent } from './core/component/home/mini-calendar/mini-calendar.component';
 
-import { jqxCalendarModule }   from 'jqwidgets-ng/jqxcalendar';
+import { jqxCalendarModule } from 'jqwidgets-ng/jqxcalendar';
 import { HomeAsideComponent } from './core/component/home/home-aside/home-aside.component';
 import { CalendarComponent } from './core/component/home/calendar/calendar.component';
 
@@ -52,10 +54,10 @@ import { HomeNavComponent } from './core/component/home/home-nav/home-nav.compon
 import { EditEventComponent } from './core/component/modal/edit-event/edit-event.component';
 import { RemoveEventComponent } from './core/component/modal/remove-event/remove-event.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
-
     NavComponent,
     LoginComponent,
     HomeComponent,
@@ -73,7 +75,7 @@ import { RemoveEventComponent } from './core/component/modal/remove-event/remove
     MiniCalendarComponent,
     HomeAsideComponent,
     CalendarComponent,
-    
+    ConfirmDeleteComponent,
     EditUserComponent,
     CreateActivityComponent,
     MenuComponent,
@@ -82,7 +84,8 @@ import { RemoveEventComponent } from './core/component/modal/remove-event/remove
     UpdateDepartementComponent,
     HomeNavComponent,
     EditEventComponent,
-    RemoveEventComponent
+    RemoveEventComponent,
+    ErrorComponent
   ],
   imports: [
     ReactiveFormsModule,

@@ -2,6 +2,8 @@ $poiret : 'Poiret One';
 $saira : 'Saira Semi Condensed';
 $col_typo : #5a5a5a;
 
+
+
 .wrapper {
   position: fixed;
   left: 0;
@@ -51,6 +53,27 @@ $col_typo : #5a5a5a;
   form {
     text-align: left;
 
+
+    mat-form-field {
+      width: 100%;
+      font-family: $saira;
+
+
+
+
+
+      label {
+        text-transform: capitalize;
+        font-size: 1.2em;
+        margin-top: 0;
+        background: fuchsia !important;
+      }
+
+      input {
+        margin-top: 10px;
+      }
+    }
+
     label {
       text-transform: capitalize;
       font-size: 1.2em;
@@ -99,6 +122,10 @@ $col_typo : #5a5a5a;
           background-color: #53853D;
           transition: all 0.3s ease;
 
+        }
+
+        &:focus {
+          outline: none;
         }
       }
     }

@@ -1,4 +1,4 @@
-export class SimpleDepartement {
+export interface SimpleDepartement {
     data: {
         departement: {
             id: number,

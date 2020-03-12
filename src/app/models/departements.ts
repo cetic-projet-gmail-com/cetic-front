@@ -1,4 +1,4 @@
-export class Departements {
+export interface Departements {
     links:{
         current:string,
         next:string,

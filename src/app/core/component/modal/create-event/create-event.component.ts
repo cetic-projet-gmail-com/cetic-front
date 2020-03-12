@@ -12,8 +12,8 @@ import {format, formatISO, addHours} from 'date-fns';
 export class CreateEventComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<CreateEventComponent>,
-    @Inject(MAT_DIALOG_DATA) public data) {}
-  
+    @Inject(MAT_DIALOG_DATA) public data) { }
+
   onNoClick(): void {
     this.dialogRef.close();
 
@@ -30,7 +30,7 @@ export class CreateEventComponent implements OnInit {
       this.view= 2;
       this.res['taskId'] = parseInt(this.data.taskId);
     } else {
-      this.view= 1;
+      this.view = 1;
     }
     
     this.viewDate = format(this.data.date,'dd/MM/yy')
@@ -49,16 +49,14 @@ export class CreateEventComponent implements OnInit {
     this.taskFound = this.activityFound['tasks'].find(tsk => 
       tsk.taskId === parseInt(f.value.tasks)
     );
-    console.log(this.activityFound)
-    console.log(this.taskFound)
-    console.log(this.data)
+   
     let taskId = parseInt(f.value.tasks) ;
     this.res['taskId'] = taskId;
   }
   submit(f) {
     // this.res['color'] = this.data.activities.find(e => e['tasks'].some(e => e.taskId === this.res['taskId'])).color_code;
     let start, end, description;
-    ({start, end, description} = f.value)
+    ({ start, end, description } = f.value)
     this.res['description'] = description;
     let date = this.data.date
     this.res['start'] = formatISO(addHours(new Date((date).getFullYear(), (date).getMonth(), (date).getDate(), start.split(':')[0], start.split(':')[1]),1));

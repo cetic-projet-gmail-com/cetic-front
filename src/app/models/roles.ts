@@ -1,4 +1,4 @@
-export class Roles {
+export interface Roles {
         data: [
             {
                 id: number,

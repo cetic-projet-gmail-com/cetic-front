@@ -1,5 +1,5 @@
 import { SimpleUser } from './simple-user';
-export class SimpleActivity {
+export interface SimpleActivity {
     data: {
         activity: {
             name: string,

@@ -5,22 +5,22 @@
     <fa-icon [icon]="faCaretSquareLeft" class="back"></fa-icon>
   </a>
 
-  <form action="#" class="infoUser">
+  <form #profilForm class="infoUser" (ngSubmit)="onFormSubmit(profilForm)">
     <div>
       <label for="fname">E-mail </label><br>
-      <input type="text" id="fname" name="fname" value="{{this.user.mail}}">
+      <input ngModel type="text" id="fname" name="fname" value="{{this.user.mail}}">
     </div>
     <div>
       <label for="oldPwd">Ancien mot de passe</label><br>
-      <input type="text" id="oldPwd" name="oldPwd" value="oldPwd">
+      <input ngModel type="text" id="oldPwd" name="oldPwd" value="oldPwd">
     </div>
     <div>
       <label for="newPwd">Nouveau mot de passe</label><br>
-      <input type="text" id="newPwd" name="newPwd" value="newPwd">
+      <input ngModel type="text" id="newPwd" name="newPwd" value="newPwd">
     </div>
     <div>
       <label for="confirmPwd">Confirmation nouveau mot de passe:</label><br>
-      <input type="text" id="confirmPwd" name="confirmPwd" value="confirmPwd">
+      <input ngModel type="text" id="confirmPwd" name="confirmPwd" value="confirmPwd">
     </div>
 
     <div class="role">
