@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDialog, MatDialogConfig} from '@angul
 import {format} from 'date-fns';
 import { DataService } from 'src/app/core/services/data.service';
 import { RemoveEventComponent } from '../remove-event/remove-event.component';
-
+import { fr } from 'date-fns/locale';
 @Component({
   selector: 'app-view-event',
   templateUrl: './view-event.component.html',
@@ -31,6 +31,9 @@ export class ViewEventComponent implements OnInit {
     this.activityName = event.meta.activityName;
     
     this.color = this.data.event.color.secondary;
+
+    let day  =this.upFirsChar(format(event.start, 'iiii', {locale: fr}));
+    this.date = `${this.upFirsChar(day)}  ${format(event.start, 'dd')} ${this.upFirsChar(format(event.start, 'MMMM', {locale: fr}))} ${format(event.start, 'yyyy')}`;
     // this.hidden = true;
   }
   onNoClick(): void {
@@ -39,6 +42,9 @@ export class ViewEventComponent implements OnInit {
   }
   edit() {
     this.dialogRef.close("edit");
+  }
+  upFirsChar(d) {
+    return d.charAt(0).toUpperCase() + d.slice(1);
   }
   remove() {
     const dialogConfig = new MatDialogConfig();

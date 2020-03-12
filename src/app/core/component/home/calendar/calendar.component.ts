@@ -228,7 +228,7 @@ export class CalendarComponent implements OnInit {
     dialogConfig.panelClass = 'edit-event';
     dialogConfig.data = {
       taskId: taskId,
-      activities: this.activities, date: data.start, start: format(data.start, formatHour), end , title: ""
+      activities: this.activities, date: data.start, start: format(data.start, formatHour), end 
     }
     let dialogRef = this.dialog.open(CreateEventComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
