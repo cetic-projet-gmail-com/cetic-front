@@ -1,12 +1,14 @@
-      <mat-accordion class="card-body" >
-        <p *ngIf="activities.length === 0"><em>Aucune tâche</em></p>
-        <mat-expansion-panel *ngFor="let activity of activities">
-        <mat-expansion-panel-header>{{activity.name}}</mat-expansion-panel-header>
-          <ul class="list-group">
-            <li class="list-group list-group-flush list-of-tasks" *ngFor="let task of activity['tasks']" mwlDraggable
-              [dropData]="{event: task}" dragActiveClass="drag-active">
-              {{ task.title }}
-            </li>
-          </ul>
-        </mat-expansion-panel>
-      </mat-accordion>
+<mat-accordion class="card-body" >
+  <p *ngIf="activities.length === 0"><em>Aucune tâche</em></p>
+ 
+ 
+  <mat-expansion-panel *ngFor="let activity of activities">
+  <mat-expansion-panel-header>{{activity.name}}</mat-expansion-panel-header>
+    <ul class="list-group">
+      <li class="list-group list-group-flush list-of-tasks" *ngFor="let task of activity['tasks']" mwlDraggable
+        [dropData]="{event: task}" dragActiveClass="drag-active">
+        {{ task.title }}
+      </li>
+    </ul>
+  </mat-expansion-panel>
+</mat-accordion>

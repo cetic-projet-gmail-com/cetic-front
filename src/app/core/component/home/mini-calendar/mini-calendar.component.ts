@@ -34,7 +34,6 @@ export class MiniCalendarComponent implements OnInit {
   miniDate = new Date();
 
   getDate(event:any):void {
-    console.log(event)
     if (event['owner'].view == "month") {
       // console.log('true')
       // this.viewChange.emit(CalendarView.Week)

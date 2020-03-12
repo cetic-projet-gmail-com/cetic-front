@@ -38,8 +38,10 @@ export class DataService {
     return this.httpClient.get(`${this.apiURL}/home${url}`);
   }
   public deleteEvent(id) {
-    console.log(id)
-      return this.httpClient.delete(`${this.apiURL}/home/${id}`)
+    return this.httpClient.delete(`${this.apiURL}/home/${id}`, {observe: 'response'});
+  }
+  public updateEvent(id, event) {
+    return this.httpClient.patch(`${this.apiURL}/home/${id}`, event, {observe: 'response'});
   }
 
   

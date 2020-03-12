@@ -1,0 +1,19 @@
+<h2>{{event.meta.activityName}}</h2>
+<h3>{{event.meta.taskName}}</h3>
+<form #f="ngForm" (ngSubmit)="submit(f)" class="">
+    <label for="startTime" class="label">Début</label>
+    <input #start="ngModel" [(ngModel)]="startText" type="time" id="startTime" name="start" min="07:00" max="21:00"
+        required class="form-control">
+    <label for="endTime" class="label">Fin</label>
+    <input #end="ngModel" [(ngModel)]="endText" type="time" id="endTime" name="end" min="07:00" max="21:00" required
+        class="form-control">
+
+    <label for="description" class="label">Description</label>
+    <textarea #description="ngModel" [(ngModel)]="event.title" name="description" id="description" required
+        class="form-control" placeholder=""></textarea>
+    <br>
+    <div class="styleOfSecondDiv">
+        <button  type="button" (click)="onNoClick()" class="btn_next">Annuler</button>
+        <button  [disabled]="f.invalid" class="btn_edit">Éditer</button>
+    </div>
+</form>

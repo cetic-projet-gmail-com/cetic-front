@@ -1,38 +1,56 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {format} from 'date-fns';
 import { DataService } from 'src/app/core/services/data.service';
+import { RemoveEventComponent } from '../remove-event/remove-event.component';
+
 @Component({
   selector: 'app-view-event',
   templateUrl: './view-event.component.html',
-  styleUrls: ['./view-event.component.scss']
+  styleUrls: ['../modal-scss/style.scss']
 })
 export class ViewEventComponent implements OnInit {
   startHour;
   endHour;
   color;
-  hidden;
+  // hidden;
+  activityName;
+  takName;
+  event;
+  date;
   constructor(
     public dialogRef: MatDialogRef<ViewEventComponent>,
-    @Inject(MAT_DIALOG_DATA) public data, private DataService : DataService) {}
+    @Inject(MAT_DIALOG_DATA) public data, private DataService : DataService, private dialog: MatDialog) {}
 
   ngOnInit() {
-    console.log(this.data)
-    this.startHour = format( this.data.event.start, 'HH "h" mm'); //à formater
-    this.endHour =  format(this.data.event.end, 'HH "h" mm'); //aussi
-
+    let event = this.data.event;
+    this.startHour = format( event.start, 'HH:mm'); 
+    this.endHour =  format(event.end, 'HH:mm');
+    this.date = format(event.start, 'dd/MM/yyyy')
+    this.takName = event.meta.taskName;
+    this.activityName = event.meta.activityName;
+    
     this.color = this.data.event.color.secondary;
-
-    this.hidden = true;
+    // this.hidden = true;
   }
   onNoClick(): void {
     this.dialogRef.close();
 
   }
+  edit() {
+    this.dialogRef.close("edit");
+  }
+  remove() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.panelClass = 'edit-event';
 
-  async remove() {
-    console.log(this.data)
-    this.DataService.deleteEvent(this.data.event['meta'].id).subscribe()
-    this.dialogRef.close();
+    let dialogRef = this.dialog.open(RemoveEventComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(res => {
+      if (res === true) {
+        this.dialogRef.close("removed");
+      } else {
+        this.dialogRef.close();
+      }
+    })
   }
 }

@@ -30,6 +30,7 @@ import { ConfirmDeleteComponent } from './core/component/modal/confirm-delete/co
 
 import { CreateEventComponent } from './core/component/modal/create-event/create-event.component';
 import { ViewEventComponent } from './core/component/modal/view-event/view-event.component';
+import { MoveEventComponent} from './core/component/modal/move-event/move-event.component';
 import { MiniCalendarComponent } from './core/component/home/mini-calendar/mini-calendar.component';
 
 import { jqxCalendarModule } from 'jqwidgets-ng/jqxcalendar';
@@ -50,6 +51,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { OrderModule } from 'ngx-order-pipe';
 import { HomeNavComponent } from './core/component/home/home-nav/home-nav.component';
+import { EditEventComponent } from './core/component/modal/edit-event/edit-event.component';
+import { RemoveEventComponent } from './core/component/modal/remove-event/remove-event.component';
 
 
 @NgModule({
@@ -68,6 +71,7 @@ import { HomeNavComponent } from './core/component/home/home-nav/home-nav.compon
     UpdateUserComponent,
     CreateEventComponent,
     ViewEventComponent,
+    MoveEventComponent,
     MiniCalendarComponent,
     HomeAsideComponent,
     CalendarComponent,
@@ -79,6 +83,8 @@ import { HomeNavComponent } from './core/component/home/home-nav/home-nav.compon
     CreateDepartementComponent,
     UpdateDepartementComponent,
     HomeNavComponent,
+    EditEventComponent,
+    RemoveEventComponent,
     ErrorComponent
   ],
   imports: [
@@ -102,7 +108,7 @@ import { HomeNavComponent } from './core/component/home/home-nav/home-nav.compon
   ],
   providers: [AuthenticationService, AuthGuardService],
   bootstrap: [AppComponent],
-  entryComponents: [CreateEventComponent, ViewEventComponent],
+  entryComponents: [CreateEventComponent, ViewEventComponent, MoveEventComponent, EditEventComponent, RemoveEventComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

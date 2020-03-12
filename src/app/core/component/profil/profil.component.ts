@@ -1,10 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { DataService } from 'src/app/core/services/data.service';
+import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { TitleService } from './../../services/title.service';
 import { AuthenticationService, UserDetails } from '../../services/auth/authentification.service';
 import { faCaretSquareLeft } from '@fortawesome/free-solid-svg-icons';
-
-
 
 @Component({
   selector: 'profil',
@@ -16,13 +15,13 @@ export class ProfilComponent implements OnInit {
   faCaretSquareLeft = faCaretSquareLeft
 
 
-  constructor(private http: HttpClient, private TitleService: TitleService, private auth: AuthenticationService) {
+  constructor(private DataService: DataService, private TitleService: TitleService, private auth: AuthenticationService) {
 
   }
   details: UserDetails;
   user = {};
   role;
-  baseUrl = "http://localhost:3000";
+  baseUrl = this.DataService.apiURL;
   url = this.baseUrl + '/profil';
 
   ngOnInit() {
