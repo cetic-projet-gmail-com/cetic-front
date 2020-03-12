@@ -54,6 +54,7 @@ export class CalendarComponent implements OnInit {
   endHour = 20;
   @Input() view: CalendarView;
   @Input() viewDate: Date;
+  @Output() viewDateChange = new EventEmitter<Date>();
   @Output() viewChange = new EventEmitter<string>();
   events: CalendarEvent[] = [];
   //? List of Activities - util for creating new Event
@@ -76,7 +77,8 @@ export class CalendarComponent implements OnInit {
   //? Change day when a day is clicked on view month
   changeDay(date: Date) {
     this.viewDate = date;
-    this.viewChange.emit(CalendarView.Week)
+    this.viewChange.emit(CalendarView.Week);
+    this.viewDateChange.emit(this.viewDate);
   }
    //? Refresh view for display events list
   refreshing() {
@@ -122,11 +124,11 @@ export class CalendarComponent implements OnInit {
     let task, activity;
     activity = this.activities.find(act =>  
         act['tasks'].some(t => 
-          t.taskId === event.tasks_id
+          t.taskId === event.taskId
       )
     );
     task = activity['tasks'].find(tsk => 
-      tsk.taskId === event.tasks_id
+      tsk.taskId === event.taskId
     );
     this.events.push({
       start: parseISO(event.start),
@@ -141,7 +143,7 @@ export class CalendarComponent implements OnInit {
       color: { primary: '#263238', secondary: activity.color_code },
       meta: {
         id: event.id,
-        taskId: event.tasks_id,
+        taskId: event.taskId,
         taskName: task.title,
         activityId: activity.id,
         activityName: activity.name
@@ -237,12 +239,12 @@ export class CalendarComponent implements OnInit {
         this.DataService.createEvent(result).subscribe(async (resServer) => {
           await (resServer.status);
           if (resServer.status === 200) {
-            let resEvent = resServer.body['data'].event;
-            let colors = result.color;
+            let resEvent = resServer.body['event'];
+            // let colors = result.color;
             this.events.pop();
             this.setEvent(resEvent);
           } else {
-            //TODO Dialog Error 500
+            //TODO Dialog Error 500 
           }
         })
       }
@@ -260,7 +262,7 @@ export class CalendarComponent implements OnInit {
   //? Event comport one button for remove & one for edit
   eventClicked(event) {
     let id = event['event'].meta.id;
-
+    let Ievent = this.events.findIndex(e => e['meta'].id === id)
     const dialogConfig = new MatDialogConfig();
     dialogConfig.panelClass = 'edit-event';
     dialogConfig.data = event;
@@ -271,7 +273,8 @@ export class CalendarComponent implements OnInit {
         this.DataService.deleteEvent(id).subscribe(async (resServer) => {
           await (resServer.status);
           if (resServer.status === 200) {
-            this.events.splice(this.events.findIndex(e => e['meta'].id === id),1);
+            this.events.splice(Ievent,1);
+            
             this.refreshing();
           } else {
             //TODO Dialog Error 500
@@ -285,7 +288,18 @@ export class CalendarComponent implements OnInit {
         dialogConfig.panelClass = 'edit-event';
         dialogConfig.data = event;
         let dialogRef = this.dialog.open(EditEventComponent, dialogConfig);
-        
+        dialogRef.afterClosed().subscribe(result => {
+          this.DataService.updateEvent(id, result ).subscribe(async (resServer) => {
+            await (resServer.status);
+            if (resServer.status === 200) {
+              this.events.splice(Ievent,1);
+              this.setEvent(resServer.body['event']);
+            } else {
+              //TODO Dialog Error 500
+
+            }
+          })
+        });
       }
     });
   }

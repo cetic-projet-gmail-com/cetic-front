@@ -1,0 +1,168 @@
+// @import '~bootstrap/scss/bootstrap.scss';
+@import 'buttons';
+.colorActivity {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+.label {
+    width: 50%;
+    font-family: Saira;
+    color: rgba(90, 90, 90, 0.6);
+    font-size: 18px;
+  }
+
+  //????? Nico style
+.styleOfPopUp {
+    // width: 400px;
+  
+    .styleOfForm {
+      display: flex;
+      width: auto;
+      margin: auto;
+      height: auto;
+  
+  
+      .styleOfEvent {
+        width: auto;
+        margin: auto;
+        height: auto;
+  
+  
+        .styleOfTitle {
+          font-family: Poiret One;
+          color: #53853D;
+          font-size: 20px;
+          text-align: left;
+          margin-bottom: 25px;
+        }
+  
+  
+        
+  
+        .styleOfInput {
+          border-radius: 5px;
+  
+          width: 50%;
+          border: none;
+          box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.25);
+          font-family: Saira;
+          color: rgba(90, 90, 90, 0.6);
+          background: #FFFFFF;
+          text-align: center;
+        }
+  
+        .styleOfArea {
+          width: 100%;
+          border-radius: 5px;
+  
+          border: none;
+          box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.25);
+          font-family: Saira;
+          color: rgba(90, 90, 90, 0.6);
+          background: #FFFFFF;
+          text-align: center;
+        }
+  
+        .styleOfBtn1 {
+          background: #53853D;
+          border-radius: 2px;
+          text-align: center;
+          color: #FFFFFF;
+          font-size: 14px;
+          font-weight: 300;
+  
+          border: none;
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+  
+  .styleOfDiv {
+    background-color: rgb(226, 226, 226);
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-bottom: 2px solid #CCCCCC;
+  
+    .styleOfInput {
+      color: black;
+      background-color: red;
+  
+    }
+  
+   
+  }
+  
+  
+  .styleOfPopUp {
+  
+    background: rgb(230, 228, 228);
+  
+  
+    .styleOfTitleForCreate {
+      font-family: Poiret One;
+      color: #808080;
+      font-size: 18px;
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: 800;
+    }
+  
+    .styleOfDate {
+      text-align: center;
+    }
+  
+    .styleOfForm {
+  
+      .styleOfSpan {
+        color: black;
+        font-weight: 800;
+      }
+  
+      .styleOfBtnUn {
+        background: #808080;
+        border-radius: 2px;
+  
+      }
+  
+      .styleOfBtnDeux {
+        background: #53853D;
+        border-radius: 2px;
+  
+      }
+    }
+  
+  
+    // -----------------------------------------------------------------
+  
+  
+  
+    
+  
+    .styleOfLabel {
+      color: rgba(90, 90, 90, 0.6);
+  
+    }
+  
+    .styleOfInput {
+      box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.25);
+      color: rgba(90, 90, 90, 0.6);
+    }
+  
+  
+    .styleOfArea {
+      border-radius: 5px;
+      border: none;
+      box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+      font-family: Saira;
+      color: rgba(90, 90, 90, 0.6);
+      background: #FFFFFF;
+      text-align: center;
+    }
+  
+  
+  }

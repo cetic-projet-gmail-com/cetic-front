@@ -1,24 +1,26 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {format} from 'date-fns';
 import { DataService } from 'src/app/core/services/data.service';
+import { RemoveEventComponent } from '../remove-event/remove-event.component';
+
 @Component({
   selector: 'app-view-event',
   templateUrl: './view-event.component.html',
-  styleUrls: ['./view-event.component.scss']
+  styleUrls: ['../modal-scss/style.scss']
 })
 export class ViewEventComponent implements OnInit {
   startHour;
   endHour;
   color;
-  hidden;
+  // hidden;
   activityName;
   takName;
   event;
   date;
   constructor(
     public dialogRef: MatDialogRef<ViewEventComponent>,
-    @Inject(MAT_DIALOG_DATA) public data, private DataService : DataService) {}
+    @Inject(MAT_DIALOG_DATA) public data, private DataService : DataService, private dialog: MatDialog) {}
 
   ngOnInit() {
     let event = this.data.event;
@@ -29,7 +31,7 @@ export class ViewEventComponent implements OnInit {
     this.activityName = event.meta.activityName;
     
     this.color = this.data.event.color.secondary;
-    this.hidden = true;
+    // this.hidden = true;
   }
   onNoClick(): void {
     this.dialogRef.close();
@@ -39,6 +41,16 @@ export class ViewEventComponent implements OnInit {
     this.dialogRef.close("edit");
   }
   remove() {
-    this.dialogRef.close("removed");
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.panelClass = 'edit-event';
+
+    let dialogRef = this.dialog.open(RemoveEventComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(res => {
+      if (res === true) {
+        this.dialogRef.close("removed");
+      } else {
+        this.dialogRef.close();
+      }
+    })
   }
 }

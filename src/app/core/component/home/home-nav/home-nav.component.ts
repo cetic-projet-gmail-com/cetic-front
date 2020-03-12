@@ -39,12 +39,12 @@ export class HomeNavComponent implements OnInit, OnChanges {
     if (this.view === CalendarView.Week ) {
       let start = startOfWeek(date, { weekStartsOn: 1 });
       let end = endOfWeek(date, { weekStartsOn: 1 });
-      let monthDif = start.getMonth() === end.getMonth() ? '' : this.upFirsChar(format(end, 'MMMM', {locale: fr}));
+      let monthDif = start.getMonth() === end.getMonth() ? '' : this.upFirsChar(format(start, 'MMMM', {locale: fr}));
       this.showDate = `Du ${format(start, dateFormat)} ${monthDif} au ${format(end, dateFormat)} ${month} ${year}`;
     } else if (this.view === CalendarView.Month) {
       this.showDate = `${month} ${year}`;
     } else if (this.view === CalendarView.Day) {
-      this.showDate = `${day} ${date.getDay()} ${month} ${year}`;
+      this.showDate = `${day} ${date.getDate()} ${month} ${year}`;
     }
   }
  

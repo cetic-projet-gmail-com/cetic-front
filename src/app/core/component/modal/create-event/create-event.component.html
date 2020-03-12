@@ -1,42 +1,46 @@
  <div class="styleOfPopUp">
     <p>Créer nouveau billet - {{this.viewDate}}</p>
-    <p></p>
-    <form #f="ngForm" (ngSubmit)="next(f)" method="post" *ngIf="view==1" class="form-group">
+    <form #f="ngForm" (ngSubmit)="next(f)" method="post" *ngIf="view==1" class="">
         <h4 class="">Liste des tâches</h4>
         <p *ngIf="data.activities.length === 0"><em>Aucune tâche</em></p>
         <mat-accordion>
-        <mat-expansion-panel *ngFor="let activity of data.activities" class="panel-group"  >
+        <mat-expansion-panel *ngFor="let activity of data.activities" class=""  >
              <mat-expansion-panel-header>{{activity.name}}</mat-expansion-panel-header>
              <div>
-                <div class="list-group list-group-flush list-of-tasks" *ngFor="let task of activity['tasks']" >
-                    <input id="{{task.taskId}}" required #tasks="ngModel" ngModel type="radio" value="{{task.taskId}}" name="tasks" class="form-check-input"/>
-                    <label for="{{task.taskId}}" >{{ task.title }}</label>
+                <div  *ngFor="let task of activity['tasks']" class="list-of-tasks" >
+                    <input id="{{task.taskId}}" required #tasks="ngModel" ngModel type="radio" value="{{task.taskId}}" name="tasks" class=""/>
+                    <label for="{{task.taskId}}" class="label">{{ task.title }}</label>
                 </div>
             </div>
         </mat-expansion-panel>
     </mat-accordion>
         <br>
-        <div class="btn-group  d-flex justify-content-between">
-            <button type="button" class="btn btn-secondary" (click)="onNoClick()">Annuler</button> 
-            <button class="btn  styleOfBtnQuatre" [disabled]="f.invalid">Suivant</button>
+        <div class="">
+            <button type="button" class="" (click)="onNoClick()">Annuler</button> 
+            <button [disabled]="f.invalid" class="btn_next">Suivant</button>
         </div>
     </form>
     
     <form #f="ngForm" (ngSubmit)="submit(f)" *ngIf="view==2" class="form-group" >
-        <button type="button" (click)="view = 1" class="btn  styleOfPreviousBtn form-control" >Précédent</button><br>
+        <div class="" [ngStyle]="{'background-color':activityFound.color_code}">couleur</div>
+
+        <h1>{{activityFound.name}}</h1>
+        <h2>{{taskFound.title}}</h2>
+    
+        <button type="button" (click)="view = 1" class="btn_back" >Précédent</button><br>
 
         <p>id tache : {{res['tasks_id']}}</p>
-        <label for="startTime" class="styleOfLabel">Début</label>
-        <input #start="ngModel" [(ngModel)]="data.start" type="time" id="startTime" name="start" min="07:00" max="21:00" required class="form-control">
-        <label for="endTime" class="styleOfLabel">Fin</label>
-        <input #end="ngModel" [(ngModel)]="data.end" type="time" id="endTime" name="end"  min="07:00" max="21:00" required class="form-control">
+        <label for="startTime" class="label">Début</label>
+        <input #start="ngModel" [(ngModel)]="data.start" type="time" id="startTime" name="start" min="07:00" max="21:00" required class="">
+        <label for="endTime" class="label">Fin</label>
+        <input #end="ngModel" [(ngModel)]="data.end" type="time" id="endTime" name="end"  min="07:00" max="21:00" required class="">
         
-        <label for="description" class="styleOfLabel">Description</label>
-        <textarea #description="ngModel" ngModel name="description" id="description" required class="form-control" placeholder=""></textarea>
+        <label for="description" class="label">Description</label>
+        <textarea #description="ngModel" ngModel name="description" id="description" required class="" placeholder=""></textarea>
         <br>
-        <div class="btn-group  d-flex justify-content-between styleOfSecondDiv">
-            <button class="btn btn-secondary styleOfBtnTrois" type="button" (click)="onNoClick()">Annuler</button> 
-            <button class="btn btn-primary styleOfBtnQuatre" [disabled]="f.invalid">Éditer</button>
+        <div class=" styleOfSecondDiv">
+            <button  type="button" (click)="onNoClick()" class="btn_cancel">Annuler</button> 
+            <button  [disabled]="f.invalid" class="btn_edit">Éditer</button>
         </div>
     </form> 
 </div>

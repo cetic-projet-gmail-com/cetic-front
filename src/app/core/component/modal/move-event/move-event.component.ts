@@ -4,7 +4,7 @@ import { MatDialogRef } from '@angular/material';
 @Component({
   selector: 'app-move-event',
   templateUrl: './move-event.component.html',
-  styleUrls: ['./move-event.component.scss']
+  styleUrls: ['../modal-scss/style.scss']
 })
 export class MoveEventComponent implements OnInit {
 
