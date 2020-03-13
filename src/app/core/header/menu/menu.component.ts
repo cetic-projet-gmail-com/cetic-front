@@ -2,7 +2,7 @@ import { DataService } from 'src/app/core/services/data.service';
 import { Component, OnInit } from '@angular/core';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-
+import { AuthenticationService } from '../../services/auth/authentification.service';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -19,11 +19,20 @@ export class MenuComponent implements OnInit {
     console.log(this.isHidden);
   }
 
-  constructor(private DataService: DataService) { }
+  constructor(private auth: AuthenticationService) { }
 
-  name
+  fName;
+  lName;
+  initials;
+
   ngOnInit() {
-    
+    let userDetails = this.auth.getUserDetails()
+    this.fName = userDetails.fName;
+    this.lName = userDetails.lName;
+    this.initials = `${this.fName.charAt(0).toUpperCase()} ${this.lName.charAt(0).toUpperCase()}`;
+  }
+  logout() {
+    this.auth.logout();
   }
 
 }

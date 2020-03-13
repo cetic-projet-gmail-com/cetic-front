@@ -9,17 +9,22 @@ import { Activities } from './../../models/activities';
 import { Users } from '../../models/users';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AuthenticationService } from './auth/authentification.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  apiURL = 'http://localhost:3000'
-  constructor(private httpClient: HttpClient) {
+  public apiURL = 'http://localhost:3000';
+  constructor(private httpClient: HttpClient, private auth: AuthenticationService) {
   }
 
 /* --------------------------------- OTHERS --------------------------------- */
+  public profile() {
+    return this.httpClient.get(`${this.apiURL}/profile`, { headers: { Authorization: `Bearer ${this.auth.getToken()}` } });
+
+  }
 
   public getTypes(url?: string) {
     return this.httpClient.get<Type>(`${this.apiURL}/administration/atypes`);

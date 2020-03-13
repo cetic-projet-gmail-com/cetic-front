@@ -70,9 +70,10 @@ export class CalendarComponent implements OnInit {
     this.container.appendChild(this.div);
     this.div.classList.add("dragHour");
     //?
-    this.getDatas();
+    
   }
   ngOnChanges() {
+    this.getDatas();
   }
   //? Change day when a day is clicked on view month
   changeDay(date: Date) {
@@ -106,9 +107,9 @@ export class CalendarComponent implements OnInit {
         break;
     }
     this.DataService.getHome(url).subscribe((result) => {
-      this.getTasks(result);
+         
+      this.activities.length === 0 ? this.getTasks(result) : "";
       this.getEvents(result);
-      
       
     });
   }
