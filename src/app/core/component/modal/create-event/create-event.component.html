@@ -1,6 +1,6 @@
  <div class="styleOfPopUp">
    <h4>Ajouter un événement</h4>
-   <h5>{{this.viewDate}}</h5>
+   <h5 class="date">{{this.viewDate}}</h5>
    <form #f="ngForm" (ngSubmit)="next(f)" method="post" *ngIf="view==1" class="" id="selectTask">
      <h4 class="">Choisissez vôtre tache</h4>
      <p *ngIf="data.activities.length === 0"><em>Aucune tâche</em></p>
@@ -30,7 +30,7 @@
      </div>
 
      <div class="form_button" id="selectTask">
-       <button type="button" class="" (click)="onNoClick()">Annuler</button>
+       <button type="button" class="btn_cancel" (click)="onNoClick()">Annuler</button>
        <button [disabled]="f.invalid" class="btn_next">Suivant</button>
      </div>
    </form>
@@ -41,23 +41,32 @@
        <div class="activity_color" [ngStyle]="{'background-color':activityFound.color_code}"></div>
        <h1>{{activityFound.name}}</h1>
      </div>
-     <h2>{{taskFound.title}}</h2>
+     <h2 class="taskFound">- {{taskFound.title}} -</h2>
 
-     <a type="button" (click)="view = 1" class="btn_back">
-       <fa-icon [icon]="faCaretSquareLeft" class="back"></fa-icon>
+     <a type="button" (click)="view = 1">
+       <fa-icon [icon]="faCaretSquareLeft" class="back btn_back"></fa-icon>
      </a>
 
-     <label for="startTime" class="label">Début</label>
-     <input #start="ngModel" [(ngModel)]="data.start" type="time" id="startTime" name="start" min="07:00" max="21:00"
-       required class="">
-     <label for="endTime" class="label">Fin</label>
-     <input #end="ngModel" [(ngModel)]="data.end" type="time" id="endTime" name="end" min="07:00" max="21:00" required
-       class="">
+     <div class="choice_hour">
+       <div class="hour_start">
+         <label for="startTime" class="label">Début</label><br>
+         <input #start="ngModel" [(ngModel)]="data.start" type="time" id="startTime" name="start" min="07:00"
+           max="21:00" required class="">
+       </div>
+       <span>-</span>
+       <div class="hour_end">
+         <label for="endTime" class="label">Fin</label> <br>
+         <input #end="ngModel" [(ngModel)]="data.end" type="time" id="endTime" name="end" min="07:00" max="21:00"
+           required class="">
+       </div>
+     </div>
 
-     <label for="description" class="label">Description</label>
-     <textarea #description="ngModel" ngModel name="description" id="description" required class=""
-       placeholder=""></textarea>
-     <br>
+     <div class="description">
+       <label for="description">Description</label><br>
+       <textarea #description="ngModel" ngModel name="description" id="description" required class=""
+         placeholder=""></textarea>
+     </div>
+
      <div class="styleOfSecondDiv">
        <button type="button" (click)="onNoClick()" class="btn_cancel">Annuler</button>
        <button [disabled]="f.invalid" class="btn_edit">Éditer</button>

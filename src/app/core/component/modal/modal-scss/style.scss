@@ -31,7 +31,7 @@ $col_typo : #5a5a5a;
     text-align: center;
   }
 
-  h5 {
+  .date {
     text-align: center;
     font-size: 1.5em;
     margin-bottom: 20px;
@@ -109,7 +109,7 @@ $col_typo : #5a5a5a;
     }
 
     h2 {
-      margin-top: 20px;
+      padding-top: 10px;
       width: max-content;
       margin: auto;
       font-size: 1.6em;
@@ -117,11 +117,344 @@ $col_typo : #5a5a5a;
 
     .btn_back {
       position: absolute;
-      top: 0;
-      left: 0;
+      top: 15px;
+      left: 20px;
+    }
+
+    .choice_hour {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+
+      div {
+        width: 40%;
+      }
+
+      span {
+        text-align: center;
+        width: 20%;
+        font-size: 1.5em;
+        padding-top: 30px;
+      }
+
+      input {
+        width: 100%;
+        color: $col_typo;
+        font-weight: 600;
+        padding: 5px 10px;
+        border-radius: 5px;
+        border: none;
+        box-shadow: inset -2px 2px 3px rgba(216, 216, 216, 0.7);
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+    }
+
+    .description {
+      textarea {
+        width: 100%;
+        color: $col_typo;
+        font-weight: 600;
+        padding: 5px 10px;
+        border-radius: 5px;
+        border: none;
+        box-shadow: inset -2px 2px 3px rgba(216, 216, 216, 0.7);
+
+        &:focus {
+          outline: none;
+        }
+      }
     }
 
 
   }
 
+  .styleOfSecondDiv {
+    text-align: right;
+
+    .btn_edit {
+      margin-left: 10px;
+    }
+  }
+
 }
+
+/* ------------------------------- view event ------------------------------- */
+
+.styleOfPopUp_view {
+
+  min-width: 350px;
+  padding: 20px;
+  font-family: $saira;
+  background-color: #fafafa;
+  border: none;
+
+  .btn_action {
+    text-align: right;
+    margin-bottom: 10px;
+
+    a {
+      padding: 5px;
+    }
+
+    fa-icon {
+      color: rgba(119, 119, 119, 0.7);
+      cursor: pointer;
+
+    }
+
+    .faTrash {
+      &:hover {
+        color: red;
+        transition: all 0.3s ease;
+      }
+    }
+
+    .faTimes {
+      color: rgba(83, 133, 61, 0.7);
+
+      &:hover {
+        color: #53853d;
+
+      }
+    }
+
+
+    .faEdit {
+
+      &:hover {
+        color: black;
+        transition: all 0.3s ease;
+
+      }
+    }
+  }
+
+  p {
+    width: 100%;
+    height: max-content;
+    color: $col_typo;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #fff;
+    box-shadow: inset -2px 2px 3px rgba(216, 216, 216, 0.7);
+  }
+
+  .view_date {
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+
+  .activity_title {
+    display: flex;
+    width: max-content;
+    margin: auto;
+    align-items: center;
+
+
+    .activity_color {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      margin-right: 20px;
+    }
+
+    h1 {
+      font-size: 1.8em;
+      margin-bottom: 0;
+    }
+
+  }
+
+  h2 {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    width: max-content;
+    margin: auto;
+    font-size: 1.6em;
+
+  }
+
+  .show_hour {
+    display: flex;
+    justify-content: space-between;
+
+    div {
+      width: 40%;
+    }
+
+    span {
+      text-align: center;
+      width: 20%;
+      font-size: 1.5em;
+      padding-top: 30px;
+
+    }
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+
+/* ------------------------------- edit event ------------------------------- */
+
+.styleOfPopUp_edit {
+
+  min-width: 350px;
+  padding: 20px;
+  font-family: $saira;
+  background-color: #fafafa;
+  border: none;
+
+  .activity_title {
+    display: flex;
+    width: max-content;
+    margin: auto;
+    align-items: center;
+
+
+    .activity_color {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      margin-right: 20px;
+    }
+
+    h1 {
+      font-size: 1.8em;
+      margin-bottom: 0;
+    }
+
+  }
+
+  .date {
+
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+
+
+  h2 {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    width: max-content;
+    margin: auto;
+    font-size: 1.6em;
+
+  }
+
+  .choice_hour {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+
+    div {
+      width: 40%;
+    }
+
+    span {
+      text-align: center;
+      width: 20%;
+      font-size: 1.5em;
+      padding-top: 30px;
+    }
+
+    input {
+      width: 100%;
+      color: $col_typo;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 5px;
+      border: none;
+      box-shadow: inset -2px 2px 3px rgba(216, 216, 216, 0.7);
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+  }
+
+  .description {
+    textarea {
+      width: 100%;
+      color: $col_typo;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 5px;
+      border: none;
+      box-shadow: inset -2px 2px 3px rgba(216, 216, 216, 0.7);
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .form_button {
+    text-align: right;
+
+    .btn_edit {
+      margin-left: 10px;
+    }
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+
+/* --------------------------- style modification --------------------------- */
+
+.styleOfPopUp_confirm {
+  min-width: 400px;
+  padding: 20px;
+  font-family: $saira;
+  background-color: #fafafa;
+  border: none;
+
+  h1 {
+    font-size: 1.3em;
+  }
+
+  .btn_action {
+    text-align: right;
+
+  }
+
+
+
+}
+
+/* -------------------------------------------------------------------------- */
+
+/* ----------------------------- style supprimer ---------------------------- */
+
+.styleOfPopUp_remove {
+  min-width: 400px;
+  padding: 20px;
+  font-family: $saira;
+  background-color: #fafafa;
+  border: none;
+
+  h1 {
+    font-size: 1.3em;
+  }
+
+  .btn_action {
+    text-align: right;
+
+  }
+
+
+
+}
+
+/* -------------------------------------------------------------------------- */

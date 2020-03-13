@@ -3,39 +3,65 @@ $saira : 'Saira Semi Condensed';
 $col_typo : #5a5a5a;
 
 
-.btn_confirm {}
-
-.btn_cancel {
-  background: #808080;
-  border-radius: 2px;
-}
-
-.btn_next {
+.btn_confirm,
+.btn_next,
+.btn_edit {
   background-color: #53853D;
   margin-left: 10px;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 5px 15px;
+  margin-top: 20px;
 
+
+
+
+}
+
+.btn_cancel {
+
+  border-radius: 2px;
+  background-color: rgba(83, 133, 61, .7);
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 5px 15px;
+  margin-top: 20px;
+
+  &:hover {
+    background-color: #53853D;
+    transition: all 0.3s ease;
+
+
+  }
+
+}
+
+
+
+.btn_delete {
+  background-color: red;
+  margin-left: 10px;
 }
 
 .btn_back {
-  width: 25%;
+  width: 30px;
   height: 30px;
-  font-size: 10px;
+  font-size: 1.5em;
   margin-bottom: 5px;
-  // color: rgba(90, 90, 90, 0.6);
-  color: whitesmoke;
-  border-radius: 5px;
-  font-weight: 900;
-  background-color: #53853D;
+  color: #53853D;
+  opacity: 80%;
+
+  &:hover {
+    opacity: 100%;
+  }
 }
 
-.btn_edit {
-  color: whitesmoke;
 
-  background-color: #53853D;
-  border-radius: 2px;
-}
 
 button {
+  cursor: pointer;
   font-family: $saira;
   text-transform: capitalize;
   background-color: rgba(83, 133, 61, .7);
@@ -44,12 +70,8 @@ button {
   border-radius: 3px;
   padding: 5px 15px;
   margin-top: 20px;
-  // transition: all 0.3s ease;
 
-  &:hover {
-    background-color: #53853D;
-    transition: all 0.3s ease;
-
-
+  &:focus {
+    outline: none;
   }
 }

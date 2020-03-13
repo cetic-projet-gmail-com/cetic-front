@@ -1,16 +1,37 @@
-<div>
-    <div class="">
-        <button class="" (click)="remove()">Supprimer</button>
-        <button class="" (click)="edit()">Éditer</button>
+<div class="styleOfPopUp_view">
+  <div class="btn_action">
+    <a class="edit" (click)="edit()">
+      <fa-icon [icon]="faEdit" class="faEdit"></fa-icon>
+    </a>
+    <a class="trash" (click)="remove()">
+      <fa-icon [icon]="faTrash" class="faTrash"></fa-icon>
+    </a>
+    <a type="button" (click)="onNoClick()" class="cancel">
+      <fa-icon [icon]="faTimes" class="faTimes"></fa-icon>
+    </a>
+  </div>
+
+  <div class="view_date">{{viewDate}}</div>
+  <div class="activity_title">
+    <div class="activity_color" [ngStyle]="{'background-color':color}"></div>
+    <h1>{{activityName}}</h1><br>
+  </div>
+  <h2>{{takName}}</h2>
+  <div class="description">
+    <h5>Description: </h5>
+    <p>{{data.event.title}}</p>
+  </div>
+  <hr>
+  <div class="show_hour">
+    <div class="hour_start">
+      <h5>Début :</h5>
+      <p>{{startHour}}</p>
     </div>
-   
-    <div>{{date}}</div>
-    <div class="colorActivity" [ngStyle]="{'background-color':color}"></div>
-    <h1>Activity: {{activityName}}</h1>
-    <h2>task: {{takName}}</h2>
-    <h5>Description: </h5><p>{{data.event.title}}</p>
-    <hr>
-    <h5>heure début :</h5> <p>{{startHour}}</p>
-    <h5>heure fin :</h5> <p>{{endHour}}</p>
-    <button type="button"  (click)="onNoClick()" class="btn_cancel">Quitter</button> 
+    <span>-</span>
+    <div class="hour_end">
+      <h5>Fin :</h5>
+      <p>{{endHour}}</p>
+    </div>
+
+  </div>
 </div>
