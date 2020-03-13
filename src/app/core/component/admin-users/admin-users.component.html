@@ -232,7 +232,7 @@
   <select ngModel required name="nbre" id="nbre" (click)="changeNbre()">
     <option *ngFor="let nb of nbreArray" [value]="nb.pageUrl">{{ nb.numb }}</option>
   </select>
-  <button (click)="firstpage()" *ngIf="firstPage != undefined">Première page </button>
+  <button (click)="firstpage()" *ngIf="firstPage != undefined">Première page</button>
   <button (click)="previouspage()" *ngIf="firstPage != undefined">précédent</button>
   <button (click)="nextpage()" *ngIf="lastPage != undefined">suivant</button>
   <button (click)="lastpage()" *ngIf="lastPage != undefined">Dernière page</button>

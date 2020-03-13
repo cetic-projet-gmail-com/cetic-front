@@ -3,13 +3,9 @@
     <fa-icon [icon]="faCaretSquareLeft" class="back"></fa-icon>
   </a>
   <fa-icon [icon]="faAdd" class="faAdd"></fa-icon>
-  <div class="info">
-    <!-- <h3>{{act.name}}</h3> -->
-    <!-- <p>
-      {{act.description}}
-    </p> -->
-    <h4>Chef <span>Nom du chef</span></h4>
-  </div>
+
+
+
   <div class="board">
     <div class="datepicker">
       <div class="lien"></div>
@@ -24,15 +20,16 @@
     </div>
     <div class="board_details">
 
+      <update-activity></update-activity>
       <div class="board_content">
         <div class="tab">
 
           <!-- <a [routerLink]="['./taches', {id:this.id}]" routerLinkActive="active"
-            [routerLinkActiveOptions]="{exact: true}" (click)="setRoute('utilisateur')">Utilasateurs
-          </a>
-          <a routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="'tab' == 'taches'"
-            class="active">Tâches
-          </a> -->
+              [routerLinkActiveOptions]="{exact: true}" (click)="setRoute('utilisateur')">Utilasateurs
+            </a>
+            <a routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="'tab' == 'taches'"
+              class="active">Tâches
+            </a> -->
 
           <div [ngClass]="{active : display == 'users'}" (click)="setRoute('users')">Utilistateurs</div>
           <div [ngClass]="{active : display == 'tasks'}" (click)="setRoute('tasks')">Tâches</div>
@@ -87,6 +84,7 @@
 
     </div>
   </div>
+
 </div>
 <div class="save">
   <button id="save">sauvegarde</button>
@@ -98,4 +96,3 @@
               Redmine@CETIC" target="_blank">> Suggestion ? </a>
 
 </div>
-<update-activity></update-activity>

@@ -43,32 +43,7 @@ $col_typo : #5a5a5a;
   }
 
 
-  .info {
-    width: 20%;
-    text-align: justify;
-    margin-right: 50px;
 
-    h3 {
-      font-size: 1.5em;
-
-    }
-
-    p {
-      font-size: 0.9em;
-      counter-reset: #777777;
-    }
-
-    h4 {
-      font-size: 1.1em;
-      color: gray;
-
-      span {
-        color: black;
-        margin-left: 20px;
-      }
-    }
-
-  }
 
   .board {
     width: 80%;
