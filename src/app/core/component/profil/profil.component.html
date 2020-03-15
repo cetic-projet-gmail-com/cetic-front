@@ -1,6 +1,6 @@
 <div class="content">
 
-  <h2>{{this.user.firstname}} {{this.user.lastname}}</h2>
+  <h2>{{this.user.firstName}} {{this.user.lastName}}</h2>
   <a [routerLink]="'/home'">
     <fa-icon [icon]="faCaretSquareLeft" class="back"></fa-icon>
   </a>
@@ -25,13 +25,13 @@
 
     <div class="role">
       <label for="fname">Rôle</label>
-      <p>{{this.user.role_id}}</p>
+      <p>{{this.user.roleId}}</p>
       <!-- <input [disabled]="isAuthorize()" type="text" id="role" name="role" value="{{this.user.role_id}}"> -->
     </div>
 
     <div class="dep">
       <label for="department">Département</label>
-      <p>{{this.user.departement_id}}</p>
+      <p>{{this.user.departmentId}}</p>
 
       <!-- <input type="text" [disabled]="isAuthorize()" id="departement" name="departement"
         value="{{this.user.departement_id}}"> -->

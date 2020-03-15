@@ -68,8 +68,8 @@
           <li *ngFor="let u of users; let index = index;let even = even; let odd = odd"
             [ngClass]="{ odd: odd, even: even }">
             <div class="number">{{index + 1}}</div>
-            <div style="text-transform: capitalize; ">{{u.firstname}}</div>
-            <div>{{u.departement}}</div>
+            <div style="text-transform: capitalize; ">{{u.firstName}}</div>
+            <div>{{u.department}}</div>
 
             <div>
               <a href="">
@@ -78,7 +78,7 @@
             </div>
           </li>
           <ul class="list_users">
-            <li *ngFor="let u of user" style="text-transform: capitalize;">{{u.firstname}} {{u.lastname}}</li>
+            <li *ngFor="let u of user" style="text-transform: capitalize;">{{u.firstName}} {{u.lastName}}</li>
           </ul>
 
         </ul>

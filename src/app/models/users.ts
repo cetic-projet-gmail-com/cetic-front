@@ -10,12 +10,12 @@ export interface Users {
         users: [
             {
                 login: string;
-                firstname: string;
-                lastname: string;
+                firstName: string;
+                lastName: string;
                 email: string;
                 password: string;
-                role_id: number;
-                departement_id: number;
+                roleId: number;
+                departmentId: number;
             }
         ]
     }

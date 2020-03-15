@@ -32,7 +32,6 @@ export class CreateEventComponent implements OnInit {
     let day  =this.upFirsChar(format(this.data.date, 'iiii', {locale: fr}));
     this.viewDate = `${this.upFirsChar(day)}  ${format(this.data.date, 'dd')} ${this.upFirsChar(format(this.data.date, 'MMMM', {locale: fr}))} ${format(this.data.date, 'yyyy')}`;
 
-    // this.viewDate = format(this.data.date,'dd/MM/yy')
   }
   upFirsChar(d) {
     return d.charAt(0).toUpperCase() + d.slice(1);
@@ -41,10 +40,8 @@ export class CreateEventComponent implements OnInit {
     this.view=2;
     let taskId;
     if (f !== null) {
-      // console.log('true')
       taskId = parseInt(f.value.tasks) ;
     } else {
-      // console.log("false")
       taskId = parseInt(this.data.taskId);
     }
     this.activityFound = this.data.activities.find(act =>  
@@ -52,20 +49,18 @@ export class CreateEventComponent implements OnInit {
         t.taskId === taskId
       )
     );
-    console.log(this.activityFound)
     this.taskFound = this.activityFound['tasks'].find(tsk => 
       tsk.taskId === taskId
     );
     this.res['taskId'] = taskId;
   }
   submit(f) {
-    // this.res['color'] = this.data.activities.find(e => e['tasks'].some(e => e.taskId === this.res['taskId'])).color_code;
     let start, end, description;
     ({ start, end, description } = f.value)
     this.res['description'] = description;
     let date = this.data.date
-    this.res['start'] = formatISO(addHours(new Date((date).getFullYear(), (date).getMonth(), (date).getDate(), start.split(':')[0], start.split(':')[1]),1));
-    this.res['end'] = formatISO(addHours(new Date((date).getFullYear(), (date).getMonth(), (date).getDate(), end.split(':')[0], end.split(':')[1]), 1));
+    this.res['startAt'] = formatISO(addHours(new Date((date).getFullYear(), (date).getMonth(), (date).getDate(), start.split(':')[0], start.split(':')[1]),1));
+    this.res['endAt'] = formatISO(addHours(new Date((date).getFullYear(), (date).getMonth(), (date).getDate(), end.split(':')[0], end.split(':')[1]), 1));
     this.dialogRef.close(this.res)
   }
 }

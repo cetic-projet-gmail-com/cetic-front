@@ -20,7 +20,7 @@ export class HomeAsideComponent implements OnInit {
       await result['data'].activities.forEach((activity) => {
         activity['tasks'] =  []
         result['data'].tasks.forEach(task => {
-          if (activity.id === task.activities_id)
+          if (activity.id === task.activityId)
           activity['tasks'].push( {"taskId": task["id"], "title" : task['name'], "start": new Date(), draggable:true });
         });
         if (activity['tasks'].length !== 0){

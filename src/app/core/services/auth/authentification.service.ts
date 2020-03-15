@@ -9,8 +9,8 @@ export interface UserDetails {
   login: string;
   exp: number;
   iat: number;
-  fName: string;
-  lName: string;
+  firstName: string;
+  lastName: string;
   role: number;
 }
 

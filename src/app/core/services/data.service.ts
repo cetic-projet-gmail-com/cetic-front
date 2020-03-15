@@ -92,12 +92,12 @@ export class DataService {
 
   public getDepartementById(id: number) {
     if (id) {
-      return this.httpClient.get<SimpleDepartement>(`${this.apiURL}/administration/departements/${id}`);
+      return this.httpClient.get<SimpleDepartement>(`${this.apiURL}/administration/departments/${id}`);
     }
   }
 
   public getDepartements(url?: string) {
-    return this.httpClient.get<Departements>(`${this.apiURL}/administration/departements`);
+    return this.httpClient.get<Departements>(`${this.apiURL}/administration/departments`);
   }
 
   public createEvent(event){
@@ -105,15 +105,15 @@ export class DataService {
   }
 
   public createDepartement(departement) {
-    return this.httpClient.post(`${this.apiURL}/administration/departements`, departement);
+    return this.httpClient.post(`${this.apiURL}/administration/departments`, departement);
   }
 
   public updateDepartement(departement, id) {
-    return this.httpClient.patch(`${this.apiURL}/administration/departements/${id}`, departement)
+    return this.httpClient.patch(`${this.apiURL}/administration/departments/${id}`, departement)
   }
 
   public deleteDepartement(id: number) {
-    return this.httpClient.delete(`${this.apiURL}/administration/departements/${id}`);
+    return this.httpClient.delete(`${this.apiURL}/administration/departments/${id}`);
   }
 
 

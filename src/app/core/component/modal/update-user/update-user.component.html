@@ -2,12 +2,12 @@
   <form #userForm="ngForm" id="formUpdateUser" (ngSubmit)="onFormSubmit(userForm)">
     <div class="form-group">
       <div class="lastname">
-        <label for="lastname">Nom</label><br>
-        <input type="text" ngModel required name="lastname" pattern="[A-z][-éèëêâäàîïùûüôö]?" id="lastname" class="" [value]="lastname">
+        <label for="lastName">Nom</label><br>
+        <input type="text" ngModel required name="lastName" pattern="[A-z][-éèëêâäàîïùûüôö]?" id="lastName" class="" [value]="lastName">
       </div>
       <div class="firstname">
-        <label for="firstname">prenom</label><br>
-        <input type="text" ngModel required name="firstname" pattern="[A-z][-éèëêâäàîïùûüôö]?" id="firstname" class="" [value]="firstname">
+        <label for="firstName">prenom</label><br>
+        <input type="text" ngModel required name="firstName" pattern="[A-z][-éèëêâäàîïùûüôö]?" id="firstName" class="" [value]="firstName">
       </div>
       <div class="login">
         <label for="login">login</label><br>
@@ -19,18 +19,18 @@
       </div>
 
       <div class="role">
-        <label for="role_id">role</label><br>
-        <select ngModel required name="role_id" class="" id="role_id">
+        <label for="roleId">role</label><br>
+        <select ngModel required name="roleId" class="" id="roleId">
           <option *ngFor="let role of roles" [value]="role.id">{{ role.name }}</option>
         </select>
       </div>
       <div class="departement">
-        <label for="departement_id">departement</label><br>
-        <select ngModel required name="departement_id" class="">
-          <option *ngFor="let dep of departements" [value]="dep.id">{{ dep.name }}</option>
+        <label for="departmentId">departement</label><br>
+        <select ngModel required name="departmentId" class="">
+          
+          <option *ngFor="let dep of departments" [value]="dep.id">{{ dep.name }}</option>
         </select>
       </div>
-
     </div>
   </form>
 </div>

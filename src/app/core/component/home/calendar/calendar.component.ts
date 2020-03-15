@@ -132,8 +132,8 @@ export class CalendarComponent implements OnInit {
       tsk.taskId === event.taskId
     );
     this.events.push({
-      start: parseISO(event.start),
-      end: parseISO(event.end),
+      start: parseISO(event.startAt),
+      end: parseISO(event.endAt),
       title: event.description,
       draggable: true,
       allDay: false,
@@ -156,7 +156,7 @@ export class CalendarComponent implements OnInit {
     result['data'].activities.forEach((activity) => {
       activity['tasks'] = []
       result['data'].tasks.forEach(task => {
-        if (activity.id === task.activities_id)
+        if (activity.id === task.activityId)
           activity['tasks'].push({ "taskId": task["id"], "title": task['name'], "start": new Date(), draggable: true });
       });
       if (activity['tasks'].length !== 0) {
@@ -329,8 +329,8 @@ export class CalendarComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
           if (result === true) {
             let patch = {
-              "start": newStart,
-              "end": newEnd
+              "startAt": newStart,
+              "endAt": newEnd
             }
             this.DataService.updateEvent(event['meta'].id, patch).subscribe(async (resServer) => {
               await (resServer.status);

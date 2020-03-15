@@ -27,8 +27,8 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
     let userDetails = this.auth.getUserDetails()
-    this.fName = userDetails.fName;
-    this.lName = userDetails.lName;
+    this.fName = userDetails.firstName;
+    this.lName = userDetails.lastName;
     this.initials = `${this.fName.charAt(0).toUpperCase()} ${this.lName.charAt(0).toUpperCase()}`;
   }
   logout() {

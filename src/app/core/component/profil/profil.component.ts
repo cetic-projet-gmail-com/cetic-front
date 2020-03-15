@@ -33,7 +33,7 @@ export class ProfilComponent implements OnInit {
 
     this.DataService.profile().subscribe(users => {
       this.user = users['data'];
-      this.TitleService.setTitle(`${this.user['firstname']}`)
+      this.TitleService.setTitle(`${this.user['firstName']}`)
 
     }, (err) => {
       console.error(err);

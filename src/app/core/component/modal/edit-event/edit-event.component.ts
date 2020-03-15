@@ -36,8 +36,8 @@ export class EditEventComponent implements OnInit {
     ({ start, end, description } = f.value)
     let date = new Date(this.event.start);
 
-    this.res['start'] = formatISO(addHours(new Date((date).getFullYear(), (date).getMonth(), (date).getDate(), start.split(':')[0], start.split(':')[1]), 1));
-    this.res['end'] = formatISO(addHours(new Date((date).getFullYear(), (date).getMonth(), (date).getDate(), end.split(':')[0], end.split(':')[1]), 1));
+    this.res['startAt'] = formatISO(addHours(new Date((date).getFullYear(), (date).getMonth(), (date).getDate(), start.split(':')[0], start.split(':')[1]), 1));
+    this.res['endAt'] = formatISO(addHours(new Date((date).getFullYear(), (date).getMonth(), (date).getDate(), end.split(':')[0], end.split(':')[1]), 1));
     this.res['description'] = description;
     // this.res['taskId'] = this.event.meta['taskId'];
 

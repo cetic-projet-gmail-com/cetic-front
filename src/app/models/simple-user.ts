@@ -4,14 +4,14 @@ export interface SimpleUser {
           user: {
             id: number,
             login: string,
-            firstname: string,
-            lastname: string,
+            firstName: string,
+            lastName: string,
             email: string,
             password: string,
-            created: string,
-            updated: string,
-            role_id: number,
-            departement_id: number
+            createdAt: string,
+            updatedAt: string,
+            roleId: number,
+            departmentId: number
           }
         }
       
