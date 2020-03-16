@@ -191,13 +191,22 @@ export class AdminUsersComponent implements OnInit {
   }
 
 
-  refresh() {
+  refreshDelete() {
     this.isDelete = !this.isDelete;
     setTimeout(() => {
       this.showData();
     }, 200);
 
   }
+
+  refresh() {
+    this.isHidden = !this.isHidden
+    setTimeout(() => {
+      this.showData();
+    }, 200);
+  }
+
+
 
   page
   changeNbre() {

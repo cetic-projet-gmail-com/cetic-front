@@ -207,11 +207,13 @@
 
 <!-- ------------------------- gestion des pop-up -------------------------- -->
 
-<create-user *ngIf="router.url === '/administration/users' && !isHidden" [isHidden]="isHidden"
-  (reset)="isHidden = !isHidden"></create-user>
+<create-user *ngIf="router.url === '/administration/users' && !isHidden" [isHidden]="isHidden" (reset)="refresh()">
+</create-user>
 
 <create-departement *ngIf="router.url === '/administration/departement' && !isHidden" [isHidden]="isHidden"
   (reset)="isHidden = !isHidden"></create-departement>
+
+<update-departement *ngIf="router.url === '/administration/departement'"></update-departement>
 
 <create-activity *ngIf="router.url === '/administration/activities' && !isHidden" [isHidden]="isHidden"
   (reset)="isHidden = !isHidden">
@@ -221,7 +223,7 @@
 
 <!-- -------------------------- gestion supprimer -------------------------- -->
 
-<confirm-delete [hidden]="isDelete" [isDelete]="isDelete" (reset)="refresh()" [itemToDelete]="itemToDelete">
+<confirm-delete [hidden]="isDelete" [isDelete]="isDelete" (reset)="refreshDelete()" [itemToDelete]="itemToDelete">
 </confirm-delete>
 
 <!-- ----------------------------------------------------------------------- -->
