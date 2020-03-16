@@ -51,15 +51,15 @@ export class ViewEventComponent implements OnInit {
     // this.hidden = true;
   }
 
-  upFirsChar(d) {
-    return d.charAt(0).toUpperCase() + d.slice(1);
-  }
   onNoClick(): void {
     this.dialogRef.close();
 
   }
   edit() {
     this.dialogRef.close("edit");
+  }
+  upFirsChar(d) {
+    return d.charAt(0).toUpperCase() + d.slice(1);
   }
   remove() {
     const dialogConfig = new MatDialogConfig();

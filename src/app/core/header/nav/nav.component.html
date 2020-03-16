@@ -12,7 +12,7 @@
       connexion
     </a>
     <a [routerLink]="'/administration/users'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
-      *ngIf="_router.url != '/forgot_password' || _router.url != '/info' ">
+      *ngIf="role !=1 && (_router.url != '/forgot_password' || _router.url != '/info')">
       <fa-icon [icon]="faUser" class="faUser"></fa-icon>
       admin
     </a>

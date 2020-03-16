@@ -39,10 +39,11 @@
       </div>
     </div>
   </ng-template>
+
   <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [(events)]="events"
     (dayHeaderClicked)="changeDay($event.day.date)" [dayStartHour]="startHour" [dayEndHour]="endHour" [locale]="locale"
     [weekStartsOn]="weekStartsOn" [hourSegmentTemplate]="weekViewHourSegmentTemplate"
-    (eventClicked)="eventClicked($event)"  (eventTimesChanged)=" eventTimesChanged($event); ">
+    (eventClicked)="eventClicked($event)"  (eventTimesChanged)=" eventTimesChanged($event);">
   </mwl-calendar-week-view>
   <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [(events)]="events" [dayStartHour]="startHour"
     [dayEndHour]="endHour" [locale]="locale" [hourSegmentTemplate]="weekViewHourSegmentTemplate"

@@ -5,12 +5,13 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 export interface UserDetails {
-  id: string;
+  _id: string;
   login: string;
-  name: string;
   exp: number;
   iat: number;
-  firstname: string;
+  firstName: string;
+  lastName: string;
+  role: number;
 }
 
 interface TokenResponse {
@@ -20,7 +21,6 @@ interface TokenResponse {
 export interface TokenPayload {
   login: string;
   password: string;
-  name?: string;
 }
 @Injectable({
   providedIn: 'root'
@@ -29,14 +29,14 @@ export interface TokenPayload {
 export class AuthenticationService {
   private token: string;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
   private saveToken(token: string): void {
     localStorage.setItem('mean-token', token);
     this.token = token;
   }
 
-  private getToken(): string {
+  public getToken(): string {
     if (!this.token) {
       this.token = localStorage.getItem('mean-token');
     }
@@ -64,40 +64,24 @@ export class AuthenticationService {
     }
   }
 
-  private request(method: 'post'|'get', type: 'login'|'profile', user?: TokenPayload): Observable<any> {
-    let base;
-
-    if (method === 'post') {
-      // console.log(user)
-      base = this.http.post(`http://localhost:3000/${type}`, user);
-    } else {
-      base = this.http.get(`http://localhost:3000/${type}`, { headers: { Authorization: `Bearer ${this.getToken()}` }});
-    }
-
-    const request = base.pipe(
+  public login(user: TokenPayload): Observable<any> {
+    return this.http.post(`http://localhost:3000/login`, user).pipe(
       map((data: TokenResponse) => {
+        console.log(data)
         if (data.token) {
           this.saveToken(data.token);
-        }
+          
+        } 
         return data;
       })
     );
 
-    return request;
-  }
-
-  public login(user: TokenPayload): Observable<any> {
-    return this.request('post', 'login', user);
-  }
-
-  public profile(): Observable<any> {
-    return this.request('get', 'profile');
   }
 
   public logout(): void {
     this.token = '';
     window.localStorage.removeItem('mean-token');
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/login');
   }
 }
 

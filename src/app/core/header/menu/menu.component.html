@@ -7,8 +7,8 @@
       <div class="faTimes" (click)="hidden()">
         <fa-icon [icon]="faTimes"></fa-icon>
       </div>
-      <div class="icon">T G</div>
-      <h4>Titiana Gallina</h4>
+      <div class="icon">{{initials}}</div>
+      <h4>{{fName}} {{lName}}</h4>
     </div>
 
     <div class="list">
@@ -19,7 +19,7 @@
       </div>
       <hr>
       <div class="logout">
-        <button>Déconnexion</button>
+        <button (click)="logout()">Déconnexion</button>
       </div>
     </div>
   </div>
