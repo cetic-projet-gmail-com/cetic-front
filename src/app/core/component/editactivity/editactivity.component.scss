@@ -14,7 +14,7 @@ $col_typo : #5a5a5a;
   .back {
     position: absolute;
     top: 55px;
-    left: -50px;
+    left: 0px;
     font-size: 2em;
     color: rgba(83, 133, 61, 0.7);
     cursor: pointer;
@@ -46,11 +46,18 @@ $col_typo : #5a5a5a;
 
 
   .board {
-    width: 80%;
+    display: flex;
+    justify-content: space-between;
+
+    update-activity {
+      margin-right: 40px;
+      margin-top: 120px;
+    }
+
 
     .datepicker {
       display: flex;
-      justify-content: center;
+      margin-left: 300px;
       align-items: center;
 
       .lien {
@@ -95,10 +102,16 @@ $col_typo : #5a5a5a;
       }
     }
 
+
+
     .board_details {
       display: flex;
       justify-content: space-between;
       padding-top: 40px;
+
+      update-activity {
+        margin-right: 50px;
+      }
 
       .board_details_list {
 
@@ -118,108 +131,101 @@ $col_typo : #5a5a5a;
 
 
       .board_content {
+        display: flex;
+        width: 81.5%;
 
-        position: absolute;
+        .board_content_nav {
+          width: 100%;
+          position: relative;
 
-
-
-        .tab {
-          position: absolute;
-          left: -78px;
-          top: 72px;
-          display: flex;
-          height: 50px;
-          transform: rotate(-90deg);
-          align-items: flex-end;
-
-          div {
-            text-decoration: none;
-            cursor: pointer;
-            height: 40px;
-            font-size: 1em;
-            line-height: 40px;
-            text-align: center;
-            color: $col_typo;
-            background-color: #dfdfdf;
-            padding: 0 10px;
-            margin-right: 3px;
-            margin-top: 10px;
-            border-radius: 5px 5px 0 0;
-          }
-
-          .active {
+          .tab {
+            position: absolute;
+            left: -78px;
+            top: 72px;
+            display: flex;
             height: 50px;
-            font-size: 1.2em;
-            line-height: 50px;
-            background-color: #53853D;
-            padding: 0 20px;
-            border-radius: 5px 5px 0 0;
-            color: white;
-            margin-right: 3px;
-            margin-top: 0;
-          }
+            transform: rotate(-90deg);
+            align-items: flex-end;
 
-
-
-        }
-
-
-        .titleListe {
-          display: flex;
-          justify-content: space-between;
-          text-align: center;
-          color: #5a5a5a;
-          margin-left: 50px;
-
-          div {
-            height: 40px;
-            line-height: 40px;
-            width: 142px;
-            background-color: white;
-            border-right: 1px solid #cccccc;
-
-
-
-            &:nth-child(1) {
-              width: 50px;
+            div {
+              text-decoration: none;
+              cursor: pointer;
+              height: 40px;
+              font-size: 1em;
+              line-height: 40px;
+              text-align: center;
+              color: $col_typo;
+              background-color: #dfdfdf;
+              padding: 0 10px;
+              margin-right: 3px;
+              margin-top: 10px;
+              border-radius: 5px 5px 0 0;
             }
 
-          }
-
-
-        }
-
-        .titleListe_users {
-          display: flex;
-          justify-content: space-between;
-          text-align: center;
-          color: #5a5a5a;
-          margin-left: 50px;
-
-
-
-          div {
-            height: 40px;
-            line-height: 40px;
-            width: 213px;
-            background-color: white;
-            border-right: 1px solid #cccccc;
-
-
-
-            &:nth-child(1) {
-              width: 50px;
+            .active {
+              height: 50px;
+              font-size: 1.2em;
+              line-height: 50px;
+              background-color: #53853D;
+              padding: 0 20px;
+              border-radius: 5px 5px 0 0;
+              color: white;
+              margin-right: 3px;
+              margin-top: 0;
             }
 
+
+
           }
 
 
+          .titleListe_tasks {
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+            color: #5a5a5a;
+            margin-left: 50px;
+
+            div {
+              width: 100%;
+              height: 40px;
+              line-height: 40px;
+              text-align: center;
+              background-color: white;
+              border-right: 1px solid #cccccc;
+            }
+
+
+          }
+
+          .titleListe_users {
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+            color: #5a5a5a;
+            margin-left: 50px;
+
+            div {
+              height: 40px;
+              line-height: 40px;
+              width: 213px;
+              background-color: white;
+              border-right: 1px solid #cccccc;
+
+
+
+            }
+
+
+          }
         }
+
 
       }
 
 
     }
+
 
   }
 

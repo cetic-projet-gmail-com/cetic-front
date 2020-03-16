@@ -39,7 +39,7 @@ export class EditActivityComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.params['id']
     this.DataService.getActivityById(this.id).subscribe((res) => {
-      console.log('test'+res)
+      console.log('test' + res)
       this.act = res.data;
       // this.title = this.act.name;
       // this.TitleService.setTitle(res.data.activity.name)
@@ -53,6 +53,8 @@ export class EditActivityComponent implements OnInit {
       // console.log(this.user)
 
     });
+
+    this.TitleService.setTitle("Activity")
 
 
 
