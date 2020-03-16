@@ -83,7 +83,6 @@ export class CreateEventComponent implements OnInit {
     this.res['taskId'] = taskId;
   }
   submit(f) {
-    // this.res['color'] = this.data.activities.find(e => e['tasks'].some(e => e.taskId === this.res['taskId'])).color_code;
     let start, end, description;
     ({
       start,
@@ -92,8 +91,8 @@ export class CreateEventComponent implements OnInit {
     } = f.value)
     this.res['description'] = description;
     let date = this.data.date
-    this.res['start'] = formatISO(addHours(new Date((date).getFullYear(), (date).getMonth(), (date).getDate(), start.split(':')[0], start.split(':')[1]), 1));
-    this.res['end'] = formatISO(addHours(new Date((date).getFullYear(), (date).getMonth(), (date).getDate(), end.split(':')[0], end.split(':')[1]), 1));
+    this.res['startAt'] = formatISO(addHours(new Date((date).getFullYear(), (date).getMonth(), (date).getDate(), start.split(':')[0], start.split(':')[1]),1));
+    this.res['endAt'] = formatISO(addHours(new Date((date).getFullYear(), (date).getMonth(), (date).getDate(), end.split(':')[0], end.split(':')[1]), 1));
     this.dialogRef.close(this.res)
   }
 }

@@ -9,17 +9,22 @@ import { Activities } from './../../models/activities';
 import { Users } from '../../models/users';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AuthenticationService } from './auth/authentification.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  apiURL = 'http://localhost:3000'
-  constructor(private httpClient: HttpClient) {
+  public apiURL = 'http://localhost:3000';
+  constructor(private httpClient: HttpClient, private auth: AuthenticationService) {
   }
 
 /* --------------------------------- OTHERS --------------------------------- */
+  public profile() {
+    return this.httpClient.get(`${this.apiURL}/profile`, { headers: { Authorization: `Bearer ${this.auth.getToken()}` } });
+
+  }
 
   public getTypes(url?: string) {
     return this.httpClient.get<Type>(`${this.apiURL}/administration/atypes`);
@@ -87,12 +92,12 @@ export class DataService {
 
   public getDepartementById(id: number) {
     if (id) {
-      return this.httpClient.get<SimpleDepartement>(`${this.apiURL}/administration/departements/${id}`);
+      return this.httpClient.get<SimpleDepartement>(`${this.apiURL}/administration/departments/${id}`);
     }
   }
 
   public getDepartements(url?: string) {
-    return this.httpClient.get<Departements>(`${this.apiURL}/administration/departements`);
+    return this.httpClient.get<Departements>(`${this.apiURL}/administration/departments`);
   }
 
   public createEvent(event){
@@ -100,15 +105,15 @@ export class DataService {
   }
 
   public createDepartement(departement) {
-    return this.httpClient.post(`${this.apiURL}/administration/departements`, departement);
+    return this.httpClient.post(`${this.apiURL}/administration/departments`, departement);
   }
 
   public updateDepartement(departement, id) {
-    return this.httpClient.patch(`${this.apiURL}/administration/departements/${id}`, departement)
+    return this.httpClient.patch(`${this.apiURL}/administration/departments/${id}`, departement)
   }
 
   public deleteDepartement(id: number) {
-    return this.httpClient.delete(`${this.apiURL}/administration/departements/${id}`);
+    return this.httpClient.delete(`${this.apiURL}/administration/departments/${id}`);
   }
 
 
