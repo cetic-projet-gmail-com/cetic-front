@@ -34,6 +34,7 @@ export class CreateUserComponent implements OnInit {
   }
 
   onFormSubmit(userForm: NgForm) {
+    console.log(userForm)
     userForm.value.role_id = parseInt(userForm.value.role_id)
     userForm.value.departement_id = parseInt(userForm.value.departement_id)
     this.DataService.createUser(userForm.value).subscribe((res) => {

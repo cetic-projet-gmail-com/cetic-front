@@ -183,7 +183,7 @@ export class CalendarComponent implements OnInit {
     const segmentPosition = segmentElement.getBoundingClientRect();
     //? tooltip (div Hour Start - Hour End)
     //* tooltip
-    this.div.style.display = "block";
+    // this.div.style.display = "block";
     //*
     fromEvent(document, 'mousemove')
       .pipe(
@@ -193,7 +193,7 @@ export class CalendarComponent implements OnInit {
           this.createEvent(dragToSelectEvent);
           //*Tooltip
           this.container.removeEventListener('mousemove', this.toolTipCreate, false);
-          this.div.style.display = "none";
+          // this.div.style.display = "none";
           //*
         }),
         takeUntil(fromEvent(document, 'mouseup'))
