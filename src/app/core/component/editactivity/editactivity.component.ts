@@ -42,7 +42,8 @@ export class EditActivityComponent implements OnInit {
       console.log('test' + res)
       this.act = res.data;
       // this.title = this.act.name;
-      // this.TitleService.setTitle(res.data.activity.name)
+      this.TitleService.setTitle(res.data.activity.name)
+
 
 
     }
@@ -54,7 +55,6 @@ export class EditActivityComponent implements OnInit {
 
     });
 
-    this.TitleService.setTitle("Activity")
 
 
 
