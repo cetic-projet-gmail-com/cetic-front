@@ -1,18 +1,18 @@
 export interface SimpleUser {
     
-        data: {
-          user: {
-            id: number,
-            login: string,
-            firstName: string,
-            lastName: string,
-            email: string,
-            password: string,
-            createdAt: string,
-            updatedAt: string,
-            roleId: number,
-            departmentId: number
-          }
-        }
-      
+  data: {
+    user: {
+      id: number,
+      login: string,
+      firstname: string,
+      lastname: string,
+      email: string,
+      password: string,
+      created: string,
+      updated: string,
+      role_id: number,
+      departement_id: number
+    }
+  }
+
 }

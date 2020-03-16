@@ -49,3 +49,4 @@ export class UpdateActivityComponent implements OnInit {
   }
 
 }
+

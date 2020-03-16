@@ -11,13 +11,13 @@ import { TitleService } from '../../../services/title.service';
   styleUrls: ['./update-user.component.scss']
 })
 export class UpdateUserComponent implements OnInit {
-  id;
+  id
   constructor(private DataService: DataService, private route: ActivatedRoute, private TitleService: TitleService) { }
-  departments;
-  roles;
-  user;
-  firstName: string
-  lastName: string
+  departements
+  roles
+  user
+  firstname: string
+  lastname: string
   login: string
   mail: string
 
@@ -25,7 +25,8 @@ export class UpdateUserComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
 
     this.DataService.getDepartements().subscribe((res) => {
-      this.departments = res.data.departments
+      this.departements = res.data.departement
+
     });
 
     this.DataService.getRoles().subscribe((res) => {
@@ -33,19 +34,19 @@ export class UpdateUserComponent implements OnInit {
     });
 
     this.DataService.getUserById(this.id).subscribe((res) => {
-      this.firstName = res.data.user.firstName
-      this.lastName = res.data.user.lastName
+      this.firstname = res.data.user.firstname
+      this.lastname = res.data.user.lastname
       this.login = res.data.user.login
       this.mail = res.data.user.email
-      this.TitleService.setTitle(`${this.firstName} ${this.lastName}`)
+      this.TitleService.setTitle(`${this.firstname} ${this.lastname}`)
     });
 
 
 
   }
   onFormSubmit(userForm: NgForm) {
-    userForm.value.roleId = parseInt(userForm.value.roleId)
-    userForm.value.departmentId = parseInt(userForm.value.departmentId)
+    userForm.value.role_id = parseInt(userForm.value.role_id)
+    userForm.value.departement_id = parseInt(userForm.value.departement_id)
 
     this.DataService.updateUser(userForm.value, this.id).subscribe((res)=>{
       console.log(res)

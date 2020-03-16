@@ -137,10 +137,11 @@ export class CalendarComponent implements OnInit {
       title: event.description,
       draggable: true,
       allDay: false,
-      // resizable: {
-      //   beforeStart: true, // this allows you to configure the sides the event is resizable from
-      //   afterEnd: true
-      // },
+      resizable: {
+        beforeStart: true, // this allows you to configure the sides the event is resizable from
+        afterEnd: true,
+        
+      },
       color: { primary: '#263238', secondary: activity.color_code },
       meta: {
         id: event.id,

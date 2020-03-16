@@ -20,11 +20,11 @@ export class CreateUserComponent implements OnInit {
 
   constructor(private DataService: DataService, private TitleService: TitleService) { }
   roles
-  departments
+  departements
   ngOnInit() {
     this.DataService.getDepartements().subscribe((res) => {
-      this.departments = res.data.departments
-      // console.log(this.departements)
+      this.departements = res.data.departement
+      console.log(this.departements)
 
     });
     this.DataService.getRoles().subscribe((res) => {
@@ -34,8 +34,8 @@ export class CreateUserComponent implements OnInit {
   }
 
   onFormSubmit(userForm: NgForm) {
-    userForm.value.roleId = parseInt(userForm.value.roleId)
-    userForm.value.departmentId = parseInt(userForm.value.departmentId)
+    userForm.value.role_id = parseInt(userForm.value.role_id)
+    userForm.value.departement_id = parseInt(userForm.value.departement_id)
     this.DataService.createUser(userForm.value).subscribe((res) => {
       console.log(res)
       console.log("user created");

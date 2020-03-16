@@ -76,13 +76,13 @@ export class AdminUsersComponent implements OnInit {
   }
 
   showData() {
-    // console.log('TEST');
+    console.log('TEST');
     this.DataService.getActivities().subscribe((res) => {
-      // console.log(res);
+      console.log(res);
       this.act = res.data.activities
     });
     this.DataService.getAdminUsers(this.nbre).subscribe((res) => {
-      // console.log(res);
+      console.log(res);
       this.currentPage = res.links.current
       this.nextPage = res.links.next
       this.previousPage = res.links.previous
@@ -93,8 +93,8 @@ export class AdminUsersComponent implements OnInit {
 
 
     this.DataService.getDepartements().subscribe((res) => {
-      // console.log(res);
-      this.dep = res.data.departments
+      console.log(res);
+      this.dep = res.data.departement
     })
     this.TitleService.setTitle("Administration")
 
@@ -157,7 +157,7 @@ export class AdminUsersComponent implements OnInit {
         this.sensRole = !this.sensRole
         this.sens = this.sensRole
         break;
-      case "department":
+      case "departement":
         this.sens = true;
         this.sensDep = !this.sensDep
         this.sens = this.sensDep
@@ -167,7 +167,7 @@ export class AdminUsersComponent implements OnInit {
         this.sensName = !this.sensName
         this.sens = this.sensName
         break;
-      case "responsibleId":
+      case "responsable_id":
         this.sens = true;
         this.sensRes = !this.sensRes
         this.sens = this.sensRes

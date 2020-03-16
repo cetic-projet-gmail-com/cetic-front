@@ -7,11 +7,10 @@ export interface Departements {
         last:string
     }
     data: {
-        departments: [{
+        departement: [{
             id: number,
             name: string,
-            responsibleId: number
+            responsible_id: number
         }]
     }
 }
-

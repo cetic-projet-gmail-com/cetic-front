@@ -51,14 +51,14 @@
       <div class="titleListe titleListe_user" *ngIf="router.url === '/administration/users'">
         <!-- <div class=" number" (click)="sort('id')">#
         </div> -->
-        <div (click)="sort('firstName')">Nom <fa-icon *ngIf="order =='firstName'" [icon]="sensFname? up : down"
+        <div (click)="sort('firstname')">Nom <fa-icon *ngIf="order =='firstname'" [icon]="sensFname? up : down"
             class="down">
           </fa-icon>
         </div>
         <div (click)="sort('role')">Rôle <fa-icon *ngIf="order =='role'" [icon]="sensRole? up : down" class="down">
           </fa-icon>
         </div>
-        <div (click)="sort('department')">Dép. <fa-icon *ngIf="order =='department'" [icon]="sensDep? up : down"
+        <div (click)="sort('departement')">Dép. <fa-icon *ngIf="order =='departement'" [icon]="sensDep? up : down"
             class="down">
           </fa-icon>
         </div>
@@ -77,7 +77,7 @@
         </div>
 
 
-        <div (click)="sort('responsibleId')">Responsable <fa-icon *ngIf="order =='responsibleId'"
+        <div (click)="sort('responsable_id')">Responsable <fa-icon *ngIf="order =='responsable_id'"
             [icon]="sensRes? up : down" class="down">
           </fa-icon>
 
@@ -123,7 +123,7 @@
       <ul *ngIf="router.url === '/administration/users'" data-simplebar class="ul_user">
         <li *ngFor="let u of user | orderBy: order : sens : true; let index = index;let even = even; let odd = odd "
           [ngClass]="{ odd: odd, even: even }">
-          <div style="text-transform: capitalize; " [id]="u.id"><span>{{u.lastName}}</span>{{u.firstName}} </div>
+          <div style="text-transform: capitalize; " [id]="u.id"><span>{{u.lastname}}</span>{{u.firstname}} </div>
           <div>{{u.role}}</div>
           <div>{{u.department}}.</div>
           <div>
@@ -150,7 +150,7 @@
           <!-- <div class="number">{{index + 1}}</div> -->
           <div style="text-transform: capitalize; ">{{d.name}}</div>
           <!-- <div>{{d.department}}.</div> -->
-          <div>{{d.responsibleId}}</div>
+          <div>{{d.responsable_id}}</div>
           <div>
             <a [routerLink]="['/administration/departement', d.id]">
               <fa-icon [icon]="faEdit" class="faEdit">
