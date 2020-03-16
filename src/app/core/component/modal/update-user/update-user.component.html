@@ -18,6 +18,11 @@
         <input type="email" pattern="[A-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" ngModel required name="email" id="email" class="" [value]="mail">
       </div>
 
+      <div>
+        <label for="password">mot de passe</label><br>
+        <input type="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[^\s](?=.*[a-zA-Z]).[^\s]{8,50}$" ngModel name="password" id="password" class="" required>
+      </div>
+
       <div class="role">
         <label for="role_id">role</label><br>
         <select ngModel required name="role_id" class="" id="role_id">
