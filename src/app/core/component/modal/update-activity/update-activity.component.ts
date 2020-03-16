@@ -1,5 +1,7 @@
+import { map, startWith } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormControl } from '@angular/forms';
 import { DataService } from './../../../services/data.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -13,6 +15,13 @@ export class UpdateActivityComponent implements OnInit {
   actResp
   actType
   actColor
+  users
+  userArray
+  myControl = new FormControl();
+  options= [];
+  filteredOptions: Observable<string[]>;
+  index : number;
+  responsible_Id: number
 
   id
   constructor(private DataService: DataService, private route: ActivatedRoute) { }
@@ -20,6 +29,18 @@ export class UpdateActivityComponent implements OnInit {
   types
   actDesc
   ngOnInit() {
+    this.DataService.getAdminUsers("?paginate=false").subscribe((res) => {
+      this.users = res.data.users
+      this.options = this.users.map(element => element.lastname)
+      
+    });
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => {
+      return this._filter(value)})
+
+    );
+
     this.id = this.route.snapshot.paramMap.get('id');
 
     this.DataService.getActivityById(this.id).subscribe((res)=>{
@@ -41,6 +62,7 @@ export class UpdateActivityComponent implements OnInit {
     });
   }
   onFormSubmit(activityForm: NgForm) {
+    activityForm.value.projectManager = this.responsible_Id
     this.DataService.updateActivity(activityForm.value, this.id).subscribe((res)=>{
       
       console.log(res)
@@ -48,5 +70,14 @@ export class UpdateActivityComponent implements OnInit {
     })
   }
 
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    this.index = this.options.indexOf(value)
+    if (this.index != -1){
+      this.responsible_Id = this.users[this.index].id
+    }
+    return this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+  }
 }
 

@@ -1,3 +1,5 @@
+import { CreateTaskComponent } from './core/component/modal/create-task/create-task.component';
+import { UpdateTaskComponent } from './core/component/modal/update-task/update-task.component';
 import { ErrorComponent } from './core/component/error/error.component';
 import { AngularMaterialModule } from './angular-material.module';
 import { ForgotPasswordComponent } from './core/component/forgot-password/forgot-password.component';
@@ -85,6 +87,8 @@ import { RemoveEventComponent } from './core/component/modal/remove-event/remove
     HomeNavComponent,
     EditEventComponent,
     RemoveEventComponent,
+    CreateTaskComponent,
+    UpdateTaskComponent,
     ErrorComponent
   ],
   imports: [
