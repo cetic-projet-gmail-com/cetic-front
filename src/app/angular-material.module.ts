@@ -3,13 +3,14 @@ import {
     MatAutocompleteModule,
     MatInputModule,
     MatExpansionModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSnackBarModule
     
 } from '@angular/material';
 
 @NgModule({
-    imports: [MatAutocompleteModule,MatInputModule, MatExpansionModule, MatTooltipModule],
-    exports: [MatAutocompleteModule,MatInputModule, MatExpansionModule, MatTooltipModule]
+    imports: [MatAutocompleteModule,MatInputModule, MatExpansionModule, MatTooltipModule, MatSnackBarModule ],
+    exports: [MatAutocompleteModule,MatInputModule, MatExpansionModule, MatTooltipModule, MatSnackBarModule]
 })
 
 export class AngularMaterialModule{}

@@ -56,7 +56,6 @@ export class CreateEventComponent implements OnInit {
     }));
     this.viewDate = `${this.upFirsChar(day)}  ${format(this.data.date, 'dd')} ${this.upFirsChar(format(this.data.date, 'MMMM', { locale: fr }))} ${format(this.data.date, 'yyyy')}`;
 
-    // this.viewDate = format(this.data.date,'dd/MM/yy')
   }
   upFirsChar(d) {
     return d.charAt(0).toUpperCase() + d.slice(1);
@@ -65,23 +64,17 @@ export class CreateEventComponent implements OnInit {
     this.view = 2;
     let taskId;
     if (f !== null) {
-      console.log('true')
       taskId = parseInt(f.value.tasks);
     } else {
-      console.log("false")
       taskId = parseInt(this.data.taskId);
     }
-    console.log(this.data)
-    this.activityFound = this.data.activities.find(act =>
-      act['tasks'].some(t =>
-        t.activityId === act.id
-      )
-    );
-    console.log(this.activityFound)
-    this.taskFound = this.activityFound['tasks'].find(tsk =>
-      tsk.id === taskId
-    );
-    console.log(this.taskFound)
+    this.activityFound = this.data.activities.find(act => {
+      let taskTmp = act.tasks.find(t => t.id === taskId);
+      if (taskTmp) {
+        this.taskFound = taskTmp;
+        return act;
+      }
+    });
     this.res['taskId'] = taskId;
   }
   submit(f) {
@@ -94,7 +87,7 @@ export class CreateEventComponent implements OnInit {
     this.res['description'] = description;
     let date = this.data.date
     this.res['startAt'] = formatISO(/*addHours(*/new Date((date).getFullYear(), (date).getMonth(), (date).getDate(), start.split(':')[0], start.split(':')[1])/*,1)*/);
-    this.res['endAt'] = formatISO(addHours(new Date((date).getFullYear(), (date).getMonth(), (date).getDate(), end.split(':')[0], end.split(':')[1]), 1));
+    this.res['endAt'] = formatISO(/*addHours(*/new Date((date).getFullYear(), (date).getMonth(), (date).getDate(), end.split(':')[0], end.split(':')[1])/*, 1)*/);
     this.dialogRef.close(this.res)
   }
 }

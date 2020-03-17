@@ -94,20 +94,19 @@ export class CalendarComponent implements OnInit {
     let url = "";
     switch (this.view) {
       case CalendarView.Month:
-        url = `?display=month&month=${date.getMonth() + 1}&year=${date.getFullYear()}`;
+        url = `?display=month&month=${date.getMonth() }&year=${date.getFullYear()}`;
         break;
       case CalendarView.Week:
         url = `?display=week&week=${getWeek(this.viewDate, { weekStartsOn: 1 })}&year=${getWeekYear(this.viewDate)}`;
         break;
       case CalendarView.Day:
-        url = `?display=day&date=${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
+        url = `?display=day&date=${date.getDate()}-${date.getMonth() }-${date.getFullYear()}`;
         break;
       default:
         url = ""; //? Req for actual week
         break;
     }
     this.DataService.getHome(url).subscribe((result) => {
-         
       // this.activities.length === 0 ? this.getTasks(result) : "";
       // console.log(result)
       let {activities, events} = result['data'];
@@ -362,6 +361,7 @@ export class CalendarComponent implements OnInit {
     } else {
       event['start'] = newStart;
       // event['end'] = addMinutes((event['start']), 60);
+      // console.log(event)
       this.events.push(event);
       this.refreshing();
       this.createEvent(event);

@@ -17,21 +17,13 @@ export class HomeAsideComponent implements OnInit {
   
    getTasks() {
     this.DataService.getHome().subscribe(async result =>{
+      await result["data"].activities.forEach(activity => {
+        activity.tasks = activity.tasks.map(task => {return {"taskId": task["id"], "title" : task['name'], "start": new Date(), draggable:true }});
+
+      });
       this.activities = result["data"].activities;
-      // await result['data'].activities.forEach((activity) => {
-      //   activity['tasks'] =  []
-      //   result['data'].tasks.forEach(task => {
-      //     if (activity.id === task.activityId)
-      //     activity['tasks'].push( {"taskId": task["id"], "title" : task['name'], "start": new Date(), draggable:true });
-      //   });
-      //   if (activity['tasks'].length !== 0){
-      //     this.activities.push(activity);
-          
-      //   }
-      // });
-       this.cdr.detectChanges();
+      this.cdr.detectChanges();
     });
-    console.log(this.activities)
   }
 
 

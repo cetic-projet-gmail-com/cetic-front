@@ -15,6 +15,7 @@ $col_typo : #5a5a5a;
   background-color: #fff;
   font-family: $saira;
 
+
   .back {
     position: absolute;
     top: 30px;
@@ -61,6 +62,7 @@ $col_typo : #5a5a5a;
     }
 
     button {
+      
       font-family: $saira;
       text-transform: capitalize;
       background-color: rgba(83, 133, 61, .7);
@@ -68,7 +70,7 @@ $col_typo : #5a5a5a;
       border: none;
       border-radius: 3px;
       padding: 5px 15px;
-      margin-left: 485px;
+      margin-left: 445px;
       margin-top: 20px;
       // transition: all 0.3s ease;
 

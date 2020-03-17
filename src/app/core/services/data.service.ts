@@ -22,7 +22,12 @@ export class DataService {
 
 /* --------------------------------- OTHERS --------------------------------- */
   public profile() {
-    return this.httpClient.get(`${this.apiURL}/profile`, {observe: 'response', headers: { Authorization: `Bearer ${this.auth.getToken()}` } });
+    return this.httpClient.get(`${this.apiURL}/profile`, { headers: { Authorization: `Bearer ${this.auth.getToken()}` } });
+
+  }
+
+  public postProfile(profil) {
+    return this.httpClient.patch(`${this.apiURL}/profile`, profil,{ observe: 'response', headers: { Authorization: `Bearer ${this.auth.getToken()}` } });
 
   }
 
