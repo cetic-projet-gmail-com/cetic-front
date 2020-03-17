@@ -24,7 +24,8 @@
       </div>
       <div>
         <label for="password">mot de passe</label><br>
-        <input type="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$" ngModel name="password" id="password" class="" required>
+        <input type="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$" ngModel name="password"
+          id="password" class="" required>
       </div>
       <div>
         <label for="role_id">role</label><br>
@@ -40,7 +41,7 @@
       </div>
 
 
-      <div class="action">
+      <div class="btn_action">
         <button class="cancel" (click)="hide()">Annuler</button>
         <button class="save" type="submit">Valider</button>
       </div>

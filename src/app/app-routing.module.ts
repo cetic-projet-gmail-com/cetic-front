@@ -11,6 +11,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuardService } from './core/services/auth/auth-guard.service';
 import { EditUserComponent } from './core/component/edit-user/edit-user.component';
 import { EditActivityComponent } from './core/component/editactivity/editactivity.component';
+import { UpdateDepartementComponent } from './core/component/modal/update-departement/update-departement.component';
+
 
 
 const routes: Routes = [
@@ -43,6 +45,11 @@ const routes: Routes = [
   {
     path: 'administration/users', pathMatch: 'full',
     component: AdminUsersComponent
+  },
+
+  {
+    path: 'administration/departement/:id',
+    component: UpdateDepartementComponent
   },
 
   {

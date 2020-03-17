@@ -152,7 +152,7 @@
           <!-- <div>{{d.department}}.</div> -->
           <div>{{d.responsable_id}}</div>
           <div>
-            <a [routerLink]="['/administration/departement', d.id]">
+            <a [routerLink]="['/administration/departement', d.id]" routerLinkActive="active">
               <fa-icon [icon]="faEdit" class="faEdit">
               </fa-icon>
             </a>
@@ -213,11 +213,12 @@
 <create-departement *ngIf="router.url === '/administration/departement' && !isHidden" [isHidden]="isHidden"
   (reset)="isHidden = !isHidden"></create-departement>
 
-<update-departement *ngIf="router.url === '/administration/departement'"></update-departement>
 
 <create-activity *ngIf="router.url === '/administration/activities' && !isHidden" [isHidden]="isHidden"
   (reset)="isHidden = !isHidden">
 </create-activity>
+
+
 
 <!-- ----------------------------------------------------------------------- -->
 
