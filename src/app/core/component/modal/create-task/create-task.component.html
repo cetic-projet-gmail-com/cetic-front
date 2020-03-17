@@ -1,47 +1,31 @@
 <div class="wrapper">
-    <div class="content">
-      <h2>Ajouter une activité</h2>
-  
-  
-      <form #activityForm="ngForm" (ngSubmit)="onFormSubmit(activityForm)">
-  
-        <div>
-          <label for="name">Nom</label> <br>
-          <input type="text" ngModel required name="name" id="name" pattern="[A-z][-éèëêâäàîïùûüôö]?" class="">
-        </div>
-  
-        <!-- <mat-form-field> -->
-        <label for="responsable">Responsable</label>
-        <input type="text" placeholder="Choose responsible" [formControl]="myControl" [matAutocomplete]="auto">
-        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" ngModel name="responsible_Id">
-          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-            {{ option }}
-          </mat-option>
-        </mat-autocomplete>
-        <!-- </mat-form-field> -->
-        <br>
-        <label for="a_type">type</label><br>
-        <select ngModel required name="a_type_id" id="a_type">
-          <option *ngFor="let type of types" [value]="type.id">{{ type.name }}</option>
-        </select>
-  
-  
-        <label for="color_code">couleur</label>
-        <select ngModel [value]="actColor" required name="color_code" class="form-control" id="color_code">
-          <option *ngFor="let color of colors" [value]="color.color_code">{{ color.name }}</option>
-        </select>
-  
-        <div>
-          <label for="description">description</label><br>
-          <textarea ngModel name="description" id="description" cols="50" rows="4"></textarea>
-        </div>
-  
-        <div class="action">
-          <button class="cancel" (click)="hide()">Annuler</button>
-          <button class="save" type="submit">Valider</button>
-        </div>
-  
-      </form>
-  
-    </div>
+  <div class="content">
+    <h2>Ajouter une tache</h2>
+
+    <form #taskForm="ngForm" (ngSubmit)="onFormSubmit(taskForm)">
+
+      <div>
+        <label for="name">Nom</label> <br>
+        <input type="text" ngModel required name="name" id="name" pattern="[A-z][-éèëêâäàîïùûüôö]?">
+      </div>
+
+
+      <div>
+        <label for="description">description</label><br>
+        <textarea ngModel name="description" id="description" cols="50" rows="4"></textarea>
+      </div>
+
+      <div>
+        <label for="name">finie ??</label> <br>
+        <input type="text" ngModel name="name" id="name">
+      </div>
+
+      <div class="action">
+        <button class="cancel" (click)="hide()">Annuler</button>
+        <button class="save" type="submit">Valider</button>
+      </div>
+
+    </form>
+
   </div>
+</div>

@@ -1,3 +1,5 @@
+import { NgForm } from '@angular/forms';
+import { DataService } from 'src/app/core/services/data.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

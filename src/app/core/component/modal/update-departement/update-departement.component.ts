@@ -67,7 +67,6 @@ export class UpdateDepartementComponent implements OnInit {
     this.DataService.getAdminUsers("?paginate=false").subscribe((res) => {
       this.users = res.data.users
       this.options = this.users.map(element => element.lastname)
-
     });
 
     this.filteredOptions = this.myControl.valueChanges.pipe(
