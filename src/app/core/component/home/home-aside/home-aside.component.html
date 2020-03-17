@@ -5,7 +5,7 @@
   <mat-expansion-panel *ngFor="let activity of activities">
     <mat-expansion-panel-header>
       <div class="activity_choice_title">
-        <div class="colorActivity" [ngStyle]="{'background-color':activity.color_code}" class="activity_color_choice">
+        <div class="colorActivity" [ngStyle]="{'background-color':activity.colour.code}" class="activity_color_choice">
         </div>{{activity.name}}
       </div>
     </mat-expansion-panel-header>
@@ -14,7 +14,7 @@
         [dropData]="{event: task}" dragActiveClass="drag-active">
 
 
-        {{ task.title }}
+        {{ task.name }}
 
       </li>
 

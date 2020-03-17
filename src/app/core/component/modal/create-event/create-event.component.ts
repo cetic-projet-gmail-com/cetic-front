@@ -71,15 +71,17 @@ export class CreateEventComponent implements OnInit {
       console.log("false")
       taskId = parseInt(this.data.taskId);
     }
+    console.log(this.data)
     this.activityFound = this.data.activities.find(act =>
       act['tasks'].some(t =>
-        t.taskId === taskId
+        t.activityId === act.id
       )
     );
     console.log(this.activityFound)
     this.taskFound = this.activityFound['tasks'].find(tsk =>
-      tsk.taskId === taskId
+      tsk.id === taskId
     );
+    console.log(this.taskFound)
     this.res['taskId'] = taskId;
   }
   submit(f) {
@@ -91,7 +93,7 @@ export class CreateEventComponent implements OnInit {
     } = f.value)
     this.res['description'] = description;
     let date = this.data.date
-    this.res['startAt'] = formatISO(addHours(new Date((date).getFullYear(), (date).getMonth(), (date).getDate(), start.split(':')[0], start.split(':')[1]),1));
+    this.res['startAt'] = formatISO(/*addHours(*/new Date((date).getFullYear(), (date).getMonth(), (date).getDate(), start.split(':')[0], start.split(':')[1])/*,1)*/);
     this.res['endAt'] = formatISO(addHours(new Date((date).getFullYear(), (date).getMonth(), (date).getDate(), end.split(':')[0], end.split(':')[1]), 1));
     this.dialogRef.close(this.res)
   }

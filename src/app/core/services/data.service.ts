@@ -16,13 +16,13 @@ import { AuthenticationService } from './auth/authentification.service';
   providedIn: 'root'
 })
 export class DataService {
-  public apiURL = 'http://localhost:3000';
+  public apiURL = 'http://localhost:8020';
   constructor(private httpClient: HttpClient, private auth: AuthenticationService) {
   }
 
 /* --------------------------------- OTHERS --------------------------------- */
   public profile() {
-    return this.httpClient.get(`${this.apiURL}/profile`, { headers: { Authorization: `Bearer ${this.auth.getToken()}` } });
+    return this.httpClient.get(`${this.apiURL}/profile`, {observe: 'response', headers: { Authorization: `Bearer ${this.auth.getToken()}` } });
 
   }
 
@@ -40,13 +40,13 @@ export class DataService {
 
   public getHome(url?: string) {
     url = url? url: "";
-    return this.httpClient.get(`${this.apiURL}/home${url}`);
+    return this.httpClient.get(`${this.apiURL}/home${url}`, {headers: { Authorization: `Bearer ${this.auth.getToken()}` } });
   }
   public deleteEvent(id) {
-    return this.httpClient.delete(`${this.apiURL}/home/${id}`, {observe: 'response'});
+    return this.httpClient.delete(`${this.apiURL}/home/${id}`, {observe: 'response', headers: { Authorization: `Bearer ${this.auth.getToken()}` } });
   }
   public updateEvent(id, event) {
-    return this.httpClient.patch(`${this.apiURL}/home/${id}`, event, {observe: 'response'});
+    return this.httpClient.patch(`${this.apiURL}/home/${id}`, event, {observe: 'response', headers: { Authorization: `Bearer ${this.auth.getToken()}` } });
   }
 
   
@@ -101,7 +101,7 @@ export class DataService {
   }
 
   public createEvent(event){
-    return this.httpClient.post(`${this.apiURL}/home`,event, {observe: 'response'});
+    return this.httpClient.post(`${this.apiURL}/home`,event, {observe: 'response', headers: { Authorization: `Bearer ${this.auth.getToken()}` } });
   }
 
   public createDepartement(departement) {

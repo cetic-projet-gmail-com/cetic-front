@@ -108,16 +108,20 @@ export class CalendarComponent implements OnInit {
     }
     this.DataService.getHome(url).subscribe((result) => {
          
-      this.activities.length === 0 ? this.getTasks(result) : "";
-      this.getEvents(result);
+      // this.activities.length === 0 ? this.getTasks(result) : "";
+      // console.log(result)
+      let {activities, events} = result['data'];
+      this.activities = activities;
+      // console.log(this.activities)
+      this.getEvents(events);
       
     });
   }
 
   getEvents(result) {
-    let json = result['data'];
+    // let json = result['data'];
     
-    json['events'].forEach(element => {
+    /*json['events']*/result.forEach(element => {
       this.setEvent(element)
     });
   }
@@ -125,16 +129,17 @@ export class CalendarComponent implements OnInit {
     let task, activity;
     activity = this.activities.find(act =>  
         act['tasks'].some(t => 
-          t.taskId === event.taskId
-      )
+          t.id === event.taskId
+        )
     );
     task = activity['tasks'].find(tsk => 
-      tsk.taskId === event.taskId
+      tsk.id === event.taskId
     );
+    
     this.events.push({
       start: parseISO(event.startAt),
       end: parseISO(event.endAt),
-      title: event.description,
+      title: event.description + event.id,
       draggable: true,
       allDay: false,
       resizable: {
@@ -142,11 +147,11 @@ export class CalendarComponent implements OnInit {
         afterEnd: true,
         
       },
-      color: { primary: '#263238', secondary: activity.color_code },
+      color: { primary: '#263238', secondary: activity.colour.code },
       meta: {
         id: event.id,
         taskId: event.taskId,
-        taskName: task.title,
+        taskName: task.name,
         activityId: activity.id,
         activityName: activity.name
       }
@@ -154,16 +159,16 @@ export class CalendarComponent implements OnInit {
     this.refreshing();
   }
   getTasks(result) {
-    result['data'].activities.forEach((activity) => {
-      activity['tasks'] = []
-      result['data'].tasks.forEach(task => {
-        if (activity.id === task.activityId)
-          activity['tasks'].push({ "taskId": task["id"], "title": task['name'], "start": new Date(), draggable: true });
-      });
-      if (activity['tasks'].length !== 0) {
-        this.activities.push(activity)
-      }
-    });
+    // result['data'].activities.forEach((activity) => {
+    //   activity['tasks'] = []
+    //   result['data'].tasks.forEach(task => {
+    //     if (activity.id === task.activityId)
+    //       activity['tasks'].push({ "taskId": task["id"], "title": task['name'], "start": new Date(), draggable: true });
+    //   });
+    //   if (activity['tasks'].length !== 0) {
+    //     this.activities.push(activity)
+    //   }
+    // });
   }
   //* ------------------------------ Create Event ------------------------------ */
   dragToCreateActive = false;
@@ -183,7 +188,7 @@ export class CalendarComponent implements OnInit {
     const segmentPosition = segmentElement.getBoundingClientRect();
     //? tooltip (div Hour Start - Hour End)
     //* tooltip
-    // this.div.style.display = "block";
+    this.div.style.display = "block";
     //*
     fromEvent(document, 'mousemove')
       .pipe(
@@ -193,7 +198,7 @@ export class CalendarComponent implements OnInit {
           this.createEvent(dragToSelectEvent);
           //*Tooltip
           this.container.removeEventListener('mousemove', this.toolTipCreate, false);
-          // this.div.style.display = "none";
+          this.div.style.display = "none";
           //*
         }),
         takeUntil(fromEvent(document, 'mouseup'))
@@ -255,7 +260,7 @@ export class CalendarComponent implements OnInit {
   toolTipCreate(e): void {
     let { start, end, div, container } = e.currentTarget.infos;
     var x = e.clientX,       y = e.clientY;
-    div.style.top = (y - container.offsetHeight) + 'px';
+    div.style.top = (y - container.offsetHeight - 60) + 'px';
     div.style.left = (x) + 'px';
     div.innerText = `${format(start, 'HH:mm')} - ${format(end, 'HH:mm')}`;
   }
@@ -274,6 +279,7 @@ export class CalendarComponent implements OnInit {
       if (result === "removed") {
         this.DataService.deleteEvent(id).subscribe(async (resServer) => {
           await (resServer.status);
+          // console.log(resServer)
           if (resServer.status === 200) {
             this.events.splice(Ievent,1);
             
@@ -333,6 +339,7 @@ export class CalendarComponent implements OnInit {
               "startAt": newStart,
               "endAt": newEnd
             }
+            // console.log(event['meta'].id)
             this.DataService.updateEvent(event['meta'].id, patch).subscribe(async (resServer) => {
               await (resServer.status);
               if (resServer.status === 200) {
