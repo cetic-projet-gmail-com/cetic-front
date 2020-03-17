@@ -60,6 +60,15 @@ $col_typo : #5a5a5a;
       }
     }
 
+    .btn_action {
+      display: flex;
+      justify-content: flex-end;
+
+      .save {
+        margin-left: 10px;
+      }
+    }
+
     button {
       font-family: $saira;
       text-transform: capitalize;
@@ -68,7 +77,7 @@ $col_typo : #5a5a5a;
       border: none;
       border-radius: 3px;
       padding: 5px 15px;
-      margin-left: 485px;
+
       margin-top: 20px;
       // transition: all 0.3s ease;
 
