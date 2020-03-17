@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { DataService } from 'src/app/core/services/data.service';
 
 @Component({
   selector: 'app-update-task',

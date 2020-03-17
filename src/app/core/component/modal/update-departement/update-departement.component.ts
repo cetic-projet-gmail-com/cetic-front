@@ -15,7 +15,7 @@ export class UpdateDepartementComponent implements OnInit {
 
   constructor(private DataService: DataService, private route: ActivatedRoute) { }
   id
-  users 
+  users
   depName
   userArray
   myControl = new FormControl();
@@ -33,7 +33,6 @@ this.DataService.getDepartementById(this.id).subscribe((res)=> {
     this.DataService.getAdminUsers("?paginate=false").subscribe((res) => {
       this.users = res.data.users
       this.options = this.users.map(element => element.lastname)
-      
     });
     
     this.filteredOptions = this.myControl.valueChanges.pipe(
