@@ -113,7 +113,8 @@ export class CalendarComponent implements OnInit {
       this.activities = activities;
       // console.log(this.activities)
       this.getEvents(events);
-      
+      console.log(this.events)
+
     });
   }
 
@@ -161,7 +162,7 @@ export class CalendarComponent implements OnInit {
       this.events.push({
         start: parseISO(event.startAt),
         end: parseISO(event.endAt),
-        title: `<h5>Acitivité Finie!</h5> <p> ${event.description}</p>` ,
+        title: `<h6>Acitivité Finie!</h6> <p> ${event.description}</p>` ,
         draggable: false,
         color: { primary: '#263238', secondary: "#d7ccc8"  },
       });
@@ -281,7 +282,11 @@ export class CalendarComponent implements OnInit {
   eventClicked(event) {
     if (event['event'].meta) {
     let id = event['event'].meta.id;
-    let Ievent = this.events.findIndex(e => e['meta'].id === id)
+    let Ievent = this.events.findIndex(e => {
+      let id = e['meta'] ? e['meta'].id : false;
+      return  e['meta'].id === id;
+
+      })
     const dialogConfig = new MatDialogConfig();
     dialogConfig.panelClass = 'edit-event';
     dialogConfig.data = event;
@@ -334,7 +339,12 @@ export class CalendarComponent implements OnInit {
   }: CalendarEventTimesChangedEvent): void {
     if (event.meta) {
       // if (this.view !== CalendarView.Month) {
-        let Ievent = this.events.findIndex(e => e['meta'].id === event['meta'].id);
+        console.log(event)
+        let Ievent = this.events.findIndex(e => {
+          let id = e['meta'] ? e['meta'].id : false;
+          return  id === event['meta'].id
+      
+      });
         let oldStart, oldEnd;
         ({oldStart, oldEnd} = {oldStart :event["start"],oldEnd: event["end"]})
         let EventFound = this.events[Ievent];

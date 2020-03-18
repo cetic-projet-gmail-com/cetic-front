@@ -59,7 +59,6 @@ export class UpdateActivityComponent implements OnInit {
 
     this.DataService.getColors().subscribe((res) => {
       this.colors = res.colours
-
     });
   }
   onFormSubmit(activityForm: NgForm) {

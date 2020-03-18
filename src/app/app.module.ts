@@ -113,7 +113,7 @@ import { RemoveEventComponent } from './core/component/modal/remove-event/remove
   ],
   providers: [AuthenticationService, AuthGuardService],
   bootstrap: [AppComponent],
-  entryComponents: [CreateEventComponent, ViewEventComponent, MoveEventComponent, EditEventComponent, RemoveEventComponent],
+  entryComponents: [CreateEventComponent, ViewEventComponent, MoveEventComponent, EditEventComponent, RemoveEventComponent, CreateTaskComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
