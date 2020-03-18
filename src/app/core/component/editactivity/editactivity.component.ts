@@ -42,19 +42,19 @@ export class EditActivityComponent implements OnInit {
       console.log('test' + res)
       this.act = res.data;
       // this.title = this.act.name;
-      // this.TitleService.setTitle(res.data.activity.name)
+      this.TitleService.setTitle(res.data.activity.name)
+
 
 
     }
     );
-    this.DataService.getAdminUsers("?nbre=1000").subscribe((res) => {
+    this.DataService.getAdminUsers("?paginate=false").subscribe((res) => {
       // console.log(res);
-      this.user = res.data.users
-      // console.log(this.user)
+      this.user = res.users.users
+      console.log(this.user)
 
     });
 
-    this.TitleService.setTitle("Activity")
 
 
 

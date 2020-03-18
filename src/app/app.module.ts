@@ -9,10 +9,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
-// import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+// import { NgbTooltipConfig } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
@@ -32,7 +32,7 @@ import { ConfirmDeleteComponent } from './core/component/modal/confirm-delete/co
 
 import { CreateEventComponent } from './core/component/modal/create-event/create-event.component';
 import { ViewEventComponent } from './core/component/modal/view-event/view-event.component';
-import { MoveEventComponent} from './core/component/modal/move-event/move-event.component';
+import { MoveEventComponent } from './core/component/modal/move-event/move-event.component';
 import { MiniCalendarComponent } from './core/component/home/mini-calendar/mini-calendar.component';
 
 import { jqxCalendarModule } from 'jqwidgets-ng/jqxcalendar';

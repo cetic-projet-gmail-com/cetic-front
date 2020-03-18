@@ -7,17 +7,7 @@
 
 
   <div class="board">
-    <!-- <div class="datepicker">
-      <div class="lien"></div>
-      <div class="date">
-        <div class="date_one">Du 15 septembre 2020</div>
-        <div class="date_two">Au 25 septembre 2020</div>
-      </div>
-      <a href="">
-        <fa-icon [icon]="faFileExport"></fa-icon>
-      </a>
 
-    </div> -->
     <update-activity></update-activity>
     <div class="board_content">
       <div class="datepicker">
@@ -34,45 +24,36 @@
       <div class="board_details">
 
 
-        <div class="board_content">
-          <div class="board_content_nav">
-            <div class="tab">
-
-              <!-- <a [routerLink]="['./taches', {id:this.id}]" routerLinkActive="active"
-                  [routerLinkActiveOptions]="{exact: true}" (click)="setRoute('utilisateur')">Utilasateurs
-                </a>
-                <a routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="'tab' == 'taches'"
-                  class="active">Tâches
-                </a> -->
-
-              <div [ngClass]="{active : display == 'users'}" (click)="setRoute('users')">Utilistateurs</div>
-              <div [ngClass]="{active : display == 'tasks'}" (click)="setRoute('tasks')">Tâches</div>
+        <div class="board_details_content">
+          <div class="tab">
 
 
-            </div>
+            <div [ngClass]="{active : display == 'users'}" (click)="setRoute('users')">Utilistateurs</div>
+            <div [ngClass]="{active : display == 'tasks'}" (click)="setRoute('tasks')">Tâches</div>
 
-            <div class="titleListe_tasks" *ngIf="this.display === 'tasks'">
 
-              <div>Nom</div>
-              <div>Description</div>
-              <div>type</div>
-              <div>Edite</div>
+          </div>
 
-            </div>
-            <div class="titleListe_users" *ngIf="this.display === 'users'">
-              <div>Nom</div>
-              <div>Departement</div>
-              <div>Supp</div>
-              <div>Liste</div>
+          <div class="titleListe_tasks" *ngIf="this.display === 'tasks'">
 
-            </div>
+            <div>Nom</div>
+            <div>Description</div>
+            <div>type</div>
+            <div>Edite</div>
+
+          </div>
+          <div class="titleListe_users" *ngIf="this.display === 'users'">
+            <div>Nom</div>
+            <div>Departement</div>
+            <div>Supp</div>
+
           </div>
         </div>
 
 
         <div *ngIf="this.display === 'users'">
 
-          <ul class="board_details_list">
+          <!-- <ul class="board_details_list">
             <li *ngFor="let u of users; let index = index;let even = even; let odd = odd"
               [ngClass]="{ odd: odd, even: even }">
               <div class="number">{{index + 1}}</div>
@@ -89,7 +70,7 @@
               <li *ngFor="let u of user" style="text-transform: capitalize;">{{u.firstname}} {{u.lastname}}</li>
             </ul>
 
-          </ul>
+          </ul> -->
 
         </div>
 

@@ -26,7 +26,7 @@ export class CreateDepartementComponent implements OnInit {
   responsible_Id: number
   ngOnInit() {
     this.DataService.getAdminUsers("?paginate=false").subscribe((res) => {
-      this.users = res.data.users
+      this.users = res.users.users
       this.options = this.users.map(element => element.lastname)
       
     });

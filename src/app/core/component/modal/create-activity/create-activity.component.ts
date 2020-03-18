@@ -30,7 +30,7 @@ export class CreateActivityComponent implements OnInit {
   types
   ngOnInit() {
     this.DataService.getAdminUsers("?paginate=false").subscribe((res) => {
-      this.users = res.data.users
+      this.users = res.users.users
       this.options = this.users.map(element => element.lastname)
       
     });

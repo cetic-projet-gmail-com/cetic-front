@@ -152,7 +152,7 @@
           <!-- <div>{{d.department}}.</div> -->
           <div>{{d.responsable_id}}</div>
           <div>
-            <a [routerLink]="['/administration/departement', d.id]">
+            <a [routerLink]="['/administration/departement', d.id]" routerLinkActive="active">
               <fa-icon [icon]="faEdit" class="faEdit">
               </fa-icon>
             </a>
@@ -207,21 +207,24 @@
 
 <!-- ------------------------- gestion des pop-up -------------------------- -->
 
-<create-user *ngIf="router.url === '/administration/users' && !isHidden" [isHidden]="isHidden"
-  (reset)="isHidden = !isHidden"></create-user>
+<create-user *ngIf="router.url === '/administration/users' && !isHidden" [isHidden]="isHidden" (reset)="refresh()">
+</create-user>
 
 <create-departement *ngIf="router.url === '/administration/departement' && !isHidden" [isHidden]="isHidden"
   (reset)="isHidden = !isHidden"></create-departement>
+
 
 <create-activity *ngIf="router.url === '/administration/activities' && !isHidden" [isHidden]="isHidden"
   (reset)="isHidden = !isHidden">
 </create-activity>
 
+
+
 <!-- ----------------------------------------------------------------------- -->
 
 <!-- -------------------------- gestion supprimer -------------------------- -->
 
-<confirm-delete [hidden]="isDelete" [isDelete]="isDelete" (reset)="refresh()" [itemToDelete]="itemToDelete">
+<confirm-delete [hidden]="isDelete" [isDelete]="isDelete" (reset)="refreshDelete()" [itemToDelete]="itemToDelete">
 </confirm-delete>
 
 <!-- ----------------------------------------------------------------------- -->

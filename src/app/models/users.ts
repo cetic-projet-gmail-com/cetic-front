@@ -1,21 +1,35 @@
 export interface Users {
-    links:{
-        current:string,
-        next:string,
-        previous:string,
-        first:string,
-        last:string
-    }
-    data: {
+    links: {
+        current: string,
+        next: string,
+        previous: string,
+        first: string,
+        last: string
+    },
+    users: {
         users: [
             {
-                login: string;
-                firstname: string;
-                lastname: string;
-                email: string;
-                password: string;
-                role_id: number;
-                departement_id: number;
+                id: number,
+                login: string,
+                firstName: string,
+                lastName: string,
+                departmentId: number,
+                createdAt: string,
+                updatedAt: string,
+                roleId: number,
+                email: string,
+                password: string,
+                role: {
+                    id: number,
+                    name: string
+                },
+                department: {
+                    id: number,
+                    name: string,
+                    responsibleId: number,
+                    createdAt: string,
+                    updatedAt: string
+                }
             }
         ]
     }

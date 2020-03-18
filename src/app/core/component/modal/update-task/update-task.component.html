@@ -1,1 +1,30 @@
-<p>update-task works!</p>
+<div class="wrapper">
+  <div class="content">
+    <h2>Modifier une tache</h2>
+
+    <form #taskForm="ngForm" (ngSubmit)="onFormSubmit(taskForm)">
+
+      <div>
+        <label for="name">Nom</label> <br>
+        <input type="text" ngModel required name="name" id="name" pattern="[A-z][-éèëêâäàîïùûüôö]?">
+      </div>
+
+      <div>
+        <label for="description">description</label><br>
+        <textarea ngModel name="description" id="description" cols="50" rows="4"></textarea>
+      </div>
+
+      <div>
+        <label for="ended">finie ??</label> <br>
+        <input type="text" ngModel name="ended" id="ended">
+      </div>
+
+      <div class="action">
+        <button class="cancel" (click)="hide()">Annuler</button>
+        <button class="save" type="submit">Valider</button>
+      </div>
+
+    </form>
+
+  </div>
+</div>

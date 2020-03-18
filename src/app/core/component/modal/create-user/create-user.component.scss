@@ -32,8 +32,28 @@ $col_typo : #5a5a5a;
     margin: 10px 0 30px 0;
   }
 
+  // .mdp:after:focus {
+  //   content: attr(description);
+  //   position: absolute;
+  //   top: -55px;
+  //   left: -2px;
+  //   z-index: 1000;
+  //   white-space: nowrap;
+  //   background-color: var(--main-color);
+  //   padding: 15px;
+  //   border-radius: 5px;
+  //   color: white;
+  //   font-size: 0.8rem;
+  // }
+
   form {
     text-align: left;
+
+
+
+
+
+
 
     label {
       text-transform: capitalize;
@@ -55,6 +75,8 @@ $col_typo : #5a5a5a;
         outline: none;
       }
     }
+
+
 
     .action {
       display: flex;

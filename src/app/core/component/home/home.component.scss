@@ -75,15 +75,13 @@ $col_typo : #5a5a5a;
     }
 
     .calendar_view {
-      max-height: 648px;
-
-      date-simplebar {
-        color: #53853D
-      }
+      // min-height: 358px;
+      // max-height: 648px;
+      height: calc(100vh - 115px);
 
 
       app-calendar {
-        height: 500px;
+        height: 100%;
 
       }
     }
@@ -92,7 +90,7 @@ $col_typo : #5a5a5a;
 
   .widget {
     width: 25%;
-    height: 689px;
+    height: calc(100vh - 70px);
     border-radius: 5px;
     text-align: center;
     padding: 20px 20px 0 20px;
@@ -113,21 +111,27 @@ $col_typo : #5a5a5a;
 
     .list_activities {
       text-align-last: left;
-      min-height: 295px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      height: calc(100vh - 410px);
+      padding-bottom: 40px;
 
 
       h5 {
         font-size: 1.2em;
+        font-weight: bold;
         padding-bottom: 10px;
+        margin-bottom: 20px;
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
       }
 
       .list_activities_drag {
-        height: 257px;
+        height: 100%;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
       }
+    }
+
+    .mini_calendar {
+      height: 300px;
     }
 
 

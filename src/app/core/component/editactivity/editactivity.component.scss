@@ -30,7 +30,7 @@ $col_typo : #5a5a5a;
   .faAdd {
     position: absolute;
     top: 120px;
-    right: -10px;
+    right: 0;
     font-size: 2em;
     color: rgba(83, 133, 61, 0.7);
     cursor: pointer;
@@ -47,96 +47,94 @@ $col_typo : #5a5a5a;
 
   .board {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    width: 100%;
 
     update-activity {
       margin-right: 40px;
       margin-top: 120px;
+      width: 20%;
     }
 
+    .board_content {
+      width: 100%;
 
-    .datepicker {
-      display: flex;
-      margin-left: 300px;
-      align-items: center;
+      .datepicker {
+        display: flex;
+        width: 50%;
+        margin: auto;
+        align-items: center;
 
-      .lien {
-        width: 40px;
-        height: 50px;
-        border: 1px solid #ccc;
-        border-right: none;
-        margin-right: 10px;
-        border-radius: 5px 0 0 5px;
-      }
-
-      .date {
-        align-items: flex-start;
-        margin-right: 40px;
-
-        .date_one,
-        .date_two {
-          height: 30px;
-          line-height: 30px;
-          padding: 0 20px;
-          border-radius: 5px;
-          background-color: #DCE7D8;
-          font-size: 1.4em;
+        .lien {
+          width: 40px;
+          height: 50px;
+          border: 1px solid #ccc;
+          border-right: none;
+          margin-right: 10px;
+          border-radius: 5px 0 0 5px;
         }
 
-        .date_one {
-          margin-bottom: 25px;
+        .date {
+          align-items: flex-start;
+          margin-right: 40px;
+
+          .date_one,
+          .date_two {
+            height: 30px;
+            line-height: 30px;
+            padding: 0 20px;
+            border-radius: 5px;
+            background-color: #DCE7D8;
+            font-size: 1.4em;
+          }
+
+          .date_one {
+            margin-bottom: 25px;
+          }
+
         }
 
-      }
-
-      a {
-        font-size: 2.2em;
-        color: rgba(83, 133, 61, .7);
-        transition: color .3s ease;
-
-        &:hover {
-          color: rgb(83, 133, 61);
+        a {
+          font-size: 2.2em;
+          color: rgba(83, 133, 61, .7);
           transition: color .3s ease;
 
-        }
-      }
-    }
+          &:hover {
+            color: rgb(83, 133, 61);
+            transition: color .3s ease;
 
-
-
-    .board_details {
-      display: flex;
-      justify-content: space-between;
-      padding-top: 40px;
-
-      update-activity {
-        margin-right: 50px;
-      }
-
-      .board_details_list {
-
-        padding-top: 20px;
-        padding-left: 0;
-        height: 400px;
-        width: 213px;
-        overflow-y: scroll;
-
-        li {
-
-          list-style: none;
+          }
         }
       }
 
 
 
-
-      .board_content {
+      .board_details {
         display: flex;
-        width: 81.5%;
+        justify-content: space-between;
+        padding-top: 40px;
 
-        .board_content_nav {
+
+        .board_details_list {
+
+          padding-top: 20px;
+          padding-left: 0;
+          height: 400px;
+          overflow-y: scroll;
           width: 100%;
+
+
+          li {
+
+            list-style: none;
+          }
+        }
+
+        .board_details_content {
+          display: flex;
           position: relative;
+          width: 100%;
+
 
           .tab {
             position: absolute;
@@ -185,9 +183,11 @@ $col_typo : #5a5a5a;
             text-align: center;
             color: #5a5a5a;
             margin-left: 50px;
+            width: 100%;
+
 
             div {
-              width: 100%;
+              width: 35%;
               height: 40px;
               line-height: 40px;
               text-align: center;
@@ -204,13 +204,14 @@ $col_typo : #5a5a5a;
             text-align: center;
             color: #5a5a5a;
             margin-left: 50px;
+            width: 100%;
 
             div {
               height: 40px;
               line-height: 40px;
-              width: 213px;
               background-color: white;
               border-right: 1px solid #cccccc;
+              width: 35%;
 
 
 
@@ -218,13 +219,18 @@ $col_typo : #5a5a5a;
 
 
           }
+
+
+
         }
 
 
       }
 
-
     }
+
+
+
 
 
   }
@@ -234,7 +240,7 @@ $col_typo : #5a5a5a;
 
 .save {
   display: flex;
-  margin-right: 145px;
+  margin-right: 155px;
   justify-content: flex-end;
 
   button {
