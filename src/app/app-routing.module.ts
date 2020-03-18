@@ -21,7 +21,8 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [AuthGuardService]
   },
 
   {
@@ -35,25 +36,35 @@ const routes: Routes = [
 
   {
     path: 'administration/users/edit',
-    component: ProfilComponent
+    component: ProfilComponent,
+    canActivate: [AuthGuardService]
+
   },
   {
     path: 'administration/users/:id',
-    component: EditUserComponent
+    component: EditUserComponent,
+    canActivate: [AuthGuardService]
+
   },
   {
     path: 'administration/users', pathMatch: 'full',
-    component: AdminUsersComponent
+    component: AdminUsersComponent,
+    canActivate: [AuthGuardService]
+
   },
 
   {
     path: 'administration/departement/:id',
-    component: UpdateDepartementComponent
+    component: UpdateDepartementComponent,
+    canActivate: [AuthGuardService]
+
   },
 
   {
     path: 'administration/departement',
-    component: AdminUsersComponent
+    component: AdminUsersComponent,
+    canActivate: [AuthGuardService]
+
   },
   {
     path: 'profil',
@@ -62,11 +73,15 @@ const routes: Routes = [
   },
   {
     path: 'administration/activities/:id',
-    component: EditActivityComponent
+    component: EditActivityComponent,
+    canActivate: [AuthGuardService]
+
   },
   {
     path: 'administration/activities',
-    component: AdminUsersComponent
+    component: AdminUsersComponent,
+    canActivate: [AuthGuardService]
+
   },
   {
     path: 'forgot_password',

@@ -125,36 +125,48 @@ export class CalendarComponent implements OnInit {
     });
   }
   setEvent(event) {
-    let task, activity;
-    activity = this.activities.find(act =>  
-        act['tasks'].some(t => 
-          t.id === event.taskId
-        )
-    );
-    task = activity['tasks'].find(tsk => 
-      tsk.id === event.taskId
-    );
-    
-    this.events.push({
-      start: parseISO(event.startAt),
-      end: parseISO(event.endAt),
-      title: event.description + event.id,
-      draggable: true,
-      allDay: false,
-      resizable: {
-        beforeStart: true, // this allows you to configure the sides the event is resizable from
-        afterEnd: true,
-        
-      },
-      color: { primary: '#263238', secondary: activity.colour.code },
-      meta: {
-        id: event.id,
-        taskId: event.taskId,
-        taskName: task.name,
-        activityId: activity.id,
-        activityName: activity.name
-      }
-    });
+    try {
+      let task, activity;
+      activity = this.activities.find(act =>  
+          act['tasks'].some(t => 
+            t.id === event.taskId
+          )
+      );
+      task = activity['tasks'].find(tsk => 
+        tsk.id === event.taskId
+      );
+      
+      this.events.push({
+        start: parseISO(event.startAt),
+        end: parseISO(event.endAt),
+        title: ` ${event.description}`,
+        draggable: true,
+        allDay: false,
+        resizable: {
+          beforeStart: true, // this allows you to configure the sides the event is resizable from
+          afterEnd: true,
+          
+        },
+        color: { primary: '#263238', secondary: activity.colour.code },
+        meta: {
+          id: event.id,
+          taskId: event.taskId,
+          taskName: task.name,
+          activityId: activity.id,
+          activityName: activity.name
+        }
+      });
+    } catch (error) {
+      //? If event is finish
+      this.events.push({
+        start: parseISO(event.startAt),
+        end: parseISO(event.endAt),
+        title: `Acitivité Finie! <br> ${event.description}` ,
+        draggable: false,
+        color: { primary: '#263238', secondary: "#d7ccc8"  },
+      });
+    }
+
     this.refreshing();
   }
   getTasks(result) {
@@ -267,6 +279,7 @@ export class CalendarComponent implements OnInit {
   //* ------------------------------- view Event ------------------------------- */
   //? Event comport one button for remove & one for edit
   eventClicked(event) {
+    if (event['event'].meta) {
     let id = event['event'].meta.id;
     let Ievent = this.events.findIndex(e => e['meta'].id === id)
     const dialogConfig = new MatDialogConfig();
@@ -309,6 +322,7 @@ export class CalendarComponent implements OnInit {
         });
       }
     });
+  }
   }
 
   //* --------------------------- Event Time Changed --------------------------- */
