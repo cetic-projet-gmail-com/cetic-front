@@ -1,7 +1,7 @@
 export interface Color {
-    data: [{
+    colours: [{
         id: number,
         name: string,
-        color_code: string
+        code: string
     }]
 }

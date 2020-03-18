@@ -26,6 +26,7 @@ export class UpdateDepartementComponent implements OnInit {
   id
   users
   depName
+  dep
   userArray
   myControl = new FormControl();
   options = [];
@@ -59,14 +60,15 @@ export class UpdateDepartementComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
 
     this.DataService.getDepartementById(this.id).subscribe((res) => {
-      this.depName = res.data.departement.name
-      this.TitleService.setTitle(res.data.departement.name)
-
+      this.dep = res.department
+      this.depName = res.department.name
+      this.TitleService.setTitle(res.department.name)
+      console.log(res)
     })
 
     this.DataService.getAdminUsers("?paginate=false").subscribe((res) => {
       this.users = res.users.users
-      this.options = this.users.map(element => element.lastname)
+      this.options = this.users.map(element => element.lastName)
     });
 
     this.filteredOptions = this.myControl.valueChanges.pipe(
@@ -91,11 +93,9 @@ export class UpdateDepartementComponent implements OnInit {
 
 
   onFormSubmit(departementForm: NgForm) {
-    let infos = {
-      name: departementForm.value.name,
-      responsable_id: this.responsible_Id
-    }
-    this.DataService.updateDepartement(infos, this.id).subscribe((res) => {
+    
+    departementForm.value.responsibleId = this.responsible_Id
+    this.DataService.updateDepartement(departementForm, this.id).subscribe((res) => {
       console.log(res)
       console.log("departement updated");
 

@@ -49,7 +49,8 @@ export class CreateActivityComponent implements OnInit {
     this.TitleService.setTitle("Nouvelle activité")
 
     this.DataService.getColors().subscribe((res) => {
-      this.colors = res.data
+      console.log(res)
+      this.colors = res.colours
 
     });
   }

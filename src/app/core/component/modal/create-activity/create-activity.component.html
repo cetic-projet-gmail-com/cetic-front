@@ -28,19 +28,19 @@
 
       <label for="color_code">couleur</label>
       <select ngModel [value]="actColor" required name="colourId" class="form-control" id="color_code">
-        <option *ngFor="let color of colors" [value]="colour.name">{{ colour.name }}</option>
+        <option *ngFor="let color of colors" [value]="color.id">{{ color.name }}</option>
       </select>
 
       <div>
         <label for="description">description</label><br>
         <textarea ngModel name="description" id="description" cols="50" rows="4"></textarea>
       </div>
-
+      
       <div class="action">
         <button class="cancel" (click)="hide()">Annuler</button>
         <button class="save" type="submit">Valider</button>
       </div>
-
+{{activityForm.value|json}}
     </form>
 
   </div>
