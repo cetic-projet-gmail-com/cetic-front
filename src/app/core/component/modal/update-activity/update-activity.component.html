@@ -29,7 +29,7 @@
       <div class="activity_couleur">
         <label for="color_code">couleur</label>
         <select ngModel [value]="actColor" required name="colourId" class="form-control" id="color_code">
-          <option *ngFor="let color of colors" [value]="colour.id">{{ colour.name }}</option>
+          <option *ngFor="let color of colors" [value]="color.id">{{ color.name }}</option>
         </select>
       </div>
 

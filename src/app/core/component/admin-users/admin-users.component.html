@@ -173,7 +173,7 @@
           <!-- <div class="number">{{index + 1}}</div> -->
           <div style="text-transform: capitalize; ">{{ a.name }}</div>
           <div class="color">
-            <span class="color_span"></span>
+            <span class="color_span" [style.backgroundColor]="a.colour.code"></span>
           </div>
 
           <div>{{ a.projectManager.lastName }}</div>

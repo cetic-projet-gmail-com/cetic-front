@@ -176,6 +176,13 @@ $col_typo : #5a5a5a;
               text-align: center;
               background-color: white;
               border-right: 1px solid #cccccc;
+              width: 40%;
+
+              &:nth-of-type(3),
+              &:nth-of-type(4) {
+                width: 10%;
+              }
+
 
 
             }
@@ -244,6 +251,93 @@ $col_typo : #5a5a5a;
                     width: 10%;
                   }
                 }
+
+                &:hover {
+                  background-color: rgba(83, 133, 61, 0.7);
+                  color: white;
+                  transition: all 0.3s ease;
+
+                  fa-icon {
+                    color: white;
+
+                    &:hover {
+                      color: black;
+                    }
+                  }
+                }
+
+                fa-icon {
+
+                  color: #c7c7c7;
+                  padding: 5px;
+                  cursor: pointer;
+
+                }
+
+
+              }
+            }
+          }
+
+          .board_details_content_tasks {
+
+
+            .board_details_list {
+              margin-left: 50px;
+              padding-left: 0;
+              height: 400px;
+              overflow-y: scroll;
+              width: 100%;
+
+              .odd {
+                background-color: white;
+              }
+
+              .even {
+                background-color: #fafafa;
+              }
+
+              li {
+                list-style: none;
+                display: flex;
+
+
+                div {
+                  height: 40px;
+                  line-height: 40px;
+                  border-right: 1px solid #cccccc;
+                  width: 40%;
+                  text-align: center;
+
+                  &:nth-of-type(3),
+                  &:nth-of-type(4) {
+                    width: 10%;
+                  }
+
+                }
+
+                &:hover {
+                  background-color: rgba(83, 133, 61, 0.7);
+                  color: white;
+                  transition: all 0.3s ease;
+
+                  fa-icon {
+                    color: white;
+
+                    &:hover {
+                      color: black;
+                    }
+                  }
+                }
+
+                fa-icon {
+
+                  color: #c7c7c7;
+                  padding: 5px;
+                  cursor: pointer;
+
+                }
+
 
 
               }

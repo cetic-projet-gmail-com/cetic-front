@@ -77,16 +77,23 @@ export class AdminUsersComponent implements OnInit {
     this.showData()
   }
 
+
   showData() {
     this.DataService.getActivities().subscribe((res) => {
       console.log(res);
       this.act = res.activities
+
+      console.log(document.querySelector('.colorSpan'));
+
+
 
       if (this.act.ended == false) {
         return this.status = "Terminée"
       } else {
         return this.status = "En cours"
       }
+
+
     }
     );
 
