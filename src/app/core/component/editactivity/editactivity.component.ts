@@ -78,7 +78,9 @@ export class EditActivityComponent implements OnInit {
     } else if (this.display === "tasks") {
       let dialogRef = this.dialog.open(CreateTaskComponent, dialogConfig);
       dialogRef.afterClosed().subscribe(result => {
-
+        console.log(result)
+        console.log(this.id)
+        // this.DataService.createTask(result).subscribe((res) => {
       });
     }
   } 

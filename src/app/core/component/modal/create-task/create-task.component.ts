@@ -23,10 +23,7 @@ export class CreateTaskComponent implements OnInit {
     } else {
       this.openSnackBar('veuillez remplir tous les champs!');
     }
-    // this.DataService.createTask(taskForm.value).subscribe((res) => {
-    //   this.dialogRef.close(true);
-      
-    // })
+    
   }
   onNoClick(): void {
     this.dialogRef.close();
