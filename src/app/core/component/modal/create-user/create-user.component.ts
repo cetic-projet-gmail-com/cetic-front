@@ -18,7 +18,8 @@ export class CreateUserComponent implements OnInit {
   @Input() isHidden;
   @Output() reset = new EventEmitter()
 
-  constructor(private DataService: DataService, private TitleService: TitleService) { }
+  constructor(private DataService: DataService, private TitleService: TitleService) {
+  }
   roles
   departements
   ngOnInit() {

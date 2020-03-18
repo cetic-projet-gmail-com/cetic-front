@@ -23,8 +23,12 @@
           ngModel required name="email" id="email" class="">
       </div>
       <div>
-        <label for="password">mot de passe</label><br>
-        <input type="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[^\s](?=.*[a-zA-Z]).[^\s]{8,50}$" ngModel name="password" id="password" class="" required>
+        <label for="password">mot de
+          passe</label><br>
+
+        <input type="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[^\s](?=.*[a-zA-Z]).[^\s]{8,50}$" ngModel
+          name="password" id="password" class="" required
+          matTooltip="Entre 8 et 50 caractères, 1 majuscule, 1 minuscule, 1 chiffre et un caractère special">
       </div>
       <div>
         <label for="role_id">role</label><br>
