@@ -28,6 +28,8 @@ export class AdminUsersComponent implements OnInit {
   up = faSortUp;
   down = faSortDown;
 
+  status
+
 
   num;
   tab;
@@ -79,7 +81,15 @@ export class AdminUsersComponent implements OnInit {
     this.DataService.getActivities().subscribe((res) => {
       console.log(res);
       this.act = res.activities
-    });
+
+      if (this.act.ended == false) {
+        return this.status = "Terminée"
+      } else {
+        return this.status = "En cours"
+      }
+    }
+    );
+
     this.DataService.getAdminUsers(this.nbre).subscribe((res) => {
       console.log(res.users);
       this.currentPage = res.users.links.current
@@ -96,7 +106,7 @@ export class AdminUsersComponent implements OnInit {
     this.TitleService.setTitle("Administration")
 
   }
-  
+
   setRoute(tab: String) {
     this.tab = tab;
   }

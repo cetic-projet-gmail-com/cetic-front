@@ -34,45 +34,71 @@
 
           </div>
 
+          <!-- ------------------------- gestion des titres -------------------------- -->
+
           <div class="titleListe_tasks" *ngIf="this.display === 'tasks'">
 
             <div>Nom</div>
             <div>Description</div>
             <div>type</div>
-            <div>Edite</div>
+            <div>Editer</div>
 
           </div>
           <div class="titleListe_users" *ngIf="this.display === 'users'">
             <div>Nom</div>
             <div>Departement</div>
             <div>Supp</div>
-
           </div>
-        </div>
 
+          <!-- ----------------------------------------------------------------------- -->
 
-        <div *ngIf="this.display === 'users'">
+          <div *ngIf="this.display === 'tasks'" class="board_details_content_tasks">
 
-          <ul class="board_details_list">
-            <li *ngFor="let u of users; let index = index;let even = even; let odd = odd"
-              [ngClass]="{ odd: odd, even: even }">
-              <div class="number">{{index + 1}}</div>
-              <div style="text-transform: capitalize; ">{{u.firstName}}</div>
-              <div>{{u.department.name}}</div>
+            <ul class="board_details_list" data-simplebar>
+              <li *ngFor="let t of tasks; let index = index;let even = even; let odd = odd"
+                [ngClass]="{ odd: odd, even: even }">
+                <div style="text-transform: capitalize; ">{{t.name}}</div>
+                <div>{{t.description}}</div>
 
-              <div>
-                <a href="">
-                  <fa-icon [icon]="faTrash" class="faTrash"></fa-icon>
-                </a>
-              </div>
-            </li>
-            <ul class="list_users">
-              <li *ngFor="let u of user" style="text-transform: capitalize;">{{u.firstName}} {{u.lastName}}</li>
+                <div>
+                  <a href="">
+                    <fa-icon [icon]="faTrash" class="faTrash"></fa-icon>
+                  </a>
+                </div>
+              </li>
+              <!-- <ul class="list_users">
+                <li *ngFor="let u of user" style="text-transform: capitalize;">{{u.firstName}} {{u.lastName}}</li>
+              </ul> -->
+
             </ul>
 
-          </ul>
+          </div>
+
+          <div *ngIf="this.display === 'users'" class="board_details_content_users">
+
+            <ul class="board_details_list" data-simplebar>
+              <li *ngFor="let u of user; let index = index;let even = even; let odd = odd"
+                [ngClass]="{ odd: odd, even: even }">
+                <div style="text-transform: capitalize; ">{{u.firstName}}</div>
+                <div>{{u.department.name}}</div>
+
+                <div>
+                  <a href="">
+                    <fa-icon [icon]="faTrash" class="faTrash"></fa-icon>
+                  </a>
+                </div>
+              </li>
+              <!-- <ul class="list_users">
+                <li *ngFor="let u of user" style="text-transform: capitalize;">{{u.firstName}} {{u.lastName}}</li>
+              </ul> -->
+
+            </ul>
+
+          </div>
 
         </div>
+
+
 
       </div>
     </div>

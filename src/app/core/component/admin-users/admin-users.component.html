@@ -178,7 +178,7 @@
 
           <div>{{ a.projectManager.lastName }}</div>
           <div>{{ a.type.name }}</div>
-          <div>{{ a.ended }}</div>
+          <div>{{ status }}</div>
           <div>
             <a [routerLink]="['/administration/activities/', a.id]" routerLinkActive="active"
               [routerLinkActiveOptions]="{exact: true}">
