@@ -27,7 +27,7 @@ export class EditActivityComponent implements OnInit {
   id;
   display;
   activity;
-  tasks 
+  tasks
   title: string;
 
 
@@ -37,6 +37,8 @@ export class EditActivityComponent implements OnInit {
   act
   user
 
+  status
+
   ngOnInit() {
     this.id = this.route.snapshot.params['id']
     this.DataService.getActivityById(this.id).subscribe((res) => {
@@ -44,6 +46,12 @@ export class EditActivityComponent implements OnInit {
       this.act = res.activity;
       // this.title = this.act.name;
       this.TitleService.setTitle(res.activity.name)
+      if (this.act.ended == false) {
+        return this.status = "En cours"
+      } else {
+        return this.status = "Terminée"
+
+      }
 
     });
     this.DataService.getAdminUsers("?paginate=false").subscribe((res) => {
@@ -53,7 +61,7 @@ export class EditActivityComponent implements OnInit {
 
     });
 
-    this.DataService.getTasks().subscribe((res)=> {
+    this.DataService.getTasks().subscribe((res) => {
       this.tasks = res.tasks
       console.log(this.tasks)
     })

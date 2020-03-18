@@ -30,7 +30,7 @@ $col_typo : #5a5a5a;
   .faAdd {
     position: absolute;
     top: 120px;
-    right: 0;
+    right: -50px;
     font-size: 2em;
     color: rgba(83, 133, 61, 0.7);
     cursor: pointer;
@@ -110,31 +110,15 @@ $col_typo : #5a5a5a;
 
 
       .board_details {
-        display: flex;
         justify-content: space-between;
         padding-top: 40px;
 
 
-        .board_details_list {
 
-          padding-top: 20px;
-          padding-left: 0;
-          height: 400px;
-          overflow-y: scroll;
-          width: 100%;
-
-
-          li {
-
-            list-style: none;
-          }
-        }
 
         .board_details_content {
-          display: flex;
           position: relative;
           width: 100%;
-
 
           .tab {
             position: absolute;
@@ -176,7 +160,6 @@ $col_typo : #5a5a5a;
 
           }
 
-
           .titleListe_tasks {
             display: flex;
             justify-content: space-between;
@@ -193,7 +176,17 @@ $col_typo : #5a5a5a;
               text-align: center;
               background-color: white;
               border-right: 1px solid #cccccc;
+              width: 40%;
+
+              &:nth-of-type(3),
+              &:nth-of-type(4) {
+                width: 10%;
+              }
+
+
+
             }
+
 
 
           }
@@ -211,13 +204,144 @@ $col_typo : #5a5a5a;
               line-height: 40px;
               background-color: white;
               border-right: 1px solid #cccccc;
-              width: 35%;
+              text-align: center;
+              width: 45%;
 
+              &:nth-of-type(3) {
+                width: 10%;
+              }
 
 
             }
 
 
+          }
+
+          .board_details_content_users {
+
+
+            .board_details_list {
+              margin-left: 50px;
+              padding-left: 0;
+              height: 400px;
+              overflow-y: scroll;
+              width: 100%;
+
+              .odd {
+                background-color: white;
+              }
+
+              .even {
+                background-color: #fafafa;
+              }
+
+              li {
+                list-style: none;
+                display: flex;
+
+
+                div {
+                  height: 40px;
+                  line-height: 40px;
+                  border-right: 1px solid #cccccc;
+                  width: 45%;
+                  text-align: center;
+
+                  &:nth-of-type(3) {
+                    width: 10%;
+                  }
+                }
+
+                &:hover {
+                  background-color: rgba(83, 133, 61, 0.7);
+                  color: white;
+                  transition: all 0.3s ease;
+
+                  fa-icon {
+                    color: white;
+
+                    &:hover {
+                      color: black;
+                    }
+                  }
+                }
+
+                fa-icon {
+
+                  color: #c7c7c7;
+                  padding: 5px;
+                  cursor: pointer;
+
+                }
+
+
+              }
+            }
+          }
+
+          .board_details_content_tasks {
+
+
+            .board_details_list {
+              margin-left: 50px;
+              padding-left: 0;
+              height: 400px;
+              overflow-y: scroll;
+              width: 100%;
+
+              .odd {
+                background-color: white;
+              }
+
+              .even {
+                background-color: #fafafa;
+              }
+
+              li {
+                list-style: none;
+                display: flex;
+
+
+                div {
+                  height: 40px;
+                  line-height: 40px;
+                  border-right: 1px solid #cccccc;
+                  width: 40%;
+                  text-align: center;
+
+                  &:nth-of-type(3),
+                  &:nth-of-type(4) {
+                    width: 10%;
+                  }
+
+                }
+
+                &:hover {
+                  background-color: rgba(83, 133, 61, 0.7);
+                  color: white;
+                  transition: all 0.3s ease;
+
+                  fa-icon {
+                    color: white;
+
+                    &:hover {
+                      color: black;
+                    }
+                  }
+                }
+
+                fa-icon {
+
+                  color: #c7c7c7;
+                  padding: 5px;
+                  cursor: pointer;
+
+                }
+
+
+
+              }
+            }
           }
 
 
@@ -237,6 +361,8 @@ $col_typo : #5a5a5a;
 
 
 }
+
+
 
 .save {
   display: flex;
