@@ -38,7 +38,7 @@ export class DataService {
   }
 
   public getColors(url?: string) {
-    return this.httpClient.get<Color>(`${this.apiURL}/administration/colors`, { headers: { Authorization: `Bearer ${this.auth.getToken()}` } });
+    return this.httpClient.get<Color>(`${this.apiURL}/administration/colours`, { headers: { Authorization: `Bearer ${this.auth.getToken()}` } });
   }
 
   public getRoles(url?: string) {
@@ -113,7 +113,7 @@ export class DataService {
 
   public getDepartementById(id: number) {
     if (id) {
-      return this.httpClient.get<SimpleDepartement>(`${this.apiURL}/administration/departments/${id}`);
+      return this.httpClient.get<SimpleDepartement>(`${this.apiURL}/administration/departments/${id}`, { headers: { Authorization: `Bearer ${this.auth.getToken()}` } });
     }
   }
 
