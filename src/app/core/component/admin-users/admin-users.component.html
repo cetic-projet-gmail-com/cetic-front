@@ -150,7 +150,7 @@
           <!-- <div class="number">{{index + 1}}</div> -->
           <div style="text-transform: capitalize; ">{{d.name}}</div>
           <!-- <div>{{d.department}}.</div> -->
-          <div>{{d.responsible.lastName}}</div>
+          <div>{{d[responsible]? d[responsible].lastName : 'aucun'}}</div>
           <div>
             <a [routerLink]="['/administration/departement', d.id]" routerLinkActive="active">
               <fa-icon [icon]="faEdit" class="faEdit">
@@ -176,7 +176,7 @@
             <span class="color_span" [style.backgroundColor]="a.colour.code"></span>
           </div>
 
-          <div>{{ a.projectManager.lastName }}</div>
+          <div>{{ a['projectManager']? a['projectManager'].lastName : 'aucun' }}</div>
           <div>{{ a.type.name }}</div>
           <div>{{ status }}</div>
           <div>

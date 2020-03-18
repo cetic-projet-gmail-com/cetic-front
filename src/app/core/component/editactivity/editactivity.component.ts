@@ -9,6 +9,7 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CreateTaskComponent } from '../modal/create-task/create-task.component';
+import { AddUserActivityComponent } from '../modal/add-user-activity/add-user-activity.component';
 
 @Component({
   selector: 'app-edit-activity',
@@ -42,8 +43,11 @@ export class EditActivityComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.params['id']
     this.DataService.getActivityById(this.id).subscribe((res) => {
-      console.log('test' + res)
+      // console.log('-------')
+      // console.log( res)
       this.act = res.activity;
+      this.tasks = this.act['tasks'];
+      this.user = this.act['users'];
       // this.title = this.act.name;
       this.TitleService.setTitle(res.activity.name)
       if (this.act.ended == false) {
@@ -54,17 +58,17 @@ export class EditActivityComponent implements OnInit {
       }
 
     });
-    this.DataService.getAdminUsers("?paginate=false").subscribe((res) => {
-      // console.log(res);
-      this.user = res.users.users
-      console.log(this.user)
+    // this.DataService.getAdminUsers("?paginate=false").subscribe((res) => {
+    //   // console.log(res);
+    //   this.user = res.users.users
+    //   console.log(this.user)
 
-    });
+    // });
 
-    this.DataService.getTasks().subscribe((res) => {
-      this.tasks = res.tasks
-      console.log(this.tasks)
-    })
+    // this.DataService.getTasks().subscribe((res) => {
+    //   this.tasks = res.tasks
+    //   console.log(this.tasks)
+    // })
 
     this.display = 'tasks';
 
@@ -79,19 +83,44 @@ export class EditActivityComponent implements OnInit {
     dialogConfig.data = event;
     if (this.display === "users") {
       
-      // let dialogRef = this.dialog.open(CreateTaskComponent, dialogConfig);
-      // dialogRef.afterClosed().subscribe(result => {
-
-      // });
+      let dialogRef = this.dialog.open(AddUserActivityComponent, dialogConfig);
+      dialogRef.afterClosed().subscribe(result => {
+        let res = {
+          "activityId" : this.route.snapshot.params['id'],
+          "userId" : result
+        }
+        this.DataService.addUserActivity(res).subscribe(async resServer => {
+          await resServer;
+          if (resServer.status === 200) {
+            console.log('true')
+          }
+        });
+      });
     } else if (this.display === "tasks") {
       let dialogRef = this.dialog.open(CreateTaskComponent, dialogConfig);
       dialogRef.afterClosed().subscribe(result => {
-        console.log(result)
-        console.log(this.id)
-        // this.DataService.createTask(result).subscribe((res) => {
+        result['activityId'] = this.route.snapshot.params['id'];
+
+        // console.log(result)
+        this.DataService.createTask(result).subscribe(async (res) => {
+          await res;
+          if (res.status === 200) {
+            this.tasks = [...this.tasks, result];
+          }
+        }
+        )
       });
     }
   } 
+  rmTask(id) {
+    this.DataService.deleteTask(id).subscribe(async res => {
+      await res;
+      if (res.status === 200 ) {
+        let task = this.tasks.findIndex(t => t.id === id);
+        this.tasks.splice(task, 1);
+      }
+    });
+  }
 
 
 }

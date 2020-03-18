@@ -1,0 +1,14 @@
+<form #userAct="ngForm" (ngSubmit)="onFormSubmit(userAct)">
+    <mat-form-field>
+        <label for="responsable">Lier un utilisateur</label>
+        <input matInput type="text" [formControl]="myControl" [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" ngModel name="responsibleId">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            {{ option }}
+        </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+
+    <button (click)="close()">Quitter</button>
+    <button type="submit">Rajouter</button>
+</form>

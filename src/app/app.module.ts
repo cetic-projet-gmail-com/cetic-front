@@ -55,6 +55,7 @@ import { OrderModule } from 'ngx-order-pipe';
 import { HomeNavComponent } from './core/component/home/home-nav/home-nav.component';
 import { EditEventComponent } from './core/component/modal/edit-event/edit-event.component';
 import { RemoveEventComponent } from './core/component/modal/remove-event/remove-event.component';
+import { AddUserActivityComponent } from './core/component/modal/add-user-activity/add-user-activity.component';
 
 
 @NgModule({
@@ -89,7 +90,8 @@ import { RemoveEventComponent } from './core/component/modal/remove-event/remove
     RemoveEventComponent,
     CreateTaskComponent,
     UpdateTaskComponent,
-    ErrorComponent
+    ErrorComponent,
+    AddUserActivityComponent
   ],
   imports: [
     MatInputModule,
@@ -113,7 +115,7 @@ import { RemoveEventComponent } from './core/component/modal/remove-event/remove
   ],
   providers: [AuthenticationService, AuthGuardService],
   bootstrap: [AppComponent],
-  entryComponents: [CreateEventComponent, ViewEventComponent, MoveEventComponent, EditEventComponent, RemoveEventComponent, CreateTaskComponent],
+  entryComponents: [CreateEventComponent, ViewEventComponent, MoveEventComponent, EditEventComponent, RemoveEventComponent, CreateTaskComponent, AddUserActivityComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

@@ -160,4 +160,7 @@ export class DataService {
     return this.httpClient.delete(`${this.apiURL}/administration/users/${id}`, { observe: 'response', headers: { Authorization: `Bearer ${this.auth.getToken()}` } });
   }
 
+  public addUserActivity(res) {
+    return this.httpClient.post(`${this.apiURL}/administration/activitiesassignments/2`, res, { observe: 'response', headers: { Authorization: `Bearer ${this.auth.getToken()}` } });
+  }
 }

@@ -62,9 +62,9 @@
                 <div>{{status}}</div>
 
                 <div>
-                  <a href="">
-                    <fa-icon [icon]="faTrash" class="faTrash"></fa-icon>
-                  </a>
+                  <!-- <a href=""> -->
+                    <fa-icon [icon]="faTrash" class="faTrash" (click)="rmTask(t.id)"></fa-icon>
+                  <!-- </a> -->
                 </div>
               </li>
               <!-- <ul class="list_users">
