@@ -83,7 +83,7 @@ export class DataService {
     return this.httpClient.delete(`${this.apiURL}/administration/tasks/${id}`, { observe: 'response', headers: { Authorization: `Bearer ${this.auth.getToken()}` } });
   }
 
-  /* -------------------------------- ACTIVITY -------------------------------- */
+/* -------------------------------- ACTIVITY -------------------------------- */
 
 
   public getActivities(url?: string) {

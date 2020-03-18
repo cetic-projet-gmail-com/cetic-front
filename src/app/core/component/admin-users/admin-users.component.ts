@@ -89,8 +89,6 @@ export class AdminUsersComponent implements OnInit {
       this.user = res.users.users
     });
 
-
-
     this.DataService.getDepartements().subscribe((res) => {
       console.log(res);
       this.dep = res.departments
