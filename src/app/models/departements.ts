@@ -1,16 +1,23 @@
 export interface Departements {
-    links:{
-        current:string,
-        next:string,
-        previous:string,
-        first:string,
-        last:string
-    }
-    data: {
-        departement: [{
+    departments: [
+        {
+          id: number,
+          name: string,
+          responsibleId: number,
+          createdAt: string,
+          updatedAt: string,
+          responsible: {
             id: number,
-            name: string,
-            responsible_id: number
-        }]
-    }
+            login: string,
+            firstName: string,
+            lastName: string,
+            departmentId: number,
+            createdAt: string,
+            updatedAt: string,
+            roleId: number,
+            email: string,
+            password: string
+          }
+        }
+      ]
 }

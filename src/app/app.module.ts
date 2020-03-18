@@ -38,7 +38,7 @@ import { MiniCalendarComponent } from './core/component/home/mini-calendar/mini-
 import { jqxCalendarModule } from 'jqwidgets-ng/jqxcalendar';
 import { HomeAsideComponent } from './core/component/home/home-aside/home-aside.component';
 import { CalendarComponent } from './core/component/home/calendar/calendar.component';
-
+import {MatInputModule} from '@angular/material';
 registerLocaleData(localeFr);
 import { AuthenticationService } from './core/services/auth/authentification.service';
 import { AuthGuardService } from './core/services/auth/auth-guard.service';
@@ -92,6 +92,7 @@ import { RemoveEventComponent } from './core/component/modal/remove-event/remove
     ErrorComponent
   ],
   imports: [
+    MatInputModule,
     ReactiveFormsModule,
     AngularMaterialModule,
     HttpClientModule,

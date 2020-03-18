@@ -15,21 +15,21 @@
 
       <div class="activity_res">
         <label for="projectManager">responsable</label>
-        <input type="text" [value]="actResp" ngModel required name="projectManager" id="projectManager"
+        <input type="text" [value]="actResp" ngModel required name="projectManagerId" id="projectManager"
           class="form-control">
       </div>
 
       <div class="activity_type">
         <label for="a_type">type</label>
-        <select ngModel required name="a_type_id" class="form-control" id="a_type">
+        <select ngModel required name="aTypeId" class="form-control" id="a_type">
           <option *ngFor="let type of types" [value]="type.id">{{ type.name }}</option>
         </select>
       </div>
 
       <div class="activity_couleur">
         <label for="color_code">couleur</label>
-        <select ngModel [value]="actColor" required name="color_code" class="form-control" id="color_code">
-          <option *ngFor="let color of colors" [value]="color.color_code">{{ color.name }}</option>
+        <select ngModel [value]="actColor" required name="colourId" class="form-control" id="color_code">
+          <option *ngFor="let color of colors" [value]="colour.id">{{ colour.name }}</option>
         </select>
       </div>
 

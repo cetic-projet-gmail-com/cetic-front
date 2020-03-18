@@ -24,12 +24,13 @@ export class CreateUserComponent implements OnInit {
   departements
   ngOnInit() {
     this.DataService.getDepartements().subscribe((res) => {
-      this.departements = res.data.departement
+      this.departements = res.departments
       console.log(this.departements)
 
     });
     this.DataService.getRoles().subscribe((res) => {
-      this.roles = res.data
+      console.log(res)
+      this.roles = res.roles
     })
     this.TitleService.setTitle("Nouvel utilisateur")
   }
