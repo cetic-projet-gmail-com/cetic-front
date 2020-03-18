@@ -7,7 +7,6 @@ import { faCaretSquareLeft } from '@fortawesome/free-solid-svg-icons';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { ClassField } from '@angular/compiler';
 
 
 @Component({
@@ -27,7 +26,7 @@ export class EditActivityComponent implements OnInit {
   id;
   display;
   activity;
-
+  tasks 
   title: string;
 
 
@@ -44,14 +43,18 @@ export class EditActivityComponent implements OnInit {
       // this.title = this.act.name;
       this.TitleService.setTitle(res.activity.name)
 
-    }
-    );
+    });
     this.DataService.getAdminUsers("?paginate=false").subscribe((res) => {
       // console.log(res);
       this.user = res.users.users
       console.log(this.user)
 
     });
+
+    this.DataService.getTasks().subscribe((res)=> {
+      this.tasks = res.tasks
+      console.log(this.tasks)
+    })
 
     this.display = 'tasks';
 

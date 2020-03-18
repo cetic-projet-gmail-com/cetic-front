@@ -14,13 +14,15 @@
       </div>
 
       <mat-form-field>
-        <input type="text" placeholder="Choose responsible" matInput [formControl]="myControl" [matAutocomplete]="auto">
-        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" ngModel name="responsible_Id">
+        <label for="name">Responsable</label>
+        <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" ngModel name="responsibleId">
           <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
             {{ option }}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field> <br>
+      {{departementForm.value|json}}
       <div class="btn_action">
         <button class="save">Valider</button>
 

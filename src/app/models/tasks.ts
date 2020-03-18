@@ -1,5 +1,5 @@
 export class Tasks {
-    task: [{
+    tasks: [{
         id: number,
         name: string,
         description: string,
