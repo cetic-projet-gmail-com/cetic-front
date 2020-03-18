@@ -23,7 +23,7 @@ export class ProfilComponent implements OnInit {
   mailRgx = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
   passRgx= /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
   mailErr = 'Adresse mail incorrecte!';
-  passErr = 'Mot de pass incorect!';
+  passErr = 'Mot de pass pas assez sécurisé!';
   user;
 
   ngOnInit() {

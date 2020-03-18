@@ -21,7 +21,6 @@ export class NavComponent implements OnInit {
   ngOnInit() {
     let { role} = this.auth.getUserDetails();
     this.role = role;
-    console.log(role)
   }
   ngAfterContentInit() {
     // Actuellement on utilise un setTimeout car le service s'initialise avant le component. NEED TO FIX

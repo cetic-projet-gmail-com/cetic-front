@@ -5,8 +5,8 @@
 
     <form #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm)">
       <div>
-        <label for="lastName">Nom</label><br>
-        <input type="text"  disabled value={{user.lastName}}   pattern="[A-z][-éèëêâäàîïùûüôö]?" id="lastName" class="">
+        <label for="lastName" >Nom</label><br>
+        <input type="text"  disabled value={{user.lastName}}   pattern="[A-z][-éèëêâäàîïùûüôö]?" id="lastName" >
       </div>
       <div>
         <label for="firstName">prenom</label><br>
@@ -36,7 +36,7 @@
       </div>
 
 
-        <button class="save" type="submit">Sauvegarder</button>
+        <button class="save" type="submit" class="details" >Sauvegarder</button>
 
     </form>
 

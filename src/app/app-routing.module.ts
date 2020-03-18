@@ -16,7 +16,7 @@ import { EditActivityComponent } from './core/component/editactivity/editactivit
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login', pathMatch: 'full'
+    redirectTo: [AuthGuardService]? 'home': 'login', pathMatch: 'full'
   },
   {
     path: 'home',
