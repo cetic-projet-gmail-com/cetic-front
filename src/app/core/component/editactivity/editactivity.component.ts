@@ -7,7 +7,8 @@ import { faCaretSquareLeft } from '@fortawesome/free-solid-svg-icons';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { CreateTaskComponent } from '../modal/create-task/create-task.component';
 
 @Component({
   selector: 'app-edit-activity',
@@ -30,7 +31,8 @@ export class EditActivityComponent implements OnInit {
   title: string;
 
 
-  constructor(private DataService: DataService, private TitleService: TitleService, public router: Router, private route: ActivatedRoute) { }
+  constructor(private DataService: DataService, private TitleService: TitleService, public router: Router, private route: ActivatedRoute, 
+    private dialog: MatDialog ) { }
 
   act
   user
@@ -63,6 +65,23 @@ export class EditActivityComponent implements OnInit {
     this.display = display;
   }
 
+  addItem() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.panelClass = 'edit-event';
+    dialogConfig.data = event;
+    if (this.display === "users") {
+      
+      // let dialogRef = this.dialog.open(CreateTaskComponent, dialogConfig);
+      // dialogRef.afterClosed().subscribe(result => {
+
+      // });
+    } else if (this.display === "tasks") {
+      let dialogRef = this.dialog.open(CreateTaskComponent, dialogConfig);
+      dialogRef.afterClosed().subscribe(result => {
+
+      });
+    }
+  } 
 
 
 }
