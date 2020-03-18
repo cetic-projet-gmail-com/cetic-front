@@ -79,7 +79,7 @@ export class AdminUsersComponent implements OnInit {
     console.log('TEST');
     this.DataService.getActivities().subscribe((res) => {
       console.log(res);
-      this.act = res.data.activities
+      this.act = res.activities
     });
     this.DataService.getAdminUsers(this.nbre).subscribe((res) => {
       console.log(res);
@@ -87,7 +87,7 @@ export class AdminUsersComponent implements OnInit {
       this.nextPage = res.links.next
       this.previousPage = res.links.previous
       this.lastPage = res.links.last
-      this.user = res.data.users
+      this.user = res.users.users
     });
 
 
@@ -219,7 +219,7 @@ export class AdminUsersComponent implements OnInit {
       this.nextPage = res.links.next
       this.previousPage = res.links.previous
       this.lastPage = res.links.last
-      this.user = res.data.users
+      this.user = res.users.users
     });
   }
 
@@ -229,7 +229,7 @@ export class AdminUsersComponent implements OnInit {
       this.nextPage = res.links.next
       this.previousPage = res.links.previous
       this.lastPage = res.links.last
-      this.user = res.data.users
+      this.user = res.users.users
       this.firstPage = res.links.first
 
     });
@@ -241,7 +241,7 @@ export class AdminUsersComponent implements OnInit {
       this.previousPage = res.links.previous
       this.lastPage = res.links.last
       this.firstPage = res.links.first
-      this.user = res.data.users
+      this.user = res.users.users
     });
   }
   lastpage() {
@@ -251,7 +251,7 @@ export class AdminUsersComponent implements OnInit {
       this.previousPage = res.links.previous
       this.lastPage = res.links.last
       this.firstPage = res.links.first
-      this.user = res.data.users
+      this.user = res.users.users
 
     });
   }
@@ -262,7 +262,7 @@ export class AdminUsersComponent implements OnInit {
       this.nextPage = res.links.next
       this.previousPage = res.links.previous
       this.lastPage = res.links.last
-      this.user = res.data.users
+      this.user = res.users.users
 
     });
   }

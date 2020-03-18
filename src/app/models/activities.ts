@@ -1,23 +1,37 @@
 import { SimpleUser } from './simple-user';
 export interface Activities {
-    links:{
-        current:string,
-        next:string,
-        previous:string,
-        first:string,
-        last:string
-    }
-    data:{
-        activities:[{
+    activities: [
+        {
+            id: number,
             name: string,
-            projectManager: SimpleUser,
             description: string,
-            color_code: string,
-            users: [SimpleUser],
-            a_type: {
+            projectManagerId: number,
+            createdAt: string,
+            updatedAt: string,
+            colourId: number,
+            aTypeId: number,
+            ended: boolean,
+            projectManager: {
+                id: number,
+                login: string,
+                firstName: string,
+                lastName: string,
+                departmentId: number,
+                createdAt: string,
+                updatedAt: string,
+                roleId: number,
+                email: string,
+                password: string
+            },
+            colour: {
+                id: number,
                 name: string,
-                id: number
+                code: string
+            },
+            type: {
+                id: 1,
+                name: string
             }
-        }]
-    }
+        }
+    ]
 }

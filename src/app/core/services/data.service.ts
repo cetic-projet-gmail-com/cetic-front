@@ -16,7 +16,7 @@ import { AuthenticationService } from './auth/authentification.service';
   providedIn: 'root'
 })
 export class DataService {
-  public apiURL = 'http://localhost:3000';
+  public apiURL = 'http://localhost:8020';
   constructor(private httpClient: HttpClient, private auth: AuthenticationService) {
   }
 

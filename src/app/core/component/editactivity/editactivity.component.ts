@@ -48,10 +48,10 @@ export class EditActivityComponent implements OnInit {
 
     }
     );
-    this.DataService.getAdminUsers("?nbre=1000").subscribe((res) => {
+    this.DataService.getAdminUsers("?paginate=false").subscribe((res) => {
       // console.log(res);
-      this.user = res.data.users
-      // console.log(this.user)
+      this.user = res.users.users
+      console.log(this.user)
 
     });
 
