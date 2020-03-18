@@ -27,7 +27,7 @@ export class CreateDepartementComponent implements OnInit {
   ngOnInit() {
     this.DataService.getAdminUsers("?paginate=false").subscribe((res) => {
       this.users = res.users.users
-      this.options = this.users.map(element => element.lastname)
+      this.options = this.users.map(element => element.lastName)
       
     });
     
@@ -55,13 +55,10 @@ export class CreateDepartementComponent implements OnInit {
 
   }
 
-
-  
-
   onFormSubmit(departementForm: NgForm) {
     let infos = {
           name: departementForm.value.name,
-          responsable_id:this.responsible_Id      
+          responsibleId:this.responsible_Id      
     }
     this.DataService.createDepartement(infos).subscribe((res) => {
       

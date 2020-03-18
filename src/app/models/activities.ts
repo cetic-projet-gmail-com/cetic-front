@@ -1,4 +1,3 @@
-import { SimpleUser } from './simple-user';
 export interface Activities {
     activities: [
         {

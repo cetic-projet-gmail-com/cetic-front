@@ -9,8 +9,8 @@
 
         <mat-form-field>
           <label for="responsable">Responsable</label>
-          <input type="text" placeholder="Choisissez le responsable" [formControl]="myControl" [matAutocomplete]="auto">
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" ngModel name="responsible_Id">
+          <input matInput type="text" [formControl]="myControl" [matAutocomplete]="auto">
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" ngModel name="responsibleId">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
               {{ option }}
             </mat-option>

@@ -31,7 +31,7 @@ export class UpdateActivityComponent implements OnInit {
   ngOnInit() {
     this.DataService.getAdminUsers("?paginate=false").subscribe((res) => {
       this.users = res.users.users
-      this.options = this.users.map(element => element.lastname)
+      this.options = this.users.map(element => element.lastName)
 
     });
     this.filteredOptions = this.myControl.valueChanges.pipe(
@@ -45,15 +45,15 @@ export class UpdateActivityComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
 
     this.DataService.getActivityById(this.id).subscribe((res) => {
-      this.actName = res.data.activity.name
-      this.actDesc = res.data.activity.description
-      this.actResp = res.data.activity.projectManager
-      this.actType = res.data.activity.a_type_id
-      this.actColor = res.data.activity.color_code
+      this.actName = res.activity.name
+      this.actDesc = res.activity.description
+      this.actResp = res.activity.projectManager.lastName
+      this.actType = res.activity.type.name
+      this.actColor = res.activity.colour.name
 
     })
     this.DataService.getTypes().subscribe((res) => {
-      this.types = res.data
+      this.types = res.aTypes
 
     });
 
