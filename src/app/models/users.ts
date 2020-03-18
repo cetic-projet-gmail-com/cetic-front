@@ -1,12 +1,13 @@
 export interface Users {
-    links: {
-        current: string,
-        next: string,
-        previous: string,
-        first: string,
-        last: string
-    },
+    
     users: {
+        links: {
+            current: string,
+            next: string,
+            previous: string,
+            first: string,
+            last: string
+        },
         users: [
             {
                 id: number,

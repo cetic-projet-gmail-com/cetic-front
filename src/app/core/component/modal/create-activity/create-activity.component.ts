@@ -31,7 +31,7 @@ export class CreateActivityComponent implements OnInit {
   ngOnInit() {
     this.DataService.getAdminUsers("?paginate=false").subscribe((res) => {
       this.users = res.users.users
-      this.options = this.users.map(element => element.lastname)
+      this.options = this.users.map(element => element.lastName)
       
     });
     
@@ -43,7 +43,7 @@ export class CreateActivityComponent implements OnInit {
     );
 
     this.DataService.getTypes().subscribe((res) => {
-      this.types = res.data
+      this.types = res.aTypes
 
     });
     this.TitleService.setTitle("Nouvelle activité")
@@ -65,7 +65,7 @@ export class CreateActivityComponent implements OnInit {
 
 
   onFormSubmit(activityForm: NgForm) {
-    activityForm.value.projectManager = this.responsible_Id
+    activityForm.value.projectManagerId = this.responsible_Id
     this.DataService.createActivity(activityForm.value).subscribe((res) => {
       console.log("activity created");
       this.hide()

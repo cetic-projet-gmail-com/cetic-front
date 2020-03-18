@@ -1,6 +1,9 @@
 export interface Type {
-    data: [{
-        id: number,
-        name: string
-    }]
+    aTypes: [
+        {
+          id: number,
+          name: string,
+          
+        }
+      ]
 }

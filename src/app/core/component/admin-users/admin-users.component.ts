@@ -76,17 +76,16 @@ export class AdminUsersComponent implements OnInit {
   }
 
   showData() {
-    console.log('TEST');
     this.DataService.getActivities().subscribe((res) => {
       console.log(res);
       this.act = res.activities
     });
     this.DataService.getAdminUsers(this.nbre).subscribe((res) => {
-      console.log(res);
-      this.currentPage = res.links.current
-      this.nextPage = res.links.next
-      this.previousPage = res.links.previous
-      this.lastPage = res.links.last
+      console.log(res.users);
+      this.currentPage = res.users.links.current
+      this.nextPage = res.users.links.next
+      this.previousPage = res.users.links.previous
+      this.lastPage = res.users.links.last
       this.user = res.users.users
     });
 
@@ -94,13 +93,12 @@ export class AdminUsersComponent implements OnInit {
 
     this.DataService.getDepartements().subscribe((res) => {
       console.log(res);
-      this.dep = res.data.departement
+      this.dep = res.departments
     })
     this.TitleService.setTitle("Administration")
 
-
   }
-
+  
   setRoute(tab: String) {
     this.tab = tab;
   }
@@ -215,53 +213,53 @@ export class AdminUsersComponent implements OnInit {
     this.page = document.getElementById('nbre')
     this.nbre = this.page.value
     this.DataService.getAdminUsers(this.nbre).subscribe((res) => {
-      this.currentPage = res.links.current
-      this.nextPage = res.links.next
-      this.previousPage = res.links.previous
-      this.lastPage = res.links.last
+      this.currentPage = res.users.links.current
+      this.nextPage = res.users.links.next
+      this.previousPage = res.users.links.previous
+      this.lastPage = res.users.links.last
       this.user = res.users.users
     });
   }
 
   nextpage() {
     this.DataService.getPage(this.nextPage).subscribe((res) => {
-      this.currentPage = res.links.current
-      this.nextPage = res.links.next
-      this.previousPage = res.links.previous
-      this.lastPage = res.links.last
+      this.currentPage = res.users.links.current
+      this.nextPage = res.users.links.next
+      this.previousPage = res.users.links.previous
+      this.lastPage = res.users.links.last
       this.user = res.users.users
-      this.firstPage = res.links.first
+      this.firstPage = res.users.links.first
 
     });
   }
   previouspage() {
     this.DataService.getPage(this.previousPage).subscribe((res) => {
-      this.currentPage = res.links.current
-      this.nextPage = res.links.next
-      this.previousPage = res.links.previous
-      this.lastPage = res.links.last
-      this.firstPage = res.links.first
+      this.currentPage = res.users.links.current
+      this.nextPage = res.users.links.next
+      this.previousPage = res.users.links.previous
+      this.lastPage = res.users.links.last
+      this.firstPage = res.users.links.first
       this.user = res.users.users
     });
   }
   lastpage() {
     this.DataService.getPage(this.lastPage).subscribe((res) => {
-      this.currentPage = res.links.current
-      this.nextPage = res.links.next
-      this.previousPage = res.links.previous
-      this.lastPage = res.links.last
-      this.firstPage = res.links.first
+      this.currentPage = res.users.links.current
+      this.nextPage = res.users.links.next
+      this.previousPage = res.users.links.previous
+      this.lastPage = res.users.links.last
+      this.firstPage = res.users.links.first
       this.user = res.users.users
 
     });
   }
   firstpage() {
     this.DataService.getPage(this.firstPage).subscribe((res) => {
-      this.firstPage = res.links.first
-      this.currentPage = res.links.current
-      this.nextPage = res.links.next
-      this.previousPage = res.links.previous
-      this.lastPage = res.links.last
+      this.firstPage = res.users.links.first
+      this.currentPage = res.users.links.current
+      this.nextPage = res.users.links.next
+      this.previousPage = res.users.links.previous
+      this.lastPage = res.users.links.last
       this.user = res.users.users
 
     });

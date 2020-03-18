@@ -123,9 +123,9 @@
       <ul *ngIf="router.url === '/administration/users'" data-simplebar class="ul_user">
         <li *ngFor="let u of user | orderBy: order : sens : true; let index = index;let even = even; let odd = odd "
           [ngClass]="{ odd: odd, even: even }">
-          <div style="text-transform: capitalize; " [id]="u.id"><span>{{u.lastname}}</span>{{u.firstname}} </div>
-          <div>{{u.role}}</div>
-          <div>{{u.department}}.</div>
+          <div style="text-transform: capitalize; " [id]="u.id"><span>{{u.lastName}}</span>{{u.firstName}} </div>
+          <div>{{u.role.name}}</div>
+          <div>{{u.department.name}}.</div>
           <div>
             <a [routerLink]="['/administration/users/', u.id]" routerLinkActive="active"
               [routerLinkActiveOptions]="{exact: true}">
@@ -150,7 +150,7 @@
           <!-- <div class="number">{{index + 1}}</div> -->
           <div style="text-transform: capitalize; ">{{d.name}}</div>
           <!-- <div>{{d.department}}.</div> -->
-          <div>{{d.responsable_id}}</div>
+          <div>{{d.responsible.lastName}}</div>
           <div>
             <a [routerLink]="['/administration/departement', d.id]" routerLinkActive="active">
               <fa-icon [icon]="faEdit" class="faEdit">
@@ -171,14 +171,14 @@
         <li *ngFor="let a of act | orderBy: order : sens : true; let index = index;let even = even; let odd = odd"
           [ngClass]="{ odd: odd, even: even }">
           <!-- <div class="number">{{index + 1}}</div> -->
-          <div style="text-transform: capitalize; ">{{a.name}}</div>
+          <div style="text-transform: capitalize; ">{{ a.name }}</div>
           <div class="color">
             <span class="color_span"></span>
           </div>
 
-          <div>{{a.chef}}</div>
-          <div>{{a.parent}}</div>
-          <div>{{a.status}}</div>
+          <div>{{ a.projectManager.lastName }}</div>
+          <div>{{ a.type.name }}</div>
+          <div>{{ a.ended }}</div>
           <div>
             <a [routerLink]="['/administration/activities/', a.id]" routerLinkActive="active"
               [routerLinkActiveOptions]="{exact: true}">

@@ -25,19 +25,19 @@ export class UpdateUserComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
 
     this.DataService.getDepartements().subscribe((res) => {
-      this.departements = res.data.departement
+      this.departements = res.departments
 
     });
 
     this.DataService.getRoles().subscribe((res) => {
-      this.roles = res.data
+      this.roles = res.roles
     });
 
     this.DataService.getUserById(this.id).subscribe((res) => {
-      this.firstname = res.data.user.firstname
-      this.lastname = res.data.user.lastname
-      this.login = res.data.user.login
-      this.mail = res.data.user.email
+      this.firstname = res.user.user.firstName
+      this.lastname = res.user.user.lastName
+      this.login = res.user.user.login
+      this.mail = res.user.user.email
       this.TitleService.setTitle(`${this.firstname} ${this.lastname}`)
     });
 
@@ -45,8 +45,8 @@ export class UpdateUserComponent implements OnInit {
 
   }
   onFormSubmit(userForm: NgForm) {
-    userForm.value.role_id = parseInt(userForm.value.role_id)
-    userForm.value.departement_id = parseInt(userForm.value.departement_id)
+    userForm.value.roleId = parseInt(userForm.value.roleId)
+    userForm.value.departmentId = parseInt(userForm.value.departementId)
 
     this.DataService.updateUser(userForm.value, this.id).subscribe((res)=>{
       console.log(res)
