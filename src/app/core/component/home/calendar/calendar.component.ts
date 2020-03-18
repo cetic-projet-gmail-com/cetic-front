@@ -161,7 +161,7 @@ export class CalendarComponent implements OnInit {
       this.events.push({
         start: parseISO(event.startAt),
         end: parseISO(event.endAt),
-        title: `Acitivité Finie! <br> ${event.description}` ,
+        title: `<h5>Acitivité Finie!</h5> <p> ${event.description}</p>` ,
         draggable: false,
         color: { primary: '#263238', secondary: "#d7ccc8"  },
       });
