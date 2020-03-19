@@ -2,7 +2,7 @@ import { DataService } from '../../services/data.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { TitleService } from '../../services/title.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { faFileExport } from '@fortawesome/free-solid-svg-icons';
+import { faFileExport, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
 import { faCaretSquareLeft } from '@fortawesome/free-solid-svg-icons';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
@@ -18,11 +18,13 @@ import { AddUserActivityComponent } from '../modal/add-user-activity/add-user-ac
 })
 export class EditActivityComponent implements OnInit {
 
-  faFileExport = faFileExport
-  faCaretSquareLeft = faCaretSquareLeft
-  faAdd = faPlusSquare
-  faEdit = faEdit
-  faTrash = faTrash
+  faFileExport = faFileExport;
+  faCaretSquareLeft = faCaretSquareLeft;
+  faAdd = faPlusSquare;
+  faEdit = faEdit;
+  faTrash = faTrash;
+  up = faSortUp;
+  down = faSortDown;
 
   tab;
   id;
@@ -32,8 +34,8 @@ export class EditActivityComponent implements OnInit {
   title: string;
 
 
-  constructor(private DataService: DataService, private TitleService: TitleService, public router: Router, private route: ActivatedRoute, 
-    private dialog: MatDialog ) { }
+  constructor(private DataService: DataService, private TitleService: TitleService, public router: Router, private route: ActivatedRoute,
+    private dialog: MatDialog) { }
 
   act
   user
@@ -82,12 +84,12 @@ export class EditActivityComponent implements OnInit {
     dialogConfig.panelClass = 'edit-event';
     dialogConfig.data = event;
     if (this.display === "users") {
-      
+
       let dialogRef = this.dialog.open(AddUserActivityComponent, dialogConfig);
       dialogRef.afterClosed().subscribe(result => {
         let res = {
-          "activityId" : this.route.snapshot.params['id'],
-          "userId" : result
+          "activityId": this.route.snapshot.params['id'],
+          "userId": result
         }
         this.DataService.addUserActivity(res).subscribe(async resServer => {
           await resServer;
@@ -111,11 +113,11 @@ export class EditActivityComponent implements OnInit {
         )
       });
     }
-  } 
+  }
   rmTask(id) {
     this.DataService.deleteTask(id).subscribe(async res => {
       await res;
-      if (res.status === 200 ) {
+      if (res.status === 200) {
         let task = this.tasks.findIndex(t => t.id === id);
         this.tasks.splice(task, 1);
       }
@@ -123,4 +125,70 @@ export class EditActivityComponent implements OnInit {
   }
 
 
+  order = "id"
+  sens = true;
+  sensName = true;
+  sensFname = true;
+  sensRole = true;
+  sensDep = true;
+  sensRes = true;
+  sensChef = true;
+  sensType = true;
+  sensStatus = true;
+
+
+  sort(el) {
+    // console.log(e.target)
+    // console.log(this.user);
+    // e.target.classList.add('red')
+    this.order = el
+    console.log(this.order);
+    switch (el) {
+      case "firstname":
+        this.sens = true;
+        this.sensFname = !this.sensFname
+        this.sens = this.sensFname
+        break;
+      case "name":
+        this.sens = true;
+        this.sensName = !this.sensName
+        this.sens = this.sensName
+        break;
+      case "role":
+        this.sens = true;
+        this.sensRole = !this.sensRole
+        this.sens = this.sensRole
+        break;
+      case "departement":
+        this.sens = true;
+        this.sensDep = !this.sensDep
+        this.sens = this.sensDep
+        break;
+      case "name":
+        this.sens = true;
+        this.sensName = !this.sensName
+        this.sens = this.sensName
+        break;
+      case "responsable_id":
+        this.sens = true;
+        this.sensRes = !this.sensRes
+        this.sens = this.sensRes
+        break;
+      case "chef":
+        this.sens = true;
+        this.sensChef = !this.sensChef
+        this.sens = this.sensChef
+        break;
+      case "type":
+        this.sens = true;
+        this.sensType = !this.sensType
+        this.sens = this.sensType
+        break;
+      case "status":
+        this.sens = true;
+        this.sensStatus = !this.sensStatus
+        this.sens = this.sensStatus
+        break;
+    }
+  }
 }

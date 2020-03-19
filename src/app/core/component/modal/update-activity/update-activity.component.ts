@@ -70,7 +70,7 @@ export class UpdateActivityComponent implements OnInit {
     })
 
     setTimeout(() => {
-      this.router.navigate(['administration/departement'])
+      this.router.navigate(['administration/activities'])
 
     }, 2700);
   }

@@ -20,7 +20,52 @@
     <div class="board_content">
       <update-user></update-user>
       <div class="board_content_details">
-        <h3>Activité 1</h3>
+        <div class="titleListe  ">
+          <div (click)="sort('name')">Nom <fa-icon *ngIf="order =='name'" [icon]="sensName? up : down" class="down">
+            </fa-icon>
+          </div>
+          <div>Couleur</div>
+
+          <div (click)="sort('chef')">Chef de projet <fa-icon *ngIf="order =='chef'" [icon]="sensChef? up : down"
+              class="down">
+            </fa-icon>
+          </div>
+          <div (click)="sort('type')">type <fa-icon *ngIf="order =='type'" [icon]="sensType? up : down" class="down">
+            </fa-icon>
+          </div>
+          <div (click)="sort('status')">Status
+            <fa-icon *ngIf="order =='status'" [icon]="sensStatus? up : down" class="down">
+            </fa-icon>
+          </div>
+
+          <div>Editer</div>
+          <!-- <div>Supp</div> -->
+        </div>
+        <ul data-simplebar class="ul_activity">
+          <li *ngFor="let a of act | orderBy: order : sens : true; let index = index;let even = even; let odd = odd"
+            [ngClass]="{ odd: odd, even: even }">
+            <!-- <div class="number">{{index + 1}}</div> -->
+            <div style="text-transform: capitalize; ">{{ a.name }}</div>
+            <div class="color">
+              <span class="color_span" [style.backgroundColor]="a.colour.code"></span>
+            </div>
+
+            <div>{{ a.projectManager.lastName }}</div>
+            <div>{{ a.type.name }}</div>
+            <div>{{ status }}</div>
+            <div>
+              <a [routerLink]="['/administration/activities/', a.id]" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                <fa-icon [icon]="faEdit" class="faEdit"></fa-icon>
+              </a>
+              <a (click)="popUpDeleted($event, a)">
+                <!-- <a (click)="deleteAct(a.id)"> -->
+                <fa-icon [icon]="faTrash" class="faTrash"></fa-icon>
+              </a>
+            </div>
+
+          </li>
+        </ul>
       </div>
 
     </div>
@@ -31,8 +76,8 @@
 
 <div class="save">
 
-  <button form="formUpdateUser" id="save">sauvegarder</button>
-  <button>Ok</button>
+  <button id="save" class="sauvegarde">sauvegarder</button>
+  <button type="submit" form="update_user">Ok</button>
 
 </div>
 
