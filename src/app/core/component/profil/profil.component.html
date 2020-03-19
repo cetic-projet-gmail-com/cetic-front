@@ -1,44 +1,46 @@
-<div class="wrapper">
-  <div class="content">
+<div class="content">
 
-    <h2>Profil</h2>
+  <h2>Profil</h2>
 
-    <form #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm)">
-      <div>
-        <label for="lastName" >Nom</label><br>
-        <input type="text"  disabled value={{user.lastName}}   pattern="[A-z][-éèëêâäàîïùûüôö]?" id="lastName" >
-      </div>
-      <div>
-        <label for="firstName">prenom</label><br>
-        <input type="text"  value={{user.firstName}}   pattern="[A-z][-éèëêâäàîïùûüôö]?" id="firstName" class="" disabled>
-      </div>
-      <div>
-        <label for="login" >login</label><br>
-        <input type="text"  id="login" value={{user.login}} class="" disabled>
-      </div>
-      <div>
-        <label for="email">mail</label><br>
-        <input type="email"
-        #email="ngModel"
-          ngModel name="email" id="email" class="" value={{user.email}}>
-      </div>
-      <div>
-        <label for="password">nouveau mot de passe</label><br>
-        <input type="password" ngModel name="password" id="password" class="" #password="ngModel">
-      </div>
-      <div>
-        <label for="roleId">role</label><br>
-          <input value="{{user['role'].name}}" disabled>
-      </div>
-      <div>
-        <label for="departmentId">departement</label><br>
-          <input value="{{user['department'].name}}" disabled>
-      </div>
+  <form #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm)">
+    <div>
+      <label for="lastName">Nom</label><br>
+      <input type="text" disabled value={{user.lastName}} pattern="[A-z][-éèëêâäàîïùûüôö]?" id="lastName">
+    </div>
+    <div>
+      <label for="firstName">prenom</label><br>
+      <input type="text" value={{user.firstName}} pattern="[A-z][-éèëêâäàîïùûüôö]?" id="firstName" class="" disabled>
+    </div>
+    <div>
+      <label for="login">login</label><br>
+      <input type="text" id="login" value={{user.login}} class="" disabled>
+    </div>
+    <div>
+      <label for="email">mail</label><br>
+      <input type="email" #email="ngModel" ngModel name="email" id="email" class="" value={{user.email}}>
+    </div>
+    <div>
+      <label for="password">nouveau mot de passe</label><br>
+      <input type="password" ngModel name="password" id="password" class="" #password="ngModel"
+        matTooltip="Entre 8 et 50 caractères, 1 majuscule, 1 minuscule, 1 chiffre et un caractère special">
+    </div>
+    <div>
+      <label for="roleId">role</label><br>
+      <input value="{{user['role'].name}}" disabled>
+    </div>
+    <div>
+      <label for="departmentId">departement</label><br>
+      <input value="{{user['department'].name}}" disabled>
+    </div>
 
 
-        <button class="save" type="submit" class="details" >Sauvegarder</button>
+    <button class="save" type="submit" class="details">Sauvegarder</button>
 
-    </form>
+  </form>
 
-  </div>
+</div>
+<div class="info">
+  <a href="https://forge.cetic.be/login?back_url=https%3A%2F%2Fforge.cetic.be%2Fprojects%2Fmission-timetrack
+      Redmine@CETIC" target="_blank">> Suggestion ? </a>
+
 </div>

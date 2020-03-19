@@ -39,11 +39,13 @@ $col_typo : #5a5a5a;
     }
 
     select {
-      width: 165px;
+      width: 150px;
+      height: 30px;
       border: none;
       padding: 5px 10px;
       border-radius: 5px;
       box-shadow: inset -2px 2px 3px rgba(216, 216, 216, 0.7);
+      background-color: white;
 
       &:focus {
         outline: none;

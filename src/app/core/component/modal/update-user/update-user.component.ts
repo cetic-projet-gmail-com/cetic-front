@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from './../../../services/data.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -12,7 +12,7 @@ import { TitleService } from '../../../services/title.service';
 })
 export class UpdateUserComponent implements OnInit {
   id
-  constructor(private DataService: DataService, private route: ActivatedRoute, private TitleService: TitleService) { }
+  constructor(private DataService: DataService, private route: ActivatedRoute, private TitleService: TitleService, private router: Router) { }
   departements
   roles
   user
@@ -48,10 +48,15 @@ export class UpdateUserComponent implements OnInit {
     userForm.value.roleId = parseInt(userForm.value.roleId)
     userForm.value.departmentId = parseInt(userForm.value.departementId)
 
-    this.DataService.updateUser(userForm.value, this.id).subscribe((res)=>{
+    this.DataService.updateUser(userForm.value, this.id).subscribe((res) => {
       console.log(res)
-    console.log("user updated");
+      console.log("user updated");
     })
+
+    setTimeout(() => {
+      this.router.navigate(['administration/users'])
+
+    }, 2700);
   }
 
 }

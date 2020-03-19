@@ -1,5 +1,5 @@
 <div class="content">
-  <form #userForm="ngForm" id="formUpdateUser" (ngSubmit)="onFormSubmit(userForm)">
+  <form #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm)" id="update_users">
     <div class="form-group">
       <div class="lastname">
         <label for="lastname">Nom</label><br>
@@ -24,7 +24,8 @@
 
       <div>
         <label for="password">mot de passe</label><br>
-        <input type="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[^\s](?=.*[a-zA-Z]).[^\s]{8,50}$" ngModel name="password" id="password" class="" required>
+        <input type="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[^\s](?=.*[a-zA-Z]).[^\s]{8,50}$" ngModel
+          name="password" id="password" class="" required>
       </div>
 
       <div class="role">

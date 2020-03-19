@@ -183,6 +183,10 @@ $col_typo : #5a5a5a;
                 width: 10%;
               }
 
+              fa-icon {
+                float: right;
+                margin-right: 10px;
+              }
 
 
             }
@@ -211,6 +215,10 @@ $col_typo : #5a5a5a;
                 width: 10%;
               }
 
+              fa-icon {
+                float: right;
+                margin-right: 10px;
+              }
 
             }
 
@@ -366,13 +374,18 @@ $col_typo : #5a5a5a;
 
 .save {
   display: flex;
-  margin-right: 155px;
+  margin-right: 95px;
   justify-content: flex-end;
+
+  .sauvegarde {
+
+    background-color: rgba(83, 133, 61, .7);
+  }
 
   button {
     font-family: $saira;
     text-transform: capitalize;
-    background-color: rgba(83, 133, 61, .7);
+    background-color: rgb(83, 133, 61);
     color: white;
     border: none;
     border-radius: 3px;
@@ -380,7 +393,7 @@ $col_typo : #5a5a5a;
     // transition: all 0.3s ease;
 
     &:hover {
-      background-color: #53853D;
+      background-color: #467133;
       transition: all 0.3s ease;
 
     }
@@ -394,7 +407,7 @@ $col_typo : #5a5a5a;
 .info {
   text-align: right;
   margin-right: 20px;
-  margin-top: 15px;
+  margin-top: calc(100vh - 750px);
 
   a {
 

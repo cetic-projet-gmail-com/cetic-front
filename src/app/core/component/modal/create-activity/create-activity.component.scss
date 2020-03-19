@@ -96,6 +96,12 @@ $col_typo : #5a5a5a;
       }
     }
 
+    select {
+      height: 35px;
+      margin-bottom: 10px;
+      background-color: white
+    }
+
     .action {
 
       display: flex;
@@ -106,10 +112,15 @@ $col_typo : #5a5a5a;
         margin-left: 10px;
       }
 
+      .cancel {
+        background-color: rgba(83, 133, 61, .7);
+
+      }
+
       button {
         font-family: $saira;
         text-transform: capitalize;
-        background-color: rgba(83, 133, 61, .7);
+        background-color: rgb(83, 133, 61);
         color: white;
         border: none;
         border-radius: 3px;
@@ -119,7 +130,7 @@ $col_typo : #5a5a5a;
         // transition: all 0.3s ease;
 
         &:hover {
-          background-color: #53853D;
+          background-color: #467133;
           transition: all 0.3s ease;
 
         }

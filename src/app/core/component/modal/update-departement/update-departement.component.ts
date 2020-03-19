@@ -62,7 +62,10 @@ export class UpdateDepartementComponent implements OnInit {
     this.DataService.getDepartementById(this.id).subscribe((res) => {
       this.dep = res.department
       this.depName = res.department.name
-      this.TitleService.setTitle(res.department.name)
+
+      setTimeout(() => {
+        this.TitleService.setTitle(res.department.name)
+      }, 1000);
       console.log(res)
     })
 
@@ -93,7 +96,7 @@ export class UpdateDepartementComponent implements OnInit {
 
 
   onFormSubmit(departementForm: NgForm) {
-    
+
     departementForm.value.responsibleId = this.responsible_Id
     this.DataService.updateDepartement(departementForm, this.id).subscribe((res) => {
       console.log(res)

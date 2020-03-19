@@ -93,11 +93,12 @@ $col_typo : #5a5a5a;
     height: calc(100vh - 70px);
     border-radius: 5px;
     text-align: center;
-    padding: 20px 20px 0 20px;
+    padding: 20px 20px 10px 20px;
     margin-right: 5px;
     background-color: #fafafa;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     margin-top: 10px;
+    position: relative;
 
     .hour {
 
@@ -132,6 +133,29 @@ $col_typo : #5a5a5a;
 
     .mini_calendar {
       height: 300px;
+    }
+
+    .info {
+      text-align: right;
+      position: absolute;
+      right: -8px;
+      bottom: 5px;
+
+
+      a {
+
+        font-family: $saira;
+        text-transform: uppercase;
+        color: #c4c4c4;
+
+        &:first-child {
+          margin-right: 20px;
+        }
+
+        font-size: .6em;
+
+      }
+
     }
 
 

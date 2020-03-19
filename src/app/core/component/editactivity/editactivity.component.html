@@ -38,15 +38,25 @@
 
           <div class="titleListe_tasks" *ngIf="this.display === 'tasks'">
 
-            <div>Nom</div>
+            <div (click)="sort('name')">Nom <fa-icon *ngIf="order =='name'" [icon]="sensName? up : down" class="down">
+              </fa-icon>
+            </div>
             <div>Description</div>
-            <div>type</div>
+            <div (click)="sort('status')">Status <fa-icon *ngIf="order =='status'" [icon]="sensStatus? up : down"
+                class="down">
+              </fa-icon>
+            </div>
             <div>Editer</div>
 
           </div>
           <div class="titleListe_users" *ngIf="this.display === 'users'">
-            <div>Nom</div>
-            <div>Departement</div>
+            <div (click)="sort('name')">Nom <fa-icon *ngIf="order =='name'" [icon]="sensName? up : down" class="down">
+              </fa-icon>
+            </div>
+            <div (click)="sort('departement')">Departement <fa-icon *ngIf="order =='departement'"
+                [icon]="sensDep? up : down" class="down">
+              </fa-icon>
+            </div>
             <div>Supp</div>
           </div>
 
@@ -55,7 +65,8 @@
           <div *ngIf="this.display === 'tasks'" class="board_details_content_tasks">
 
             <ul class="board_details_list" data-simplebar>
-              <li *ngFor="let t of tasks; let index = index;let even = even; let odd = odd"
+              <li
+                *ngFor="let t of tasks | orderBy: order : sens : true; let index = index;let even = even; let odd = odd"
                 [ngClass]="{ odd: odd, even: even }">
                 <div style="text-transform: capitalize; ">{{t.name}}</div>
                 <div>{{t.description}}</div>
@@ -78,7 +89,8 @@
           <div *ngIf="this.display === 'users'" class="board_details_content_users">
 
             <ul class="board_details_list" data-simplebar>
-              <li *ngFor="let u of user; let index = index;let even = even; let odd = odd"
+              <li
+                *ngFor="let u of user | orderBy: order : sens : true; let index = index;let even = even; let odd = odd"
                 [ngClass]="{ odd: odd, even: even }">
                 <div style="text-transform: capitalize; ">{{u.firstName}}</div>
                 <div>{{u.department.name}}</div>
@@ -107,8 +119,8 @@
 
 </div>
 <div class="save">
-  <button id="save">sauvegarde</button>
-  <button type="submit" id="update_activity">OK</button>
+  <button id="save" class="sauvegarde">sauvegarde</button>
+  <button type="submit" form="update_activity">OK</button>
 </div>
 
 <div class="info">
