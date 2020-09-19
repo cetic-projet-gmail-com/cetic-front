@@ -1,0 +1,132 @@
+@import 'src/styles';
+
+.navBar {
+  height: 55px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, .25);
+  background-color: #CCCCCC;
+  z-index: 10000;
+
+
+
+  img {
+    height: 50px;
+    margin-left: 20px;
+  }
+
+  .info {
+    width: 400px;
+    height: 40px;
+    margin: auto;
+    font-family: $saira;
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    padding-top: 4px;
+    font-size: 1.4em;
+  }
+
+  .menu {
+    align-content: center;
+    margin: auto 20px auto 0;
+
+    .faBars {
+      margin-left: 20px;
+      font-size: 1.2em;
+      color: #53853D;
+
+    }
+
+    a {
+      text-transform: uppercase;
+      font-family: $saira;
+      color: #777;
+      text-decoration: none;
+      background-color: white;
+      border-radius: 3px;
+      border: none;
+      padding: 0 10px;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, .15);
+
+      &:hover {
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        background-color: rgba(83, 133, 61, .2);
+      }
+
+      .faUser {
+        margin-right: 10px;
+        color: #ccc;
+      }
+
+    }
+
+  }
+}
+
+
+.container {
+  text-align: center;
+  overflow: hidden;
+
+
+  img {
+    width: 350px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+
+  .content {
+    display: flex;
+    text-align: center;
+
+    .content_timetrack {
+      margin-right: 50px;
+    }
+
+    .content_timetrack,
+    .objectif {
+      h2 {
+        text-align: left;
+        font-family: $poiret;
+        font-size: 2.2em;
+        color: #53853D;
+        margin-bottom: 40px;
+      }
+
+      p {
+        text-align: justify;
+        font-family: $saira;
+      }
+
+      .seconde {
+        padding-left: 20px;
+        margin-left: 20px;
+        border-left: 1px solid rgba(196, 196, 196, .3);
+      }
+    }
+  }
+
+}
+
+.info {
+  text-align: right;
+  margin-right: 20px;
+  margin-top: 120px;
+
+  a {
+
+    font-family: $saira;
+    text-transform: uppercase;
+    color: #c4c4c4;
+
+    &:first-child {
+      margin-right: 20px;
+    }
+
+    font-size: .6em;
+
+  }
+
+}

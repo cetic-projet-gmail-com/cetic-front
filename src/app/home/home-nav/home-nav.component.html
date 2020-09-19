@@ -1,0 +1,11 @@
+<div class="nav_calendar">
+  <div class="fa left" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (click)=getViewDate()>
+    <fa-icon [icon]="left" class="faCaretLeft"></fa-icon>
+  </div>
+  <div class="date" mwlCalendarToday [(viewDate)]="viewDate" (click)=getViewDate()>
+    <h3> {{ showDate }} </h3>
+  </div>
+  <div class="fa right" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (click)=getViewDate()>
+    <fa-icon [icon]="right" class="faCaretRight"></fa-icon>
+  </div>
+</div>

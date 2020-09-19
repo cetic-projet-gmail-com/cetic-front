@@ -1,0 +1,48 @@
+<div class="navBar">
+
+  <a [routerLink]="'/home'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+    <img src="assets/images/cetic/logo_cetic_transparent_simple.png" alt="logo_home">
+  </a>
+  <ng-content></ng-content>
+
+  <div class="info" *ngIf="router.url !== '/home'">{{title}}</div>
+  <div class="menu">
+    <a [routerLink]="'/login'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+      *ngIf="router.url == '/forgot_password' || router.url == '/info'">
+      connexion
+    </a>
+    <a [routerLink]="'/administration/users'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+      *ngIf="role !=1 && router.url != '/forgot_password'">
+      <fa-icon [icon]="faUser" class="faUser"></fa-icon>
+      admin
+    </a>
+
+    <!-- <app-menu *ngIf="router.url != '/forgot_password' && router.url != '/info' "></app-menu> -->
+    <div *ngIf="router.url != '/forgot_password' && router.url != '/info' ">
+        <a  class='dropdown-trigger' href='#' data-target='dropdown1'  #dropdown>  
+            <fa-icon [icon]="faBars" class="faBars" ></fa-icon>
+        </a>
+    </div>
+
+  </div>
+</div>
+
+<!-- ------------------------ Materialize Dropdown ------------------------- -->
+<ul id='dropdown1' class='dropdown-content'>
+    <div class="name">
+        <div class="faTimes">
+          <fa-icon [icon]="faTimes"></fa-icon>
+        </div>
+        <div class="icon">{{initials}}</div>
+        <h4>{{fName}} {{lName}}</h4>
+    </div>
+  
+    <li>
+        <a [routerLink]="'/home'">Agenda</a>
+    </li>
+    <li>
+        <a [routerLink]="'/profil'">Profil</a>
+    </li>
+    <li class="divider" tabindex="-1"></li>
+    <button (click)="logout()" class="logout">Déconnexion</button>
+</ul>
