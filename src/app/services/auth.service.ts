@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { UsersService } from './users.service';
+import { UsersService } from './datas/users.service';
 
 import { User } from '../models/users';
 @Injectable({

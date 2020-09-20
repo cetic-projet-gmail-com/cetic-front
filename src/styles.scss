@@ -1,12 +1,16 @@
 @import './styles/_fonts';
 @import './styles/_colors';
-
+@import './styles/angular-calendar';
+@import './styles/flat-pickr';
 body {
     min-height: 100vh;
     background: url('/assets/images/background/fond_login.png');
     background-position: 0 0;
     background-size: contain;
     background-repeat: no-repeat;
+    // position: static; 
+    overflow-y:auto;
+
     // z-index: -1000;
     button {
       cursor: pointer;
@@ -26,3 +30,5 @@ body {
   
   
 }
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

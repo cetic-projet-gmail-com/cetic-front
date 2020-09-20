@@ -6,6 +6,7 @@ import { format, startOfWeek, endOfWeek } from 'date-fns';
 import { faCaretLeft } from '@fortawesome/free-solid-svg-icons';
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons';
 
+
 @Component({
   selector: 'app-home-nav',
   templateUrl: './home-nav.component.html',
@@ -21,9 +22,11 @@ export class HomeNavComponent implements OnInit, OnChanges {
   @Input() view;
   @Input() viewDate;
   @Output() viewDateChange = new EventEmitter<Date>();
-
   ngOnInit(): void {
   }
+  /**
+   * Format Date in Nav (ngContent on home.component.html) in French depending on @view (Monthly, Dayly, Weekly...)
+   */
   ngOnChanges() {
     let date = this.viewDate;
     let dateFormat = 'dd';
@@ -45,6 +48,7 @@ export class HomeNavComponent implements OnInit, OnChanges {
   upFirsChar(d) {
     return d.charAt(0).toUpperCase() + d.slice(1);
   }
+  
 
   getViewDate() {
     this.viewDateChange.emit(new Date(this.viewDate));

@@ -6,6 +6,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { CommonModule, registerLocaleData } from '@angular/common';
+
+/* Angular Calendar */
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr);
 /* ---------------------------- Simple Components --------------------------- */
 import { AppRoutingModule } from './app-routing.module';
 
@@ -30,6 +38,8 @@ import { ForgotPassComponent } from './login/forgot-pass/forgot-pass.component';
 import { NavComponent } from './header/nav/nav.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProfilComponent } from './profil/profil.component';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { MiniCalendarComponent } from './home/mini-calendar/mini-calendar.component';
 
 @NgModule({
   declarations: [
@@ -47,18 +57,26 @@ import { ProfilComponent } from './profil/profil.component';
     HomeNavComponent,
     ForgotPassComponent,
     NavComponent,
-    ProfilComponent
+    ProfilComponent,
+    MiniCalendarComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    CommonModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    }),
+    FlatpickrModule.forRoot(),
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataServiceService, { dataEncapsulation: false}
     ),
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgbModalModule
   ],
   providers: [],
   bootstrap: [AppComponent]

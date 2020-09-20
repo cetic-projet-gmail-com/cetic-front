@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {  CalendarView, CalendarDateFormatter,  } from 'angular-calendar';
 import { CustomDateFormatter } from './../services/date-formatter.service';
-
+import { Events } from '../models/events';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   view: CalendarView = CalendarView.Week;
   CalendarView = CalendarView;
 
-  events : Array<Object> = [];
+  events : Events[] = [];
 
   constructor() { }
 
@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
   }
 
   changeView(v) {
+    console.log(this.view)
     this.view = v;
     // this.viewChange.emit(v)
   }

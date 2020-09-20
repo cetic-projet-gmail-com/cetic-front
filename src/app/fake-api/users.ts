@@ -1,5 +1,5 @@
 import { User } from '../models/users';
-export var usersDatas: User[] = [
+export var users: User[] = [
     {
         id: 0,
         login: "Admin",
