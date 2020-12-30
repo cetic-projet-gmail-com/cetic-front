@@ -3,14 +3,24 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "app": {
+    "front": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "skipTests": true
         },
-        "@schematics/angular:application": {
-          "strict": true
+        "@schematics/angular:class": {
+          "skipTests": true
+        },
+        "@schematics/angular:directive": {
+          "skipTests": true
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
         }
       },
       "root": "",
@@ -20,7 +30,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/app",
+            "outputPath": "dist/front",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -31,9 +41,12 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/materialize-css/dist/css/materialize.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/materialize-css/dist/js/materialize.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -46,6 +59,7 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
+              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -53,13 +67,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ]
             }
@@ -68,18 +82,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "app:build"
+            "browserTarget": "front:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "app:build:production"
+              "browserTarget": "front:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "app:build"
+            "browserTarget": "front:build"
           }
         },
         "test": {
@@ -116,16 +130,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "app:serve"
+            "devServerTarget": "front:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "app:serve:production"
+              "devServerTarget": "front:serve:production"
             }
           }
         }
       }
-    }
-  },
-  "defaultProject": "app"
+    }},
+  "defaultProject": "front"
 }

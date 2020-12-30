@@ -1,1 +1,34 @@
-/* You can add global styles to this file, and also import other style files */
+@import './styles/_fonts';
+@import './styles/_colors';
+@import './styles/angular-calendar';
+@import './styles/flat-pickr';
+body {
+    min-height: 100vh;
+    background: url('/assets/images/background/fond_login.png');
+    background-position: 0 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    // position: static; 
+    overflow-y:auto;
+
+    // z-index: -1000;
+    button {
+      cursor: pointer;
+
+    }
+}
+
+.snackBar.toast {
+    background-color: #fafafa;
+    color: $green-cetic;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, .5);
+    font-family: 'Saira Semi Condensed';
+    button{
+      color: $green-cetic;
+  
+    }
+  
+  
+}
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
