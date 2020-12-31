@@ -1,3 +1,17 @@
-<nav>
-qdsljfk
+<nav class="nav">
+    <button class="nav_icons"><mat-icon aria-hidden="false" aria-label="Menu">menu</mat-icon></button>
+    <button class="nav_icons" [matMenuTriggerFor]="menu">
+        <mat-icon aria-hidden="false" aria-label="Paramètres">settings</mat-icon>
+    </button>
 </nav>
+
+<mat-menu #menu="matMenu">
+    <a mat-menu-item routerLink="/admin">
+      <mat-icon>build</mat-icon>
+      <span>Administration</span>
+    </a>
+    <a mat-menu-item routerLink="/profile">
+      <mat-icon>person</mat-icon>
+      <span>Profil</span>
+    </a>
+</mat-menu>
