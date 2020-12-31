@@ -1,0 +1,13 @@
+@import 'colors';
+
+.cta {
+    background: $color_primary;
+    color: $color_white;
+    background: linear-gradient(90deg, $color_primary 0%, lighten($color_primary, 20%) 100%);
+
+    border-radius: 9999px;
+
+    padding: 0.6em 1.2em;
+
+    font-size: medium;
+}
