@@ -7,16 +7,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './auth/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { HomeComponent } from './home/home.component';
+import { MaterialModule } from './material.module';
+
 import { NavComponent } from './components/nav/nav.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, HomeComponent, NavComponent],
+  declarations: [AppComponent, LoginComponent, NavComponent],
   imports: [
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,
+    MaterialModule,
     ReactiveFormsModule,
   ],
   providers: [],
