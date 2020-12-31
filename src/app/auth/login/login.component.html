@@ -1,0 +1,37 @@
+<section>
+    <div class="wrapper">
+        <img
+            class="logo"
+            src="assets/images/logo_cetic_transparent_1024.png"
+            alt="Logo Cetic"
+        />
+        <form [formGroup]="formLogin" (submit)="handleSubmit()">
+            <label>
+                <div>Login</div>
+                <input
+                    autocomplete="username"
+                    required
+                    [class.errors]="badCredentials"
+                    type="text"
+                    formControlName="login"
+                />
+            </label>
+            <label>
+                <div>Mot de passe</div>
+                <input
+                    autocomplete="current-password"
+                    required
+                    [class.errors]="badCredentials"
+                    type="password"
+                    formControlName="password"
+                />
+            </label>
+            <button
+                type="submit"
+                class="cta"
+            >
+                Se connecter
+            </button>
+        </form>
+    </div>
+</section>
