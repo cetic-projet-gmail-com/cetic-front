@@ -4,17 +4,27 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuardService } from './services/auth/auth-guard.service';
 
 import { LoginComponent } from './auth/login/login.component';
-import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: HomeComponent,
-    canActivate: [AuthGuardService],
-  },
-  {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: '',
+    canActivate: [AuthGuardService],
+    loadChildren: () =>
+      import('./home/home-routing.module').then(
+        (module) => module.HomeRoutingModule
+      ),
+  },
+  {
+    path: 'admin',
+    canActivate: [AuthGuardService],
+    loadChildren: () =>
+      import('./admin/admin-routing.module').then(
+        (module) => module.HomeRoutingModule
+      ),
   },
 ];
 
