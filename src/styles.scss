@@ -1,9 +1,9 @@
-@import './styles/buttons';
-@import './styles/colors';
-@import './styles/form';
-@import './styles/reset';
+@import './assets/styles/buttons';
+@import './assets/styles/colors';
+@import './assets/styles/form';
+@import './assets/styles/reset';
 
 body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
-    background: $color_background;
+    background: var(--color-background-primary);
 }
