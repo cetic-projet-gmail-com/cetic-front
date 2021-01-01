@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   badCredentials = false;
 
   handleSubmit(): void {
+    if (!this.formLogin.valid) return;
     this.auth.logging(this.formLogin.value).subscribe(
       (res) => {
         this.auth.setToken(res.bearerToken);
