@@ -1,0 +1,35 @@
+<nav class="tabs">
+    <a
+        (click)="view = CalendarView.Day"
+        [class.tabs__active]="view === CalendarView.Day"
+    >
+        Jour
+    </a>
+    <a
+        (click)="view = CalendarView.Week"
+        [class.tabs__active]="view === CalendarView.Week"
+    >
+        Semaine
+    </a>
+    <a
+        (click)="view = CalendarView.Month"
+        [class.tabs__active]="view === CalendarView.Month"
+    >
+        Mois
+    </a>
+</nav>
+
+<div [ngSwitch]="view">
+    <mwl-calendar-day-view
+        *ngSwitchCase="CalendarView.Day"
+        [viewDate]="viewDate"
+    ></mwl-calendar-day-view>
+    <mwl-calendar-month-view
+        *ngSwitchCase="CalendarView.Month"
+        [viewDate]="viewDate"
+    ></mwl-calendar-month-view>
+    <mwl-calendar-week-view
+        *ngSwitchCase="CalendarView.Week"
+        [viewDate]="viewDate"
+    ></mwl-calendar-week-view>
+</div>
