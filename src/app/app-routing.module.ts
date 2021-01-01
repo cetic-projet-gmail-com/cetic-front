@@ -23,7 +23,7 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     loadChildren: () =>
       import('./admin/admin-routing.module').then(
-        (module) => module.HomeRoutingModule
+        (module) => module.AdminRoutingModule
       ),
   },
 ];
