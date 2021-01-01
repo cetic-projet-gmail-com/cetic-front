@@ -12,7 +12,6 @@ import { MaterialModule } from './material.module';
 import { SharedModule } from './shared/shared.module';
 import { HomeModule } from './home/home.module';
 import { AdminModule } from './admin/admin.module';
-import { CalendarModule } from 'angular-calendar';
 @NgModule({
   declarations: [AppComponent, LoginComponent],
   imports: [
@@ -25,7 +24,6 @@ import { CalendarModule } from 'angular-calendar';
     AdminModule,
     HomeModule,
     ReactiveFormsModule,
-    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
   ],
   providers: [],
   bootstrap: [AppComponent],
