@@ -4,7 +4,6 @@
         <mat-icon aria-hidden="false" aria-label="Paramètres">settings</mat-icon>
     </button>
 </nav>
-
 <mat-menu #menu="matMenu">
     <a mat-menu-item routerLink="/admin">
       <mat-icon>build</mat-icon>
@@ -14,4 +13,8 @@
       <mat-icon>person</mat-icon>
       <span>Profil</span>
     </a>
+    <button mat-menu-item (click)="handleSignOut()">
+      <mat-icon>logout</mat-icon>
+      <span>Se déconnecter</span>
+    </button>
 </mat-menu>
