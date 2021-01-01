@@ -1,1 +1,17 @@
-<p>index works!</p>
+<app-header>
+    <div home>
+        {{ viewDate | date }}
+    </div>
+</app-header>
+<section class="home">
+    <app-calendar
+      [(viewDate)]="viewDate"
+
+    ></app-calendar>
+    <app-home-aside>
+        <app-flat-picker
+            flatPicker
+            [(viewDate)]="viewDate"
+        ></app-flat-picker>
+    </app-home-aside>
+</section>

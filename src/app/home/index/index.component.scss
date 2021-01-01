@@ -1,0 +1,12 @@
+.home {
+    display: flex;
+
+    app-calendar {
+        width: 100%;
+    }
+
+    app-home-aside {
+        width: 400px;
+        background: var(--color-white);
+    }
+}
