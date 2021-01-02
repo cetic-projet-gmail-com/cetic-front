@@ -1,1 +1,44 @@
-<ng-content select="[flatPicker]"></ng-content>
+<aside>
+  <div>
+    <mat-accordion>
+      <p *ngIf="!activities; else activitiesTemplate">
+          <em>Aucune tâche</em>
+      </p>
+
+      <ng-template #activitiesTemplate>
+          <mat-expansion-panel *ngFor="let activity of activities">
+            <mat-expansion-panel-header>
+              <div>
+                  <div
+                      [ngStyle]="{'background-color':activity.colour?.code}"
+                  >
+                </div>{{activity.name}}
+              </div>
+            </mat-expansion-panel-header>
+            <ul>
+              <li
+                  *ngFor="let task of activity['tasks']"
+                  mwlDraggable
+                  [dropData]="{event: task}"
+                  dragActiveClass="drag-active"
+              >
+                {{ task.name }}
+              </li>
+            </ul>
+          </mat-expansion-panel>
+      </ng-template>
+    </mat-accordion>
+  </div>
+  <div class="flat-picker">
+    <input
+        type="text"
+        class="flat-picker__input"
+        mwlFlatpickr
+        hidden
+        [(ngModel)]="viewDate"
+        [inline]="true"
+        [altInput]="true"
+        [convertModelValue]="true"
+    >
+  </div>
+</aside>

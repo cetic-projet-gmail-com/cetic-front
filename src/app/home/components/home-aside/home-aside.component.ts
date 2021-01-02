@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { EventEmitter } from 'events';
+import Activity from 'src/app/core/models/Activity';
 
 @Component({
   selector: 'app-home-aside',
@@ -9,4 +11,13 @@ export class HomeAsideComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  @Input()
+  activities: Activity[] = [];
+
+  @Input()
+  viewDate: Date;
+
+  // @Output()
+  // viewDateChange = new EventEmitter<Date>();
 }

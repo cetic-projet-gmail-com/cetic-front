@@ -5,13 +5,12 @@
 </app-header>
 <section class="home">
     <app-calendar
-      [(viewDate)]="viewDate"
-
+        (handleEditEvent)="handleEditEvent($event)"
+        [(events)]="events"
+        [(viewDate)]="viewDate"
     ></app-calendar>
-    <app-home-aside>
-        <app-flat-picker
-            flatPicker
-            [(viewDate)]="viewDate"
-        ></app-flat-picker>
-    </app-home-aside>
+    <app-home-aside
+        [activities]="activities"
+        [(viewDate)]="viewDate"
+    ></app-home-aside>
 </section>

@@ -8,18 +8,18 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { HomeAsideComponent } from './components/home-aside/home-aside.component';
-import { FlatPickerComponent } from './components/flat-picker/flat-picker.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlatpickrModule } from 'angularx-flatpickr';
 
-import 'flatpickr/dist/flatpickr.css';
+import { MaterialModule } from '../material.module';
+import { EditEventComponent } from './components/Dialogs/edit-event/edit-event.component';
 @NgModule({
   declarations: [
     IndexComponent,
     ProfileComponent,
     CalendarComponent,
     HomeAsideComponent,
-    FlatPickerComponent,
+    EditEventComponent,
   ],
   imports: [
     CommonModule,
@@ -31,6 +31,8 @@ import 'flatpickr/dist/flatpickr.css';
     }),
     FlatpickrModule.forRoot(),
     FormsModule,
+    ReactiveFormsModule,
+    MaterialModule,
   ],
   exports: [],
 })

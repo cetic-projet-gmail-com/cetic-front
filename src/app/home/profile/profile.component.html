@@ -1,1 +1,54 @@
 <app-header></app-header>
+<nav>
+    <div *ngIf="formState.isEditable">
+        <button
+            class="cta"
+            form="formProfile"
+            type="submit"
+            [disabled]="formState.isLoading"
+        >
+            <p>Sauvegarder</p>
+            <div
+                class="cta__spinner"
+                *ngIf="formState.isLoading"
+            >
+                <mat-spinner [diameter]="20"></mat-spinner>
+            </div>
+        </button>
+    </div>
+    {{ formState.isError }}
+    <div *ngIf="!formState.isEditable">
+        <button
+            (click)="handleEdit()"
+        >
+            <mat-icon
+                aria-hidden="false"
+                aria-label="Modifier le Profile"
+            >
+                edit
+            </mat-icon>
+        </button>
+    </div>
+</nav>
+<form
+    class="form"
+    id="formProfile"
+    [formGroup]="formProfile"
+    (submit)="handleSubmit()"
+>
+    <input
+        type="text"
+        required
+        formControlName="firstName"
+    />
+    <input
+        type="text"
+        required
+        formControlName="lastName"
+    />
+    <input
+        type="text"
+        required
+        formControlName="email"
+    />
+</form>

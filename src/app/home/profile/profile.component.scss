@@ -1,0 +1,17 @@
+form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    &::content {
+        margin: 10px;
+        width: 400px;
+    }
+
+    input {
+        width: 100%;
+    }
+}
+
+nav {
+    height: 40px;
+}
