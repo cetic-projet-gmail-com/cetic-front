@@ -1,0 +1,81 @@
+<!-- <div class="styleOfPopUp_edit">
+
+    <h5 class="date">{{viewDate}}</h5>
+    <div class="activity_title">
+
+      <div class="activity_color" [ngStyle]="{'background-color':event.color.secondary}"></div>
+      <h1>{{event.meta.activityName}}</h1>
+    </div>
+
+    <h2>- {{event.meta.taskName}} -</h2>
+
+    <form #f="ngForm" (ngSubmit)="submit(f)" class="">
+
+
+      <div class="choice_hour">
+        <div class="hour_start">
+          <label for="startTime" class="label">Début</label>
+          <input #start="ngModel" [(ngModel)]="startText" type="time" id="startTime" name="start" min="07:00" max="21:00"
+            required class="form-control">
+        </div>
+        <div class="hour_end">
+          <label for="endTime" class="label">Fin</label>
+          <input #end="ngModel" [(ngModel)]="endText" type="time" id="endTime" name="end" min="07:00" max="21:00" required
+            class="form-control">
+        </div>
+      </div>
+
+      <div class="description">
+        <label for="description" class="label">Description</label>
+        <textarea #description="ngModel" [(ngModel)]="event.title" name="description" id="description" required
+          class="form-control" placeholder=""></textarea>
+      </div>
+      <br>
+      <div class="form_button">
+        <button type="button" (click)="onNoClick()" class="btn_cancel">Annuler</button>
+        <button [disabled]="f.invalid" class="btn_edit">Éditer</button>
+      </div>
+    </form>
+  </div> -->
+
+<form
+    class="dialog"
+    [formGroup]="formEditEvent"
+    (submit)="handleSubmit()"
+>
+    <div class="dialog__multiple dialog__dates">
+        <input
+            type="time"
+            min="07:00"
+            max="21:00"
+            required
+            formControlName="startAt"
+        />
+        <div>-</div>
+        <input
+            type="time"
+            min="07:00"
+            max="21:00"
+            required
+            formControlName="endAt"
+        />
+    </div>
+    <textarea
+        formControlName="description"
+    >
+    </textarea>
+    <div class="dialog__actions">
+        <button
+            class="cancel"
+            (click)="handleClose()"
+        >
+            Annuler
+        </button>
+        <button
+            type="submit"
+            class="cta"
+        >
+            Editer
+        </button>
+    </div>
+</form>
