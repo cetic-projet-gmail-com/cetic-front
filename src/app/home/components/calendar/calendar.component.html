@@ -22,14 +22,49 @@
 <div [ngSwitch]="view">
     <mwl-calendar-day-view
         *ngSwitchCase="CalendarView.Day"
+        (eventClicked)="eventClicked($event)"
+        [dayStartHour]="calendarConfig.startHour"
+        [dayEndHour]="calendarConfig.endHour"
+        [(events)]="calendarEvents"
         [viewDate]="viewDate"
     ></mwl-calendar-day-view>
     <mwl-calendar-month-view
         *ngSwitchCase="CalendarView.Month"
+        (eventClicked)="eventClicked($event)"
+        [(events)]="calendarEvents"
         [viewDate]="viewDate"
+        [weekStartsOn]="calendarConfig.weekStartsOn"
     ></mwl-calendar-month-view>
     <mwl-calendar-week-view
         *ngSwitchCase="CalendarView.Week"
+        (eventClicked)="eventClicked($event)"
+        [dayStartHour]="calendarConfig.startHour"
+        [dayEndHour]="calendarConfig.endHour"
+        [(events)]="calendarEvents"
+        [hourSegmentTemplate]="weekViewHourSegmentTemplate"
         [viewDate]="viewDate"
+        [weekStartsOn]="calendarConfig.weekStartsOn"
     ></mwl-calendar-week-view>
 </div>
+
+<ng-template
+  #weekViewHourSegmentTemplate
+  let-segment="segment"
+  let-locale="locale"
+  let-segmentHeight="segmentHeight"
+  let-isTimeLabel="isTimeLabel"
+>
+  <div
+    #segmentElement
+    class="cal-hour-segment"
+    [style.height.px]="segmentHeight"
+    [class.cal-hour-start]="segment.isStart"
+    [class.cal-after-hour-start]="!segment.isStart"
+    [ngClass]="segment.cssClass"
+    (mousedown)="startDragToCreate(segment, $event, segmentElement)"
+  >
+    <div class="cal-time" *ngIf="isTimeLabel">
+      {{ segment.date | calendarDate:'weekViewHour':locale }}
+    </div>
+  </div>
+</ng-template>
