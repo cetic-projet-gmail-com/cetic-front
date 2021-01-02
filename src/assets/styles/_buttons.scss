@@ -3,11 +3,16 @@
 .cta {
     background: var(--color-primary);
     color: var(--color-white);
-    background: linear-gradient(90deg, var(--color-primary) 0%, lighten($color-primary, 20%) 100%);
+    background: $color-primary-gradient;
 
     border-radius: 9999px;
 
     padding: 0.6em 1.2em;
 
     font-size: medium;
+}
+
+.cancel {
+    font-size: medium;
+    color: gray;
 }

@@ -1,0 +1,33 @@
+.mat-dialog-container {
+    padding: 0 !important;
+}
+
+.dialog {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    color: gray;
+
+    padding: 20px;
+
+    &__actions {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        padding-top: 20px;
+        border-top: 1px solid gray;
+    }
+
+    &__multiple {
+        display: flex;
+        gap: 10px;
+    }
+    input {
+        width: 100%;
+    }
+    textarea {
+        height: 100px;
+    }
+}

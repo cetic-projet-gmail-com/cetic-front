@@ -1,9 +1,11 @@
 @import './assets/styles/buttons';
 @import './assets/styles/colors';
+@import './assets/styles/dialogs';
 @import './assets/styles/form';
 @import './assets/styles/components';
 @import './assets/styles/reset';
 
+@import '~flatpickr/dist/flatpickr';
 body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
     background: var(--color-background-primary);

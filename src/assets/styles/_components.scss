@@ -1,3 +1,5 @@
+@import 'colors';
+
 .tabs {
     display: flex;
     place-items: flex-end;
@@ -26,10 +28,16 @@
         padding-top: 12px !important;
 
         color: var(--color-white);
-        background: var(--color-primary) !important;
+        background: $color-primary-gradient !important;
 
         &:hover {
             color: lightgray !important;
         }
+    }
+}
+
+.flat-picker{
+    &__input {
+        display: none !important;
     }
 }
