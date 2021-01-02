@@ -6,6 +6,15 @@ export const environment = {
   production: false,
 
   apiUrl: 'http://localhost:8080',
+
+  calendar: {
+    weekStartsOn: 0,
+
+    locale: 'fr',
+
+    startHour: 8,
+    endHour: 20,
+  },
 };
 
 /*
