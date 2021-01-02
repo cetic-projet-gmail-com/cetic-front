@@ -16,4 +16,7 @@ export class ApiHomeService {
   public getProfile() {
     return this.http.get('profile');
   }
+  public updateProfile(form: object) {
+    return this.http.patch('profile', form);
+  }
 }
