@@ -13,8 +13,11 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 
 import { MaterialModule } from '../material.module';
 import { EditEventComponent } from './components/Dialogs/edit-event/edit-event.component';
+
+import { DateNav } from '../core/pipes/date.pipe';
 @NgModule({
   declarations: [
+    DateNav,
     IndexComponent,
     ProfileComponent,
     CalendarComponent,
