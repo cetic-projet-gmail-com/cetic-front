@@ -21,7 +21,7 @@ import { WeekViewHourSegment } from 'calendar-utils';
 
 import { environment } from 'src/environments/environment';
 
-import Event from 'src/app/core/models/Event';
+import { Event } from 'src/app/core/models/Event';
 import { addDays, addMinutes, endOfWeek, parseISO } from 'date-fns';
 import { fromEvent } from 'rxjs';
 import { finalize, takeUntil } from 'rxjs/operators';
@@ -36,13 +36,13 @@ function ceilToNearest(amount: number, precision: number) {
 
 @Injectable()
 export class CustomEventTitleFormatter extends CalendarEventTitleFormatter {
-  weekTooltip(event: CalendarEvent, title: string) {
+  weekTooltip(event: CalendarEvent, title: string): any {
     if (!event.meta.tmpEvent) {
       return super.weekTooltip(event, title);
     }
   }
 
-  dayTooltip(event: CalendarEvent, title: string) {
+  dayTooltip(event: CalendarEvent, title: string): any {
     if (!event.meta.tmpEvent) {
       return super.dayTooltip(event, title);
     }
@@ -71,34 +71,39 @@ export class CalendarComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {}
 
-  ngOnChanges(changes): void {
+  ngOnChanges(changes: any): void {
     if (changes['events']) {
       this.loadEvents();
     }
   }
 
   @Input()
-  viewDate: Date;
+  viewDate: Date = new Date();
 
   @Output()
   viewDateChange = new EventEmitter<Date>();
 
   @Input()
-  events: Event[];
+  events: Event[] = [];
+
+  @Input()
+  view: CalendarView = CalendarView.Week;
 
   @Output()
-  handleEditEvent: EventEmitter<any> = new EventEmitter();
+  viewChange = new EventEmitter<CalendarView>();
+
+  @Output()
+  handleEditEvent = new EventEmitter();
 
   CalendarView = CalendarView;
   dragToCreateActive = false;
-  view: CalendarView = CalendarView.Week;
 
-  calendarEvents: CalendarEvent[] = [];
+  calendarEvents: Array<CalendarEvent> = [];
 
   loadEvents() {
     if (this.events) {
       this.calendarEvents = this.events.map((event) => {
-        return {
+        let calendarEvent: CalendarEvent = {
           title: event.description,
           start: parseISO(event.startAt),
           end: parseISO(event.endAt),
@@ -106,11 +111,12 @@ export class CalendarComponent implements OnInit, OnChanges {
             id: event.id,
           },
         };
+        return calendarEvent;
       });
     }
   }
 
-  eventClicked($event) {
+  eventClicked($event: { event: CalendarEvent }) {
     this.handleEditEvent.emit($event.event);
   }
 
@@ -130,8 +136,11 @@ export class CalendarComponent implements OnInit, OnChanges {
     this.calendarEvents = [...this.calendarEvents, dragToSelectEvent];
     const segmentPosition = segmentElement.getBoundingClientRect();
     this.dragToCreateActive = true;
+
+    const weekStartsOn: any = this.calendarConfig.weekStartsOn;
+
     const endOfView = endOfWeek(this.viewDate, {
-      weekStartsOn: this.calendarConfig.weekStartsOn,
+      weekStartsOn,
     });
 
     fromEvent(document, 'mousemove')
@@ -143,7 +152,7 @@ export class CalendarComponent implements OnInit, OnChanges {
         }),
         takeUntil(fromEvent(document, 'mouseup'))
       )
-      .subscribe((mouseMoveEvent: MouseEvent) => {
+      .subscribe((mouseMoveEvent: any) => {
         const minutesDiff = ceilToNearest(
           mouseMoveEvent.clientY - segmentPosition.top,
           30
