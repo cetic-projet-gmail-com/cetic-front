@@ -1,0 +1,50 @@
+
+$poiret : 'Poiret One';
+$saira : 'Saira Semi Condensed';
+$col_typo : #5a5a5a;
+
+.container {
+    text-align: center;
+    overflow: hidden;
+    padding: 10px;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 800px;
+    img {
+        width: 350px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+.content {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    .content_timetrack {
+        margin-right: 50px;
+    }
+
+    .content_timetrack,
+    .objectif {
+        h2 {
+            text-align: left;
+            font-family: $poiret;
+            font-size: 2.2em;
+            color: #53853D;
+            margin-bottom: 40px;
+        }
+
+        p {
+            text-align: justify;
+            font-family: $saira;
+
+            &:nth-child(odd) {
+                padding-left: 20px;
+                border-left: 1px solid rgba(196, 196, 196, .3);
+            }
+        }
+    }
+}
+
+}
