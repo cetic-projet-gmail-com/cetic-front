@@ -8,23 +8,43 @@
         <form [formGroup]="formLogin" (submit)="handleSubmit()">
             <label>
                 <div>Login</div>
-                <input
-                    autocomplete="username"
-                    required
-                    [class.errors]="badCredentials"
-                    type="text"
-                    formControlName="login"
-                />
+                <mat-form-field>
+                    <input
+                        autocomplete="username"
+                        required
+                        type="text"
+                        formControlName="login"
+                        matInput
+                    />
+                    <mat-error *ngIf="formLogin.controls.login.invalid">
+                        {{ formLogin.controls.login | FieldError }}
+                    </mat-error>
+                </mat-form-field>
             </label>
             <label>
                 <div>Mot de passe</div>
-                <input
-                    autocomplete="current-password"
-                    required
-                    [class.errors]="badCredentials"
-                    type="password"
-                    formControlName="password"
-                />
+                <mat-form-field>
+                    <input
+                        autocomplete="current-password"
+                        matInput
+                        required
+                        [type]="state.isHidingPassword ? 'password' : 'text'"
+                        formControlName="password"
+                    >
+                    <mat-error *ngIf="formLogin.controls.password.invalid">
+                        {{ formLogin.controls.password | FieldError }}
+                    </mat-error>
+                    <button
+                        mat-icon-button
+                        matSuffix
+                        (click)="state.isHidingPassword = !state.isHidingPassword"
+                        type="button"
+                        [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="state.isHidingPassword"
+                    >
+                        <mat-icon>{{state.isHidingPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                  </mat-form-field>
             </label>
             <button
                 type="submit"
@@ -34,4 +54,5 @@
             </button>
         </form>
     </div>
+    <app-footer></app-footer>
 </section>

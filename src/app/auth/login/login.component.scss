@@ -11,7 +11,7 @@ section {
     justify-content: center;
 
     width: inherit;
-    height: inherit;
+    height: calc(100% - 80px);
 
     .logo {
         width: 60vmin;
@@ -30,20 +30,20 @@ form {
     display: flex;
     flex-direction: column;
 
-    background: whitesmoke;
+    background: white;
 
-    margin: 10px;
-    padding: 30px;
     border-radius: 1rem;
+    padding: 30px;
+
+    &::content {
+        margin: 20px;
+
+    }
     button {
         align-self: flex-end;
     }
     input {
         width: inherit;
-
-        &.errors {
-            border-color: red;
-        }
     }
     label {
         font-size: 1em;
