@@ -15,7 +15,7 @@ export interface UserDetails {
 }
 
 interface TokenResponse {
-  token: string;
+  bearerToken: string;
 }
 
 export interface TokenPayload {
@@ -66,17 +66,14 @@ export class AuthenticationService {
   }
 
   public login(user: TokenPayload): Observable<any> {
-    return this.http.post(`http://localhost:8020/login`, user).pipe(
+    return this.http.post(`http://localhost:8080/login`, user).pipe(
       map((data: TokenResponse) => {
-        console.log(data)
-        if (data.token) {
-          this.saveToken(data.token);
-          
-        } 
+        if (data.bearerToken) {
+          this.saveToken(data.bearerToken);
+        }
         return data;
       })
     );
-
   }
 
   public logout(): void {
@@ -85,4 +82,3 @@ export class AuthenticationService {
     this.router.navigateByUrl('/login');
   }
 }
-

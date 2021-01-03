@@ -18,14 +18,15 @@ import { AuthenticationService } from './auth/authentification.service';
   providedIn: 'root'
 })
 export class DataService {
-  public apiURL = 'http://localhost:8020';
   constructor(private httpClient: HttpClient, private auth: AuthenticationService) {
   }
+  public apiURL = "http://localhost:8080";
 
   /* --------------------------------- OTHERS --------------------------------- */
   public profile() {
-    return this.httpClient.get(`${this.apiURL}/profile`, { headers: { Authorization: `Bearer ${this.auth.getToken()}` } });
-
+    return this.httpClient.get(`${this.apiURL}/profile`, {
+      headers: { Authorization: `Bearer ${this.auth.getToken()}` },
+    });
   }
 
   public postProfile(profil) {
