@@ -1,5 +1,4 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
-import { EventEmitter } from 'events';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import Activity from 'src/app/core/models/Activity';
 
 @Component({
@@ -16,8 +15,8 @@ export class HomeAsideComponent implements OnInit {
   activities: Activity[] = [];
 
   @Input()
-  viewDate: Date;
+  viewDate: Date = new Date();
 
-  // @Output()
-  // viewDateChange = new EventEmitter<Date>();
+  @Output()
+  viewDateChange = new EventEmitter<Date>();
 }
