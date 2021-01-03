@@ -22,7 +22,7 @@ export class AuthService {
   }
   public getToken() {
     const token = localStorage.getItem(this.token);
-    return token ? atob(token.split('.')[1]) : null;
+    return token ? JSON.parse(atob(token.split('.')[1])) : null;
   }
   public getRawToken() {
     return localStorage.getItem(this.token);

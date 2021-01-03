@@ -1,18 +1,26 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AuthGuardService } from './core/services/auth/auth-guard.service';
+import {
+  AuthGuard,
+  AuthGuardAdmin,
+} from './core/services/auth/auth-guard.service';
 
 import { LoginComponent } from './auth/login/login.component';
+import { InfosComponent } from './auth/infos/infos.component';
 
 const routes: Routes = [
+  {
+    path: 'info',
+    component: InfosComponent,
+  },
   {
     path: 'login',
     component: LoginComponent,
   },
   {
     path: '',
-    canActivate: [AuthGuardService],
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./home/home-routing.module').then(
         (module) => module.HomeRoutingModule
@@ -20,7 +28,7 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    canActivate: [AuthGuardService],
+    canActivate: [AuthGuard, AuthGuardAdmin],
     loadChildren: () =>
       import('./admin/admin-routing.module').then(
         (module) => module.AdminRoutingModule
