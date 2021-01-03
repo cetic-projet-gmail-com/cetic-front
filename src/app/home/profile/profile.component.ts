@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ApiHomeService } from 'src/app/core/services/api/api-home.service';
 
+import { Profile } from 'src/app/core/models/Profile';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -32,7 +34,8 @@ export class ProfileComponent implements OnInit {
     this.formProfile.disable();
 
     this.api.getProfile().subscribe(
-      ({ id, firstName, lastName, email }) => {
+      (profile: any) => {
+        const { id, firstName, lastName, email } = profile;
         this.formProfile.setValue({ id, firstName, lastName, email });
       },
       (error) => {}
