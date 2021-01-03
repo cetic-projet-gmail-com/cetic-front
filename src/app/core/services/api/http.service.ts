@@ -11,7 +11,7 @@ export class HttpService {
 
   private token = { Authorization: 'Bearer ' + this.auth.getRawToken() };
 
-  private request(method: string, path: string, payload: object) {
+  private request(method: string, path: string, payload?: object) {
     const defaultPath = `${environment.apiUrl}/${path}`;
 
     const header = {
@@ -37,14 +37,14 @@ export class HttpService {
     }
   }
 
-  public delete = (path: string, payload: object = {}) =>
+  public delete = (path: string, payload?: object) =>
     this.request('delete', path, payload);
-  public get = (path: string, payload: object = {}) =>
+  public get = (path: string, payload?: object) =>
     this.request('get', path, payload);
-  public patch = (path: string, payload: object = {}) =>
+  public patch = (path: string, payload?: object) =>
     this.request('patch', path, payload);
-  public post = (path: string, payload: object = {}) =>
+  public post = (path: string, payload?: object) =>
     this.request('post', path, payload);
-  public put = (path: string, payload: object = {}) =>
+  public put = (path: string, payload?: object) =>
     this.request('put', path, payload);
 }
