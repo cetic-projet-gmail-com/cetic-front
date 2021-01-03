@@ -1,18 +1,18 @@
 <nav class="tabs">
     <a
-        (click)="view = CalendarView.Day"
+        (click)="viewChange.emit(CalendarView.Day)"
         [class.tabs__active]="view === CalendarView.Day"
     >
         Jour
     </a>
     <a
-        (click)="view = CalendarView.Week"
+        (click)="viewChange.emit(CalendarView.Week)"
         [class.tabs__active]="view === CalendarView.Week"
     >
         Semaine
     </a>
     <a
-        (click)="view = CalendarView.Month"
+        (click)="viewChange.emit(CalendarView.Month)"
         [class.tabs__active]="view === CalendarView.Month"
     >
         Mois
