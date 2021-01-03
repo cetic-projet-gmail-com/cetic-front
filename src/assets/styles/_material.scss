@@ -1,0 +1,16 @@
+@import '~@angular/material/theming';
+@import 'colors';
+
+@include mat-core();
+
+  $primary: mat-palette($mat-green,600);
+  $accent: mat-palette($mat-orange,200);
+
+  $theme: mat-light-theme($primary, $accent);
+
+@include angular-material-theme($theme);
+
+//? Forms
+.mat-form-field {
+  width: 100%;
+}
