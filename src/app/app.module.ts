@@ -12,8 +12,11 @@ import { MaterialModule } from './material.module';
 import { SharedModule } from './shared/shared.module';
 import { HomeModule } from './home/home.module';
 import { AdminModule } from './admin/admin.module';
+
+import { FieldError } from 'src/app/core/pipes/form.pipe';
+
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent, LoginComponent, FieldError],
   imports: [
     AppRoutingModule,
     BrowserAnimationsModule,
