@@ -4,6 +4,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CalendarEvent } from 'angular-calendar';
 import { format, formatISO } from 'date-fns';
 
+import { EventForm } from 'src/app/core/models/Event';
+
 @Component({
   selector: 'app-edit-event',
   templateUrl: './edit-event.component.html',
@@ -12,7 +14,7 @@ import { format, formatISO } from 'date-fns';
 export class EditEventComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<EditEventComponent>,
-    @Inject(MAT_DIALOG_DATA) public data,
+    @Inject(MAT_DIALOG_DATA) public data: EventForm,
     private fb: FormBuilder
   ) {}
 
