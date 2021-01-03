@@ -9,10 +9,11 @@
           <mat-expansion-panel *ngFor="let activity of activities">
             <mat-expansion-panel-header>
               <div>
-                  <div
+                  <!-- <div
                       [ngStyle]="{'background-color':activity.colour?.code}"
                   >
-                </div>{{activity.name}}
+                </div> -->
+                {{activity.name}}
               </div>
             </mat-expansion-panel-header>
             <ul>
@@ -30,7 +31,7 @@
     </mat-accordion>
   </div>
   <div class="flat-picker">
-    <input
+    <!-- <input
         type="text"
         class="flat-picker__input"
         mwlFlatpickr
@@ -39,6 +40,6 @@
         [inline]="true"
         [altInput]="true"
         [convertModelValue]="true"
-    >
+    > -->
   </div>
 </aside>
