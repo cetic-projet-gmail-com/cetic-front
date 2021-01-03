@@ -14,9 +14,17 @@ import { HomeModule } from './home/home.module';
 import { AdminModule } from './admin/admin.module';
 
 import { FieldError } from 'src/app/core/pipes/form.pipe';
+import { InfosComponent } from './auth/infos/infos.component';
+import { FooterComponent } from './auth/footer/footer.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, FieldError],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    FieldError,
+    InfosComponent,
+    FooterComponent,
+  ],
   imports: [
     AppRoutingModule,
     BrowserAnimationsModule,
