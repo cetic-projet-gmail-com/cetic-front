@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { HttpService } from './http.service';
 
 @Injectable({
@@ -7,16 +8,16 @@ import { HttpService } from './http.service';
 export class ApiHomeService {
   constructor(private http: HttpService) {}
 
-  public getEvents() {
+  public getEvents(): Observable<any> {
     return this.http.get('event');
   }
-  public getActivities() {
+  public getActivities(): Observable<any> {
     return this.http.get('admin/activity');
   }
-  public getProfile() {
+  public getProfile(): Observable<any> {
     return this.http.get('profile');
   }
-  public updateProfile(form: object) {
+  public updateProfile(form: object): Observable<any> {
     return this.http.patch('profile', form);
   }
 }
