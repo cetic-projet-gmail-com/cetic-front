@@ -8,5 +8,6 @@ export class FieldError implements PipeTransform {
     } else if (value.hasError('email')) {
       return 'Adresse email invalide';
     }
+    return '';
   }
 }
