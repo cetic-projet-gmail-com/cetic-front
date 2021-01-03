@@ -4,8 +4,10 @@ import { Observable } from 'rxjs';
 import { ApiHomeService } from 'src/app/core/services/api/api-home.service';
 
 import Activity from 'src/app/core/models/Activity';
-import Event from 'src/app/core/models/Event';
+import { Event } from 'src/app/core/models/Event';
 import { EditEventComponent } from '../components/Dialogs/edit-event/edit-event.component';
+import { CalendarView } from 'angular-calendar';
+
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
@@ -13,9 +15,10 @@ import { EditEventComponent } from '../components/Dialogs/edit-event/edit-event.
 })
 export class IndexComponent implements OnInit {
   viewDate: Date = new Date();
+  view: CalendarView = CalendarView.Week;
 
-  public events: Observable<Event[]>;
-  public activities: Observable<Activity[]>;
+  public events!: Observable<Event[]>;
+  public activities!: Observable<Activity[]>;
 
   constructor(private api: ApiHomeService, private dialog: MatDialog) {}
 
@@ -33,13 +36,13 @@ export class IndexComponent implements OnInit {
   fetchData() {
     this.api.getEvents().subscribe(
       (events) => {
-        this.events = events['data'];
+        this.events = events.data;
       },
       (error) => {}
     );
     this.api.getActivities().subscribe(
       (activities) => {
-        this.activities = activities['data'];
+        this.activities = activities.data;
       },
       (error) => {}
     );
