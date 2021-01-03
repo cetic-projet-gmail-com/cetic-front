@@ -3,7 +3,6 @@
 .cta {
     display: flex;
 
-    background: var(--color-primary);
     color: var(--color-white);
     background: $color-primary-gradient;
 
@@ -13,17 +12,20 @@
 
     font-size: medium;
 
+    transition: filter 300ms ease-in-out;
+
     &__spinner {
         // height: 10px;
         // width: 10px;
         // overflow: hidden;
     }
     &:hover {
-        filter: saturate(70%);
+        filter: saturate(60%);
     }
-    &:focus {
-        box-shadow: 0 0 0 3px gray;
+    &:active {
+        background: black;
     }
+
 }
 
 .cancel {
