@@ -8,10 +8,8 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { HomeAsideComponent } from './components/home-aside/home-aside.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlatpickrModule } from 'angularx-flatpickr';
 
-import { MaterialModule } from '../material.module';
 import { EditEventComponent } from './components/Dialogs/edit-event/edit-event.component';
 
 import { DateNav } from '../core/pipes/date.pipe';
@@ -33,9 +31,6 @@ import { DateNav } from '../core/pipes/date.pipe';
       useFactory: adapterFactory,
     }),
     FlatpickrModule.forRoot(),
-    FormsModule,
-    ReactiveFormsModule,
-    MaterialModule,
   ],
   exports: [],
 })
