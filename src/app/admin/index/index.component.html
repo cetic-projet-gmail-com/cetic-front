@@ -1,1 +1,20 @@
 <app-header></app-header>
+<section>
+    <nav class="tabs">
+        <a routerLink="./activities" routerLinkActive="tabs__active">
+            Activités
+        </a>
+        <a routerLink="./users" routerLinkActive="tabs__active">
+            Utilisateurs
+        </a>
+        <a routerLink="./departments" routerLinkActive="tabs__active">
+            Departements
+        </a>
+    </nav>
+    <button
+        class="cta"
+    >
+        Create
+    </button>
+    <router-outlet></router-outlet>
+</section>
