@@ -98,12 +98,12 @@ export class CalendarComponent implements OnInit, OnChanges {
   CalendarView = CalendarView;
   dragToCreateActive = false;
 
-  calendarEvents: Array<CalendarEvent> = [];
+  calendarEvents: any[] = [];
 
   loadEvents() {
     if (this.events) {
       this.calendarEvents = this.events.map((event) => {
-        let calendarEvent: CalendarEvent = {
+        let calendarEvent = {
           title: event.description,
           start: parseISO(event.startAt),
           end: parseISO(event.endAt),
@@ -120,6 +120,11 @@ export class CalendarComponent implements OnInit, OnChanges {
     this.handleEditEvent.emit($event.event);
   }
 
+  refreshEvents() {
+    this.calendarEvents = [...this.calendarEvents];
+    this.cdr.detectChanges();
+  }
+
   startDragToCreate(
     segment: WeekViewHourSegment,
     mouseDownEvent: MouseEvent,
@@ -127,8 +132,9 @@ export class CalendarComponent implements OnInit, OnChanges {
   ) {
     const dragToSelectEvent: CalendarEvent = {
       id: this.events.length,
-      title: 'New event',
+      title: '',
       start: segment.date,
+      end: addMinutes(segment.date, 30),
       meta: {
         tmpEvent: true,
       },
@@ -148,11 +154,12 @@ export class CalendarComponent implements OnInit, OnChanges {
         finalize(() => {
           delete dragToSelectEvent.meta.tmpEvent;
           this.dragToCreateActive = false;
-          this.refreshEvents();
         }),
         takeUntil(fromEvent(document, 'mouseup'))
       )
       .subscribe((mouseMoveEvent: any) => {
+        this.refreshEvents();
+
         const minutesDiff = ceilToNearest(
           mouseMoveEvent.clientY - segmentPosition.top,
           30
@@ -171,6 +178,7 @@ export class CalendarComponent implements OnInit, OnChanges {
       });
     this.refreshEvents();
   }
+}
 
   refreshEvents() {
     this.calendarEvents = [...this.calendarEvents];
