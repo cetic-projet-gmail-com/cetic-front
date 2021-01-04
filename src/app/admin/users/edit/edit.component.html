@@ -1,0 +1,10 @@
+<app-header>
+    <div *ngIf="!state.isLoading">
+        <div>{{ item.firstName }} {{ item.lastName }}</div>
+    </div>
+    <div *ngIf="state.isLoading">
+        Loading...
+    </div>
+</app-header>
+
+{{ item.email }}
