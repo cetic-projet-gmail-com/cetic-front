@@ -22,7 +22,7 @@ import { WeekViewHourSegment } from 'calendar-utils';
 import { environment } from 'src/environments/environment';
 
 import { Event } from 'src/app/core/models/Event';
-import { addDays, addMinutes, endOfWeek, parseISO } from 'date-fns';
+import { addDays, addMinutes, endOfWeek, parseISO, format } from 'date-fns';
 import { fromEvent } from 'rxjs';
 import { finalize, takeUntil } from 'rxjs/operators';
 
@@ -145,6 +145,10 @@ export class CalendarComponent implements OnInit, OnChanges {
 
     const weekStartsOn: any = this.calendarConfig.weekStartsOn;
 
+    let tooltip = document.createElement('div');
+    tooltip.classList.add('dragHour');
+    let container = document.querySelector('#calendar-view');
+    container?.appendChild(tooltip);
     const endOfView = endOfWeek(this.viewDate, {
       weekStartsOn,
     });
@@ -154,12 +158,12 @@ export class CalendarComponent implements OnInit, OnChanges {
         finalize(() => {
           delete dragToSelectEvent.meta.tmpEvent;
           this.dragToCreateActive = false;
+
+          container?.removeChild(tooltip);
         }),
         takeUntil(fromEvent(document, 'mouseup'))
       )
       .subscribe((mouseMoveEvent: any) => {
-        this.refreshEvents();
-
         const minutesDiff = ceilToNearest(
           mouseMoveEvent.clientY - segmentPosition.top,
           30
@@ -175,7 +179,16 @@ export class CalendarComponent implements OnInit, OnChanges {
         if (newEnd > segment.date && newEnd < endOfView) {
           dragToSelectEvent.end = newEnd;
         }
+
+        tooltip.style.top = `${mouseMoveEvent.clientY}px`;
+        tooltip.style.left = `${mouseMoveEvent.clientX}px`;
+        tooltip.innerText = `${format(
+          dragToSelectEvent.start,
+          'HH:mm'
+        )} - ${format(newEnd, 'HH:mm')}`;
+        this.refreshEvents();
       });
+
     this.refreshEvents();
   }
 }

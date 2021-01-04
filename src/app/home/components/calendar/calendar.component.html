@@ -19,7 +19,10 @@
     </a>
 </nav>
 
-<div [ngSwitch]="view">
+<div
+    [ngSwitch]="view"
+    id="calendar-view"
+>
     <mwl-calendar-day-view
         *ngSwitchCase="CalendarView.Day"
         (eventClicked)="eventClicked($event)"
