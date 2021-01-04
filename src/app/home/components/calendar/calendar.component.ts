@@ -179,9 +179,3 @@ export class CalendarComponent implements OnInit, OnChanges {
     this.refreshEvents();
   }
 }
-
-  refreshEvents() {
-    this.calendarEvents = [...this.calendarEvents];
-    this.cdr.detectChanges();
-  }
-}
