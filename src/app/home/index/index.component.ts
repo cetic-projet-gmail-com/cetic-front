@@ -17,8 +17,8 @@ export class IndexComponent implements OnInit {
   viewDate: Date = new Date();
   view: CalendarView = CalendarView.Week;
 
-  public events!: Observable<Event[]>;
-  public activities!: Observable<Activity[]>;
+  events: Event[] = [];
+  activities: Activity[] = [];
 
   constructor(private api: ApiHomeService, private dialog: MatDialog) {}
 

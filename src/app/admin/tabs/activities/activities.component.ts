@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Activity from 'src/app/core/models/Activity';
 import { ApiAdminService } from 'src/app/core/services/api/api-admin.service';
 
 @Component({
@@ -7,18 +8,21 @@ import { ApiAdminService } from 'src/app/core/services/api/api-admin.service';
   styleUrls: ['./activities.component.scss'],
 })
 export class ActivitiesComponent implements OnInit {
-  constructor(private api: ApiAdminService) {}
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  public activities!: Activity[];
 
-  activities = [];
+  constructor(private api: ApiAdminService) {}
+  displayedColumns: string[] = ['name', 'description', 'ended'];
 
   ngOnInit(): void {
     this.fetchData();
   }
 
   fetchData() {
-    this.api.getActivities().subscribe((activities) => {
-      this.activities = activities.data;
-    });
+    this.api.getActivities().subscribe(
+      (activities: any) => {
+        this.activities = activities.data;
+      },
+      (error) => {}
+    );
   }
 }

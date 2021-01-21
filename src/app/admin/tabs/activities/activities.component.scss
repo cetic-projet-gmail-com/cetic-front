@@ -1,3 +1,10 @@
 table {
     width: 100%;
+
+    &__button-tasks {
+        display: flex;
+
+        background-color: gray;
+
+    }
 }

@@ -8,6 +8,7 @@ import { UsersComponent } from './tabs/users/users.component';
 import { ActivitiesComponent } from './tabs/activities/activities.component';
 import { DepartmentsComponent } from './tabs/departments/departments.component';
 import { EditComponent as EditUserComponent } from './users/edit/edit.component';
+import { EditComponent } from './activities/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { EditComponent as EditUserComponent } from './users/edit/edit.component'
     ActivitiesComponent,
     DepartmentsComponent,
     EditUserComponent,
+    EditComponent,
   ],
   imports: [AdminRoutingModule, CommonModule, SharedModule],
 })

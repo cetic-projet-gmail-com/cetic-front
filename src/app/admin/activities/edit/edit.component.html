@@ -1,0 +1,8 @@
+<app-header>
+    <div *ngIf="!state.isLoading">
+        <div>{{ activity.name }}</div>
+    </div>
+    <div *ngIf="state.isLoading">
+        Loading...
+    </div>
+</app-header>

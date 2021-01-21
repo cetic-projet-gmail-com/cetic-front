@@ -9,6 +9,7 @@ import { UsersComponent } from './tabs/users/users.component';
 import { ActivitiesComponent } from './tabs/activities/activities.component';
 import { DepartmentsComponent } from './tabs/departments/departments.component';
 import { EditComponent as EditUserComponent } from './users/edit/edit.component';
+import { EditComponent as EditActivityComponent } from './activities/edit/edit.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
       {
         path: 'users/:id',
         component: EditUserComponent,
+      },
+      {
+        path: 'activities/:id',
+        component: EditActivityComponent,
       },
     ],
   },

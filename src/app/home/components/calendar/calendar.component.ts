@@ -84,7 +84,7 @@ export class CalendarComponent implements OnInit, OnChanges {
   viewDateChange = new EventEmitter<Date>();
 
   @Input()
-  events: Event[] = [];
+  declare events: Event[];
 
   @Input()
   view: CalendarView = CalendarView.Week;
@@ -98,7 +98,7 @@ export class CalendarComponent implements OnInit, OnChanges {
   CalendarView = CalendarView;
   dragToCreateActive = false;
 
-  calendarEvents: any[] = [];
+  calendarEvents: CalendarEvent[] = [];
 
   loadEvents() {
     if (this.events) {
