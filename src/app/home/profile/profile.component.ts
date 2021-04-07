@@ -19,6 +19,8 @@ export class ProfileComponent implements OnInit {
     email: ['', Validators.required],
   });
 
+  role = '';
+
   formState = {
     isLoading: false,
     isEditable: false,
@@ -35,7 +37,15 @@ export class ProfileComponent implements OnInit {
 
     this.api.getProfile().subscribe(
       (profile: any) => {
-        const { id, firstName, lastName, email } = profile;
+        const {
+          id,
+          firstName,
+          lastName,
+          email,
+          role: { name = '' } = {},
+        } = profile;
+
+        this.role = name;
         this.formProfile.setValue({ id, firstName, lastName, email });
       },
       (error) => {}
@@ -52,6 +62,7 @@ export class ProfileComponent implements OnInit {
     try {
       this.formState.isLoading = true;
       this.formState.isEditable = false;
+
       this.api.updateProfile(this.formProfile.value);
     } catch (error) {
       this.formState.isError = true;

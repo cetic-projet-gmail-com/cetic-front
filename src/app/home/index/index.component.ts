@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
 import { ApiHomeService } from 'src/app/core/services/api/api-home.service';
 
 import Activity from 'src/app/core/models/Activity';
@@ -38,13 +37,17 @@ export class IndexComponent implements OnInit {
       (events) => {
         this.events = events.data;
       },
-      (error) => {}
+      (error) => {
+        this.events = [];
+      }
     );
     this.api.getActivities().subscribe(
       (activities) => {
         this.activities = activities.data;
       },
-      (error) => {}
+      (error) => {
+        this.activities = [];
+      }
     );
   }
 }

@@ -1,17 +1,22 @@
-form {
-    width: 100%;
-    display: flex;
+main {
+    display: grid;
     justify-content: center;
-    &::content {
-        margin: 10px;
-        width: 400px;
-    }
-
-    input {
-        width: 100%;
-    }
 }
 
-nav {
-    height: 40px;
+form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-row-gap: 2rem;
+    margin-top: 100px;
+    padding: 2rem;
+    background-color: var(--color-white);
+    border-radius: 1rem;
+
+    label {
+        display: contents;
+    }
+
+    span {
+        align-self: center;
+    }
 }

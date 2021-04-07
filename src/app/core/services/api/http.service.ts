@@ -46,14 +46,19 @@ export class HttpService {
     }
   }
 
-  public delete = (path: string, header?: object) =>
-    this.request('delete', path, {}, header);
-  public get = (path: string, header?: object) =>
-    this.request('get', path, {}, header);
-  public patch = (path: string, payload?: object, header?: object) =>
-    this.request('patch', path, payload, header);
-  public post = (path: string, payload?: object, header?: object) =>
-    this.request('post', path, payload, header);
-  public put = (path: string, payload: object, header?: object) =>
-    this.request('put', path, payload, header);
+  public delete(path: string, header?: object) {
+    return this.request('delete', path, {}, header);
+  }
+  public get(path: string, header?: object) {
+    return this.request('get', path, {}, header);
+  }
+  public patch(path: string, payload?: object, header?: object) {
+    return this.request('patch', path, payload, header);
+  }
+  public post(path: string, payload?: object, header?: object) {
+    return this.request('post', path, payload, header);
+  }
+  public put(path: string, payload: object, header?: object) {
+    return this.request('put', path, payload, header);
+  }
 }

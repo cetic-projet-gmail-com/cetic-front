@@ -1,58 +1,58 @@
 <section>
-    <div class="wrapper">
-        <img
-            class="logo"
-            src="assets/images/logo_cetic_transparent_1024.png"
-            alt="Logo Cetic"
-        />
-        <form [formGroup]="formLogin" (submit)="handleSubmit()" class="mat-elevation-z1">
-            <label>
-                <div>Login</div>
-                <mat-form-field>
-                    <input
-                        autocomplete="username"
-                        required
-                        type="text"
-                        formControlName="login"
-                        matInput
-                    />
-                    <mat-error *ngIf="formLogin.controls.login.invalid">
-                        {{ formLogin.controls.login | FieldError }}
-                    </mat-error>
+    <img
+        class="logo"
+        src="assets/images/logo_cetic_transparent_1024.png"
+        alt="Logo Cetic"
+    />
+    <form [formGroup]="formLogin" (submit)="handleSubmit()">
+        <label>
+            <span>Login</span>
+            <mat-form-field>
+                <input
+                    autocomplete="username"
+                    required
+                    type="text"
+                    formControlName="login"
+                    matInput
+                />
+                <mat-error *ngIf="formLogin.controls.login.invalid">
+                    {{ formLogin.controls.login | FieldError }}
+                </mat-error>
+            </mat-form-field>
+        </label>
+        <label>
+            <span>Mot de passe</span>
+            <mat-form-field>
+                <input
+                    autocomplete="current-password"
+                    matInput
+                    required
+                    [type]="state.isHidingPassword ? 'password' : 'text'"
+                    formControlName="password"
+                >
+                <mat-error *ngIf="formLogin.controls.password.invalid">
+                    {{ formLogin.controls.password | FieldError }}
+                </mat-error>
+                <button
+                    mat-icon-button
+                    matSuffix
+                    (click)="state.isHidingPassword = !state.isHidingPassword"
+                    type="button"
+                    [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="state.isHidingPassword"
+                >
+                    <mat-icon>{{state.isHidingPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
                 </mat-form-field>
-            </label>
-            <label>
-                <div>Mot de passe</div>
-                <mat-form-field>
-                    <input
-                        autocomplete="current-password"
-                        matInput
-                        required
-                        [type]="state.isHidingPassword ? 'password' : 'text'"
-                        formControlName="password"
-                    >
-                    <mat-error *ngIf="formLogin.controls.password.invalid">
-                        {{ formLogin.controls.password | FieldError }}
-                    </mat-error>
-                    <button
-                        mat-icon-button
-                        matSuffix
-                        (click)="state.isHidingPassword = !state.isHidingPassword"
-                        type="button"
-                        [attr.aria-label]="'Hide password'"
-                        [attr.aria-pressed]="state.isHidingPassword"
-                    >
-                        <mat-icon>{{state.isHidingPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    </button>
-                  </mat-form-field>
-            </label>
+        </label>
+        <div>
             <button
                 type="submit"
                 class="cta"
             >
                 Se connecter
             </button>
-        </form>
-    </div>
+        </div>
+    </form>
     <app-footer></app-footer>
 </section>

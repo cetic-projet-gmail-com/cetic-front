@@ -12,7 +12,7 @@ export class ApiHomeService {
     return this.http.get('event');
   }
   public getActivities(): Observable<any> {
-    return this.http.get('admin/activity');
+    return this.http.get('activity');
   }
   public getProfile(): Observable<any> {
     return this.http.get('profile');

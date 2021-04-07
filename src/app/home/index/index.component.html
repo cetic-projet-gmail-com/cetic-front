@@ -2,24 +2,24 @@
     <div home>
         <div class="nav-calendar">
             <button
-                mwlCalendarPreviousView
-                [view]="view"
-                [(viewDate)]="viewDate"
+              mwlCalendarPreviousView
+              [view]="view"
+              [(viewDate)]="viewDate"
             >
               <mat-icon>
                 keyboard_arrow_left
               </mat-icon>
             </button>
-            <div
-                mwlCalendarToday
-                [(viewDate)]="viewDate"
-            >
-                {{ viewDate | DateNav:view }}
-            </div>
             <button
-                mwlCalendarNextView
-                [view]="view"
-                [(viewDate)]="viewDate"
+              mwlCalendarToday
+              [(viewDate)]="viewDate"
+            >
+              {{ viewDate | DateNav:view }}
+            </button>
+            <button
+              mwlCalendarNextView
+              [view]="view"
+              [(viewDate)]="viewDate"
             >
               <mat-icon>
                 keyboard_arrow_right
@@ -30,13 +30,13 @@
 </app-header>
 <section class="home">
     <app-calendar
-        (handleEditEvent)="handleEditEvent($event)"
-        [(events)]="events"
-        [(view)]="view"
-        [(viewDate)]="viewDate"
+      (handleEditEvent)="handleEditEvent($event)"
+      [(events)]="events"
+      [(view)]="view"
+      [(viewDate)]="viewDate"
     ></app-calendar>
     <app-home-aside
-        [activities]="activities"
-        [(viewDate)]="viewDate"
+      [activities]="activities"
+      [(viewDate)]="viewDate"
     ></app-home-aside>
 </section>
